@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,24 +7,36 @@ using System.Linq;
 public class GameField : MonoBehaviour
 {
     public GameFieldGenerator mapGenerator;
-    public Cube[] field; 
+    public Action<Cube, Character> OnPressCubeEvents; 
+    public Cube[] field;
 
-    void Awake()
+    public void Init()
     {
         ParseMap();
+        ConnectEvents();
     }
 
-    public void ResetAllCube()
+
+    public void ConnectEvents()
     {
         foreach (var cube in field)
         {
-            cube.Reset();
+            cube.OnPressEvents = OnPressEvents;
         }
     }
 
-    private void ParseMap()
+    private void OnPressEvents(Cube cube, Character character)
+    {
+        if (OnPressCubeEvents != null)
+        {
+            OnPressCubeEvents(cube , character);
+        }
+    }
+
+    public void ParseMap()
     {
         field = mapGenerator.GetComponentsInChildren<Cube>();
+        ConnectEvents();
     }
 
     public Cube GetCube(int line, int number)
@@ -76,14 +89,4 @@ public class GameField : MonoBehaviour
 
         return GetCube(findLevel, findNumber);
     }
-
-	void Start () 
-	{
-	
-	}
-	
-	void Update () 
-	{
-	
-	}
 }

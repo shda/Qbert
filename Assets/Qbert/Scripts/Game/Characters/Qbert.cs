@@ -15,7 +15,7 @@ public class Qbert : Character
             yield return StartCoroutine(JumpNamMove(cube , timeMove));
             //yield return StartCoroutine(this.MovingTransformTo(root, cube.upSide.position, timeMove));
 
-            cube.OnPressMy();
+            cube.OnPressMy(this);
         }
 
         moveCoroutine = null;

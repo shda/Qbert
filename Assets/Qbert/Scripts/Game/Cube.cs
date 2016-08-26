@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class Cube : MonoBehaviour
@@ -7,24 +8,18 @@ public class Cube : MonoBehaviour
     public int numberInLine;
 
     public Transform upSide;
-
     public Renderer upSideRender;
 
-    public Color pressColor;
-    public Color unpressColor;
+    public Action<Cube , Character> OnPressEvents; 
 
     public bool isPress = false;
 
-    public void OnPressMy()
+    public void OnPressMy(Character character)
     {
-        upSideRender.material.color = pressColor;
-        isPress = true;
-    }
-
-    public void Reset()
-    {
-        upSideRender.material.color = unpressColor;
-        isPress = false;
+        if (OnPressEvents != null)
+        {
+            OnPressEvents(this , character);
+        }
     }
 
 	void Start () 

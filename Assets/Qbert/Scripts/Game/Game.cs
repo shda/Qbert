@@ -4,43 +4,25 @@ using System.Collections;
 
 public class Game : MonoBehaviour
 {
-    public InputController controlController;
-    public GameField gameField;
-    public Qbert qbert;
+    public LevelController levelController;
 
     public void RestartLevel()
     {
-        qbert.SetStartPosition(0,0);
-        gameField.ResetAllCube();
+        levelController.RestartLevel();
     }
 
-    void ConnectEvents()
+    public void InitLevel()
     {
-        controlController.OnPress += OnPressControl;
+        levelController.InitLevel();
     }
 
-    void DisconnectEvents()
+    void Start()
     {
-        controlController.OnPress -= OnPressControl;
+        InitLevel();
     }
 
-    private void OnPressControl(ControlController.ButtonType buttonType)
+    void Update()
     {
-        Cube findCube = gameField.GetCubeDirection(buttonType , qbert.currentLevel , qbert.currentNumber);
-        if (findCube)
-        {
-            qbert.MoveToCube(findCube);
-        }
+
     }
-
-	void Start ()
-	{
-	    ConnectEvents();
-	    RestartLevel();
-	}
-
-	void Update ()
-    {
-	
-	}
 }

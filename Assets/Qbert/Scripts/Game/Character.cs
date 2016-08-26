@@ -82,7 +82,7 @@ public class Character : MonoBehaviour
             yield return StartCoroutine(RotateToCube(cube));
             yield return StartCoroutine(this.MovingTransformTo(root, cube.upSide.position, timeMove));
 
-            cube.OnPressMy();
+            cube.OnPressMy(this);
         }
 
         moveCoroutine = null;
