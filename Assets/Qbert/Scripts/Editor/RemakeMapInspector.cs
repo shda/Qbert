@@ -2,14 +2,14 @@
 using System.Collections;
 using UnityEditor;
 
-[CustomEditor(typeof(MapGenerator))]
-public class RemakeMap : Editor
+[CustomEditor(typeof(GameFieldGenerator))]
+public class RemakeMapInspector : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
-        MapGenerator myScript = (MapGenerator)target;
+        GameFieldGenerator myScript = (GameFieldGenerator)target;
         if (GUILayout.Button("Remake map"))
         {
             myScript.CreateMap();

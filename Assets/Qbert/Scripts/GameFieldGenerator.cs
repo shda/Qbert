@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 [ExecuteInEditMode]
-public class MapGenerator : MonoBehaviour
+public class GameFieldGenerator : MonoBehaviour
 {
     public float offsetX = 1.0f;
     public float offsetY = 1.0f;
@@ -38,6 +38,13 @@ public class MapGenerator : MonoBehaviour
                     float offsetSet = offsetX*line;
                     Transform createPattern = CreatePattern(new Vector3(offsetSet , 0 , offsetSet) , lineRoot.transform);
                     lineTransform.Add(createPattern);
+
+                    Cube cube = createPattern.GetComponent<Cube>();
+                    if (cube)
+                    {
+                        cube.lineNumber = level;
+                        cube.numberInLine = line;
+                    }
                 }
 
                 lineRoot.transform.localPosition = new Vector3(-level , -level * offsetY);
@@ -55,17 +62,20 @@ public class MapGenerator : MonoBehaviour
         createPattern.transform.localRotation = Quaternion.identity;
         createPattern.localPosition = position;
 
+        
+
         return createPattern;
     }
 
     private void DestroyOldMap()
     {
-        var list = root.Cast<Transform>();
+        var list = root.Cast<Transform>().ToArray();
 
         foreach (var child in list)
         {
+            Debug.Log(child.name);
             child.gameObject.SetActive(false);
-            DestroyImmediate(child.gameObject);
+            DestroyImmediate(child.gameObject , true);
         }
     }
 
