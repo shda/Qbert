@@ -8,6 +8,16 @@ public class Cube : MonoBehaviour
 
     public Transform upSide;
 
+    public Renderer upSideRender;
+
+    public Color pressColor;
+    public Color unpressColor;
+
+    public void OnPressMy()
+    {
+        upSideRender.material.color = pressColor;
+    }
+
 	void Start () 
 	{
 	

@@ -7,14 +7,23 @@ public class Character : MonoBehaviour
     [Header("Character")]
     public Transform root;
     public GameField gameField;
-    public float speedMove = 1.0f;
+    public float timeMove = 1.0f;
+    public float timeRotate = 0.2f;
+
+    public int currentLevel = 0;
+    public int currentNumber = 0;
 
     public bool isMoving
     {
         get { return moveCoroutine != null; }
     }
 
-    private Coroutine moveCoroutine;
+    protected Coroutine moveCoroutine;
+
+    public  bool MoveToCube(Cube cube)
+    {
+        return MoveToCube(cube.lineNumber , cube.numberInLine);
+    }
 
     public bool MoveToCube(int line , int numberInLine)
     {
@@ -29,20 +38,19 @@ public class Character : MonoBehaviour
         return false;
     }
 
-    IEnumerator RotateToCube(Cube cube)
+    protected IEnumerator RotateToCube(Cube cube)
     {
-        yield return null;
-
-        float time = 0.1f;
-
         var rotateStart = root.rotation.eulerAngles;
-        var rotateTo = Quaternion.LookRotation(cube.upSide.position).eulerAngles;
+
+        var direction = (cube.upSide.position - root.position).normalized;
+
+        var rotateTo = Quaternion.LookRotation(direction).eulerAngles;
         rotateTo = new Vector3(0, rotateTo.y, rotateTo.z);
 
         float distance = Vector3.Distance(rotateStart, rotateTo);
-        float speedMoving = distance / time;
+        float speedMoving = distance / timeRotate;
 
-        while (distance > 0.001f)
+        while (distance > 0.01f)
         {
             Vector3 move = Vector3.MoveTowards(root.rotation.eulerAngles, 
                 rotateTo, speedMoving * Time.deltaTime);
@@ -50,38 +58,22 @@ public class Character : MonoBehaviour
             distance = Vector3.Distance(root.rotation.eulerAngles, rotateTo);
             yield return null;
         }
-
-        /*
-        root.rotation = Quaternion.LookRotation(cube.upSide.position);
-
-        root.rotation = Quaternion.Euler( 
-            new Vector3(0 , root.rotation.eulerAngles.y , root.rotation.eulerAngles.z));
-            */
-        /*
-        Vector3 direction = (cube.upSide.position - root.position).normalized;
-
-
-        if (!isMoving)
-        {
-            yield return null;
-
-            yield return StartCoroutine(this.MovingTransformTo(root, cube.upSide.position, speedMove));
-        }
-        */
-
-
-        // moveCoroutine = null;
     }
 
-    IEnumerator MoveToCubeAnimation(Cube cube , Action<Character> OnEnd = null)
+    protected virtual IEnumerator MoveToCubeAnimation(Cube cube , Action<Character> OnEnd = null)
     {
         if (!isMoving)
         {
             yield return StartCoroutine(RotateToCube(cube));
-            yield return StartCoroutine(this.MovingTransformTo(root, cube.upSide.position, speedMove));
+            yield return StartCoroutine(this.MovingTransformTo(root, cube.upSide.position, timeMove));
+
+            cube.OnPressMy();
         }
 
         moveCoroutine = null;
+
+        currentLevel = cube.lineNumber;
+        currentNumber = cube.numberInLine;
 
         if (OnEnd != null)
         {
@@ -97,7 +89,7 @@ public class Character : MonoBehaviour
 
     void Start ()
     {
-        StartCoroutine(TestMove());
+       // StartCoroutine(TestMove());
     }
 	
 	void Update () 

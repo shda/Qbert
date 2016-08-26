@@ -43,7 +43,7 @@ public class GameFieldGenerator : MonoBehaviour
                     if (cube)
                     {
                         cube.lineNumber = level;
-                        cube.numberInLine = line;
+                        cube.numberInLine = level - line;
                     }
                 }
 
@@ -61,8 +61,6 @@ public class GameFieldGenerator : MonoBehaviour
         createPattern.SetParent(rootLine);
         createPattern.transform.localRotation = Quaternion.identity;
         createPattern.localPosition = position;
-
-        
 
         return createPattern;
     }

@@ -7,10 +7,10 @@ public class ControlController : SingletonT<ControlController>
 {
     public enum ButtonType
     {
-        Left,
-        Right,
-        Up,
-        Down
+        UpLeft,
+        UpRight,
+        DownLeft,
+        DownRight
     }
 
     [Serializable]
