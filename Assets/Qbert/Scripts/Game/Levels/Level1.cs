@@ -3,8 +3,7 @@ using System.Collections;
 
 public class Level1 : LevelActions
 {
-    public int startPostitionQberLevel = 0;
-    public int startPostitionQberNumber = 0;
+    public PointCube startPostitionQber;
     public Color defaultColor;
     public Color pressColor;
 
@@ -29,14 +28,15 @@ public class Level1 : LevelActions
 
     public override void ResetLevel()
     {
-        levelController.qbert.SetStartPosition(startPostitionQberLevel, startPostitionQberNumber);
+        levelController.qbert.SetStartPosition(startPostitionQber);
 
         foreach (var cube in levelController.gameField.field)
         {
             CubeSetColor(cube, defaultColor);
             cube.isPress = false;
         }
-        
+
+        levelController.enemies.DestroyAllEnemies();
     }
 
     public override bool CheckToWin()
@@ -53,6 +53,11 @@ public class Level1 : LevelActions
     }
 
     public override void InitLevel()
+    {
+        ResetLevel();
+    }
+
+    public override void OnCollisionCharacters(Character character1, Character character2)
     {
         ResetLevel();
     }

@@ -39,54 +39,74 @@ public class GameField : MonoBehaviour
         ConnectEvents();
     }
 
-    public Cube GetCube(int line, int number)
+    public Cube GetCube(PointCube cube)
     {
-        return field.FirstOrDefault(x => x.lineNumber == line && x.numberInLine == number);
+        return field.FirstOrDefault(x => x.cubePosition == cube);
     }
 
-    public Cube GetCubeDirection(ControlController.ButtonType buttonType , int level , int number)
+    public Cube GetCubeDirection(DirectionMove.Direction buttonType , PointCube point)
     {
-        int levels = mapGenerator.levels;
+        return GetCube(GetPointCubeDirection(buttonType , point));
+    }
 
-        Cube findCube = null;
-
+    public PointCube GetPointCubeDirection(DirectionMove.Direction buttonType, PointCube point)
+    {
         int findLevel = -1;
         int findNumber = -1;
 
-        if (buttonType == ControlController.ButtonType.DownLeft)
+        if (buttonType == DirectionMove.Direction.DownLeft)
         {
-            if (level < levels - 1)
-            {
-                findLevel = level + 1;
-                findNumber = number;
-            }
+            findLevel = point.line + 1;
+            findNumber = point.position;
         }
-        else if (buttonType == ControlController.ButtonType.UpRight)
+        else if (buttonType == DirectionMove.Direction.UpRight)
         {
-            if (level > 0)
-            {
-                findLevel = level - 1;
-                findNumber = number;
-            }
+            findLevel = point.line - 1;
+            findNumber = point.position;
         }
-        else if (buttonType == ControlController.ButtonType.DownRight)
+        else if (buttonType == DirectionMove.Direction.DownRight)
         {
-            if (level < levels - 1)
-            {
-                findLevel = level + 1;
-                findNumber = number + 1;
-            }
-
+            findLevel = point.line + 1;
+            findNumber = point.position + 1;
         }
-        else if (buttonType == ControlController.ButtonType.UpLeft)
+        else if (buttonType == DirectionMove.Direction.UpLeft)
         {
-            if (level > 0)
-            {
-                findLevel = level - 1;
-                findNumber = number - 1;
-            }
+            findLevel = point.line - 1;
+            findNumber = point.position - 1;
         }
 
-        return GetCube(findLevel, findNumber);
+        return new PointCube(findLevel , findNumber);
+    }
+
+    public Vector3 GetOffsetDirection(DirectionMove.Direction direction)
+    {
+        float x = 0, y = 0;
+
+        if (direction == DirectionMove.Direction.UpRight)
+        {
+            x += 1;
+            y += 1;
+        }
+        else
+        if (direction == DirectionMove.Direction.UpLeft)
+        {
+            x += -1;
+            y += 1;
+        }
+        if (direction == DirectionMove.Direction.DownRight)
+        {
+            x += 1;
+            y += -1;
+        }
+        else
+        if (direction == DirectionMove.Direction.DownLeft)
+        {
+            x += -1;
+            y += -1;
+        }
+
+
+        return new Vector3(x * mapGenerator.offsetX, 0,
+            y * mapGenerator.offsetX);
     }
 }

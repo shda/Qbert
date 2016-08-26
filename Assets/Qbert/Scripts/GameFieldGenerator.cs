@@ -42,8 +42,7 @@ public class GameFieldGenerator : MonoBehaviour
                     Cube cube = createPattern.GetComponent<Cube>();
                     if (cube)
                     {
-                        cube.lineNumber = level;
-                        cube.numberInLine = level - line;
+                        cube.cubePosition = new PointCube(level , level - line);
                     }
                 }
 
@@ -53,6 +52,11 @@ public class GameFieldGenerator : MonoBehaviour
             }
             
         }
+    }
+
+    public Vector3 CalculatePosition(PointCube point)
+    {
+        return root.TransformDirection(new Vector3(point.line * offsetX, point.position * offsetY));
     }
 
     private Transform CreatePattern(Vector3 position , Transform rootLine)
@@ -84,13 +88,6 @@ public class GameFieldGenerator : MonoBehaviour
 	
 	void Update ()
     {
-        /*
-	    if (offset != oldOffset || levels != oldLevels)
-	    {
-            oldOffset = offset;
-            oldLevels = levels;
-            CreateMap();
-	    }
-        */
+
 	}
 }

@@ -4,24 +4,18 @@ using System.Collections;
 
 public class InputController : MonoBehaviour
 {
-    public Action<ControlController.ButtonType> OnPress; 
+    public Action<DirectionMove.Direction> OnPress; 
     public ControlController controlController;
 
 	void Start ()
 	{
-        /*
-	    OnPress = type =>
-	    {
-            Debug.Log(type);
-	    };
-        */
 	}
 	
 	void Update () 
 	{
-	    foreach (var value in Enum.GetValues( typeof(ControlController.ButtonType) ) )
+	    foreach (var value in Enum.GetValues( typeof(DirectionMove.Direction) ) )
 	    {
-	        var eValue = (ControlController.ButtonType) value;
+	        var eValue = (DirectionMove.Direction) value;
 	        if (controlController.GetInDown(eValue))
 	        {
 	            if (OnPress != null)

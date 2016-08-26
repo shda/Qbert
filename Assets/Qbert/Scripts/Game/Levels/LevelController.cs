@@ -5,6 +5,7 @@ using System.Collections;
 public class LevelController : MonoBehaviour
 {
     public InputController controlController;
+    public Enemies enemies;
     public LevelActions currentLevel;
     public GameField gameField;
     public Qbert qbert;
@@ -14,26 +15,46 @@ public class LevelController : MonoBehaviour
         currentLevel.OnCharacterPressToCube(cube , character);
     }
 
-    private void OnPressControl(ControlController.ButtonType buttonType)
+    private void OnPressControl(DirectionMove.Direction buttonType)
     {
-        Cube findCube = gameField.GetCubeDirection(buttonType, qbert.currentLevel, qbert.currentNumber);
+        Cube findCube = gameField.GetCubeDirection(buttonType, qbert.currentPosition);
         if (findCube)
         {
             qbert.MoveToCube(findCube);
         }
+        else
+        {
+            Vector3 newPos = qbert.root.position + gameField.GetOffsetDirection(buttonType);
+            qbert.MoveToPointAndDropDown(newPos , character =>
+            {
+                RestartLevel();
+                Debug.Log("OnDead");
+            });
+        }
+    }
+
+    private void OnCollisionCharacters(Transform owner1, Transform owner2)
+    {
+        var character1 = owner1.GetComponent<Character>();
+        var character2 = owner2.GetComponent<Character>();
+
+        currentLevel.OnCollisionCharacters(character1 , character2);
     }
 
     public void RestartLevel()
     {
         currentLevel.ResetLevel();
+        currentLevel.StartLevel();
     }
 
     void ConnectEvents()
     {
         controlController.OnPress = OnPressControl;
         gameField.OnPressCubeEvents = OnPressCubeEvents;
+        qbert.collisionProxy.triggerEnterEvent = OnCollisionCharacters;
     }
 
+   
     public void InitLevel()
     {
         currentLevel.SetController(this);

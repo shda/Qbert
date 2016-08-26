@@ -5,19 +5,11 @@ using UnityEngine.UI;
 
 public class ControlController : SingletonT<ControlController>
 {
-    public enum ButtonType
-    {
-        UpLeft,
-        UpRight,
-        DownLeft,
-        DownRight
-    }
-
     [Serializable]
     public class ButtonControl
     {
         public ButtonTouchPanel button;
-        public ButtonType buttonType;
+        public DirectionMove.Direction buttonType;
     }
 
     public ButtonControl[] controls;
@@ -43,23 +35,23 @@ public class ControlController : SingletonT<ControlController>
         }
     }
 
-    public bool GetInDown(ButtonType buttonType)
+    public bool GetInDown(DirectionMove.Direction buttonType)
     {
         return GetButtonByType(buttonType).button.GetInDown();
     }
 
-    public float GetButtonValue(ButtonType buttonType)
+    public float GetButtonValue(DirectionMove.Direction buttonType)
     {
 
         return GetButtonByType(buttonType).button.GetValue();
     }
 
-    public bool GetButtonIsPressed(ButtonType buttonType)
+    public bool GetButtonIsPressed(DirectionMove.Direction buttonType)
     {
         return GetButtonByType(buttonType).button.isPressed;
     }
 
-    public ButtonControl GetButtonByType(ButtonType buttonType)
+    public ButtonControl GetButtonByType(DirectionMove.Direction buttonType)
     {
         foreach (var buttonControl in controls)
         {

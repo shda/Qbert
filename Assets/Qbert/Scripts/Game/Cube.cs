@@ -4,8 +4,7 @@ using System.Collections;
 
 public class Cube : MonoBehaviour
 {
-    public int lineNumber;
-    public int numberInLine;
+    public PointCube cubePosition;
 
     public Transform upSide;
     public Renderer upSideRender;
