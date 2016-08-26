@@ -20,6 +20,21 @@ public class Character : MonoBehaviour
 
     protected Coroutine moveCoroutine;
 
+    public virtual void SetStartPosition(int level , int number)
+    {
+        currentLevel = level;
+        currentNumber = number;
+        StopAllCoroutines();
+
+        var startCube = gameField.GetCube(level, number);
+        if (startCube)
+        {
+            root.position = startCube.upSide.position;
+            root.rotation = Quaternion.Euler(0,180,0);
+        }
+        moveCoroutine = null;
+    }
+
     public  bool MoveToCube(Cube cube)
     {
         return MoveToCube(cube.lineNumber , cube.numberInLine);

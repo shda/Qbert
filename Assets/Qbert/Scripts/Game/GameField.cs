@@ -13,6 +13,14 @@ public class GameField : MonoBehaviour
         ParseMap();
     }
 
+    public void ResetAllCube()
+    {
+        foreach (var cube in field)
+        {
+            cube.Reset();
+        }
+    }
+
     private void ParseMap()
     {
         field = mapGenerator.GetComponentsInChildren<Cube>();
@@ -65,7 +73,6 @@ public class GameField : MonoBehaviour
                 findNumber = number - 1;
             }
         }
-
 
         return GetCube(findLevel, findNumber);
     }

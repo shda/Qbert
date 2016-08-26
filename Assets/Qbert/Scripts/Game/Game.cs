@@ -2,13 +2,18 @@
 using UnityEngine;
 using System.Collections;
 
-public class Main : MonoBehaviour
+public class Game : MonoBehaviour
 {
     public InputController controlController;
-
     public GameField gameField;
     public Qbert qbert;
-    
+
+    public void RestartLevel()
+    {
+        qbert.SetStartPosition(0,0);
+        gameField.ResetAllCube();
+    }
+
     void ConnectEvents()
     {
         controlController.OnPress += OnPressControl;
@@ -26,16 +31,13 @@ public class Main : MonoBehaviour
         {
             qbert.MoveToCube(findCube);
         }
-        
-        Debug.Log(buttonType);
     }
 
 	void Start ()
 	{
 	    ConnectEvents();
+	    RestartLevel();
 	}
-
-
 
 	void Update ()
     {

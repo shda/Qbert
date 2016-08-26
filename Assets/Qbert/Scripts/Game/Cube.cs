@@ -13,9 +13,18 @@ public class Cube : MonoBehaviour
     public Color pressColor;
     public Color unpressColor;
 
+    public bool isPress = false;
+
     public void OnPressMy()
     {
         upSideRender.material.color = pressColor;
+        isPress = true;
+    }
+
+    public void Reset()
+    {
+        upSideRender.material.color = unpressColor;
+        isPress = false;
     }
 
 	void Start () 
