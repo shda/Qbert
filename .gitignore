@@ -1,0 +1,15 @@
+Assembly/*
+Library/*
+Temp/*
+build/*
+obj/*
+test-results/*
+Assets/StreamingAssets*
+Assets/!StreamingAssets*
+*.suo
+*.sln
+*.userprefs
+*.csproj
+Assets/Build*
+*.apk
+*.unityproj
