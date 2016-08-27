@@ -4,7 +4,7 @@
     {
 		_ColorIn ("ColorIn", Color) = (1,1,1,1)
 		_ColorOut ("ColorOut", Color) = (1,1,1,1)
-        _Radius ("Radius", Range(0.0, 1.0)) = 1.0
+        _Lerp ("Lerp", Range(0.0, 1.0)) = 1.0
 		_MixColorRadius ("MixColorRadius", Range(0.0, 1.0)) = 1.0
 		_MixColorLerp ("MixColorLerp", Range(0.0, 1.0)) = 1.0
 		_Distort("Distort", vector) = (0.5, 0.5, 1.0, 1.0)
@@ -38,7 +38,7 @@
             #include "UnityCG.cginc"
 
             sampler2D _MainTex;
-            float _Radius;
+            float _Lerp;
 			float _MixColorRadius;
 			float _MixColorLerp;
 			float4 _Distort;
@@ -68,21 +68,18 @@
             {
 				float x = length((_Distort.xy - IN.texcoord.xy) * _Distort.zw);
 				
-				//return lerp(_ColorIn, _ColorOut, x +  _Radius);
-				
-				if( x < _Radius )
+				if( x < _Lerp )
 				{
-					//return lerp(_ColorIn, _ColorOut, _MixColorLerp + x);
 
-					if( x > _Radius - _MixColorRadius )
+					if( x > _Lerp - _MixColorRadius )
 					{
-						 return lerp(_ColorIn, _ColorOut,  x);
+						 return lerp(_ColorOut , _ColorIn, x);
 					}
-                    return  _ColorIn ;
+                    return  _ColorOut ;
 				}
 				
 				
-                return _ColorOut;
+                return _ColorIn;
             }
             ENDCG
         }

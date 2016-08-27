@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class Enemies : MonoBehaviour
 {
-    public GameField gameField;
+    public LevelController levelController;
     public Enemy[] enemiesPaterns;
     public List<Enemy> enemyList = new List<Enemy>();
     public Transform root;
@@ -16,7 +16,7 @@ public class Enemies : MonoBehaviour
         {
             if (enemiesPatern.typeEnemy == type)
             {
-                return enemiesPatern.Create(root , gameField);
+                return enemiesPatern.Create(root , levelController);
             }
         }
 

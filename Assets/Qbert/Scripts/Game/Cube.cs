@@ -13,6 +13,8 @@ public class Cube : MonoBehaviour
 
     public bool isPress = false;
 
+    public TextMesh debugText;
+
     public void OnPressMy(Character character)
     {
         if (OnPressEvents != null)
@@ -26,8 +28,8 @@ public class Cube : MonoBehaviour
 	
 	}
 	
-	void Update () 
+	void Update ()
 	{
-	
+	    debugText.text = string.Format("{0},{1}", cubePosition.line, cubePosition.position);
 	}
 }

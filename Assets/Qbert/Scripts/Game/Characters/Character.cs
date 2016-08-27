@@ -6,8 +6,10 @@ public class Character : MonoBehaviour
 {
     [Header("Character")]
     public Transform root;
-    public GameField gameField;
+    [HideInInspector]
+    public LevelController levelController;
     public CollisionProxy collisionProxy;
+
     public float timeMove = 1.0f;
     public float timeRotate = 0.2f;
     public float jumpAmplitude = 0.5f;
@@ -30,7 +32,7 @@ public class Character : MonoBehaviour
 
         currentPosition = point;
 
-        var startCube = gameField.GetCube(point);
+        var startCube = levelController.gameField.GetCube(point);
         if (startCube)
         {
             root.position = startCube.upSide.position;
@@ -46,7 +48,7 @@ public class Character : MonoBehaviour
 
     public bool MoveToCube( PointCube point )
     {
-        var cube = gameField.GetCube(point);
+        var cube = levelController.gameField.GetCube(point);
 
         if (cube && moveCoroutine == null)
         {

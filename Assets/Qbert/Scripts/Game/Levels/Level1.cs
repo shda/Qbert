@@ -31,6 +31,7 @@ public class Level1 : LevelActions
 
     public override void ResetLevel()
     {
+        levelController.qbert.levelController = levelController;
         levelController.qbert.SetStartPosition(startPostitionQber);
 
         foreach (var cube in levelController.gameField.field)
@@ -63,6 +64,6 @@ public class Level1 : LevelActions
 
     public override void OnCollisionCharacters(Character character1, Character character2)
     {
-        ResetLevel();
+      //  ResetLevel();
     }
 }

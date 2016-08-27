@@ -7,6 +7,7 @@ public class Enemy : Character
     public enum Type
     {
         RedCube,
+        PurpleCube
     }
     public virtual Type typeEnemy
     {
@@ -25,7 +26,7 @@ public class Enemy : Character
         
     }
 
-    public virtual Enemy Create(Transform root , GameField gameField)
+    public virtual Enemy Create(Transform root , LevelController levelController)
     {
         Transform instance = Instantiate(transform);
         instance.SetParent(root);
@@ -33,7 +34,7 @@ public class Enemy : Character
         instance.localRotation = Quaternion.identity;
 
         var enemy = instance.GetComponent<Enemy>();
-        enemy.gameField = gameField;
+        enemy.levelController = levelController;
 
         instance.gameObject.SetActive(true);
 

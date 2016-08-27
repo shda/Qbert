@@ -25,6 +25,21 @@ public class AnimationToTime : MonoBehaviour
         animator.speed = 0;
     }
 
+    public IEnumerator PlayToTime(float duration)
+    {
+        float t = 0;
+        while (t < 0.99f)
+        {
+            t += Time.smoothDeltaTime / duration;
+            time = t;
+            yield return null;
+        }
+
+        t = 0.99f;
+
+        time = t;
+    }
+
     void Start () 
 	{
         
