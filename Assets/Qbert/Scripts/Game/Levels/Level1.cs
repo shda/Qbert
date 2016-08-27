@@ -11,7 +11,8 @@ public class Level1 : LevelActions
     {
         if (character is Qbert)
         {
-            CubeSetColor(cube , pressColor);
+            cube.colorLerp.value = 1.0f;
+            //CubeSetColor(cube , pressColor);
             cube.isPress = true;
         }
 
@@ -23,7 +24,9 @@ public class Level1 : LevelActions
 
     private void CubeSetColor(Cube cube , Color color)
     {
-        cube.upSideRender.material.color = color;
+        cube.colorLerp.SetColorEnd(pressColor);
+        cube.colorLerp.SetColorEnd(pressColor);
+        cube.colorLerp.value = 0.0f;
     }
 
     public override void ResetLevel()
@@ -32,7 +35,8 @@ public class Level1 : LevelActions
 
         foreach (var cube in levelController.gameField.field)
         {
-            CubeSetColor(cube, defaultColor);
+            cube.colorLerp.value = 0.0f;
+            //CubeSetColor(cube, defaultColor);
             cube.isPress = false;
         }
 

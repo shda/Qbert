@@ -7,7 +7,7 @@ public class Cube : MonoBehaviour
     public PointCube cubePosition;
 
     public Transform upSide;
-    public Renderer upSideRender;
+    public ShaderSwitchColorLerp colorLerp;
 
     public Action<Cube , Character> OnPressEvents; 
 
