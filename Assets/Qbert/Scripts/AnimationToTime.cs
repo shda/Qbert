@@ -1,8 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AnimationToTime : MonoBehaviour
+public class AnimationToTime : MonoBehaviour , ITime
 {
+    //ITime
+    private float _timeScale = 1.0f;
+    public float timeScale
+    {
+        get { return _timeScale; }
+        set { _timeScale = value; }
+    }
+    //end ITime
+
     public string animationName;
     public Animator animator;
     public bool reverse;
@@ -30,7 +39,7 @@ public class AnimationToTime : MonoBehaviour
         float t = 0;
         while (t < 0.99f)
         {
-            t += Time.smoothDeltaTime / duration;
+            t += (Time.deltaTime * timeScale) / duration;
             time = t;
             yield return null;
         }

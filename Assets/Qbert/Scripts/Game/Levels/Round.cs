@@ -17,38 +17,37 @@ public class Round
         public float oldTimeCreateObject { get; set; }
         public float counterCreateObjects { get; set; }
 
-        public float oldCounterCreateObjects { get; set; }
+        private bool isFirstStart = true;
 
         public void Reset()
         {
             oldTimeCreateObject = 0;
             counterCreateObjects = 0;
-            oldCounterCreateObjects = 0;
+            isFirstStart = true;
         }
 
         public void CheckCreateObject(Round round)
         {
-            if (round.timeToStart > delayToStart)
-            {
-                int countInScene = round.GetCountObjectToScene(type);
+            int countInScene = round.GetCountObjectToScene(type);
 
-                if (countInScene == 0)
+            if (countInScene < maxOneTime)
+            {
+                if (round.timeToStart > delayToStart)
                 {
-                    if (countInScene < maxOneTime && CheckMaxToRound(round))
+                    if (round.timeToStart > oldTimeCreateObject + delayBetween || isFirstStart)
                     {
-                        CreateObject(round);
-                    }
-                }
-                else
-                {
-                    if (round.timeToStart > oldTimeCreateObject + delayBetween)
-                    {
+                        isFirstStart = false;
+
                         if (countInScene < maxOneTime && CheckMaxToRound(round))
                         {
                             CreateObject(round);
                         }
                     }
                 }
+            }
+            else
+            {
+                oldTimeCreateObject = round.timeToStart;
             }
         }
 
@@ -71,6 +70,7 @@ public class Round
     private float timeToStart;
     private bool isRun = false;
     private LevelController levelController;
+    private bool isPause = false;
 
     public void Init(LevelController levelController)
     {
@@ -93,7 +93,7 @@ public class Round
     }
     public void Update()
     {
-        if (isRun)
+        if (isRun && !isPause)
         {
             timeToStart += Time.deltaTime;
             UpdateGameObjects();
@@ -110,5 +110,10 @@ public class Round
     public int GetCountObjectToScene(GameplayObject.Type type)
     {
         return levelController.gameplayObjects.GetCountObjectToScene(type);
+    }
+
+    public void SetPause(bool isPause)
+    {
+        this.isPause = isPause;
     }
 }

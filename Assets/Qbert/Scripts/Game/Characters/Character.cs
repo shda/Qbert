@@ -2,8 +2,17 @@
 using UnityEngine;
 using System.Collections;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour , ITime
 {
+    //ITime
+    private float _timeScale = 1.0f;
+    public float timeScale
+    {
+        get { return _timeScale; }
+        set { _timeScale = value; }
+    }
+    //end ITime
+
     [Header("Character")]
     public Transform root;
     [HideInInspector]
@@ -124,7 +133,7 @@ public class Character : MonoBehaviour
         while (distance > 0.01f)
         {
             Vector3 move = Vector3.MoveTowards(root.rotation.eulerAngles,
-                rotateTo, speedMoving * Time.deltaTime);
+                rotateTo, speedMoving * CoroutinesHalpers.GetTimeDeltatimeScale(this));
             root.rotation = Quaternion.Euler(move);
             distance = Vector3.Distance(root.rotation.eulerAngles, rotateTo);
             yield return null;
@@ -151,7 +160,7 @@ public class Character : MonoBehaviour
     protected virtual IEnumerator DropDown()
     {
         Vector3 dropDownPoint = root.position - new Vector3(0, dropDownHeight, 0);
-        yield return StartCoroutine(this.MovingTransformTo(root, dropDownPoint, timeDropDown));
+        yield return StartCoroutine(this.MovingTransformTo(root, dropDownPoint, timeDropDown , this));
     }
 
     protected virtual IEnumerator MoveToPointAnimation(Vector3 point, Action<Character> OnEnd = null)
@@ -194,6 +203,7 @@ public class Character : MonoBehaviour
     {
         if (jumpAnimationToTime != null)
         {
+            jumpAnimationToTime.timeScale = timeScale;
             jumpAnimationToTime.time = t;
         }
     }
@@ -213,7 +223,7 @@ public class Character : MonoBehaviour
 
         while (t < 1)
         {
-            t += Time.smoothDeltaTime / timeMove;
+            t += CoroutinesHalpers.GetTimeDeltatimeScale(this) / timeMove;
             Vector3 pos = Vector3.Lerp(startTo, movingTo, t);
             pos = new Vector3(pos.x, pos.y + GetOffsetLerp(t), pos.z);
             root.position = pos;
@@ -241,4 +251,6 @@ public class Character : MonoBehaviour
 
         return retFloat;
     }
+
+    
 }

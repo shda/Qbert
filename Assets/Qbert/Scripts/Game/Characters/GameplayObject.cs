@@ -9,6 +9,7 @@ public class GameplayObject : Character
         RedCube,
         PurpleCube,
         Transport,
+        BlueCube,
     }
     public virtual Type typeGameobject
     {
@@ -47,7 +48,7 @@ public class GameplayObject : Character
         return enemy;
     }
 
-    protected void OnDestroyEnemy()
+    protected void OnStartDestroy()
     {
         if (OnDestroyEvents != null)
         {

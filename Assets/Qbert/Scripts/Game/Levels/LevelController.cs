@@ -10,6 +10,11 @@ public class LevelController : MonoBehaviour
     public GameField gameField;
     public Qbert qbert;
 
+    public void SetPauseGamplayObjects(bool isPause)
+    {
+        gameplayObjects.SetPause(isPause);
+        currentLevel.SetPauseGameplayObjects(isPause);
+    }
     private void OnPressCubeEvents(Cube cube, Character character)
     {
         currentLevel.OnCharacterPressToCube(cube , character);
@@ -49,6 +54,7 @@ public class LevelController : MonoBehaviour
         currentLevel.ResetLevel();
         currentLevel.StartLevel();
         qbert.isFrize = false;
+        SetPauseGamplayObjects(false);
     }
 
     void ConnectEvents()
@@ -65,7 +71,25 @@ public class LevelController : MonoBehaviour
         currentLevel.InitLevel();
         gameField.Init();
         ConnectEvents();
-
         RestartLevel();
+    }
+
+
+    public void StartPauseGameObjectsToSecond(float time)
+    {
+        StopAllCoroutines();
+        StartCoroutine(TimerPauseGameObjectsToSecond(time));
+    }
+
+    private IEnumerator TimerPauseGameObjectsToSecond(float time)
+    {
+        SetPauseGamplayObjects(true);
+        yield return new WaitForSeconds(time);
+        SetPauseGamplayObjects(false);
+    }
+
+    public void SetPauseDebug()
+    {
+        StartPauseGameObjectsToSecond(3.0f);
     }
 }

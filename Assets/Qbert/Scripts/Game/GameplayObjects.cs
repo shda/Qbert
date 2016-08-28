@@ -12,6 +12,14 @@ public class GameplayObjects : MonoBehaviour
     public List<GameplayObject> gameplayObjectsList = new List<GameplayObject>();
     public Transform root;
 
+    public void SetPause(bool isPause)
+    {
+        foreach (var gameplayObject in gameplayObjectsList)
+        {
+            gameplayObject.timeScale = isPause ? 0.000001f : 1.0f;
+        }
+    }
+
     private GameplayObject CreateGameplayObject(GameplayObject.Type type)
     {
         foreach (var gameplayObjectPatern in gameplayObjectPaterns)

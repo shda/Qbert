@@ -121,7 +121,7 @@ public class Transport : GameplayObject
         qbert.isFrize = false;
         qbert.MoveToCube(new PositionCube(0, 0));
 
-        OnDestroyEnemy();
+        OnStartDestroy();
     }
 
     

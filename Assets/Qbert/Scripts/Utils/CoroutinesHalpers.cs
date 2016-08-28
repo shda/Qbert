@@ -62,14 +62,24 @@ public static class CoroutinesHalpers
         LanchAction(OnEnd, obj.transform);
     }
 
-    public static IEnumerator MovingTransformTo(this MonoBehaviour mono, Transform tr, Vector3 movingTo, float time, Action<Transform> OnEnd = null)
+    public static IEnumerator WaitForSecondITime(this MonoBehaviour mono, float duration, ITime iTime = null)
+    {
+        float t = 0;
+        while (t < 1)
+        {
+            t += GetTimeDeltatimeScale(iTime) / duration;
+            yield return null;
+        }
+    }
+
+    public static IEnumerator MovingTransformTo(this MonoBehaviour mono, Transform tr, Vector3 movingTo, float time, ITime iTime = null , Action<Transform> OnEnd = null)
     {
         float distance = Vector3.Distance(tr.position, movingTo);
         float speedMoving = distance / time;
 
         while (distance > 0.001f)
         {
-            Vector3 move = Vector3.MoveTowards(tr.position, movingTo, speedMoving * Time.deltaTime);
+            Vector3 move = Vector3.MoveTowards(tr.position, movingTo, speedMoving * GetTimeDeltatimeScale(iTime));
             tr.position = move;
             distance = Vector3.Distance(tr.position, movingTo);
             yield return null;
@@ -78,17 +88,27 @@ public static class CoroutinesHalpers
         LanchAction(OnEnd, tr);
     }
 
-    public static IEnumerator MovingSpeedTransformTo(this MonoBehaviour mono, Transform tr, Vector3 movingTo, float speed, Action<Transform> OnEnd = null)
+    public static IEnumerator MovingSpeedTransformTo(this MonoBehaviour mono, Transform tr, Vector3 movingTo, float speed,  ITime iTime = null , Action<Transform> OnEnd = null)
     {
         float distance;
         do
         {
-            tr.localPosition = Vector3.MoveTowards(tr.localPosition, movingTo, speed * Time.deltaTime);
+            tr.localPosition = Vector3.MoveTowards(tr.localPosition, movingTo, speed * GetTimeDeltatimeScale(iTime));
             distance = Vector3.Distance(tr.localPosition, movingTo);
             yield return null;
         } while (distance > 0);
 
         LanchAction(OnEnd, tr);
     }
-    
+
+    public static float GetTimeDeltatimeScale(ITime iTime = null)
+    {
+        float timeDeltaTime = Time.deltaTime;
+        if (iTime != null)
+        {
+            timeDeltaTime = timeDeltaTime * iTime.timeScale;
+        }
+
+        return timeDeltaTime;
+    }
 }

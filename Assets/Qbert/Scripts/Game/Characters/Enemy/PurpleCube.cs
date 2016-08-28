@@ -23,7 +23,7 @@ public class PurpleCube : RedCube
 
         while (true)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return StartCoroutine(this.WaitForSecondITime(0.2f , this));
 
             if (!isMoving)
             {
@@ -33,7 +33,7 @@ public class PurpleCube : RedCube
                 if (cubeTarget)
                 {
                     MoveToCube(cubeTarget);
-                    yield return new WaitForSeconds(1.0f);
+                    yield return StartCoroutine(this.WaitForSecondITime(1.0f, this));
                 }
                 else
                 {
@@ -54,6 +54,7 @@ public class PurpleCube : RedCube
 
     private IEnumerator RebornToEnemy()
     {
+        rebornAnimation.timeScale = timeScale;
         yield return StartCoroutine(rebornAnimation.PlayToTime(2.0f));
     }
 
@@ -69,7 +70,7 @@ public class PurpleCube : RedCube
                 yield return StartCoroutine(MoveToCubeAnimation(cube));
             }
 
-            yield return new WaitForSeconds(0.5f);
+            yield return StartCoroutine(this.WaitForSecondITime(0.5f, this));
         }
 
         yield return null;
@@ -79,8 +80,6 @@ public class PurpleCube : RedCube
     {
         PositionCube qbertPoint = qbert.currentPosition;
         PositionCube myPoint = currentPosition;
-
-        
 
         if (qbertPoint == myPoint)
         {
@@ -152,7 +151,7 @@ public class PurpleCube : RedCube
             Vector3 newPos = root.position + levelController.gameField.GetOffset(start, end);
             MoveToPointAndDropDown(newPos , character =>
             {
-                OnDestroyEnemy();
+                OnStartDestroy();
             });
 
             return true;

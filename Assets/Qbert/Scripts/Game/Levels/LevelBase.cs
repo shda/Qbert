@@ -12,14 +12,25 @@ public abstract class LevelBase : MonoBehaviour
 
     protected LevelController levelController;
 
-    public abstract void InitLevel();
-    public abstract void OnCharacterPressToCube(Cube cube, Character character);
+    public virtual void InitLevel()
+    {
+        
+    }
+
+    public virtual void OnCharacterPressToCube(Cube cube, Character character)
+    {
+        
+    }
 
     public virtual void ResetLevel()
     {
         currentRoundConfig.ResetRound();
     }
-    public abstract bool CheckToWin();
+
+    public virtual bool CheckToWin()
+    {
+        return false;
+    }
 
     public virtual void OnCollisionCharacters(Character character1, Character character2)
     {
@@ -27,6 +38,11 @@ public abstract class LevelBase : MonoBehaviour
         {
             OnCollisionQbertToGameplayObject(character1 as GameplayObject , character2 as Qbert);
         }
+    }
+
+    public virtual void SetPauseGameplayObjects(bool isPause)
+    {
+        currentRoundConfig.SetPause(isPause);
     }
 
     public void StartRound(int round)
