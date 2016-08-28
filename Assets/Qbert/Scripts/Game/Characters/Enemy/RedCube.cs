@@ -2,20 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class RedCube : Enemy
+public class RedCube : GameplayObject
 {
     [Header("RedCube")]
     public float heightDrop = 3.0f;
     public float durationDrop = 1.0f;
 
-    public PointCube[] startPositions;
+    public PositionCube[] startPositions;
 
     public override Type typeEnemy
     {
         get { return Type.RedCube; }
     }
 
-    public override Enemy Create(Transform root, LevelController levelController)
+    public override GameplayObject Create(Transform root, LevelController levelController)
     {
         var enemy = base.Create(root, levelController);
         var startPosition = startPositions[Random.Range(0, startPositions.Length)];

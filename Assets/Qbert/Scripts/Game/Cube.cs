@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Cube : MonoBehaviour
 {
-    public PointCube cubePosition;
+    public PositionCube cubePosition;
 
     public Transform upSide;
     public ShaderSwitchColorLerp colorLerp;

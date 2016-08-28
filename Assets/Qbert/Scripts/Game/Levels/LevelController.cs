@@ -5,7 +5,7 @@ using System.Collections;
 public class LevelController : MonoBehaviour
 {
     public InputController controlController;
-    public Enemies enemies;
+    public GameplayObjects enemies;
     public LevelActions currentLevel;
     public GameField gameField;
     public Qbert qbert;

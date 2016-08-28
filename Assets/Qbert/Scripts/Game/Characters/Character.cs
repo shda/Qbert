@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
 
     public AnimationToTime jumpAnimationToTime;
 
-    public PointCube currentPosition;
+    public PositionCube currentPosition;
     public bool isMoving
     {
         get { return moveCoroutine != null; }
@@ -26,7 +26,7 @@ public class Character : MonoBehaviour
 
     protected Coroutine moveCoroutine;
 
-    public virtual void SetStartPosition(PointCube point)
+    public virtual void SetStartPosition(PositionCube point)
     {
         StopAllCoroutines();
 
@@ -46,7 +46,7 @@ public class Character : MonoBehaviour
         return MoveToCube(cube.cubePosition);
     }
 
-    public bool MoveToCube( PointCube point )
+    public bool MoveToCube( PositionCube point )
     {
         var cube = levelController.gameField.GetCube(point);
 

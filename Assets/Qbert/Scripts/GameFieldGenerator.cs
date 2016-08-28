@@ -42,7 +42,7 @@ public class GameFieldGenerator : MonoBehaviour
                     Cube cube = createPattern.GetComponent<Cube>();
                     if (cube)
                     {
-                        cube.cubePosition = new PointCube(level , level - line);
+                        cube.cubePosition = new PositionCube(level , level - line);
                     }
                 }
 
@@ -54,7 +54,7 @@ public class GameFieldGenerator : MonoBehaviour
         }
     }
 
-    public Vector3 CalculatePosition(PointCube point)
+    public Vector3 CalculatePosition(PositionCube point)
     {
         return root.TransformDirection(new Vector3(point.line * offsetX, point.position * offsetY));
     }

@@ -3,7 +3,7 @@ using System.Collections;
 
 public abstract class LevelActions : MonoBehaviour
 {
-    public Enemy.Type[] enemiesInLevel;
+    public GameplayObject.Type[] enemiesInLevel;
     public int maxEnemiesInLevel = 2;
     public float timeDelayCreateEnemies = 4.0f;
 
@@ -30,10 +30,10 @@ public abstract class LevelActions : MonoBehaviour
 
     public void CreateEnemyIfNead()
     {
-        if (levelController.enemies.enemyList.Count < maxEnemiesInLevel)
+        if (levelController.enemies.gameplayObjectsList.Count < maxEnemiesInLevel)
         {
-            Enemy.Type type = enemiesInLevel[Random.Range(0, enemiesInLevel.Length)];
-            levelController.enemies.AddEnemyToGame(type);
+            GameplayObject.Type type = enemiesInLevel[Random.Range(0, enemiesInLevel.Length)];
+            levelController.enemies.AddGameplayObjectToGame(type);
         }
     }
 

@@ -2,19 +2,20 @@
 using UnityEngine;
 using System.Collections;
 
-public class Enemy : Character 
+public class GameplayObject : Character 
 {
     public enum Type
     {
         RedCube,
-        PurpleCube
+        PurpleCube,
+        Transport,
     }
     public virtual Type typeEnemy
     {
         get { return Type.RedCube; }
     }
 
-    public Action<Enemy> OnDestroyEvents; 
+    public Action<GameplayObject> OnDestroyEvents; 
 
     public virtual void Init()
     {
@@ -26,14 +27,14 @@ public class Enemy : Character
         
     }
 
-    public virtual Enemy Create(Transform root , LevelController levelController)
+    public virtual GameplayObject Create(Transform root , LevelController levelController)
     {
         Transform instance = Instantiate(transform);
         instance.SetParent(root);
         instance.localPosition = Vector3.zero;
         instance.localRotation = Quaternion.identity;
 
-        var enemy = instance.GetComponent<Enemy>();
+        var enemy = instance.GetComponent<GameplayObject>();
         enemy.levelController = levelController;
 
         instance.gameObject.SetActive(true);

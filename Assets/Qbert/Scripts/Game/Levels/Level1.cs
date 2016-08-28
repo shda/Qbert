@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Level1 : LevelActions
 {
-    public PointCube startPostitionQber;
+    public PositionCube startPostitionQber;
     public Color defaultColor;
     public Color pressColor;
 

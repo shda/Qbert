@@ -76,23 +76,23 @@ public class PurpleCube : RedCube
 
     private Cube FindPathToQberd(Qbert qbert)
     {
-        PointCube qbertPoint = qbert.currentPosition;
-        PointCube myPoint = currentPosition;
+        PositionCube qbertPoint = qbert.currentPosition;
+        PositionCube myPoint = currentPosition;
 
-        PointCube step = GetNeighborPoint(myPoint , qbertPoint);
+        PositionCube step = GetNeighborPoint(myPoint , qbertPoint);
 
         return levelController.gameField.GetCube(step);
     }
 
     //Todo: Rewrite trash algorithm
-    public PointCube GetNeighborPoint(PointCube start , PointCube end)
+    public PositionCube GetNeighborPoint(PositionCube start , PositionCube end)
     {   
-        PointCube upLeft    = new PointCube(start.line - 1, start.position - 1);
-        PointCube upRight   = new PointCube(start.line - 1, start.position);
-        PointCube downLeft  = new PointCube(start.line + 1, start.position);
-        PointCube downRight = new PointCube(start.line + 1, start.position + 1);
+        PositionCube upLeft    = new PositionCube(start.line - 1, start.position - 1);
+        PositionCube upRight   = new PositionCube(start.line - 1, start.position);
+        PositionCube downLeft  = new PositionCube(start.line + 1, start.position);
+        PositionCube downRight = new PositionCube(start.line + 1, start.position + 1);
 
-        List<PointCube> list = new List<PointCube>()
+        List<PositionCube> list = new List<PositionCube>()
         {
             upLeft , upRight , downLeft , downRight,
         };
@@ -115,10 +115,10 @@ public class PurpleCube : RedCube
             }
         }
 
-        return new PointCube();
+        return new PositionCube();
     }
 
-    public float GetDistance(PointCube start, PointCube end)
+    public float GetDistance(PositionCube start, PositionCube end)
     {
         return Mathf.Abs(start.line - end.line) + Mathf.Abs(start.position - end.position);
     }

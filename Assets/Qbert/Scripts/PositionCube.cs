@@ -2,23 +2,23 @@
 using System.Collections;
 
 [System.Serializable]
-public struct PointCube
+public struct PositionCube
 {
     public int line;
     public int position;
 
-    public PointCube(int line, int position)
+    public PositionCube(int line, int position)
     {
         this.line = line;
         this.position = position;
     }
 
-    public static bool operator ==(PointCube a, PointCube b)
+    public static bool operator ==(PositionCube a, PositionCube b)
     {
         return a.position == b.position && a.line == b.line;
     }
 
-    public static bool operator !=(PointCube a, PointCube b)
+    public static bool operator !=(PositionCube a, PositionCube b)
     {
         return !(a == b);
     }

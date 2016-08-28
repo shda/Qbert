@@ -39,17 +39,17 @@ public class GameField : MonoBehaviour
         ConnectEvents();
     }
 
-    public Cube GetCube(PointCube cube)
+    public Cube GetCube(PositionCube cube)
     {
         return field.FirstOrDefault(x => x.cubePosition == cube);
     }
 
-    public Cube GetCubeDirection(DirectionMove.Direction buttonType , PointCube point)
+    public Cube GetCubeDirection(DirectionMove.Direction buttonType , PositionCube point)
     {
         return GetCube(GetPointCubeDirection(buttonType , point));
     }
 
-    public PointCube GetPointCubeDirection(DirectionMove.Direction buttonType, PointCube point)
+    public PositionCube GetPointCubeDirection(DirectionMove.Direction buttonType, PositionCube point)
     {
         int findLevel = -1;
         int findNumber = -1;
@@ -75,7 +75,7 @@ public class GameField : MonoBehaviour
             findNumber = point.position - 1;
         }
 
-        return new PointCube(findLevel , findNumber);
+        return new PositionCube(findLevel , findNumber);
     }
 
     public Vector3 GetOffsetDirection(DirectionMove.Direction direction)
