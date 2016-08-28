@@ -109,4 +109,13 @@ public class GameField : MonoBehaviour
         return new Vector3(x * mapGenerator.offsetX, 0,
             y * mapGenerator.offsetX);
     }
+
+    public Vector3 GetOffset(PositionCube start, PositionCube end)
+    {
+        int x = start.line - end.line;
+        int y = start.position - end.position;
+
+        return new Vector3(x * mapGenerator.offsetX, 0,
+            y * mapGenerator.offsetX);
+    }
 }

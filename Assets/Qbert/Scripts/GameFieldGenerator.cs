@@ -54,11 +54,6 @@ public class GameFieldGenerator : MonoBehaviour
         }
     }
 
-    public Vector3 CalculatePosition(PositionCube point)
-    {
-        return root.TransformDirection(new Vector3(point.line * offsetX, point.position * offsetY));
-    }
-
     private Transform CreatePattern(Vector3 position , Transform rootLine)
     {
         Transform createPattern = Instantiate(pattern) as Transform;

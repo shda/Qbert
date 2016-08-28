@@ -10,7 +10,7 @@ public class GameplayObject : Character
         PurpleCube,
         Transport,
     }
-    public virtual Type typeEnemy
+    public virtual Type typeGameobject
     {
         get { return Type.RedCube; }
     }
@@ -25,6 +25,11 @@ public class GameplayObject : Character
     public virtual void Run()
     {
         
+    }
+
+    public virtual bool OnColisionToQbert(Qbert qbert)
+    {
+        return false;
     }
 
     public virtual GameplayObject Create(Transform root , LevelController levelController)

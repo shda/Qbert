@@ -15,6 +15,7 @@ public class Character : MonoBehaviour
     public float jumpAmplitude = 0.5f;
     public float timeDropDown = 0.4f;
     public float dropDownHeight = 4.0f;
+    public bool isFrize = false;
 
     public AnimationToTime jumpAnimationToTime;
 
@@ -25,6 +26,12 @@ public class Character : MonoBehaviour
     }
 
     protected Coroutine moveCoroutine;
+
+    public new void StopAllCoroutines()
+    {
+        base.StopAllCoroutines();
+        moveCoroutine = null;
+    }
 
     public virtual void SetStartPosition(PositionCube point)
     {
@@ -169,12 +176,12 @@ public class Character : MonoBehaviour
         {
             yield return StartCoroutine(RotateToCube(cube));
             yield return StartCoroutine(JumpAndMove(cube));
+            currentPosition = cube.cubePosition;
+
             cube.OnPressMy(this);
         }
 
         moveCoroutine = null;
-
-        currentPosition = cube.cubePosition;
 
         if (OnEnd != null)
         {

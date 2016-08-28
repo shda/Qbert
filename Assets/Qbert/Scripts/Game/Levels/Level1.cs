@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Level1 : LevelActions
+public class Level1 : LevelBase
 {
     public PositionCube startPostitionQber;
     public Color defaultColor;
@@ -12,7 +12,6 @@ public class Level1 : LevelActions
         if (character is Qbert)
         {
             cube.colorLerp.value = 1.0f;
-            //CubeSetColor(cube , pressColor);
             cube.isPress = true;
         }
 
@@ -31,17 +30,19 @@ public class Level1 : LevelActions
 
     public override void ResetLevel()
     {
+        base.ResetLevel();
+
+        levelController.qbert.StopAllCoroutines();
         levelController.qbert.levelController = levelController;
         levelController.qbert.SetStartPosition(startPostitionQber);
 
         foreach (var cube in levelController.gameField.field)
         {
             cube.colorLerp.value = 0.0f;
-            //CubeSetColor(cube, defaultColor);
             cube.isPress = false;
         }
 
-        levelController.enemies.DestroyAllEnemies();
+        levelController.gameplayObjects.DestroyAllEnemies();
     }
 
     public override bool CheckToWin()
@@ -60,10 +61,5 @@ public class Level1 : LevelActions
     public override void InitLevel()
     {
         ResetLevel();
-    }
-
-    public override void OnCollisionCharacters(Character character1, Character character2)
-    {
-      //  ResetLevel();
     }
 }

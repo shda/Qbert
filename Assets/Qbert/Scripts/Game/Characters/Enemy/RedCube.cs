@@ -6,11 +6,11 @@ public class RedCube : GameplayObject
 {
     [Header("RedCube")]
     public float heightDrop = 3.0f;
-    public float durationDrop = 1.0f;
+  //  public float durationDrop = 1.0f;
 
     public PositionCube[] startPositions;
 
-    public override Type typeEnemy
+    public override Type typeGameobject
     {
         get { return Type.RedCube; }
     }
@@ -32,6 +32,7 @@ public class RedCube : GameplayObject
     {
         var targetPosition = root.position;
         root.position = new Vector3(root.position.x, root.position.y + heightDrop, root.position.z);
+        yield return new WaitForSeconds(0.2f);
         yield return StartCoroutine(this.MovingTransformTo(root, targetPosition, 0.2f));
         yield return null;
     }

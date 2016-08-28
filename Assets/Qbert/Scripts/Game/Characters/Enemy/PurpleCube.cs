@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -6,7 +7,7 @@ public class PurpleCube : RedCube
 {
     [Header("PurpleCube")]
     public AnimationToTime rebornAnimation;
-    public override Type typeEnemy
+    public override Type typeGameobject
     {
         get { return Type.PurpleCube; }
     }
@@ -79,6 +80,13 @@ public class PurpleCube : RedCube
         PositionCube qbertPoint = qbert.currentPosition;
         PositionCube myPoint = currentPosition;
 
+        
+
+        if (qbertPoint == myPoint)
+        {
+            return null;
+        }
+
         PositionCube step = GetNeighborPoint(myPoint , qbertPoint);
 
         return levelController.gameField.GetCube(step);
@@ -86,7 +94,17 @@ public class PurpleCube : RedCube
 
     //Todo: Rewrite trash algorithm
     public PositionCube GetNeighborPoint(PositionCube start , PositionCube end)
-    {   
+    {
+        int drop = GetDistance(start,end);
+
+        if (drop == 1)
+        {
+            if (CheckToDrop(start, end))
+            {
+                return new PositionCube(-1, -1);
+            }
+        }
+
         PositionCube upLeft    = new PositionCube(start.line - 1, start.position - 1);
         PositionCube upRight   = new PositionCube(start.line - 1, start.position);
         PositionCube downLeft  = new PositionCube(start.line + 1, start.position);
@@ -97,7 +115,7 @@ public class PurpleCube : RedCube
             upLeft , upRight , downLeft , downRight,
         };
 
-        float minDist = float.MaxValue;
+        int minDist = int.MaxValue;
 
         foreach (var pointCube in list)
         {
@@ -118,8 +136,35 @@ public class PurpleCube : RedCube
         return new PositionCube();
     }
 
-    public float GetDistance(PositionCube start, PositionCube end)
+    private bool CheckToDrop(PositionCube start , PositionCube end)
+    {
+        if (end.position < 0 || end.position > end.line)
+        {
+            if (end.position > end.line)
+            {
+                end = new PositionCube(end.line, end.position - 1);
+            }
+            else
+            {
+                end = new PositionCube(end.line+ 1, end.position);
+            }
+
+            Vector3 newPos = root.position + levelController.gameField.GetOffset(start, end);
+            MoveToPointAndDropDown(newPos , character =>
+            {
+                OnDestroyEnemy();
+            });
+
+            return true;
+        }
+
+
+        return false;
+    }
+
+    public int GetDistance(PositionCube start, PositionCube end)
     {
         return Mathf.Abs(start.line - end.line) + Mathf.Abs(start.position - end.position);
     }
 }
+

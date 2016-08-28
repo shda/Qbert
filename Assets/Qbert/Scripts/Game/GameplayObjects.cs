@@ -2,9 +2,11 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class GameplayObjects : MonoBehaviour
 {
+    public Transform pointMoveTransport;
     public LevelController levelController;
     public GameplayObject[] gameplayObjectPaterns;
     public List<GameplayObject> gameplayObjectsList = new List<GameplayObject>();
@@ -14,7 +16,7 @@ public class GameplayObjects : MonoBehaviour
     {
         foreach (var gameplayObjectPatern in gameplayObjectPaterns)
         {
-            if (gameplayObjectPatern.typeEnemy == type)
+            if (gameplayObjectPatern.typeGameobject == type)
             {
                 return gameplayObjectPatern.Create(root , levelController);
             }
@@ -58,5 +60,40 @@ public class GameplayObjects : MonoBehaviour
         }
 
         gameplayObjectsList = new List<GameplayObject>();
+    }
+
+    public int GetCountObjectToScene(GameplayObject.Type type)
+    {
+        return gameplayObjectsList.Count(x => x.typeGameobject == type);
+    }
+
+    public T[] GetObjectsToType<T>() where T : GameplayObject
+    {
+        List<T> list = new List<T>();
+
+        foreach (GameplayObject gObject in gameplayObjectsList)
+        {
+            if (gObject is T)
+            {
+                list.Add(gObject as T);
+            }
+        }
+
+        return list.ToArray();
+    }
+
+    public T[] GetObjectsToTypeObject<T>(GameplayObject.Type type) where T : GameplayObject
+    {
+        List<T> list = new List<T>();
+
+        foreach (GameplayObject gObject in gameplayObjectsList)
+        {
+            if (gObject.typeGameobject == type)
+            {
+                list.Add(gObject as T);
+            }
+        }
+
+        return list.ToArray();
     }
 }

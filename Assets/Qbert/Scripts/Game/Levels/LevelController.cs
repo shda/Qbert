@@ -5,8 +5,8 @@ using System.Collections;
 public class LevelController : MonoBehaviour
 {
     public InputController controlController;
-    public GameplayObjects enemies;
-    public LevelActions currentLevel;
+    public GameplayObjects gameplayObjects;
+    public LevelBase currentLevel;
     public GameField gameField;
     public Qbert qbert;
 
@@ -17,19 +17,22 @@ public class LevelController : MonoBehaviour
 
     private void OnPressControl(DirectionMove.Direction buttonType)
     {
-        Cube findCube = gameField.GetCubeDirection(buttonType, qbert.currentPosition);
-        if (findCube)
+        if (!qbert.isFrize)
         {
-            qbert.MoveToCube(findCube);
-        }
-        else
-        {
-            Vector3 newPos = qbert.root.position + gameField.GetOffsetDirection(buttonType);
-            qbert.MoveToPointAndDropDown(newPos , character =>
+            Cube findCube = gameField.GetCubeDirection(buttonType, qbert.currentPosition);
+            if (findCube)
             {
-                RestartLevel();
-                Debug.Log("OnDead");
-            });
+                qbert.MoveToCube(findCube);
+            }
+            else
+            {
+                Vector3 newPos = qbert.root.position + gameField.GetOffsetDirection(buttonType);
+                qbert.MoveToPointAndDropDown(newPos, character =>
+                {
+                    RestartLevel();
+                    Debug.Log("OnDead");
+                });
+            }
         }
     }
 
@@ -45,6 +48,7 @@ public class LevelController : MonoBehaviour
     {
         currentLevel.ResetLevel();
         currentLevel.StartLevel();
+        qbert.isFrize = false;
     }
 
     void ConnectEvents()
