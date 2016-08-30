@@ -14,9 +14,11 @@ public class Game : MonoBehaviour
 
     public void StartGame()
     {
-        levelController.StartGame(SelectLevel.selectLevel , 1);
-        levelController.InitLevel();
+        levelController.ResetScore();
+        levelController.InitLevel(SelectLevel.selectLevel , 0);
+        levelController.StartLevel();
     }
+
 
     public string sceneName;
     public void LoadSelectLevelScene()

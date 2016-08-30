@@ -12,6 +12,19 @@ public class GameplayObjects : MonoBehaviour
     public List<GameplayObject> gameplayObjectsList = new List<GameplayObject>();
     public Transform root;
 
+    public GameplayObject GetGamplayObjectInPoint(PositionCube point)
+    {
+        foreach (var gameplayObject in gameplayObjectsList)
+        {
+            if (gameplayObject.currentPosition == point || gameplayObject.positionMove == point)
+            {
+                return gameplayObject;
+            }
+        }
+
+        return null;
+    }
+
     public void SetTimeScale(float scale)
     {
         foreach (var gameplayObject in gameplayObjectsList)

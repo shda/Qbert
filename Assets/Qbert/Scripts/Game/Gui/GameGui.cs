@@ -7,7 +7,7 @@ public class GameGui : MonoBehaviour
     public Text scoreText;
     public Text levelLabel;
 
-    private int score;
+    private float score;
 
     public void ResetScore()
     {
@@ -15,15 +15,15 @@ public class GameGui : MonoBehaviour
     }
     public void SetLevel(int level , int round)
     {
-        levelLabel.text = string.Format("{0}-{1}", level, round);
+        levelLabel.text = string.Format("{0}-{1}", level + 1, round + 1);
     }
-    public void SetScore(int setScore)
+    public void SetScore(float setScore)
     {
         score = setScore;
-        scoreText.text = setScore.ToString();
+        scoreText.text = string.Format("{0}", (int)setScore);
     }
 
-    public void AddScore(int addScore)
+    public void AddScore(float addScore)
     {
         score += addScore;
         SetScore(score);

@@ -17,46 +17,16 @@ public class PurpleCube : RedCube
         StartCoroutine(WorkThead());
     }
 
-    protected override IEnumerator WorkThead()
+    protected override IEnumerator ReachedLowerLevel(DirectionMove.Direction direction)
     {
-        yield return StartCoroutine(DropToCube());
-
-        while (true)
-        {
-            yield return StartCoroutine(this.WaitForSecondITime(0.2f , this));
-
-            if (!isMoving)
-            {
-                
-                var direction = GetRandomDownDirection();
-                var cubeTarget = levelController.gameField.GetCubeDirection(direction, currentPosition);
-                if (cubeTarget)
-                {
-                    MoveToCube(cubeTarget);
-                    yield return StartCoroutine(this.WaitForSecondITime(1.0f, this));
-                }
-                else
-                {
-                    yield return StartCoroutine(RebornToEnemy());
-                    yield return StartCoroutine(FallowToQbert());
-                    yield break;
-                }
-                
-
-                //yield return StartCoroutine(RebornToEnemy());
-                //yield return StartCoroutine(FallowToQbert());
-               // yield break;
-            }
-        }
-
-        yield return null;
+        yield return StartCoroutine(RebornToEnemy());
+        yield return StartCoroutine(FallowToQbert());
     }
 
     private IEnumerator RebornToEnemy()
     {
         yield return StartCoroutine(rebornAnimation.PlayToTime(2.0f , this));
     }
-
 
     private IEnumerator FallowToQbert()
     {
@@ -86,6 +56,11 @@ public class PurpleCube : RedCube
         }
 
         PositionCube step = GetNeighborPoint(myPoint , qbertPoint);
+        var targetCube = levelController.gameplayObjects.GetGamplayObjectInPoint(step);
+        if (targetCube)
+        {
+            return null;
+        }
 
         return levelController.gameField.GetCube(step);
     }
@@ -146,6 +121,8 @@ public class PurpleCube : RedCube
             {
                 end = new PositionCube(end.line+ 1, end.position);
             }
+
+            AddScore(ScorePrice.dropPurpeCube);
 
             Vector3 newPos = root.position + levelController.gameField.GetOffset(start, end);
             MoveToPointAndDropDown(newPos , character =>

@@ -45,11 +45,12 @@ public class Round : ITimeScale
                 {
                     if (round.timeToStart > oldTimeCreateObject + delayBetween || isFirstStart)
                     {
-                        isFirstStart = false;
-
                         if (countInScene < maxOneTime && CheckMaxToRound(round))
                         {
-                            CreateObject(round);
+                            if (CreateObject(round))
+                            {
+                                isFirstStart = false;
+                            }
                         }
                     }
                 }
@@ -65,21 +66,29 @@ public class Round : ITimeScale
             return counterCreateObjects < maxToRound || maxToRound == -1;
         }
 
-
-        private void CreateObject(Round round)
+        private bool CreateObject(Round round)
         {
-            counterCreateObjects++;
-            round.levelController.gameplayObjects.AddGameplayObjectToGame(type);
-            oldTimeCreateObject = round.timeToStart;
+            var addObj = round.levelController.gameplayObjects.AddGameplayObjectToGame(type);
+
+            if (addObj != null)
+            {
+                counterCreateObjects++;
+                oldTimeCreateObject = round.timeToStart;
+
+                return true;
+            }
+
+            return false;
         }
     }
 
+    
     public GemeplayObjectConfig[] gameplayConfigs;
+    public Color[] colors;
 
     private float timeToStart;
     private bool isRun = false;
     private LevelController levelController;
-    //private bool isPause = false;
 
     public void Init(LevelController levelController)
     {

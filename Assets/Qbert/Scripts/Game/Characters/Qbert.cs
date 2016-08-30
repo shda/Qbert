@@ -9,4 +9,22 @@ public class Qbert : Character
         base.SetStartPosition(point);
         root.rotation = Quaternion.Euler(0, -135, 0);
     }
+
+    public override bool OnPressCube(Cube cube)
+    {
+        if (cube.lastState < cube.stateColor && !cube.isSet)
+        {
+            AddScore(ScorePrice.pressCubeMediumColor);
+        }
+        else if (cube.lastState < cube.stateColor && cube.isSet)
+        {
+            AddScore(ScorePrice.pressCubeNeedColor);
+        }
+        else if (cube.lastState > cube.stateColor && !cube.isSet)
+        {
+            AddScore(ScorePrice.pressCubeMediumColor);
+        }
+        
+        return base.OnPressCube(cube);
+    }
 }

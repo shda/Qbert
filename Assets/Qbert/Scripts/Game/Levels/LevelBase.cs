@@ -5,7 +5,10 @@ public abstract class LevelBase : MonoBehaviour
 {
     public Round[] rounds;
     public int roundCurrent;
-    public Round currentRoundConfig;
+    private Round currentRoundConfig
+    {
+        get { return rounds[roundCurrent]; }
+    }
 
     public PositionCube startPostitionQber;
     public Color[] colors;
@@ -17,13 +20,19 @@ public abstract class LevelBase : MonoBehaviour
 
     public virtual void InitLevel()
     {
-        ResetLevel();
+       
     }
-
-
     public virtual void NextRound()
     {
-        ResetLevel();
+        if (roundCurrent < rounds.Length - 1)
+        {
+            roundCurrent++;
+            levelController.RestartLevel();
+        }
+        else
+        {
+            levelController.NextLevel();
+        }
     }
 
     public virtual void OnCharacterPressToCube(Cube cube, Character character)
@@ -48,7 +57,6 @@ public abstract class LevelBase : MonoBehaviour
     {
         return false;
     }
-
     public virtual void ResetLevel()
     {
         currentRoundConfig.ResetRound();
@@ -59,13 +67,20 @@ public abstract class LevelBase : MonoBehaviour
 
         foreach (var cube in levelController.gameField.field)
         {
-            cube.SetColors(colors);
+            if (currentRoundConfig.colors != null && currentRoundConfig.colors.Length > 0)
+            {
+                cube.SetColors(currentRoundConfig.colors);
+            }
+            else
+            {
+                cube.SetColors(colors);
+            }
+
             cube.Reset();
         }
 
         levelController.gameplayObjects.DestroyAllEnemies();
     }
-
     public virtual bool CheckToWin()
     {
         foreach (var cube in levelController.gameField.field)
@@ -78,7 +93,6 @@ public abstract class LevelBase : MonoBehaviour
 
         return true;
     }
-
     public virtual void OnCollisionCharacters(Character character1, Character character2)
     {
         if (character1 is GameplayObject && character2 is Qbert)
@@ -86,20 +100,16 @@ public abstract class LevelBase : MonoBehaviour
             OnCollisionQbertToGameplayObject((GameplayObject) character1 , (Qbert) character2);
         }
     }
-
     public virtual void SetTimeScaleGameplayObjects(float scale)
     {
         currentRoundConfig.timeScale = scale;
     }
-
     public void StartRound(int round)
     {
         roundCurrent = round;
-        currentRoundConfig = rounds[round];
         currentRoundConfig.Init(levelController);
         currentRoundConfig.Run();
     }
-
     public virtual void OnCollisionQbertToGameplayObject(GameplayObject gameplayObject , Qbert qbert)
     {
         if (!gameplayObject.OnColisionToQbert(qbert))
@@ -107,14 +117,12 @@ public abstract class LevelBase : MonoBehaviour
             ResetLevel();
         }
     }
-
-    public virtual void StartLevel()
+    public virtual void StartLevel(int round)
     {
         levelController.gameplayObjects.DestroyAllEnemies();
         isLevelRun = true;
-        StartRound(0);
+        StartRound(round);
     }
-
     void Update()
     {
         if (isLevelRun)
@@ -122,9 +130,12 @@ public abstract class LevelBase : MonoBehaviour
             currentRoundConfig.Update();
         }
     }
-
     public void SetController(LevelController controller)
     {
         levelController = controller;
+    }
+    public void SetRound(int round)
+    {
+        roundCurrent = round;
     }
 }

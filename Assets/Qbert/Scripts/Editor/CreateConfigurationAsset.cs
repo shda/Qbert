@@ -9,7 +9,7 @@ public class CreateConfigurationAsset : MonoBehaviour
     [MenuItem("Assets/Create configuration asser")]
     static void CreateSettingsAsset()
     {
-        CreateAsset<ConfigurationAsset>("Configuration");
+        CreateAsset<ConfigRound>("Configuration");
     }
 
 

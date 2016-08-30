@@ -7,16 +7,37 @@ public class LevelSwitcher : MonoBehaviour
     public LevelController levelController;
 
     public int currentLevel = 0;
-    public int currentRound = 0;
+
+    public int countLevels
+    {
+        get { return levels.Length; }
+    }
 
     public void SetLevel(int level, int round)
     {
-        levelController.currentLevel = levels[level - 1];
+        currentLevel = level;
+        levelController.currentLevel = levels[level];
+        levelController.currentLevel.SetRound(round);
+    }
+
+    public void NextLevel()
+    {
+        if (currentLevel < countLevels - 1)
+        {
+            currentLevel++;
+        }
+        else
+        {
+            levelController.EndLevels();
+            return;;
+        }
+
+        levelController.InitLevel(currentLevel , 0);
     }
 
 	void Start ()
 	{
-	   // StartLevel(currentLevel , currentRound);
+	  
 	}
 	
 	void Update () 

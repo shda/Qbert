@@ -19,6 +19,7 @@ public class GameplayObject : Character
 
     public Action<GameplayObject> OnDestroyEvents;
 
+    
     public virtual void Init()
     {
 
@@ -31,6 +32,13 @@ public class GameplayObject : Character
 
     public virtual bool OnColisionToQbert(Qbert qbert)
     {
+       // return true;
+
+        if (!qbert.isCheckColision)
+        {
+            return true;
+        }
+
         return false;
     }
 

@@ -20,6 +20,7 @@ public class Cube : MonoBehaviour
         get { return stateColor >= colors.Length - 1; }
     }
     public int stateColor = 0;
+    public int lastState = 0;
 
     public void SetColors(Color[] colors)
     {
@@ -41,6 +42,8 @@ public class Cube : MonoBehaviour
 
     public void SetNextColor()
     {
+        lastState = stateColor;
+
         stateColor++;
 
         if (stateColor == 1)
@@ -61,6 +64,8 @@ public class Cube : MonoBehaviour
 
     public void SetLastColor()
     {
+        lastState = stateColor;
+
         stateColor--;
 
         if (stateColor == 0)
@@ -98,6 +103,7 @@ public class Cube : MonoBehaviour
     public void Reset()
     {
         stateColor = 0;
+        lastState = 0;
         SetColorOne();;
         colorLerp.value = 0.0f;
     }

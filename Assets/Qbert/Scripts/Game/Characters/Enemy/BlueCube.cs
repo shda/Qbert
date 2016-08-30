@@ -14,12 +14,14 @@ public class BlueCube : RedCube
     {
         if (qbert.isCheckColision)
         {
+            AddScore(ScorePrice.getClueCube);
+
             levelController.StartPauseGameObjectsToSecond(timeStopDuration);
             OnStartDestroy();
             return true;
         }
 
-        return false;
+        return true;
     }
 }
 

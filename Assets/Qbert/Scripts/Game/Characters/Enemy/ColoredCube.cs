@@ -10,7 +10,7 @@ public class ColoredCube : RedCube
 
     public override bool OnPressCube(Cube cube)
     {
-        int randomPress = 0; //Random.Range(0, 2);
+        int randomPress = Random.Range(0, 2);
 
         if (randomPress == 1)
         {
@@ -29,6 +29,7 @@ public class ColoredCube : RedCube
     {
         if (qbert.isCheckColision)
         {
+            AddScore(ScorePrice.getColorCube);
             OnStartDestroy();
             return true;
         }

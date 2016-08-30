@@ -12,12 +12,18 @@ public class LevelController : MonoBehaviour
     public GameGui gameGui;
     public LevelSwitcher levelSwitcher;
 
+    public void AddScore(float score)
+    {
+        gameGui.AddScore(score);
+    }
+
     public void SetPauseGamplayObjects(bool isPause)
     {
         float timeScale = isPause ? 0.0000001f : 1.0f;
         gameplayObjects.SetTimeScale(timeScale);
         currentLevel.SetTimeScaleGameplayObjects(timeScale);
     }
+
     private void OnPressCubeEvents(Cube cube, Character character)
     {
         currentLevel.OnCharacterPressToCube(cube , character);
@@ -52,15 +58,6 @@ public class LevelController : MonoBehaviour
         }
     }
 
-    public void RestartLevel()
-    {
-        currentLevel.ResetLevel();
-        currentLevel.StartLevel();
-        qbert.isFrize = false;
-        qbert.isCheckColision = true;
-        SetPauseGamplayObjects(false);
-    }
-
     void ConnectEvents()
     {
         controlController.OnPress = OnPressControl;
@@ -68,22 +65,52 @@ public class LevelController : MonoBehaviour
         qbert.collisionProxy.triggerEnterEvent = OnCollisionCharacters;
     }
 
-    public void InitLevel()
+    public void RestartLevel()
     {
-        currentLevel.SetController(this);
-        currentLevel.InitLevel();
-        gameField.Init();
-        ConnectEvents();
+        gameGui.SetLevel(levelSwitcher.currentLevel, currentLevel.roundCurrent);
+
+        currentLevel.ResetLevel();
+        currentLevel.StartLevel(currentLevel.roundCurrent);
+        qbert.isFrize = false;
+        qbert.isCheckColision = true;
+        SetPauseGamplayObjects(false);
+    }
+
+    public void ResetScore()
+    {
+        gameGui.ResetScore();
+    }
+
+    public void NextLevel()
+    {
+        levelSwitcher.NextLevel();
         RestartLevel();
     }
 
-    public void StartGame(int level , int round)
+    public void NextRound()
     {
-        gameGui.ResetScore();
-        gameGui.SetLevel(level , round);
-        levelSwitcher.SetLevel(level , round);
+        currentLevel.NextRound();
+    }
 
-        InitLevel();
+    public void EndLevels()
+    {
+        InitLevel(0,0);
+    }
+
+    public void InitLevel(int level , int round)
+    {
+        gameGui.SetLevel(level, round);
+
+        levelSwitcher.SetLevel(level, round);
+        currentLevel.SetController(this);
+        currentLevel.InitLevel();
+        gameField.Init();
+    }
+
+    public void StartLevel()
+    {
+        ConnectEvents();
+        RestartLevel();
     }
 
     public void StartPauseGameObjectsToSecond(float time)
@@ -91,7 +118,6 @@ public class LevelController : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(TimerPauseGameObjectsToSecond(time));
     }
-
     private IEnumerator TimerPauseGameObjectsToSecond(float time)
     {
         SetPauseGamplayObjects(true);

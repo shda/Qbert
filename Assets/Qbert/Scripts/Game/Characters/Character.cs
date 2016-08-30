@@ -15,9 +15,7 @@ public class Character : MonoBehaviour , ITimeScale
 
     [Header("Character")]
     public Transform root;
-    [HideInInspector]
     public LevelController levelController;
-
     public CollisionProxy collisionProxy;
 
     public float timeMove = 1.0f;
@@ -28,16 +26,21 @@ public class Character : MonoBehaviour , ITimeScale
     public bool isFrize = false;
     public bool isCheckColision = true;
 
-
     public AnimationToTime jumpAnimationToTime;
 
     public PositionCube currentPosition;
+    public PositionCube positionMove;
     public bool isMoving
     {
         get { return moveCoroutine != null; }
     }
 
     protected Coroutine moveCoroutine;
+
+    protected void AddScore(float score)
+    {
+        levelController.AddScore(score);
+    }
 
     public new void StopAllCoroutines()
     {
@@ -60,6 +63,7 @@ public class Character : MonoBehaviour , ITimeScale
         StopAllCoroutines();
 
         currentPosition = point;
+        positionMove = point;
 
         var startCube = levelController.gameField.GetCube(point);
         if (startCube)
@@ -196,9 +200,11 @@ public class Character : MonoBehaviour , ITimeScale
     {
         if (!isMoving)
         {
+            positionMove = cube.cubePosition;
             yield return StartCoroutine(RotateToCube(cube));
             yield return StartCoroutine(JumpAndMove(cube));
             currentPosition = cube.cubePosition;
+            positionMove = currentPosition;
 
             cube.OnPressMy(this);
         }

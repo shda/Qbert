@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public class RedCube : GameplayObject
 {
+    public PositionCube[] startPositions;
     [Header("RedCube")]
     public float heightDrop = 3.0f;
-    public PositionCube[] startPositions;
-
+   
     public override Type typeGameobject
     {
         get { return Type.RedCube; }
@@ -15,10 +15,26 @@ public class RedCube : GameplayObject
 
     public override GameplayObject Create(Transform root, LevelController levelController)
     {
+        List<PositionCube> positions = new List<PositionCube>(startPositions);
+        positions = positions.Mix();
+
+        foreach (var positionCube in positions)
+        {
+            var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(positionCube);
+            if (gaToPoint == null)
+            {
+                return SetObject(root, levelController, positionCube);
+            }
+        }
+
+        return null;
+    }
+
+    public GameplayObject SetObject(Transform root, LevelController levelController , PositionCube startPosition)
+    {
         var gObject = base.Create(root, levelController);
-        var startPosition = startPositions[Random.Range(0, startPositions.Length)];
         gObject.SetStartPosition(startPosition);
-        gObject.transform.rotation *= Quaternion.Euler(0,45,0);
+        gObject.transform.rotation *= Quaternion.Euler(0, 45, 0);
         return gObject;
     }
 
@@ -46,34 +62,62 @@ public class RedCube : GameplayObject
 
             if (!isMoving)
             {
-                var direction = GetRandomDownDirection();
-                var cubeTarget = levelController.gameField.GetCubeDirection(direction, currentPosition);
-                if (cubeTarget)
+                Cube cubeTarget = null;
+                DirectionMove.Direction direction = DirectionMove.Direction.DownLeft;;
+
+                if (GetMoveCube(ref cubeTarget , ref direction))
                 {
-                    MoveToCube(cubeTarget);
-                    yield return StartCoroutine(this.WaitForSecondITime(1.0f, this));
-                }
-                else
-                {
-                    Vector3 newPos = root.position + levelController.gameField.GetOffsetDirection(direction);
-                    MoveToPointAndDropDown(newPos, character =>
+                    if (cubeTarget)
                     {
-                        OnStartDestroy();
-                    });
-                    yield break;
+                        MoveToCube(cubeTarget);
+                        yield return StartCoroutine(this.WaitForSecondITime(1.0f, this));
+                    }
+                    else if (currentPosition.line == levelController.gameField.mapGenerator.levels - 1)
+                    {
+                        yield return StartCoroutine(ReachedLowerLevel(direction));
+                        yield break;
+                    }
                 }
+
             }
         }
 
         yield return null;
     }
 
-    protected virtual DirectionMove.Direction GetRandomDownDirection()
+    protected virtual IEnumerator ReachedLowerLevel(DirectionMove.Direction direction)
+    {
+        Vector3 newPos = root.position + levelController.gameField.GetOffsetDirection(direction);
+        MoveToPointAndDropDown(newPos, character =>
+        {
+            OnStartDestroy();
+        });
+
+        yield break;
+    }
+    protected bool GetMoveCube(ref Cube refCube, ref DirectionMove.Direction refDirection)
     {
         List<DirectionMove.Direction> directions = new List<DirectionMove.Direction>();
         directions.Add(DirectionMove.Direction.DownLeft);
         directions.Add(DirectionMove.Direction.DownRight);
 
-        return directions.GetRandom();
+        directions = directions.Mix();
+
+        foreach (var direction in directions)
+        {
+            var cubeTarget = levelController.gameField.GetCubeDirection(direction, currentPosition);
+            if (cubeTarget)
+            {
+                var targetCube = levelController.gameplayObjects.GetGamplayObjectInPoint(cubeTarget.cubePosition);
+                if (targetCube == null)
+                {
+                    refCube = cubeTarget;
+                    refDirection = direction;
+                    return true;
+                }
+            }
+        }
+
+        return true;
     }
 }
