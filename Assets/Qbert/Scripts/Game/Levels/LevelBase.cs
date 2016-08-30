@@ -3,8 +3,13 @@ using System.Collections;
 
 public abstract class LevelBase : MonoBehaviour
 {
-    public Round[] rounds;
+    public ConfigRound configurationAsset;
+
     public int roundCurrent;
+    public Round[] rounds
+    {
+        get { return configurationAsset.rounds; }
+    }
     private Round currentRoundConfig
     {
         get { return rounds[roundCurrent]; }

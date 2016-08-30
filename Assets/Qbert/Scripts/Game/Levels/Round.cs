@@ -18,9 +18,14 @@ public class Round : ITimeScale
     public class GemeplayObjectConfig
     {
         public GameplayObject.Type type;
+
+        [Header("Максимум за весь раунд")]
         public int maxToRound;
+        [Header("Максимум одновременно")]
         public int maxOneTime;
+        [Header("Задержка появления при старте")]
         public float delayToStart;
+        [Header("Задержка между появлениями")]
         public float delayBetween;
 
         public float oldTimeCreateObject { get; set; }

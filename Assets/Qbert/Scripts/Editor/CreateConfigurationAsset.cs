@@ -6,7 +6,7 @@ using UnityEditor;
 
 public class CreateConfigurationAsset : MonoBehaviour 
 {
-    [MenuItem("Assets/Create configuration asser")]
+    [MenuItem("Assets/Create configuration asset")]
     static void CreateSettingsAsset()
     {
         CreateAsset<ConfigRound>("Configuration");
@@ -15,7 +15,7 @@ public class CreateConfigurationAsset : MonoBehaviour
 
     static private void CreateAsset<T>(String name) where T : ScriptableObject
     {
-        var dir = "Assets/";
+        var dir = "Assets/Configuration/";
         var selected = Selection.activeObject;
         if (selected != null)
         {
