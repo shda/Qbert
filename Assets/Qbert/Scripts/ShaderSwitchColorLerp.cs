@@ -8,14 +8,11 @@ public class ShaderSwitchColorLerp : MonoBehaviour
 
     public Color start;
     public Color end;
-
     public float speedLerp;
-
-    public float test;
-
     public float value;
+
     private float _valueLerp;
-    private float valueLerp
+    public float valueLerp
     {
         set
         {

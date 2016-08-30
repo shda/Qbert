@@ -2,16 +2,16 @@
 using UnityEngine;
 using System.Collections;
 
-public class Character : MonoBehaviour , ITime
+public class Character : MonoBehaviour , ITimeScale
 {
-    //ITime
+    //ITimeScale
     private float _timeScale = 1.0f;
     public float timeScale
     {
         get { return _timeScale; }
         set { _timeScale = value; }
     }
-    //end ITime
+    //end ITimeScale
 
     [Header("Character")]
     public Transform root;
@@ -40,6 +40,11 @@ public class Character : MonoBehaviour , ITime
     {
         base.StopAllCoroutines();
         moveCoroutine = null;
+    }
+
+    public virtual bool OnPressCube(Cube cube)
+    {
+        return false;
     }
 
     public virtual void SetStartPosition(PositionCube point)

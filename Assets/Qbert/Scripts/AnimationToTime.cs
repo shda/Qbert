@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AnimationToTime : MonoBehaviour , ITime
+public class AnimationToTime : MonoBehaviour , ITimeScale
 {
-    //ITime
+    //ITimeScale
     private float _timeScale = 1.0f;
     public float timeScale
     {
         get { return _timeScale; }
         set { _timeScale = value; }
     }
-    //end ITime
+    //end ITimeScale
 
     public string animationName;
     public Animator animator;
@@ -34,12 +34,13 @@ public class AnimationToTime : MonoBehaviour , ITime
         animator.speed = 0;
     }
 
-    public IEnumerator PlayToTime(float duration)
+    public IEnumerator PlayToTime(float duration , ITimeScale ITimeScale = null)
     {
+        ITimeScale iTimeCurrent = ITimeScale ?? this;
         float t = 0;
         while (t < 0.99f)
         {
-            t += (Time.deltaTime * timeScale) / duration;
+            t += (Time.deltaTime * iTimeCurrent.timeScale) / duration;
             time = t;
             yield return null;
         }

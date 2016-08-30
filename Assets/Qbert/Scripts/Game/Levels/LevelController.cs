@@ -12,12 +12,21 @@ public class LevelController : MonoBehaviour
 
     public void SetPauseGamplayObjects(bool isPause)
     {
-        gameplayObjects.SetPause(isPause);
-        currentLevel.SetPauseGameplayObjects(isPause);
+        float timeScale = isPause ? 0.0000001f : 1.0f;
+        gameplayObjects.SetTimeScale(timeScale);
+        currentLevel.SetTimeScaleGameplayObjects(timeScale);
     }
     private void OnPressCubeEvents(Cube cube, Character character)
     {
         currentLevel.OnCharacterPressToCube(cube , character);
+    }
+
+    private void OnCollisionCharacters(Transform owner1, Transform owner2)
+    {
+        var character1 = owner1.GetComponent<Character>();
+        var character2 = owner2.GetComponent<Character>();
+
+        currentLevel.OnCollisionCharacters(character1, character2);
     }
 
     private void OnPressControl(DirectionMove.Direction buttonType)
@@ -41,13 +50,6 @@ public class LevelController : MonoBehaviour
         }
     }
 
-    private void OnCollisionCharacters(Transform owner1, Transform owner2)
-    {
-        var character1 = owner1.GetComponent<Character>();
-        var character2 = owner2.GetComponent<Character>();
-
-        currentLevel.OnCollisionCharacters(character1 , character2);
-    }
 
     public void RestartLevel()
     {

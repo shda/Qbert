@@ -6,8 +6,6 @@ public class RedCube : GameplayObject
 {
     [Header("RedCube")]
     public float heightDrop = 3.0f;
-  //  public float durationDrop = 1.0f;
-
     public PositionCube[] startPositions;
 
     public override Type typeGameobject
@@ -17,10 +15,11 @@ public class RedCube : GameplayObject
 
     public override GameplayObject Create(Transform root, LevelController levelController)
     {
-        var enemy = base.Create(root, levelController);
+        var gObject = base.Create(root, levelController);
         var startPosition = startPositions[Random.Range(0, startPositions.Length)];
-        enemy.SetStartPosition(startPosition);
-        return enemy;
+        gObject.SetStartPosition(startPosition);
+        gObject.transform.rotation *= Quaternion.Euler(0,45,0);
+        return gObject;
     }
 
     public override void Run()

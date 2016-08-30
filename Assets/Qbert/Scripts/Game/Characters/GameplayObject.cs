@@ -10,6 +10,7 @@ public class GameplayObject : Character
         PurpleCube,
         Transport,
         BlueCube,
+        ColoredCube,
     }
     public virtual Type typeGameobject
     {

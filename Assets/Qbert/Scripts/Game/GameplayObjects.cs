@@ -12,11 +12,11 @@ public class GameplayObjects : MonoBehaviour
     public List<GameplayObject> gameplayObjectsList = new List<GameplayObject>();
     public Transform root;
 
-    public void SetPause(bool isPause)
+    public void SetTimeScale(float scale)
     {
         foreach (var gameplayObject in gameplayObjectsList)
         {
-            gameplayObject.timeScale = isPause ? 0.000001f : 1.0f;
+            gameplayObject.timeScale = scale;
         }
     }
 

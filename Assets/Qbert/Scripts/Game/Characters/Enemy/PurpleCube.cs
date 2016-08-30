@@ -54,8 +54,7 @@ public class PurpleCube : RedCube
 
     private IEnumerator RebornToEnemy()
     {
-        rebornAnimation.timeScale = timeScale;
-        yield return StartCoroutine(rebornAnimation.PlayToTime(2.0f));
+        yield return StartCoroutine(rebornAnimation.PlayToTime(2.0f , this));
     }
 
 

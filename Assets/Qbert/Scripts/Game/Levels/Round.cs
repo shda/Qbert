@@ -3,8 +3,17 @@ using System.Collections;
 using System.Xml.Serialization;
 
 [System.Serializable]
-public class Round
+public class Round : ITimeScale
 {
+    //ITimeScale
+    private float _timeScale = 1.0f;
+    public float timeScale
+    {
+        get { return _timeScale; }
+        set { _timeScale = value; }
+    }
+    //end ITimeScale
+
     [System.Serializable]
     public class GemeplayObjectConfig
     {
@@ -70,7 +79,7 @@ public class Round
     private float timeToStart;
     private bool isRun = false;
     private LevelController levelController;
-    private bool isPause = false;
+    //private bool isPause = false;
 
     public void Init(LevelController levelController)
     {
@@ -84,6 +93,8 @@ public class Round
         {
             gemeplayObjectConfig.Reset();
         }
+
+        Run();
     }
 
     public void Run()
@@ -93,9 +104,9 @@ public class Round
     }
     public void Update()
     {
-        if (isRun && !isPause)
+        if (isRun)
         {
-            timeToStart += Time.deltaTime;
+            timeToStart += Time.deltaTime * timeScale;
             UpdateGameObjects();
         }
     }
@@ -110,10 +121,5 @@ public class Round
     public int GetCountObjectToScene(GameplayObject.Type type)
     {
         return levelController.gameplayObjects.GetCountObjectToScene(type);
-    }
-
-    public void SetPause(bool isPause)
-    {
-        this.isPause = isPause;
     }
 }

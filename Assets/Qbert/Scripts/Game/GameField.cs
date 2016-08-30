@@ -16,7 +16,6 @@ public class GameField : MonoBehaviour
         ConnectEvents();
     }
 
-
     public void ConnectEvents()
     {
         foreach (var cube in field)
