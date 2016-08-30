@@ -27,7 +27,12 @@ public class ColoredCube : RedCube
 
     public override bool OnColisionToQbert(Qbert qbert)
     {
-        OnStartDestroy();
-        return true;
+        if (qbert.isCheckColision)
+        {
+            OnStartDestroy();
+            return true;
+        }
+
+        return false;
     }
 }

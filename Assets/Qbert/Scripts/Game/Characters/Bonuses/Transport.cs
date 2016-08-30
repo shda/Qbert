@@ -58,7 +58,7 @@ public class Transport : GameplayObject
         } while (!ok);
 
 
-        SetPosition(new PositionCube(randomLevel, left > right ? randomLevel : 0) );
+        SetPosition(new PositionCube(randomLevel, left > right ? randomLevel : 0));
     }
 
     public void SetPosition(PositionCube setPosition)
@@ -79,7 +79,7 @@ public class Transport : GameplayObject
         {
             newPos = cube.upSide.position +
                 levelController.gameField.GetOffsetDirection(DirectionMove.Direction.UpLeft);
-            
+
             cubePos = new PositionCube(cubePos.line, cubePos.position - 1);
 
         }
@@ -97,6 +97,7 @@ public class Transport : GameplayObject
         if (!isMoving)
         {
             qbert.isFrize = true;
+            qbert.isCheckColision = false;
             qbert.currentPosition = currentPosition;
             qbert.StopAllCoroutines();
             qbert.root.position = root.position;
@@ -113,16 +114,17 @@ public class Transport : GameplayObject
     {
         var posMove = pointMoveTransport.position;
 
-        StartCoroutine(this.MovingSpeedTransformTo(qbert.root,posMove, speedMovingToPoint));
+        StartCoroutine(this.MovingSpeedTransformTo(qbert.root, posMove, speedMovingToPoint));
         yield return StartCoroutine(this.MovingSpeedTransformTo(transform, posMove, speedMovingToPoint));
         yield return new WaitForSeconds(0.5f);
 
         gameObject.SetActive(false);
         qbert.isFrize = false;
+        qbert.isCheckColision = true;
         qbert.MoveToCube(new PositionCube(0, 0));
 
         OnStartDestroy();
     }
 
-    
+
 }

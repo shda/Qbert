@@ -17,16 +17,16 @@ public class GameplayObject : Character
         get { return Type.RedCube; }
     }
 
-    public Action<GameplayObject> OnDestroyEvents; 
+    public Action<GameplayObject> OnDestroyEvents;
 
     public virtual void Init()
     {
-        
+
     }
 
     public virtual void Run()
     {
-        
+
     }
 
     public virtual bool OnColisionToQbert(Qbert qbert)

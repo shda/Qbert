@@ -9,15 +9,14 @@ public class LevelSwitcher : MonoBehaviour
     public int currentLevel = 0;
     public int currentRound = 0;
 
-    public void StartLevel(int level, int round)
+    public void SetLevel(int level, int round)
     {
-        levelController.currentLevel = levels[level];
-        levelController.RestartLevel();
+        levelController.currentLevel = levels[level - 1];
     }
 
 	void Start ()
 	{
-	    StartLevel(currentLevel , currentRound);
+	   // StartLevel(currentLevel , currentRound);
 	}
 	
 	void Update () 

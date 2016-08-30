@@ -60,7 +60,7 @@ public class GameFieldGenerator : MonoBehaviour
         createPattern.SetParent(rootLine);
         createPattern.transform.localRotation = Quaternion.identity;
         createPattern.localPosition = position;
-
+        createPattern.localScale = new Vector3(offsetX , offsetY , offsetX);
         return createPattern;
     }
 

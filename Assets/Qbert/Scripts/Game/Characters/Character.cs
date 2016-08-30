@@ -17,6 +17,7 @@ public class Character : MonoBehaviour , ITimeScale
     public Transform root;
     [HideInInspector]
     public LevelController levelController;
+
     public CollisionProxy collisionProxy;
 
     public float timeMove = 1.0f;
@@ -25,6 +26,8 @@ public class Character : MonoBehaviour , ITimeScale
     public float timeDropDown = 0.4f;
     public float dropDownHeight = 4.0f;
     public bool isFrize = false;
+    public bool isCheckColision = true;
+
 
     public AnimationToTime jumpAnimationToTime;
 
@@ -40,6 +43,11 @@ public class Character : MonoBehaviour , ITimeScale
     {
         base.StopAllCoroutines();
         moveCoroutine = null;
+    }
+
+    public virtual void Init()
+    {
+
     }
 
     public virtual bool OnPressCube(Cube cube)
@@ -224,11 +232,10 @@ public class Character : MonoBehaviour , ITimeScale
         var movingTo = point;
         var startTo = root.position;
 
-        var currentPosition = startTo;
-
         while (t < 1)
         {
             t += CoroutinesHalpers.GetTimeDeltatimeScale(this) / timeMove;
+            t = Mathf.Clamp01(t);
             Vector3 pos = Vector3.Lerp(startTo, movingTo, t);
             pos = new Vector3(pos.x, pos.y + GetOffsetLerp(t), pos.z);
             root.position = pos;

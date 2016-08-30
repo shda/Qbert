@@ -12,9 +12,14 @@ public class BlueCube : RedCube
 
     public override bool OnColisionToQbert(Qbert qbert)
     {
-        levelController.StartPauseGameObjectsToSecond(timeStopDuration);
-        OnStartDestroy();
-        return true;
+        if (qbert.isCheckColision)
+        {
+            levelController.StartPauseGameObjectsToSecond(timeStopDuration);
+            OnStartDestroy();
+            return true;
+        }
+
+        return false;
     }
 }
 

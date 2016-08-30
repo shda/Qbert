@@ -9,6 +9,8 @@ public class LevelController : MonoBehaviour
     public LevelBase currentLevel;
     public GameField gameField;
     public Qbert qbert;
+    public GameGui gameGui;
+    public LevelSwitcher levelSwitcher;
 
     public void SetPauseGamplayObjects(bool isPause)
     {
@@ -50,12 +52,12 @@ public class LevelController : MonoBehaviour
         }
     }
 
-
     public void RestartLevel()
     {
         currentLevel.ResetLevel();
         currentLevel.StartLevel();
         qbert.isFrize = false;
+        qbert.isCheckColision = true;
         SetPauseGamplayObjects(false);
     }
 
@@ -66,7 +68,6 @@ public class LevelController : MonoBehaviour
         qbert.collisionProxy.triggerEnterEvent = OnCollisionCharacters;
     }
 
-   
     public void InitLevel()
     {
         currentLevel.SetController(this);
@@ -76,6 +77,14 @@ public class LevelController : MonoBehaviour
         RestartLevel();
     }
 
+    public void StartGame(int level , int round)
+    {
+        gameGui.ResetScore();
+        gameGui.SetLevel(level , round);
+        levelSwitcher.SetLevel(level , round);
+
+        InitLevel();
+    }
 
     public void StartPauseGameObjectsToSecond(float time)
     {
@@ -86,12 +95,11 @@ public class LevelController : MonoBehaviour
     private IEnumerator TimerPauseGameObjectsToSecond(float time)
     {
         SetPauseGamplayObjects(true);
-        yield return new WaitForSeconds(time);
-        SetPauseGamplayObjects(false);
-    }
+        qbert.isCheckColision = false;
 
-    public void SetPauseDebug()
-    {
-        StartPauseGameObjectsToSecond(3.0f);
+        yield return new WaitForSeconds(time);
+
+        SetPauseGamplayObjects(false);
+        qbert.isCheckColision = true;
     }
 }
