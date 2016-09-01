@@ -4,7 +4,6 @@ using System.Collections;
 public abstract class LevelBase : MonoBehaviour
 {
     public ConfigRound configurationAsset;
-
     public int roundCurrent;
     public Round[] rounds
     {
@@ -16,6 +15,7 @@ public abstract class LevelBase : MonoBehaviour
     }
 
     public PositionCube startPostitionQber;
+    [Header("Цвета по умолчанию")]
     public Color[] colors;
 
     private float currentTime;

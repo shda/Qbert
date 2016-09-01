@@ -34,6 +34,6 @@ public class ColoredCube : RedCube
             return true;
         }
 
-        return false;
+        return true;
     }
 }

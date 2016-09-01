@@ -6,6 +6,8 @@ public class Cube : MonoBehaviour
 {
     public PositionCube cubePosition;
     public Transform upSide;
+    public Transform leftSide;
+    public Transform rightSide;
 
     public ShaderSwitchColorLerp colorLerp;
 

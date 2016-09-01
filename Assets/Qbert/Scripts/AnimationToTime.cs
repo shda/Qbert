@@ -38,14 +38,14 @@ public class AnimationToTime : MonoBehaviour , ITimeScale
     {
         ITimeScale iTimeCurrent = ITimeScale ?? this;
         float t = 0;
-        while (t < 0.99f)
+        while (t < 1)
         {
             t += (Time.deltaTime * iTimeCurrent.timeScale) / duration;
             time = t;
             yield return null;
         }
 
-        t = 0.99f;
+        t = 1;
 
         time = t;
     }

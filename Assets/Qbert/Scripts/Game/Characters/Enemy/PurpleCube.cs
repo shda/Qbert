@@ -36,6 +36,7 @@ public class PurpleCube : RedCube
             Cube cube = FindPathToQberd(qbert);
             if (cube)
             {
+                jumpAnimationToTime = null;
                 yield return StartCoroutine(MoveToCubeAnimation(cube));
             }
 

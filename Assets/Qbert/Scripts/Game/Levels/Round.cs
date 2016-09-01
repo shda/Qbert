@@ -17,8 +17,8 @@ public class Round : ITimeScale
     [System.Serializable]
     public class GemeplayObjectConfig
     {
+        [Header("Тип объекта")]
         public GameplayObject.Type type;
-
         [Header("Максимум за весь раунд")]
         public int maxToRound;
         [Header("Максимум одновременно")]
@@ -89,6 +89,7 @@ public class Round : ITimeScale
 
     
     public GemeplayObjectConfig[] gameplayConfigs;
+    [Header("Цвета раунда")]
     public Color[] colors;
 
     private float timeToStart;

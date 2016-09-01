@@ -25,7 +25,6 @@ public class Character : MonoBehaviour , ITimeScale
     public float dropDownHeight = 4.0f;
     public bool isFrize = false;
     public bool isCheckColision = true;
-
     public AnimationToTime jumpAnimationToTime;
 
     public PositionCube currentPosition;
@@ -34,6 +33,7 @@ public class Character : MonoBehaviour , ITimeScale
     {
         get { return moveCoroutine != null; }
     }
+
 
     protected Coroutine moveCoroutine;
 
@@ -74,7 +74,7 @@ public class Character : MonoBehaviour , ITimeScale
         moveCoroutine = null;
     }
 
-    public  bool MoveToCube(Cube cube)
+    public bool MoveToCube(Cube cube)
     {
         return MoveToCube(cube.cubePosition);
     }
@@ -115,32 +115,32 @@ public class Character : MonoBehaviour , ITimeScale
     }
 
 
-    public Vector3 GetRotationToCube(Cube cube)
+    public virtual Vector3 GetRotationToCube(Cube cube)
     {
         var direction = (cube.upSide.position - root.position).normalized;
         var rotateTo = Quaternion.LookRotation(direction).eulerAngles;
         return new Vector3(0, rotateTo.y, rotateTo.z);
     }
 
-    public Vector3 GetRotationToPoint(Vector3 point)
+    public virtual Vector3 GetRotationToPoint(Vector3 point)
     {
         var direction = (point - root.position).normalized;
         var rotateTo = Quaternion.LookRotation(direction).eulerAngles;
         return new Vector3(0, rotateTo.y, rotateTo.z);
     }
 
-    protected IEnumerator RotateToCube(Cube cube)
+    protected virtual IEnumerator RotateToCube(Cube cube)
     {
         var rotateTo = GetRotationToCube(cube);
         yield return StartCoroutine(RotateTo(rotateTo));
     }
-    protected IEnumerator RotateToPoint(Vector3 point)
+    protected virtual IEnumerator RotateToPoint(Vector3 point)
     {
         var rotateTo = GetRotationToPoint(point);
         yield return StartCoroutine(RotateTo(rotateTo));
     }
 
-    protected IEnumerator RotateTo(Vector3 rotateTo)
+    protected virtual IEnumerator RotateTo(Vector3 rotateTo)
     {
         var rotateStart = root.rotation.eulerAngles;
 
@@ -218,7 +218,7 @@ public class Character : MonoBehaviour , ITimeScale
     }
 
 
-    private void SetTimeAnimationJump(float t)
+    protected void SetTimeAnimationJump(float t)
     {
         if (jumpAnimationToTime != null)
         {
@@ -227,12 +227,12 @@ public class Character : MonoBehaviour , ITimeScale
         }
     }
 
-    protected IEnumerator JumpAndMove(Cube cube)
+    protected virtual IEnumerator JumpAndMove(Cube cube)
     {
         yield return StartCoroutine(JumpAndMoveToPoint(cube.upSide.position));
     }
 
-    protected IEnumerator JumpAndMoveToPoint(Vector3 point)
+    protected virtual IEnumerator JumpAndMoveToPoint(Vector3 point)
     {
         float t = 0;
         var movingTo = point;
@@ -254,17 +254,17 @@ public class Character : MonoBehaviour , ITimeScale
         root.position = movingTo;
     }
 
-    protected float GetOffsetLerp(float t)
+    protected virtual float GetOffsetLerp(float t)
     {
         float retFloat = jumpAmplitude;
 
         if (t < 0.5f)
         {
-            retFloat = retFloat * t;
+            retFloat = jumpAmplitude * t;
         }
         else
         {
-            retFloat = jumpAmplitude - (retFloat * t);
+            retFloat = jumpAmplitude - (jumpAmplitude * t);
         }
 
         return retFloat;

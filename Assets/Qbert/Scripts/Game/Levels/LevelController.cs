@@ -69,6 +69,9 @@ public class LevelController : MonoBehaviour
     {
         gameGui.SetLevel(levelSwitcher.currentLevel, currentLevel.roundCurrent);
 
+        StopAllCoroutines();
+        SetPauseGamplayObjects(false);
+
         currentLevel.ResetLevel();
         currentLevel.StartLevel(currentLevel.roundCurrent);
         qbert.isFrize = false;

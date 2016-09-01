@@ -85,6 +85,7 @@ public class Transport : GameplayObject
         }
 
         currentPosition = cubePos;
+        positionMove = cubePos;
 
         transform.position = newPos;
         transform.rotation = cube.upSide.rotation * Quaternion.Euler(new Vector3(-90, 0, 0));

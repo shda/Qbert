@@ -30,7 +30,7 @@ public class RedCube : GameplayObject
         return null;
     }
 
-    public GameplayObject SetObject(Transform root, LevelController levelController , PositionCube startPosition)
+    public virtual GameplayObject SetObject(Transform root, LevelController levelController , PositionCube startPosition)
     {
         var gObject = base.Create(root, levelController);
         gObject.SetStartPosition(startPosition);
@@ -95,7 +95,7 @@ public class RedCube : GameplayObject
 
         yield break;
     }
-    protected bool GetMoveCube(ref Cube refCube, ref DirectionMove.Direction refDirection)
+    protected virtual bool GetMoveCube(ref Cube refCube, ref DirectionMove.Direction refDirection)
     {
         List<DirectionMove.Direction> directions = new List<DirectionMove.Direction>();
         directions.Add(DirectionMove.Direction.DownLeft);
