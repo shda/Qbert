@@ -9,4 +9,6 @@ public class ScorePrice : MonoBehaviour
     public const float getColorCube = 10;
     public const float dropPurpeCube = 20;
     public const float dontUsingTransport = 2;
+
+    public const int addCoinsToCoin = 1;
 }

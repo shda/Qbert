@@ -42,6 +42,11 @@ public class Character : MonoBehaviour , ITimeScale
         levelController.AddScore(score);
     }
 
+    protected void AddCoins(int coint)
+    {
+        levelController.AddCoins(coint);
+    }
+
     public new void StopAllCoroutines()
     {
         base.StopAllCoroutines();

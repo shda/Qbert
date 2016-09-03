@@ -12,6 +12,7 @@ public class GameplayObject : Character
         BlueCube,
         ColoredCube,
         PinkCube,
+        CoinCube,
     }
     public virtual Type typeGameobject
     {
@@ -20,10 +21,10 @@ public class GameplayObject : Character
 
     public Action<GameplayObject> OnDestroyEvents;
 
-    
-    public virtual void Init()
+    //если на объект можно прыгнуть
+    public virtual bool CanJumpToMy()
     {
-
+        return false;
     }
 
     public virtual void Run()

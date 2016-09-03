@@ -4,13 +4,17 @@ using UnityEngine.UI;
 
 public class GameGui : MonoBehaviour
 {
-    public Text scoreText;
+    public ResourceCounter scoreText;
     public Text levelLabel;
+    public Text coinsLabel;
 
     private float score;
+    private int coins;
 
     public void ResetScore()
     {
+        scoreText._labelCount = 0;
+        scoreText.UpdateText();
         SetScore(0);
     }
     public void SetLevel(int level , int round)
@@ -20,7 +24,19 @@ public class GameGui : MonoBehaviour
     public void SetScore(float setScore)
     {
         score = setScore;
-        scoreText.text = string.Format("{0}", (int)setScore);
+        scoreText.SetValue(setScore);
+        //scoreText.text = string.Format("{0}", (int)setScore);
+    }
+
+    public void SetCoins(int setConis)
+    {
+        coinsLabel.text = string.Format("{0}", (int)setConis);
+    }
+
+    public void AddCoins(int addScore)
+    {
+        coins += addScore;
+        SetCoins(coins);
     }
 
     public void AddScore(float addScore)

@@ -17,6 +17,11 @@ public class LevelController : MonoBehaviour
         gameGui.AddScore(score);
     }
 
+    public void AddCoins(int coint)
+    {
+        gameGui.AddCoins(coint);
+    }
+
     public void SetPauseGamplayObjects(bool isPause)
     {
         float timeScale = isPause ? 0.0000001f : 1.0f;
@@ -131,4 +136,6 @@ public class LevelController : MonoBehaviour
         SetPauseGamplayObjects(false);
         qbert.isCheckColision = true;
     }
+
+    
 }

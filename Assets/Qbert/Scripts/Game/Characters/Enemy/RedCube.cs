@@ -21,7 +21,7 @@ public class RedCube : GameplayObject
         foreach (var positionCube in positions)
         {
             var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(positionCube);
-            if (gaToPoint == null)
+            if (gaToPoint == null || gaToPoint.CanJumpToMy())
             {
                 return SetObject(root, levelController, positionCube);
             }
@@ -109,7 +109,7 @@ public class RedCube : GameplayObject
             if (cubeTarget)
             {
                 var targetCube = levelController.gameplayObjects.GetGamplayObjectInPoint(cubeTarget.cubePosition);
-                if (targetCube == null)
+                if (targetCube == null || targetCube.CanJumpToMy())
                 {
                     refCube = cubeTarget;
                     refDirection = direction;

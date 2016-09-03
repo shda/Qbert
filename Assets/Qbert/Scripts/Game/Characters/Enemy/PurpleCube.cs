@@ -58,7 +58,7 @@ public class PurpleCube : RedCube
 
         PositionCube step = GetNeighborPoint(myPoint , qbertPoint);
         var targetCube = levelController.gameplayObjects.GetGamplayObjectInPoint(step);
-        if (targetCube)
+        if (targetCube && !targetCube.CanJumpToMy())
         {
             return null;
         }

@@ -31,13 +31,18 @@ public class PinkCube : RedCube
 
     public override GameplayObject Create(Transform root, LevelController levelController)
     {
+        if (startPositions == null || startPositions.Length == 0)
+        {
+            startPositions = GetStartPositions(levelController);
+        }
+
         List<PositionCube> positions = new List<PositionCube>(startPositions);
         positions = positions.Mix();
 
         foreach (var positionCube in positions)
         {
             var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(positionCube);
-            if (gaToPoint == null)
+            if (gaToPoint == null || gaToPoint.CanJumpToMy())
             {
                 if (positionCube.position == 0)
                 {
@@ -57,6 +62,13 @@ public class PinkCube : RedCube
 
         return null;
     }
+
+    public PositionCube[] GetStartPositions(LevelController levelController)
+    {
+        int level = levelController.gameField.mapGenerator.levels - 1;
+
+        return new[] {new PositionCube(level, 0), new PositionCube(level, level),};
+    }   
 
     public override void SetStartPosition(PositionCube point)
     {
