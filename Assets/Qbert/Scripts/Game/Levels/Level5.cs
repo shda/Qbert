@@ -10,11 +10,7 @@ public class Level5 : LevelBase
     {
         if (cube.isSet)
         {
-            cube.SetLastColor();
-            cube.colorLerp.valueLerp = 0.0f;
-            cube.SetLastColor();
-            cube.colorLerp.valueLerp = 0.0f;
-            cube.colorLerp.value = 0.0f;
+            cube.DropColor();
         }
         else
         {

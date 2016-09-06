@@ -8,7 +8,8 @@ public class ShaderSwitchColorLerp : MonoBehaviour
 
     public Color start;
     public Color end;
-    public float speedLerp;
+    public float speedUp;
+    public float speedDown;
     public float value;
 
     private float _valueLerp;
@@ -45,6 +46,16 @@ public class ShaderSwitchColorLerp : MonoBehaviour
     public void Update()
     {
         float valueStep = value - valueLerp;
-        valueLerp += valueStep * Time.deltaTime * speedLerp;
+
+        if (valueStep > 0)
+        {
+            valueLerp += valueStep * Time.deltaTime * speedUp;
+        }
+        else
+        {
+            valueLerp += valueStep * Time.deltaTime * speedDown;
+        }
+
+        
     }
 }

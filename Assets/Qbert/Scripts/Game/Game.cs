@@ -28,8 +28,8 @@ public class Game : MonoBehaviour
 
     void Awake()
     {
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 10;
+       // QualitySettings.vSyncCount = 0;
+       // Application.targetFrameRate = 10;
     }
 
     void Start()

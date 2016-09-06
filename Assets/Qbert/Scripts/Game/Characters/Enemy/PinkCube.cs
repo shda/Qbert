@@ -112,7 +112,7 @@ public class PinkCube : RedCube
         }
 
         yield return new WaitForSeconds(0.2f);
-        yield return StartCoroutine(this.MovingTransformTo(root, targetPosition, 0.5f, this));
+        yield return StartCoroutine(this.MovingTransformTo(root, targetPosition, 0.5f, iTimeScaler));
         yield return null;
     }
 
@@ -136,7 +136,7 @@ public class PinkCube : RedCube
                     if (cubeTarget)
                     {
                         MoveToCube(cubeTarget);
-                        yield return StartCoroutine(this.WaitForSecondITime(1.0f, this));
+                        yield return StartCoroutine(this.WaitForSecondITime(1.0f, iTimeScaler));
                     }
                     else
                     {
@@ -173,7 +173,7 @@ public class PinkCube : RedCube
             dropDownPoint = root.position + new Vector3(dropDownHeight * 0.5f, 0, dropDownHeight * 0.5f);
         }
 
-        yield return StartCoroutine(this.MovingTransformTo(root, dropDownPoint, timeDropDown, this));
+        yield return StartCoroutine(this.MovingTransformTo(root, dropDownPoint, timeDropDown, iTimeScaler));
     }
 
     public override Vector3 GetRotationToCube(Cube cube)
@@ -243,7 +243,7 @@ public class PinkCube : RedCube
 
         while (t < 1)
         {
-            t += CoroutinesHalpers.GetTimeDeltatimeScale(this) / timeMove;
+            t += CoroutinesHalpers.GetTimeDeltatimeScale(iTimeScaler) / timeMove;
             t = Mathf.Clamp01(t);
             Vector3 pos = Vector3.Lerp(startTo, movingTo, t);
             JumpOffset(t);

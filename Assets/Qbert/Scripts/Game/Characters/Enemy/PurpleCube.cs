@@ -25,7 +25,7 @@ public class PurpleCube : RedCube
 
     private IEnumerator RebornToEnemy()
     {
-        yield return StartCoroutine(rebornAnimation.PlayToTime(2.0f , this));
+        yield return StartCoroutine(rebornAnimation.PlayToTime(2.0f , iTimeScaler));
     }
 
     private IEnumerator FallowToQbert()
@@ -40,7 +40,7 @@ public class PurpleCube : RedCube
                 yield return StartCoroutine(MoveToCubeAnimation(cube));
             }
 
-            yield return StartCoroutine(this.WaitForSecondITime(0.5f, this));
+            yield return StartCoroutine(this.WaitForSecondITime(0.5f, iTimeScaler));
         }
 
         yield return null;

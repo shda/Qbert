@@ -22,12 +22,13 @@ namespace Assets.VR_360.Scripts
             if (Application.isEditor)
             {
                 QualitySettings.vSyncCount = 0;
-                Application.targetFrameRate = 30;
             }
             else
             {
-                Application.targetFrameRate = 60;
+                //Application.targetFrameRate = 60;
             }
+
+            Application.targetFrameRate = 0;
         }
 
         void Update()

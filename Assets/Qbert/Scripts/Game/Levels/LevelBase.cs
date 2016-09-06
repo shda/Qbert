@@ -16,7 +16,7 @@ public abstract class LevelBase : MonoBehaviour
 
     public PositionCube startPostitionQber;
     [Header("Цвета по умолчанию")]
-    public Color[] colors;
+    public Color[] globalLevelColors;
 
     private float currentTime;
     private bool isLevelRun = false;
@@ -72,13 +72,13 @@ public abstract class LevelBase : MonoBehaviour
 
         foreach (var cube in levelController.gameField.field)
         {
-            if (currentRoundConfig.colors != null && currentRoundConfig.colors.Length > 0)
+            if (currentRoundConfig.customColors != null && currentRoundConfig.customColors.Length > 0)
             {
-                cube.SetColors(currentRoundConfig.colors);
+                cube.SetColors(currentRoundConfig.customColors);
             }
             else
             {
-                cube.SetColors(colors);
+                cube.SetColors(globalLevelColors);
             }
 
             cube.Reset();

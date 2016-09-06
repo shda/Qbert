@@ -48,7 +48,7 @@ public class RedCube : GameplayObject
         var targetPosition = root.position;
         root.position = new Vector3(root.position.x, root.position.y + heightDrop, root.position.z);
         yield return new WaitForSeconds(0.2f);
-        yield return StartCoroutine(this.MovingTransformTo(root, targetPosition, 0.2f , this));
+        yield return StartCoroutine(this.MovingTransformTo(root, targetPosition, 0.2f , iTimeScaler));
         yield return null;
     }
 
@@ -70,7 +70,7 @@ public class RedCube : GameplayObject
                     if (cubeTarget)
                     {
                         MoveToCube(cubeTarget);
-                        yield return StartCoroutine(this.WaitForSecondITime(1.0f, this));
+                        yield return StartCoroutine(this.WaitForSecondITime(1.0f, iTimeScaler));
                     }
                     else if (currentPosition.line == levelController.gameField.mapGenerator.levels - 1)
                     {

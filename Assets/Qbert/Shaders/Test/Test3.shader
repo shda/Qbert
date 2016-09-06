@@ -1,8 +1,7 @@
-﻿Shader "Custom/CurcleTransitionColors" 
-{
+﻿Shader "Custom/Test3" {
 	 Properties
     {
-        //[NoScaleOffset] _MainTex ("Texture", 2D) = "white" {}
+        [NoScaleOffset] _MainTex ("Texture", 2D) = "white" {}
 		
 		_ColorIn ("ColorIn", Color) = (1,1,1,1)
 		_ColorOut ("ColorOut", Color) = (1,1,1,1)
@@ -91,6 +90,9 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col =  getColor(i); //tex2D(_MainTex, i.uv);
+				
+				
+				
 				
                 fixed shadow = SHADOW_ATTENUATION(i);
                 fixed3 lighting = i.diff * shadow + i.ambient;

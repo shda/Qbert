@@ -42,6 +42,12 @@ public class Cube : MonoBehaviour
         colorLerp.SetColorEnd(colors[2]);
     }
 
+    public void SetColorDrop()
+    {
+        colorLerp.SetColorSrart(colors[0]);
+        colorLerp.SetColorEnd(colors[2]);
+    }
+
     public void SetNextColor()
     {
         lastState = stateColor;
@@ -82,6 +88,13 @@ public class Cube : MonoBehaviour
         }
 
         stateColor = Mathf.Clamp(stateColor, 0, colors.Length - 1);
+    }
+
+    public void DropColor()
+    {
+        stateColor = 0;
+        SetColorDrop();
+        colorLerp.value = 0.0f;
     }
 
     public void OnPressMy(Character character)

@@ -2,16 +2,22 @@
 using UnityEngine;
 using System.Collections;
 
-public class Character : MonoBehaviour , ITimeScale
+public class Character : MonoBehaviour
 {
-    //ITimeScale
-    private float _timeScale = 1.0f;
-    public float timeScale
+    protected ITimeScale iTimeScaler;
+    protected float timeScale
     {
-        get { return _timeScale; }
-        set { _timeScale = value; }
+        get
+        {
+            if (iTimeScaler == null)
+            {
+                Debug.LogError("Not set time scaler interface.");
+                return 1.0f;
+            }
+
+            return iTimeScaler.timeScale;
+        }
     }
-    //end ITimeScale
 
     [Header("Character")]
     public Transform root;
@@ -34,8 +40,12 @@ public class Character : MonoBehaviour , ITimeScale
         get { return moveCoroutine != null; }
     }
 
-
     protected Coroutine moveCoroutine;
+
+    public void SetTimeScaler(ITimeScale timeScaler)
+    {
+        iTimeScaler = timeScaler;
+    }
 
     protected void AddScore(float score)
     {
@@ -155,7 +165,7 @@ public class Character : MonoBehaviour , ITimeScale
         while (distance > 0.01f)
         {
             Vector3 move = Vector3.MoveTowards(root.rotation.eulerAngles,
-                rotateTo, speedMoving * CoroutinesHalpers.GetTimeDeltatimeScale(this));
+                rotateTo, speedMoving * CoroutinesHalpers.GetTimeDeltatimeScale(iTimeScaler));
             root.rotation = Quaternion.Euler(move);
             distance = Vector3.Distance(root.rotation.eulerAngles, rotateTo);
             yield return null;
@@ -182,7 +192,7 @@ public class Character : MonoBehaviour , ITimeScale
     protected virtual IEnumerator DropDown()
     {
         Vector3 dropDownPoint = root.position - new Vector3(0, dropDownHeight, 0);
-        yield return StartCoroutine(this.MovingTransformTo(root, dropDownPoint, timeDropDown , this));
+        yield return StartCoroutine(this.MovingTransformTo(root, dropDownPoint, timeDropDown , iTimeScaler));
     }
 
     protected virtual IEnumerator MoveToPointAnimation(Vector3 point, Action<Character> OnEnd = null)
@@ -245,7 +255,7 @@ public class Character : MonoBehaviour , ITimeScale
 
         while (t < 1)
         {
-            t += CoroutinesHalpers.GetTimeDeltatimeScale(this) / timeMove;
+            t += CoroutinesHalpers.GetTimeDeltatimeScale(iTimeScaler) / timeMove;
             t = Mathf.Clamp01(t);
             Vector3 pos = Vector3.Lerp(startTo, movingTo, t);
             pos = new Vector3(pos.x, pos.y + GetOffsetLerp(t), pos.z);

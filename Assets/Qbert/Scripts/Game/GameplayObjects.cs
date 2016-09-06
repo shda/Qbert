@@ -4,8 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class GameplayObjects : MonoBehaviour
+public class GameplayObjects : MonoBehaviour , ITimeScale
 {
+    //ITimeScale
+    private float _timeScale = 1.0f;
+    public float timeScale
+    {
+        get { return _timeScale; }
+        set { _timeScale = value; }
+    }
+    //end ITimeScale
+
     public Transform pointMoveTransport;
     public LevelController levelController;
     public GameplayObject[] gameplayObjectPaterns;
@@ -25,13 +34,9 @@ public class GameplayObjects : MonoBehaviour
         return null;
     }
 
-
     public void SetTimeScale(float scale)
     {
-        foreach (var gameplayObject in gameplayObjectsList)
-        {
-            gameplayObject.timeScale = scale;
-        }
+        timeScale = scale;
     }
 
     private GameplayObject CreateGameplayObject(GameplayObject.Type type)
@@ -52,8 +57,9 @@ public class GameplayObjects : MonoBehaviour
         var gameplayObject = CreateGameplayObject(type);
         if (gameplayObject)
         {
+            gameplayObject.SetTimeScaler(this);
             gameplayObject.Init();
-            gameplayObject.Run();;
+            gameplayObject.Run();
             gameplayObjectsList.Add(gameplayObject);
 
             gameplayObject.OnDestroyEvents = OnDestroyEvents;
@@ -118,4 +124,6 @@ public class GameplayObjects : MonoBehaviour
 
         return list.ToArray();
     }
+
+  
 }
