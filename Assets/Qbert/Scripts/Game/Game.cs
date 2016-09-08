@@ -19,6 +19,11 @@ public class Game : MonoBehaviour
         levelController.StartLevel();
     }
 
+    public void OnTapScreenStartGame()
+    {
+        Debug.Log("Tap");
+    }
+
 
     public string sceneName;
     public void LoadSelectLevelScene()

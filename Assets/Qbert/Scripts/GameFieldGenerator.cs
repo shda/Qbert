@@ -8,11 +8,16 @@ public class GameFieldGenerator : MonoBehaviour
 {
     public float offsetX = 1.0f;
     public float offsetY = 1.0f;
+
+    public int startLine = 0;
+    public int startPos = 0;
+
     public int levels = 7;
     public Transform root;
     public Transform pattern;
 
-    public List<List<Transform>> map; 
+    [HideInInspector]
+    public List<Cube> map; 
 
     private float oldOffset;
     private int oldLevels = -1;
@@ -22,13 +27,13 @@ public class GameFieldGenerator : MonoBehaviour
         if (root && pattern)
         {
             DestroyOldMap();
-            
-            map = new List<List<Transform>>();
+
+            root.localPosition = new Vector3();
+
+            map = new List<Cube>();
 
             for (int level = 0; level < levels; level++)
             {
-                List <Transform> lineTransform = new List<Transform>();
-
                 GameObject lineRoot = new GameObject("Line" + level);
                 lineRoot.transform.SetParent(root);
                 lineRoot.transform.localRotation = Quaternion.identity;
@@ -37,22 +42,33 @@ public class GameFieldGenerator : MonoBehaviour
                 {
                     float offsetSet = offsetX*line;
                     Transform createPattern = CreatePattern(new Vector3(offsetSet , 0 , offsetSet) , lineRoot.transform);
-                    lineTransform.Add(createPattern);
 
                     Cube cube = createPattern.GetComponent<Cube>();
                     if (cube)
                     {
                         cube.cubePosition = new PositionCube(level , level - line);
+                        map.Add(cube);
                     }
                 }
 
                 lineRoot.transform.localPosition = new Vector3(-level , -level * offsetY);
-
-                map.Add(lineTransform);
             }
-            
         }
     }
+
+    public void CreateMapCenter()
+    {
+        if (root && pattern)
+        {
+            CreateMap();
+
+            Cube cube = map.FirstOrDefault(x => x.cubePosition == new PositionCube( startLine , startPos));
+            Vector3 posUpSide = cube.upSide.position;
+            root.localPosition -= posUpSide;
+        }
+    }
+
+
 
     private Transform CreatePattern(Vector3 position , Transform rootLine)
     {
@@ -76,13 +92,8 @@ public class GameFieldGenerator : MonoBehaviour
         }
     }
 
-    void Start ()
-    {
-	
-	}
-	
-	void Update ()
+    void Start()
     {
 
-	}
+    }
 }

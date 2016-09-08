@@ -12,7 +12,8 @@ public class RemakeMapInspector : Editor
         GameFieldGenerator myScript = (GameFieldGenerator)target;
         if (GUILayout.Button("Remake map"))
         {
-            myScript.CreateMap();
+            //myScript.CreateMap();
+            myScript.CreateMapCenter();
         }
     }
 }
