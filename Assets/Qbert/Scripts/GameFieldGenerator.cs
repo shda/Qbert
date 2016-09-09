@@ -41,7 +41,9 @@ public class GameFieldGenerator : MonoBehaviour
                 for (int line = 0; line < level + 1; line++)
                 {
                     float offsetSet = offsetX*line;
-                    Transform createPattern = CreatePattern(new Vector3(offsetSet , 0 , offsetSet) , lineRoot.transform);
+                    Transform createPattern = CreatePattern(
+                        new Vector3(offsetSet , 0 , offsetSet) , lineRoot.transform ,
+                        level , line);
 
                     Cube cube = createPattern.GetComponent<Cube>();
                     if (cube)
@@ -62,21 +64,25 @@ public class GameFieldGenerator : MonoBehaviour
         {
             CreateMap();
 
-            Cube cube = map.FirstOrDefault(x => x.cubePosition == new PositionCube( startLine , startPos));
+            Cube cube = FindCubeToPoint(new PositionCube(startLine, startPos));
             Vector3 posUpSide = cube.upSide.position;
             root.localPosition -= posUpSide;
         }
     }
 
+    public Cube FindCubeToPoint(PositionCube point)
+    {
+        return map.FirstOrDefault(x => x.cubePosition == point);
+    }
 
-
-    private Transform CreatePattern(Vector3 position , Transform rootLine)
+    private Transform CreatePattern(Vector3 position , Transform rootLine , int line , int pos)
     {
         Transform createPattern = Instantiate(pattern) as Transform;
         createPattern.SetParent(rootLine);
         createPattern.transform.localRotation = Quaternion.identity;
         createPattern.localPosition = position;
         createPattern.localScale = new Vector3(offsetX , offsetY , offsetX);
+        createPattern.name = string.Format("Cube_{0}_{1}", line, pos);
         return createPattern;
     }
 
@@ -86,7 +92,7 @@ public class GameFieldGenerator : MonoBehaviour
 
         foreach (var child in list)
         {
-            Debug.Log(child.name);
+            //Debug.Log(child.name);
             child.gameObject.SetActive(false);
             DestroyImmediate(child.gameObject , true);
         }

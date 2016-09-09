@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
-    public LevelController levelController;
+    public LevelController      levelController;
+    public CameraController     cameraController;
+    public CubeCreateAnimator   cubeCreateAnimator;
 
     public void RestartLevel()
     {
@@ -21,6 +23,8 @@ public class Game : MonoBehaviour
 
     public void OnTapScreenStartGame()
     {
+        cameraController.MoveCameraToCube(new PositionCube(4,2) , 4.5f, 1.0f );
+        cubeCreateAnimator.StartAnimateShow();
         Debug.Log("Tap");
     }
 
