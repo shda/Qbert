@@ -25,7 +25,6 @@ public class GameGui : MonoBehaviour
     {
         score = setScore;
         scoreText.SetValue(setScore);
-        //scoreText.text = string.Format("{0}", (int)setScore);
     }
 
     public void SetCoins(int setConis)

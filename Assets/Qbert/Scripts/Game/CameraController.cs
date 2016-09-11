@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class CameraController : MonoBehaviour
@@ -9,17 +10,23 @@ public class CameraController : MonoBehaviour
 
     public float durationMove;
 
-    public void MoveCameraToCube(PositionCube posCube , float cameraSize , float duration)
+    public void MoveCameraToPoint(Vector3 positionMove,  float duration,
+        Action<Transform> OnEndCameraMove = null)
+    {
+        StartCoroutine(this.MovingTransformTo(
+            rootCamera.transform, positionMove, duration, null, OnEndCameraMove));
+    }
+
+    public void MoveCameraToCube(PositionCube posCube , float cameraSize , float duration , Action<Transform> OnEndCameraMove = null )
     {
         Cube findCubeCenter = fieldGenerator.FindCubeToPoint(posCube);
         if (findCubeCenter)
         {
             Vector3 cameraMovePositon = findCubeCenter.upSide.position;
             StartCoroutine(
-                this.MovingTransformTo(rootCamera.transform, cameraMovePositon, duration));
+                this.MovingTransformTo(rootCamera.transform, cameraMovePositon, duration , null , OnEndCameraMove));
 
             StartCoroutine( ChangeCameraSize(duration, cameraSize) );
-
         }
     }
     public IEnumerator ChangeCameraSize( float duration  , float toCameraSize)

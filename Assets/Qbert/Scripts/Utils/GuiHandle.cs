@@ -167,7 +167,7 @@ namespace Assets.CommonB.UI {
 			return hitGameObject;
 		}
 
-		private void OnUnpress(GameObject go, bool generateTapEvent , ITouch touch)
+		private void OnUnpress(GameObject go, bool generateTapEvent , ITouch[] touchs)
         {
 			if (pressedObjects.Contains(go))
             {
@@ -175,12 +175,19 @@ namespace Assets.CommonB.UI {
 
 				if (go)
                 {
-                    if (touch != null)
+                    if (touchs != null)
                     {
-                        touch.OnTap();
+                        foreach (var touch in touchs)
+                        {
+                            touch.OnTap();
+                        }
+
                         if (generateTapEvent)
                         {
-                            touch.OnPress(false);
+                            foreach (var touch in touchs)
+                            {
+                                touch.OnPress(false);
+                            }
                         }
                     }
                     else
@@ -197,10 +204,13 @@ namespace Assets.CommonB.UI {
 			}
 		}
 
-		private void OnPress(GameObject go , ITouch touch) {
-		    if (touch != null)
+		private void OnPress(GameObject go , ITouch[] touchs) {
+		    if (touchs != null)
 		    {
-		        touch.OnPress(true);
+                foreach (var touch in touchs)
+                {
+                    touch.OnPress(true);
+                }
 		    }
 		    else
             {
@@ -210,10 +220,13 @@ namespace Assets.CommonB.UI {
 			pressedObjects.Add(go);
 		}
 
-		private void OnDrag(GameObject go, Vector2 delta , ITouch touch) {
-            if (touch != null)
+		private void OnDrag(GameObject go, Vector2 delta , ITouch[] touchs) {
+            if (touchs != null)
             {
-                touch.OnDrag(delta);
+                foreach (var touch in touchs)
+                {
+                    touch.OnDrag(delta);
+                }
             }
             else
             {
@@ -232,13 +245,13 @@ namespace Assets.CommonB.UI {
 			public Vector2 _position;
 			public Vector2 dragDelta;
             public GameObject _capturedObject;
-            public ITouch   _capturedITouch;
+            public ITouch[]   _capturedITouch;
             public bool isDrag;
 			public bool _pressed;
 
 			public void Drag(GameObject go)
 			{
-			    _capturedITouch = go.GetComponent<ITouch>();
+			    _capturedITouch = go.GetComponents<ITouch>();
 			    if (_capturedObject)
 			    {
                     _capturedObject = go;

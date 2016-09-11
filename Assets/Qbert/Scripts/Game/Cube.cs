@@ -112,7 +112,7 @@ public class Cube : MonoBehaviour
 	
 	void Update ()
 	{
-	    debugText.text = string.Format("{0},{1}", cubePosition.line, cubePosition.position);
+	   // debugText.text = string.Format("{0},{1}", cubePosition.line, cubePosition.position);
 	}
 
     public void Reset()
