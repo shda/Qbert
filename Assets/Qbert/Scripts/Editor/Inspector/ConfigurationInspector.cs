@@ -1,32 +1,43 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
 
-/*
-[CustomPropertyDrawer(typeof(Round.GemeplayObjectConfig))]
+
+//[CustomPropertyDrawer(typeof(CubeMap))]
 public class ConfigurationInspector : PropertyDrawer
 {
-    public override void OnGUI(Rect position, SerializedProperty propertys, GUIContent label)
+    private float hight = 0;
+
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        Rect contentPosition = EditorGUI.PrefixLabel(position, GUIContent.none);
-        EditorGUI.LabelField(contentPosition, propertys.displayName);
+        var obj = property.serializedObject.targetObject;
 
-        float labelWidth = 140.0f;
-       // contentPosition.x += labelWidth;
+        var mapAsset = obj as MapAsset;
+        mapAsset.UpdateFromInspector();
 
-        foreach (var property in propertys)
+        foreach (SerializedProperty a in property)
         {
-            SerializedProperty actionType = property as SerializedProperty;
-            EditorGUI.LabelField(contentPosition, propertys.displayName);
-            //contentPosition.x += 30.0f;
-            
-           // contentPosition.width = 60.0f;
-
-            EditorGUI.PropertyField(contentPosition, actionType, GUIContent.none);
-            //contentPosition.y += 50.0f;
-           // contentPosition.x += 50.0f;
+           // Debug.Log(a.name);
+            position.y += 20;
+            position.height = 20.0f;
+            EditorGUI.PropertyField(position, a , new GUIContent(a.name));
         }
+    }
+
+
+    private void DrawCubes()
+    {
         
     }
+
+
+    
+    public override float GetPropertyHeight(UnityEditor.SerializedProperty property, UnityEngine.GUIContent label)
+    {
+        //return base.GetPropertyHeight(property, label);
+
+        return 230;
+    }
+    
 }
-*/
