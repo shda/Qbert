@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Cube : MonoBehaviour
 {
@@ -11,8 +12,9 @@ public class Cube : MonoBehaviour
 
     public ShaderSwitchColorLerp colorLerp;
 
-    public Action<Cube , Character> OnPressEvents; 
-    public TextMesh debugText;
+    public Action<Cube , Character> OnPressEvents;
+
+    public List<Cube> nodes = new List<Cube>(); 
 
     public Color[] colors;
 

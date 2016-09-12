@@ -5,7 +5,7 @@ using UnityEditor;
 
 
 //[CustomPropertyDrawer(typeof(CubeMap))]
-public class ConfigurationInspector : PropertyDrawer
+public class MapConfiguration : PropertyDrawer
 {
     private float hight = 0;
 
