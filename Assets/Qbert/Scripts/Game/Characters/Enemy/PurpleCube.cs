@@ -7,6 +7,8 @@ public class PurpleCube : RedCube
 {
     [Header("PurpleCube")]
     public AnimationToTime rebornAnimation;
+
+    public PathFinder pf;
     public override Type typeGameobject
     {
         get { return Type.PurpleCube; }
@@ -33,6 +35,14 @@ public class PurpleCube : RedCube
         while (true)
         {
             Qbert qbert = levelController.qbert;
+
+            var cubeQbert   = qbert.GetCubeCurrentPosition();
+            var cubeThis    = this.GetCubeCurrentPosition();
+
+            
+            
+
+            /*
             Cube cube = FindPathToQberd(qbert);
             if (cube)
             {
@@ -40,10 +50,59 @@ public class PurpleCube : RedCube
                 yield return StartCoroutine(MoveToCubeAnimation(cube));
             }
 
+            */
+
             yield return StartCoroutine(this.WaitForSecondITime(0.5f, iTimeScaler));
         }
 
         yield return null;
+    }
+
+    public List<Cube> points;
+
+    void OnDrawGizmos()
+    {
+        //Debug.Log("OnDrawGizmos");
+
+        if (pf != null)
+        {
+            Qbert qbert = levelController.qbert;
+
+            var cubeQbert = qbert.GetCubeCurrentPosition();
+            var cubeThis = this.GetCubeCurrentPosition();
+
+            
+
+            int a = 100;
+
+            var gf = levelController.gameField;
+
+            Vector3 oldVec = cubeThis.transform.position;
+
+            Gizmos.color = Color.red;
+
+            /*
+            while (true)
+            {
+                if(point.currentCube == null)
+                    break;
+
+                point = point.mainCube;
+
+                var drawTo = point.currentCube.transform.position;
+
+                if (point.mainCube != null)
+                {
+                    Gizmos.DrawLine(point.mainCube.currentCube.transform.position, drawTo);
+                }
+            }
+            */
+        }
+    }
+
+    void Start()
+    {
+        pf = new PathFinder();
     }
 
     private Cube FindPathToQberd(Qbert qbert)
@@ -108,6 +167,28 @@ public class PurpleCube : RedCube
         }
 
         return new PositionCube();
+    }
+
+    void Update()
+    {
+        Profiler.BeginSample("PathFind");
+
+        Qbert qbert = levelController.qbert;
+        var cubeQbert = qbert.GetCubeCurrentPosition();
+        var cubeThis = this.GetCubeCurrentPosition();
+
+        points = pf.FindPath(cubeQbert, cubeThis);
+        //HeavyProcess1();
+        Profiler.EndSample();
+    }
+
+    void HeavyProcess1()
+    {
+        var list = new List<int>();
+        for (var i = 0; i < 2000000; ++i)
+        {
+            list.Add(i);
+        }
     }
 
     private bool CheckToDrop(PositionCube start , PositionCube end)

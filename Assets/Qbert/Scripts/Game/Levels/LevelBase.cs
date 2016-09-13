@@ -14,7 +14,7 @@ public abstract class LevelBase : MonoBehaviour
         get { return rounds[roundCurrent]; }
     }
 
-    public PositionCube startPostitionQber;
+    public int idStartPositionQbert;
     [Header("Цвета по умолчанию")]
     public Color[] globalLevelColors;
 
@@ -66,9 +66,11 @@ public abstract class LevelBase : MonoBehaviour
     {
         currentRoundConfig.ResetRound();
 
+        Cube cubeQbertStart = levelController.gameField.mapGenerator.GetCubeById(idStartPositionQbert);
+
         levelController.qbert.StopAllCoroutines();
         levelController.qbert.levelController = levelController;
-        levelController.qbert.SetStartPosition(startPostitionQber);
+        levelController.qbert.SetStartPosition(cubeQbertStart.cubePosition);
 
         foreach (var cube in levelController.gameField.field)
         {

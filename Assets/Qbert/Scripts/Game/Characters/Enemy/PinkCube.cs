@@ -31,6 +31,8 @@ public class PinkCube : RedCube
 
     public override GameplayObject Create(Transform root, LevelController levelController)
     {
+        //Todo:fix this
+        /*
         if (startPositions == null || startPositions.Length == 0)
         {
             startPositions = GetStartPositions(levelController);
@@ -59,7 +61,7 @@ public class PinkCube : RedCube
                 return SetObject(root, levelController, positionCube);
             }
         }
-
+        */
         return null;
     }
 
@@ -74,6 +76,8 @@ public class PinkCube : RedCube
     {
         StopAllCoroutines();
 
+        //Todo:fix this
+        /*
         stuckPosition = point;
         positionMove = point;
 
@@ -92,6 +96,7 @@ public class PinkCube : RedCube
             root.rotation = startCube.rightSide.rotation;
         }
         moveCoroutine = null;
+        */
     }
 
     protected override IEnumerator DropToCube()

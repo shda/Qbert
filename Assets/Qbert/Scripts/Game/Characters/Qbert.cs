@@ -4,9 +4,9 @@ using System.Collections;
 
 public class Qbert : Character
 {
-    public override void SetStartPosition(PositionCube point)
+    public override void SetStartPosition(PositionCube startPositionQbert)
     {
-        base.SetStartPosition(point);
+        base.SetStartPosition(startPositionQbert);
         root.rotation = Quaternion.Euler(0, -135, 0);
     }
 

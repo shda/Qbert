@@ -14,22 +14,6 @@ public class CubeCreateAnimator : MonoBehaviour
 
         var workCubes = gameFieldGenerator.map.Where(x => x.cubePosition != centerPoint).ToArray();
 
-        /*
-        for (int i = 0; i < gameFieldGenerator.levels; i++)
-        {
-            var cubes = workCubes.Where(x => x.cubePosition.line == i).Mix().ToArray();
-
-            for (int c = 0; c < cubes.Count(); c++)
-            {
-                var currentCube = cubes[c];
-
-                currentCube.gameObject.SetActive(false);
-
-                StartCoroutine(StartCubeShow(currentCube, offset, duration, c  * (duration * 0.5f)));
-            }
-        }
-        */
-
         for (int c = 0; c < workCubes.Count(); c++)
         {
             var currentCube = workCubes[c];
@@ -38,10 +22,6 @@ public class CubeCreateAnimator : MonoBehaviour
 
             StartCoroutine(StartCubeShow(currentCube, offset, duration, c * (duration * 0.5f)));
         }
-
-
-
-
     }
 
     IEnumerator StartCubeShow(Cube cube , float offset , float duration , float delayStart)

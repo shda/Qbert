@@ -13,7 +13,7 @@ public class RemakeMapInspector : Editor
         if (GUILayout.Button("Remake map"))
         {
             //myScript.CreateMap();
-            myScript.CreateMapCenter();
+            myScript.CreateMap();
         }
     }
 }

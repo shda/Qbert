@@ -3,13 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class MapLoader : MonoBehaviour 
+public class GameFieldGenerator : MonoBehaviour 
 {
     public float offsetX = 1.0f;
     public float offsetY = 1.0f;
 
     public Transform root;
     public Transform pattern;
+
+    public int levels = 7;
+
+    public int startLine = 0;
+    public int startPos = 0;
 
     public MapAsset mapAsset;
 
@@ -34,20 +39,21 @@ public class MapLoader : MonoBehaviour
 
                 for (int x = 0; x < mapCreate.width; x++)
                 {
-                    var cub = mapCreate.GetCubeInMap(x, y);
+                    var cubeInMap = mapCreate.GetCubeInMap(x, y);
 
-                    if (cub != null  && cub.isEnable)
+                    if (cubeInMap != null  && cubeInMap.isEnable)
                     {
                         float offsetSet = offsetX * x - (offsetX * y * 0.5f ) - (offsetX * y %2 * 0.5f);
 
                         Transform createPattern = CreatePattern(
                             new Vector3(offsetSet, 0, offsetSet), lineRoot.transform,
-                            cub.y, cub.x);
+                            cubeInMap.y, cubeInMap.x);
 
                         Cube cube = createPattern.GetComponent<Cube>();
                         if (cube)
                         {
-                            cube.cubePosition = new PositionCube(cub.y, cub.x);
+                            cube.cubePosition = new PositionCube(cubeInMap.y, cubeInMap.x);
+                            cube.cubeInMap = cubeInMap;
                             map.Add(cube);
                         }
                     }
@@ -133,8 +139,23 @@ public class MapLoader : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        CreateMap();
+    }
+
     void Start()
     {
 
+    }
+
+    public Cube GetCubeById(int id)
+    {
+        return map.FirstOrDefault(x => x.cubeInMap.id == id);
+    }
+
+    public Cube[] GetCubesById(int id)
+    {
+        return map.Where(x => x.cubeInMap.id == id).ToArray();
     }
 }

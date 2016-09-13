@@ -42,6 +42,11 @@ public class Character : MonoBehaviour
 
     protected Coroutine moveCoroutine;
 
+    public Cube GetCubeCurrentPosition()
+    {
+        return levelController.gameField.GetCube(currentPosition);
+    }
+
     public void SetTimeScaler(ITimeScale timeScaler)
     {
         iTimeScaler = timeScaler;

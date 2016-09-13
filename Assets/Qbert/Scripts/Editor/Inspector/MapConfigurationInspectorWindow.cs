@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.VersionControl;
 
 [CustomEditor(typeof(MapAsset))]
 public class MapConfigurationInspectorWindow : Editor
@@ -27,7 +28,20 @@ public class MapConfigurationInspectorWindow : Editor
         DrawMap();
         DrawColor();
 
+        DrawDefaultInspector();
+
+
         serializedObject.ApplyModifiedProperties();
+    }
+
+
+    public void UpdateProp()
+    {
+        var v = serializedObject.FindProperty("i");
+        v.intValue = 10;
+        //serializedObject.ApplyModifiedProperties();
+        v.intValue = 11;
+        //serializedObject.ApplyModifiedProperties();
     }
 
     private void DrawColor()
@@ -98,8 +112,6 @@ public class MapConfigurationInspectorWindow : Editor
             {
                 GUILayout.BeginHorizontal();
                 {
-                   // GUILayout.Space(50.0f);
-
                     SerializedProperty elementProperty = cubePaterns.GetArrayElementAtIndex(i);
 
                     if (GUILayout.Toggle(selectPatern == i, ""))
@@ -117,9 +129,10 @@ public class MapConfigurationInspectorWindow : Editor
                 GUILayout.EndHorizontal();
             }
 
-            
             EditorGUI.indentLevel--;
         }
+
+        serializedObject.ApplyModifiedProperties();
     }
 
     private void DrawMap()
@@ -184,6 +197,8 @@ public class MapConfigurationInspectorWindow : Editor
                             cube.id = selectColor;
                         }
                     }
+
+                    UpdateProp();
                 }
 
                 GUI.backgroundColor = oldColor;

@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class RedCube : GameplayObject
 {
-    public PositionCube[] startPositions;
+    //public PositionCube[] startPositions;
+    public int idStartPosition;
     [Header("RedCube")]
     public float heightDrop = 3.0f;
    
@@ -15,15 +17,15 @@ public class RedCube : GameplayObject
 
     public override GameplayObject Create(Transform root, LevelController levelController)
     {
-        List<PositionCube> positions = new List<PositionCube>(startPositions);
+        var positions = levelController.gameField.mapGenerator.GetCubesById(idStartPosition).ToList();
         positions = positions.Mix();
 
         foreach (var positionCube in positions)
         {
-            var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(positionCube);
+            var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(positionCube.cubePosition);
             if (gaToPoint == null || gaToPoint.CanJumpToMy())
             {
-                return SetObject(root, levelController, positionCube);
+                return SetObject(root, levelController, positionCube.cubePosition);
             }
         }
 
@@ -72,7 +74,7 @@ public class RedCube : GameplayObject
                         MoveToCube(cubeTarget);
                         yield return StartCoroutine(this.WaitForSecondITime(1.0f, iTimeScaler));
                     }
-                    else if (currentPosition.line == levelController.gameField.mapGenerator.levels - 1)
+                    else if (IsEndLine())
                     {
                         yield return StartCoroutine(ReachedLowerLevel(direction));
                         yield break;
@@ -84,6 +86,13 @@ public class RedCube : GameplayObject
 
         yield return null;
     }
+
+    private bool IsEndLine()
+    {
+        var cube = levelController.gameField.GetCube(currentPosition);
+        return cube.nodes.Exists(x => x.cubePosition.line < currentPosition.line);
+    }
+
 
     protected virtual IEnumerator ReachedLowerLevel(DirectionMove.Direction direction)
     {

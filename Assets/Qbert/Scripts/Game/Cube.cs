@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Cube : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Cube : MonoBehaviour
     public Transform leftSide;
     public Transform rightSide;
 
+    public CubeMap.CubeInMap cubeInMap;
+
     public ShaderSwitchColorLerp colorLerp;
 
     public Action<Cube , Character> OnPressEvents;
@@ -17,6 +20,9 @@ public class Cube : MonoBehaviour
     public List<Cube> nodes = new List<Cube>(); 
 
     public Color[] colors;
+
+
+    public TextMesh debugText;
 
     [HideInInspector]
     public bool isSet
@@ -107,14 +113,16 @@ public class Cube : MonoBehaviour
         }
     }
 
+    
+
 	void Start () 
 	{
-	
+	    
 	}
 	
 	void Update ()
 	{
-	   // debugText.text = string.Format("{0},{1}", cubePosition.line, cubePosition.position);
+	    debugText.text = string.Format("{0},{1}", cubePosition.line, cubePosition.position);
 	}
 
     public void Reset()
@@ -123,5 +131,17 @@ public class Cube : MonoBehaviour
         lastState = 0;
         SetColorOne();;
         colorLerp.value = 0.0f;
+    }
+
+
+    void OnDrawGizmos()
+    {
+        /*
+        Gizmos.color = Color.blue;
+        foreach (var node in nodes)
+        {
+            Gizmos.DrawLine(node.transform.position , transform.position);
+        }
+        */
     }
 }
