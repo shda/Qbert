@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FieldPoint : MonoBehaviour
+public class PointOutsideField : MonoBehaviour
 {
-    public int id;
+    public CubeMap.CubeInMap cubeInMap;
     public PositionCube curentPoint;
 }

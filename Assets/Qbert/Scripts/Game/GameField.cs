@@ -92,6 +92,7 @@ public class GameField : MonoBehaviour
             x += -1;
             y += 1;
         }
+        else
         if (direction == DirectionMove.Direction.DownRight)
         {
             x += 1;

@@ -21,7 +21,17 @@ public class GameFieldGenerator : MonoBehaviour
     [HideInInspector]
     public List<Cube> map;
 
-    public MultiValueDictionary<int, FieldPoint> fieldPoints;
+    public MultiValueDictionary<int, PointOutsideField> fieldPoints;
+
+    public List<PointOutsideField> GetPointOutsideFieldToId(int id)
+    {
+        if (fieldPoints.ContainsKey(id))
+        {
+            return fieldPoints[id];
+        }
+
+        return null;
+    }
 
     public void CreateMap()
     {
@@ -32,7 +42,7 @@ public class GameFieldGenerator : MonoBehaviour
             var mapCreate = mapAsset.map;
 
             map = new List<Cube>();
-            fieldPoints = new MultiValueDictionary<int, FieldPoint>();
+            fieldPoints = new MultiValueDictionary<int, PointOutsideField>();
 
             for (int y = 0; y < mapCreate.hight; y++)
             {
@@ -46,13 +56,15 @@ public class GameFieldGenerator : MonoBehaviour
 
                     if (cubeInMap != null)
                     {
-                        float offsetSet = offsetX * x - (offsetX * y * 0.5f ) - (offsetX * y %2 * 0.5f);
+                        float offsetSet = offsetX*x - (offsetX * (y%2) * 0.5f);
+
+                        var point = new Vector3(offsetSet, -offsetY*y, offsetSet);
 
                         if (cubeInMap.isEnable)
                         {
                             Transform createPattern = CreatePattern(
-                            new Vector3(offsetSet, 0, offsetSet), lineRoot.transform,
-                            cubeInMap.y, cubeInMap.x);
+                             point, lineRoot.transform,
+                                cubeInMap.y, cubeInMap.x);
 
                             Cube cube = createPattern.GetComponent<Cube>();
                             if (cube)
@@ -62,15 +74,23 @@ public class GameFieldGenerator : MonoBehaviour
                                 map.Add(cube);
                             }
                         }
-                        
+                        else if (cubeInMap.id != -1)
+                        {
+                            Transform createPattern = CreateFieldPoint(point, 
+                                lineRoot.transform,
+                                cubeInMap.y, cubeInMap.x);
 
-                        
+                            PointOutsideField fieldPoint = createPattern.gameObject.AddComponent<PointOutsideField>();
+                            fieldPoint.curentPoint = new PositionCube(cubeInMap.y, cubeInMap.x);
+                            fieldPoint.cubeInMap = cubeInMap;
+
+                            fieldPoints.Add(cubeInMap.id , fieldPoint);
+                        }
                     }
                 }
 
-                lineRoot.transform.localPosition = new Vector3(y * offsetY , -y * offsetY);
-
-                
+                float offsetLocalX = y*offsetX*0.5f;
+                lineRoot.transform.localPosition = new Vector3(offsetLocalX, 0 , -offsetLocalX);
             }
             MoveToCenter();
             CreateTree();
@@ -134,6 +154,17 @@ public class GameFieldGenerator : MonoBehaviour
         createPattern.localScale = new Vector3(offsetX, offsetY, offsetX);
         createPattern.name = string.Format("Cube_{0}_{1}", line, pos);
         return createPattern;
+    }
+
+    private Transform CreateFieldPoint(Vector3 position, Transform rootLine, int line, int pos)
+    {
+        GameObject fieldPoint = new GameObject();
+        fieldPoint.transform.SetParent(rootLine);
+        fieldPoint.transform.localRotation = Quaternion.identity;
+        fieldPoint.transform.localPosition = position;
+        fieldPoint.transform.localScale = new Vector3(offsetX, offsetY, offsetX);
+        fieldPoint.transform.name = string.Format("Field_{0}_{1}", line, pos);
+        return fieldPoint.transform;
     }
 
     private void DestroyOldMap()

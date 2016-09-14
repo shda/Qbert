@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class Transport : GameplayObject
 {
     [Header("Transport")]
     public Transform pointMoveTransport;
     public float speedMovingToPoint = 1.0f;
+    public int startPositionId;
+    public int movePositionId;
+
     public override Type typeGameobject
     {
         get { return Type.Transport; }
@@ -19,76 +23,26 @@ public class Transport : GameplayObject
 
     public override void Init()
     {
-        int maxLevels = levelController.gameField.mapGenerator.levels;
-        var transports = levelController.gameplayObjects.GetObjectsToType<Transport>();
+        var startPos =  levelController.gameField.mapGenerator.
+            GetPointOutsideFieldToId(startPositionId);
 
-        int left = 0;
-        int right = 0;
-
-        foreach (var transport in transports)
+        if(startPos != null)
         {
-            if (transport.currentPosition.position == -1)
-            {
-                left++;
-            }
-            else
-            {
-                right++;
-            }
+            SetPosition(startPos.Mix().First());
         }
 
-        int randomLevel = 0;
-
-        bool ok = false;
-
-        do
-        {
-            randomLevel = Random.Range(0, maxLevels);
-
-            ok = true;
-
-            foreach (var transport in transports)
-            {
-                if (transport.currentPosition.line == randomLevel)
-                {
-                    ok = false;
-                }
-            }
-
-        } while (!ok);
-
-
-        SetPosition(new PositionCube(randomLevel, left > right ? randomLevel : 0));
     }
 
-    public void SetPosition(PositionCube setPosition)
+    public void SetPosition(PointOutsideField setPosition)
     {
-        var cube = levelController.gameField.GetCube(setPosition);
-        PositionCube cubePos = cube.cubePosition;
+        var movePos = levelController.gameField.mapGenerator.
+            GetCubeById(movePositionId);
 
-        Vector3 newPos;
+        currentPosition = setPosition.curentPoint;
+        positionMove = movePos.cubePosition;
 
-        if (setPosition.position > 0)
-        {
-            newPos = cube.upSide.position +
-                levelController.gameField.GetOffsetDirection(DirectionMove.Direction.UpRight);
-            cubePos = new PositionCube(cubePos.line - 1, cubePos.position);
-
-        }
-        else
-        {
-            newPos = cube.upSide.position +
-                levelController.gameField.GetOffsetDirection(DirectionMove.Direction.UpLeft);
-
-            cubePos = new PositionCube(cubePos.line, cubePos.position - 1);
-
-        }
-
-        currentPosition = cubePos;
-        positionMove = cubePos;
-
-        transform.position = newPos;
-        transform.rotation = cube.upSide.rotation * Quaternion.Euler(new Vector3(-90, 0, 0));
+        transform.position = setPosition.transform.position;
+        transform.rotation = setPosition.transform.rotation * Quaternion.Euler(new Vector3(0, -90, 0));
         pointMoveTransport = levelController.gameplayObjects.pointMoveTransport;
 
     }
@@ -108,7 +62,7 @@ public class Transport : GameplayObject
             return true;
         }
 
-        return false;
+        return true;
     }
 
     public IEnumerator MoveTransport(Qbert qbert)
@@ -122,7 +76,7 @@ public class Transport : GameplayObject
         gameObject.SetActive(false);
         qbert.isFrize = false;
         qbert.isCheckColision = true;
-        qbert.MoveToCube(new PositionCube(0, 0));
+        qbert.MoveToCube(positionMove);
 
         OnStartDestroy();
     }
