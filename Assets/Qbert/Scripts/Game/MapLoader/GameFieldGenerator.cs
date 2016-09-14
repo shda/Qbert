@@ -21,6 +21,8 @@ public class GameFieldGenerator : MonoBehaviour
     [HideInInspector]
     public List<Cube> map;
 
+    public MultiValueDictionary<int, FieldPoint> fieldPoints;
+
     public void CreateMap()
     {
         if (root && pattern)
@@ -30,7 +32,8 @@ public class GameFieldGenerator : MonoBehaviour
             var mapCreate = mapAsset.map;
 
             map = new List<Cube>();
-            
+            fieldPoints = new MultiValueDictionary<int, FieldPoint>();
+
             for (int y = 0; y < mapCreate.hight; y++)
             {
                 GameObject lineRoot = new GameObject("Line" + y);
@@ -41,21 +44,27 @@ public class GameFieldGenerator : MonoBehaviour
                 {
                     var cubeInMap = mapCreate.GetCubeInMap(x, y);
 
-                    if (cubeInMap != null  && cubeInMap.isEnable)
+                    if (cubeInMap != null)
                     {
                         float offsetSet = offsetX * x - (offsetX * y * 0.5f ) - (offsetX * y %2 * 0.5f);
 
-                        Transform createPattern = CreatePattern(
+                        if (cubeInMap.isEnable)
+                        {
+                            Transform createPattern = CreatePattern(
                             new Vector3(offsetSet, 0, offsetSet), lineRoot.transform,
                             cubeInMap.y, cubeInMap.x);
 
-                        Cube cube = createPattern.GetComponent<Cube>();
-                        if (cube)
-                        {
-                            cube.cubePosition = new PositionCube(cubeInMap.y, cubeInMap.x);
-                            cube.cubeInMap = cubeInMap;
-                            map.Add(cube);
+                            Cube cube = createPattern.GetComponent<Cube>();
+                            if (cube)
+                            {
+                                cube.cubePosition = new PositionCube(cubeInMap.y, cubeInMap.x);
+                                cube.cubeInMap = cubeInMap;
+                                map.Add(cube);
+                            }
                         }
+                        
+
+                        
                     }
                 }
 
@@ -133,7 +142,6 @@ public class GameFieldGenerator : MonoBehaviour
 
         foreach (var child in list)
         {
-            //Debug.Log(child.name);
             child.gameObject.SetActive(false);
             DestroyImmediate(child.gameObject, true);
         }

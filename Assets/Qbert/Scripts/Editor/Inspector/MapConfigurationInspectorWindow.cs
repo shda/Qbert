@@ -15,6 +15,9 @@ public class MapConfigurationInspectorWindow : Editor
     private int selectPatern = 0;
     private int selectColor = 0;
 
+    private int sizeWidth;
+    private int sizeHight;
+
 
     private Color[] colors = new Color[]
     {
@@ -26,6 +29,7 @@ public class MapConfigurationInspectorWindow : Editor
         DrawParams();
         DrawCubePaterns();
         DrawMap();
+        DrawMove();
         DrawColor();
 
         DrawDefaultInspector();
@@ -34,14 +38,36 @@ public class MapConfigurationInspectorWindow : Editor
         serializedObject.ApplyModifiedProperties();
     }
 
+    void DrawMove()
+    {
+        MapAsset mapAsset = serializedObject.targetObject as MapAsset;
+        var map = mapAsset.map;
+
+        if (GUILayout.Button("Left"))
+        {
+            map.Move(-1 , 0);
+        }
+
+        if (GUILayout.Button("Right"))
+        {
+            map.Move(1, 0);
+        }
+
+        if (GUILayout.Button("Up"))
+        {
+            map.Move(0, -1);
+        }
+
+        if (GUILayout.Button("Down"))
+        {
+            map.Move(0, 1);
+        }
+    }
+
 
     public void UpdateProp()
     {
-        var v = serializedObject.FindProperty("i");
-        v.intValue = 10;
-        //serializedObject.ApplyModifiedProperties();
-        v.intValue = 11;
-        //serializedObject.ApplyModifiedProperties();
+
     }
 
     private void DrawColor()
@@ -58,7 +84,6 @@ public class MapConfigurationInspectorWindow : Editor
                 {
                     GUILayout.BeginVertical();
                     {
-
                         GUILayout.Label("" + x);
 
                         GUI.backgroundColor = colors[x];
@@ -84,8 +109,17 @@ public class MapConfigurationInspectorWindow : Editor
         var widthInt = serializedObject.FindProperty("mapWidth");
         var hightInt = serializedObject.FindProperty("mapHight");
 
+        sizeWidth = widthInt.intValue;
+        sizeHight = hightInt.intValue;
+
         EditorGUILayout.PropertyField(widthInt, new GUIContent("Width map"));
         EditorGUILayout.PropertyField(hightInt, new GUIContent("Hight map"));
+
+        if(GUILayout.Button("Update size"))
+        {
+            MapAsset mapAsset = serializedObject.targetObject as MapAsset;
+            mapAsset.UpdateFromInspector();
+        }
     }
 
     private void DrawCubePaterns()
@@ -93,6 +127,8 @@ public class MapConfigurationInspectorWindow : Editor
         var cubePaterns = serializedObject.FindProperty("cubePaterns");
 
         listVisibility = EditorGUILayout.Foldout(listVisibility, "Cube paterns");
+
+        MapAsset mapAsset = serializedObject.targetObject as MapAsset;
 
         if (listVisibility)
         {
@@ -139,73 +175,75 @@ public class MapConfigurationInspectorWindow : Editor
     {
         MapAsset mapAsset = serializedObject.targetObject as MapAsset;
 
-        var array = mapAsset.map.cubeArray;
-        mapAsset.UpdateFromInspector();
-
         GUILayout.BeginVertical();
-        for (int y = 0; y < mapAsset.mapHight; y++)
+
+        if (mapAsset.map.width == sizeWidth && mapAsset.map.hight == sizeHight)
         {
-            GUILayout.BeginHorizontal();
-            GUILayout.Space((buttonSizeX * 0.5f + 2) * ((y + 1) % 2));
-
-            for (int x = 0; x < mapAsset.mapWidth; x++)
+            for (int y = 0; y < mapAsset.mapHight; y++)
             {
-                CubeMap.CubeInMap cube = mapAsset.map.GetCubeInMap(x, y);
+                GUILayout.BeginHorizontal();
+                GUILayout.Space((buttonSizeX * 0.5f + 2) * ((y + 1) % 2));
 
-                string text = "";
-
-                var oldColor = GUI.backgroundColor;
-
-
-                if (cube.isEnable)
+                for (int x = 0; x < mapAsset.mapWidth; x++)
                 {
-                    var patern = cube.cubePatern;
+                    CubeMap.CubeInMap cube = mapAsset.map.GetCubeInMap(x, y);
 
-                    if (patern)
+                    string text = "";
+
+                    var oldColor = GUI.backgroundColor;
+
+
+                    if (cube.isEnable)
                     {
-                        for (int i = 0; i < mapAsset.cubePaterns.Length; i++)
+                        var patern = cube.cubePatern;
+
+                        if (patern)
                         {
-                            if (mapAsset.cubePaterns[i] == patern)
+                            for (int i = 0; i < mapAsset.cubePaterns.Length; i++)
                             {
-                                text = "" + i;
+                                if (mapAsset.cubePaterns[i] == patern)
+                                {
+                                    text = "" + i;
+                                }
                             }
                         }
-                    } 
-                }
-
-                if (cube.id >= 0)
-                {
-                    GUI.backgroundColor = colors[cube.id];
-                }
-                
-                if (GUILayout.Button(text, GUILayout.Width(buttonSizeX), 
-                    GUILayout.Height(buttonSizeY)))
-                {
-                    if (Event.current.button == 0)
-                    {
-                        cube.isEnable = !cube.isEnable;
-                        cube.cubePatern = mapAsset.cubePaterns[selectPatern];
-                    }
-                    else if (Event.current.button == 1)
-                    {
-                        if (cube.id == selectColor)
-                        {
-                            cube.id = -1;
-                        }
-                        else
-                        {
-                            cube.id = selectColor;
-                        }
                     }
 
-                    UpdateProp();
+                    if (cube.id >= 0)
+                    {
+                        GUI.backgroundColor = colors[cube.id];
+                    }
+                    //text + "\n" + cube.x + "_" + cube.y
+                    if (GUILayout.Button(text, GUILayout.Width(buttonSizeX),
+                        GUILayout.Height(buttonSizeY)))
+                    {
+                        if (Event.current.button == 0)
+                        {
+                            cube.isEnable = !cube.isEnable;
+                            cube.cubePatern = mapAsset.cubePaterns[selectPatern];
+                        }
+                        else if (Event.current.button == 1)
+                        {
+                            if (cube.id == selectColor)
+                            {
+                                cube.id = -1;
+                            }
+                            else
+                            {
+                                cube.id = selectColor;
+                            }
+                        }
+
+                        UpdateProp();
+                    }
+
+                    GUI.backgroundColor = oldColor;
                 }
 
-                GUI.backgroundColor = oldColor;
+                GUILayout.EndHorizontal();
             }
-
-            GUILayout.EndHorizontal();
         }
+        
         GUILayout.EndVertical();
     }
 }

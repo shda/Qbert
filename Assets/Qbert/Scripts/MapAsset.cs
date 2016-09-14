@@ -8,7 +8,6 @@ public class MapAsset : ScriptableObject
     public Transform[] cubePaterns;
     public CubeMap map;
 
-    public int i;
     public void UpdateFromInspector()
     {
         map.UpdateFromInspector(mapWidth, mapHight);

@@ -10,18 +10,11 @@ public class Cube : MonoBehaviour
     public Transform upSide;
     public Transform leftSide;
     public Transform rightSide;
-
     public CubeMap.CubeInMap cubeInMap;
-
     public ShaderSwitchColorLerp colorLerp;
-
     public Action<Cube , Character> OnPressEvents;
-
     public List<Cube> nodes = new List<Cube>(); 
-
     public Color[] colors;
-
-
     public TextMesh debugText;
 
     [HideInInspector]

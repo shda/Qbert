@@ -13,8 +13,8 @@ public class MapConfiguration : PropertyDrawer
     {
         var obj = property.serializedObject.targetObject;
 
-        var mapAsset = obj as MapAsset;
-        mapAsset.UpdateFromInspector();
+        //var mapAsset = obj as MapAsset;
+        //mapAsset.UpdateFromInspector();
 
         foreach (SerializedProperty a in property)
         {
