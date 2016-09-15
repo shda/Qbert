@@ -8,8 +8,11 @@ public class PurpleCube : RedCube
 {
     [Header("PurpleCube")]
     public AnimationToTime rebornAnimation;
-
     public PathFinder pathFinder;
+
+    public Cube myCube;
+    public Cube qbertCube;
+
     public override Type typeGameobject
     {
         get { return Type.PurpleCube; }
@@ -36,10 +39,6 @@ public class PurpleCube : RedCube
         while (true)
         {
             Qbert qbert = levelController.qbert;
-
-            var cubeQbert   = qbert.GetCubeCurrentPosition();
-            var cubeThis    = this.GetCubeCurrentPosition();
-
             Cube cube = FindPathToQberd(qbert);
             if (cube)
             {
@@ -81,58 +80,34 @@ public class PurpleCube : RedCube
 
     public List<Cube> findPath; 
 
-    //Todo: Rewrite trash algorithm
-    public PositionCube GetNeighborPoint(PositionCube start , PositionCube end)
+    public PositionCube GetNeighborPoint(PositionCube myPoint, PositionCube qbertPoint)
     {
-        int drop = GetDistance(start,end);
+        var myCubePath      = levelController.gameField.GetCube(myPoint);
+        var qbertCubePath   = levelController.gameField.GetCube(qbertPoint);
 
-        if (drop == 1)
+        if (qbertCubePath == null)
         {
-            if (CheckToDrop(start, end))
+            int drop = GetDistance(myPoint, qbertPoint);
+
+            if (drop == 2)
             {
-                return new PositionCube(-1, -1);
+                if (CheckToDrop(myPoint, qbertPoint))
+                {
+                    return new PositionCube(-1, -1);
+                }
             }
+
+            qbertCubePath = qbertCube;
         }
+            
 
-        findPath = pathFinder.FindPath(
-            levelController.gameField.GetCube(start),
-            levelController.gameField.GetCube(end));
+        qbertCube = qbertCubePath;
+        findPath = pathFinder.FindPath(myCubePath,qbertCubePath);
 
-        if (findPath != null)
+        if (findPath != null && findPath.Count >= 2)
         {
             return findPath[findPath.Count - 2].cubePosition;
         }
-
-        /*
-
-        PositionCube upLeft    = new PositionCube(start.line - 1, start.position - 1);
-        PositionCube upRight   = new PositionCube(start.line - 1, start.position);
-        PositionCube downLeft  = new PositionCube(start.line + 1, start.position);
-        PositionCube downRight = new PositionCube(start.line + 1, start.position + 1);
-
-        List<PositionCube> list = new List<PositionCube>()
-        {
-            upLeft , upRight , downLeft , downRight,
-        };
-
-        int minDist = int.MaxValue;
-
-        foreach (var pointCube in list)
-        {
-            if (levelController.gameField.GetCube(pointCube))
-            {
-                minDist = Mathf.Min(GetDistance(pointCube, end), minDist);
-            }
-        }
-
-        foreach (var pointCube in list)
-        {
-            if (GetDistance(pointCube, end) == minDist)
-            {
-                return pointCube;
-            }
-        }
-        */
 
         return new PositionCube();
     }
@@ -146,6 +121,7 @@ public class PurpleCube : RedCube
     {
         if (end.position < 0 || end.position > end.line)
         {
+            /*
             if (end.position > end.line)
             {
                 end = new PositionCube(end.line, end.position - 1);
@@ -154,10 +130,10 @@ public class PurpleCube : RedCube
             {
                 end = new PositionCube(end.line+ 1, end.position);
             }
-
+            */
             AddScore(ScorePrice.dropPurpeCube);
 
-            Vector3 newPos = root.position + levelController.gameField.GetOffset(start, end);
+            Vector3 newPos = root.position - levelController.gameField.GetOffset(start, end);
             MoveToPointAndDropDown(newPos , character =>
             {
                 OnStartDestroy();

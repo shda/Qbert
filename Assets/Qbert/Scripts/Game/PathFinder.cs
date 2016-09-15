@@ -38,27 +38,19 @@ public class PathFinder
 
         int maxIter = 1000;
 
-        //Profiler.BeginSample("PathFind");
-
         int count = 0;
-
-
         while (openList.Count > 0 && maxIter > 0)
         {
             PathPoint min = GetMinFInOpen();
             count++;
             if (min.currentCube == end)
             {
-
-                Debug.Log(count);
-                //Profiler.EndSample();
                 return CreateArrayPathPoints(min);
             }
             maxIter--;
 
             FindAllNeighborNodes(RemoveOpenSetToClose(min));
         }
-        //Profiler.EndSample();
 
         return null;
     }

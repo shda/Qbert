@@ -9,6 +9,7 @@ public class Transport : GameplayObject
     public float speedMovingToPoint = 1.0f;
     public int startPositionId;
     public int movePositionId;
+    public float offsetDrop = 1.0f;
 
     public override Type typeGameobject
     {
@@ -43,7 +44,10 @@ public class Transport : GameplayObject
 
         transform.position = setPosition.transform.position;
         transform.rotation = setPosition.transform.rotation * Quaternion.Euler(new Vector3(0, -90, 0));
-        pointMoveTransport = levelController.gameplayObjects.pointMoveTransport;
+       
+
+        
+        // pointMoveTransport = levelController.gameplayObjects.pointMoveTransport;
 
     }
 
@@ -67,7 +71,7 @@ public class Transport : GameplayObject
 
     public IEnumerator MoveTransport(Qbert qbert)
     {
-        var posMove = pointMoveTransport.position;
+        var posMove = GetMovePosition();
 
         StartCoroutine(this.MovingSpeedTransformTo(qbert.root, posMove, speedMovingToPoint));
         yield return StartCoroutine(this.MovingSpeedTransformTo(transform, posMove, speedMovingToPoint));
@@ -79,6 +83,22 @@ public class Transport : GameplayObject
         qbert.MoveToCube(positionMove);
 
         OnStartDestroy();
+    }
+
+
+    private Vector3 GetMovePosition()
+    {
+        var posMove = levelController.gameField.mapGenerator.GetCubeById(movePositionId);
+        if (posMove != null)
+        {
+            return posMove.upSide.position + new Vector3(0, offsetDrop, 0);
+        }
+        else
+        {
+            Debug.LogError("Don't find move point to transport.");
+        }
+
+        return Vector3.zero;
     }
 
 
