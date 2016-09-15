@@ -19,6 +19,9 @@ public class GameplayObject : Character
         get { return Type.RedCube; }
     }
 
+    public int startPositionId =  -1;
+    public int endPositionId =  -1;
+
     public Action<GameplayObject> OnDestroyEvents;
 
     //если на объект можно прыгнуть

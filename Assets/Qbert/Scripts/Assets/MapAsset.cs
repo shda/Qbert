@@ -5,6 +5,7 @@ public class MapAsset : ScriptableObject
 {
     public int mapWidth;
     public int mapHight;
+    public GameplayObjectsAsset gameplayObjectsAsset;
     public Transform[] cubePaterns;
     public CubeMap map;
 

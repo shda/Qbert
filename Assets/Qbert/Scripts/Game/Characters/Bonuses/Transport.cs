@@ -7,8 +7,6 @@ public class Transport : GameplayObject
     [Header("Transport")]
     public Transform pointMoveTransport;
     public float speedMovingToPoint = 1.0f;
-    public int startPositionId;
-    public int movePositionId;
     public float offsetDrop = 1.0f;
 
     public override Type typeGameobject
@@ -29,7 +27,17 @@ public class Transport : GameplayObject
 
         if(startPos != null)
         {
-            SetPosition(startPos.Mix().First());
+            foreach (var pos in startPos.Mix())
+            {
+                if (!levelController.gameplayObjects.GetGamplayObjectInPoint(pos.curentPoint))
+                {
+                    SetPosition(pos);
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("Don't find start transport positions.");
         }
 
     }
@@ -37,18 +45,19 @@ public class Transport : GameplayObject
     public void SetPosition(PointOutsideField setPosition)
     {
         var movePos = levelController.gameField.mapGenerator.
-            GetCubeById(movePositionId);
+            GetCubeById(endPositionId);
+
+        if (movePos == null)
+        {
+            movePos = levelController.gameField.mapGenerator.
+                GetCubeById(0);
+        }
 
         currentPosition = setPosition.curentPoint;
         positionMove = movePos.cubePosition;
 
         transform.position = setPosition.transform.position;
         transform.rotation = setPosition.transform.rotation * Quaternion.Euler(new Vector3(0, -90, 0));
-       
-
-        
-        // pointMoveTransport = levelController.gameplayObjects.pointMoveTransport;
-
     }
 
     public override bool OnColisionToQbert(Qbert qbert)
@@ -88,18 +97,27 @@ public class Transport : GameplayObject
 
     private Vector3 GetMovePosition()
     {
-        var posMove = levelController.gameField.mapGenerator.GetCubeById(movePositionId);
+        var posMove = levelController.gameField.mapGenerator.GetCubeById(endPositionId);
         if (posMove != null)
         {
             return posMove.upSide.position + new Vector3(0, offsetDrop, 0);
         }
         else
         {
-            Debug.LogError("Don't find move point to transport.");
+            posMove = levelController.gameField.mapGenerator.GetCubeById(0);
+
+            if (posMove == null)
+            {
+                Debug.LogError("Don't find move point to transport.");
+            }  
         }
 
         return Vector3.zero;
     }
 
+    public override bool CanJumpToMy()
+    {
+        return true;
+    }
 
 }

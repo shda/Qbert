@@ -21,7 +21,13 @@ public class MapConfigurationInspectorWindow : Editor
 
     private Color[] colors = new Color[]
     {
-        Color.red , Color.green , Color.yellow, Color.magenta, Color.blue
+        Color.cyan,
+        Color.gray,
+        Color.green,
+        Color.grey,
+        Color.magenta,
+        Color.red,
+        Color.yellow,
     };
 
     public override void OnInspectorGUI()
@@ -32,7 +38,7 @@ public class MapConfigurationInspectorWindow : Editor
         DrawMove();
         DrawColor();
 
-        DrawDefaultInspector();
+        //DrawDefaultInspector();
 
 
         serializedObject.ApplyModifiedProperties();
@@ -43,37 +49,66 @@ public class MapConfigurationInspectorWindow : Editor
         MapAsset mapAsset = serializedObject.targetObject as MapAsset;
         var map = mapAsset.map;
 
-        if (GUILayout.Button("Left"))
+        // Rect drawZone = GUILayoutUtility.GetRect(30, 16f);
+        // EditorGUI.LabelField(drawZone, "" + i);
+
+        GUILayout.BeginHorizontal();
         {
-            map.Move(-1 , 0);
+            if (GUILayout.Button("Left"))
+            {
+                map.Move(-1, 0);
+            }
+            GUILayout.BeginVertical();
+            {
+                if (GUILayout.Button("Up"))
+                {
+                    map.Move(0, -1);
+                }
+
+                if (GUILayout.Button("Down"))
+                {
+                    map.Move(0, 1);
+                }
+            }
+            GUILayout.EndVertical();
+
+            if (GUILayout.Button("Right"))
+            {
+                map.Move(1, 0);
+            }
+        }
+        GUILayout.EndHorizontal();
+
+        if (GUILayout.Button("Clear"))
+        {
+            if (EditorUtility.DisplayDialog("Clear?", "Clear?", "Ok", "Cancel"))
+            {
+                map.Clear();
+            }
+            
         }
 
-        if (GUILayout.Button("Right"))
-        {
-            map.Move(1, 0);
-        }
-
-        if (GUILayout.Button("Up"))
-        {
-            map.Move(0, -1);
-        }
-
-        if (GUILayout.Button("Down"))
-        {
-            map.Move(0, 1);
-        }
     }
-
-
     public void UpdateProp()
     {
 
     }
-
     private void DrawColor()
     {
         EditorGUILayout.Separator();
         GUILayout.Label("Start points id:");
+
+        GameplayObject[] gameplayObjects = null;
+
+        var gamePlayPaterns = serializedObject.FindProperty("gameplayObjectsAsset");
+        if (gamePlayPaterns != null)
+        {
+            var gameplayObjectsAsset = gamePlayPaterns.objectReferenceValue as GameplayObjectsAsset;
+            if (gameplayObjectsAsset)
+            {
+                gameplayObjects = gameplayObjectsAsset.prefabs;
+            }
+        }
 
 
         GUILayout.BeginHorizontal();
@@ -93,8 +128,26 @@ public class MapConfigurationInspectorWindow : Editor
                         if (GUILayout.Toggle(isSelect, "", GUILayout.Width(buttonSizeX + 10),
                             GUILayout.Height(buttonSizeY + 10)))
                         {
-                            selectColor = x;
+                            selectColor = x;   
                         }
+                        
+                        if (gameplayObjects != null)
+                        {
+                            var find = gameplayObjects.Where(obj => obj.startPositionId == x).ToArray();
+                            foreach (var gameplayObject in find)
+                            {
+                                GUILayout.Label("sp_" + gameplayObject.typeGameobject.ToString());
+                            }
+
+                            
+                            find = gameplayObjects.Where(obj => obj.endPositionId == x).ToArray();
+                            foreach (var gameplayObject in find)
+                            {
+                                GUILayout.Label("ep_" + gameplayObject.typeGameobject.ToString());
+                            }
+                            
+                    }
+                        
                     }
                     GUILayout.EndVertical();
                 }
@@ -103,7 +156,6 @@ public class MapConfigurationInspectorWindow : Editor
         }
         GUILayout.EndHorizontal();
     }
-
     private void DrawParams()
     {
         var widthInt = serializedObject.FindProperty("mapWidth");
@@ -120,13 +172,15 @@ public class MapConfigurationInspectorWindow : Editor
             MapAsset mapAsset = serializedObject.targetObject as MapAsset;
             mapAsset.UpdateFromInspector();
         }
-    }
 
+        var gamePlayPaterns = serializedObject.FindProperty("gameplayObjectsAsset");
+        EditorGUILayout.PropertyField(gamePlayPaterns, new GUIContent("Gameplay objects asset"));
+    }
     private void DrawCubePaterns()
     {
         var cubePaterns = serializedObject.FindProperty("cubePaterns");
 
-        listVisibility = EditorGUILayout.Foldout(listVisibility, "Cube paterns");
+        listVisibility = EditorGUILayout.Foldout(listVisibility, "Cube patterns");
 
         MapAsset mapAsset = serializedObject.targetObject as MapAsset;
 

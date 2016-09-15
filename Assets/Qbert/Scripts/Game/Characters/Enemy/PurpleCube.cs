@@ -25,6 +25,7 @@ public class PurpleCube : RedCube
 
     protected override IEnumerator ReachedLowerLevel(DirectionMove.Direction direction)
     {
+        qbertCube = levelController.gameField.GetCube(levelController.qbert.currentPosition);
         yield return StartCoroutine(RebornToEnemy());
         yield return StartCoroutine(FallowToQbert());
     }
@@ -46,7 +47,6 @@ public class PurpleCube : RedCube
                 yield return StartCoroutine(MoveToCubeAnimation(cube));
             }
 
-
             yield return StartCoroutine(this.WaitForSecondITime(0.5f, iTimeScaler));
         }
 
@@ -64,6 +64,12 @@ public class PurpleCube : RedCube
         PositionCube myPoint = currentPosition;
 
         if (qbertPoint == myPoint)
+        {
+            return null;
+        }
+
+        var qbertCubePath = levelController.gameField.GetCube(qbertPoint);
+        if (qbertCubePath == null && qbertCube == null)
         {
             return null;
         }
@@ -87,19 +93,14 @@ public class PurpleCube : RedCube
 
         if (qbertCubePath == null)
         {
-            int drop = GetDistance(myPoint, qbertPoint);
-
-            if (drop == 2)
-            {
-                if (CheckToDrop(myPoint, qbertPoint))
-                {
-                    return new PositionCube(-1, -1);
-                }
-            }
-
             qbertCubePath = qbertCube;
+
+            if (myCubePath == qbertCubePath)
+            {
+                Drop(myPoint, qbertPoint);
+                return qbertPoint;
+            }
         }
-            
 
         qbertCube = qbertCubePath;
         findPath = pathFinder.FindPath(myCubePath,qbertCubePath);
@@ -109,7 +110,7 @@ public class PurpleCube : RedCube
             return findPath[findPath.Count - 2].cubePosition;
         }
 
-        return new PositionCube();
+        return qbertPoint;
     }
 
     void Update()
@@ -117,38 +118,27 @@ public class PurpleCube : RedCube
 
     }
 
-    private bool CheckToDrop(PositionCube start , PositionCube end)
+    private void Drop(PositionCube start , PositionCube end)
     {
-        if (end.position < 0 || end.position > end.line)
+        var jumpTo = levelController.gameField.mapGenerator.GetPointOutsideFieldToPosition(end);
+
+        AddScore(ScorePrice.dropPurpeCube);
+
+        Vector3 newPos = jumpTo.transform.position;
+        MoveToPointAndDropDown(newPos, character =>
         {
-            /*
-            if (end.position > end.line)
-            {
-                end = new PositionCube(end.line, end.position - 1);
-            }
-            else
-            {
-                end = new PositionCube(end.line+ 1, end.position);
-            }
-            */
-            AddScore(ScorePrice.dropPurpeCube);
-
-            Vector3 newPos = root.position - levelController.gameField.GetOffset(start, end);
-            MoveToPointAndDropDown(newPos , character =>
-            {
-                OnStartDestroy();
-            });
-
-            return true;
-        }
-
-
-        return false;
+            OnStartDestroy();
+        });
     }
 
     public int GetDistance(PositionCube start, PositionCube end)
     {
         return Mathf.Abs(start.line - end.line) + Mathf.Abs(start.position - end.position);
+    }
+
+    public override bool OnColisionToQbert(Qbert qbert)
+    {
+        return true;
     }
 }
 

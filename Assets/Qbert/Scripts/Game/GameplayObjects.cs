@@ -15,9 +15,8 @@ public class GameplayObjects : MonoBehaviour , ITimeScale
     }
     //end ITimeScale
 
-    public Transform pointMoveTransport;
     public LevelController levelController;
-    public GameplayObject[] gameplayObjectPaterns;
+    public GameplayObjectsAsset gameplayObjectPaterns;
     public List<GameplayObject> gameplayObjectsList = new List<GameplayObject>();
     public Transform root;
 
@@ -41,7 +40,7 @@ public class GameplayObjects : MonoBehaviour , ITimeScale
 
     private GameplayObject CreateGameplayObject(GameplayObject.Type type)
     {
-        foreach (var gameplayObjectPatern in gameplayObjectPaterns)
+        foreach (var gameplayObjectPatern in gameplayObjectPaterns.prefabs)
         {
             if (gameplayObjectPatern.typeGameobject == type)
             {

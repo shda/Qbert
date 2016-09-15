@@ -23,6 +23,20 @@ public class GameFieldGenerator : MonoBehaviour
 
     public MultiValueDictionary<int, PointOutsideField> fieldPoints;
 
+    public PointOutsideField GetPointOutsideFieldToPosition(PositionCube position)
+    {
+        foreach (var fieldPoint in fieldPoints)
+        {
+            var ret = fieldPoint.Value.FirstOrDefault(x => x.curentPoint == position);
+            if (ret)
+            {
+                return ret;
+            }
+        }
+
+        return null;
+    }
+
     public List<PointOutsideField> GetPointOutsideFieldToId(int id)
     {
         if (fieldPoints.ContainsKey(id))

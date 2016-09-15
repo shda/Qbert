@@ -4,15 +4,27 @@ using System.Collections;
 using System.IO;
 using UnityEditor;
 
-public class CreateMapAsset : MonoBehaviour 
+public class CreateAssets : MonoBehaviour 
 {
-    [MenuItem("Assets/Create map asset")]
-    static void CreateSettingsAsset()
+    [MenuItem("Assets/Create asset/Create map asset")]
+    static void CreateMapAsset()
     {
         CreateAsset<MapAsset>("MapAsset");
     }
 
-    static private void CreateAsset<T>(String name) where T : ScriptableObject
+    [MenuItem("Assets/Create asset/Create configuration asset")]
+    static void CreateConfigurationAsset()
+    {
+        CreateAsset<ConfigRound>("Configuration");
+    }
+
+    [MenuItem("Assets/Create asset/Create gameplay objects asset")]
+    static void CreateGameplayobjectsAsset()
+    {
+        CreateAsset<GameplayObjectsAsset>("GameplayObjects");
+    }
+
+    static private void CreateAsset<T>(string name) where T : ScriptableObject
     {
         var dir = "Assets/Configuration/";
         var selected = Selection.activeObject;

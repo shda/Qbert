@@ -6,7 +6,7 @@ using System.Linq;
 public class RedCube : GameplayObject
 {
     //public PositionCube[] startPositions;
-    public int idStartPosition;
+   // public int idStartPosition;
     [Header("RedCube")]
     public float heightDrop = 3.0f;
    
@@ -17,7 +17,7 @@ public class RedCube : GameplayObject
 
     public override GameplayObject Create(Transform root, LevelController levelController)
     {
-        var positions = levelController.gameField.mapGenerator.GetCubesById(idStartPosition).ToList();
+        var positions = levelController.gameField.mapGenerator.GetCubesById(startPositionId).ToList();
         positions = positions.Mix();
 
         foreach (var positionCube in positions)

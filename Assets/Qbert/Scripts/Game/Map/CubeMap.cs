@@ -103,4 +103,14 @@ public class CubeMap
     {
         RemakeMap(offsetX, offsetY);
     }
+
+    public void Clear()
+    {
+        foreach (var cubeInMap in cubeArray)
+        {
+            cubeInMap.id = -1;
+            cubeInMap.isEnable = false;
+            cubeInMap.cubePatern = null;
+        }
+    }
 }

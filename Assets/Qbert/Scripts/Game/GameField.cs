@@ -115,7 +115,7 @@ public class GameField : MonoBehaviour
         int x = start.line - end.line;
         int y = start.position - end.position;
 
-        return new Vector3(x * mapGenerator.offsetX, 0,
-            y * mapGenerator.offsetX);
+        return new Vector3(x * mapGenerator.offsetX, y * mapGenerator.offsetX,
+           0);
     }
 }
