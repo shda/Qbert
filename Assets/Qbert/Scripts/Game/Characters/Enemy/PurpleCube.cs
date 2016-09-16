@@ -13,7 +13,7 @@ public class PurpleCube : RedCube
     public Cube myCube;
     public Cube qbertCube;
 
-    public override Type typeGameobject
+    public override Type typeObject
     {
         get { return Type.PurpleCube; }
     }
@@ -107,7 +107,7 @@ public class PurpleCube : RedCube
 
         if (findPath != null && findPath.Count >= 2)
         {
-            return findPath[findPath.Count - 2].cubePosition;
+            return findPath[findPath.Count - 2].currentPosition;
         }
 
         return qbertPoint;

@@ -40,7 +40,7 @@ public class GameField : MonoBehaviour
 
     public Cube GetCube(PositionCube cube)
     {
-        return field.FirstOrDefault(x => x.cubePosition == cube);
+        return field.FirstOrDefault(x => x.currentPosition == cube);
     }
 
     public Cube GetCubeDirection(DirectionMove.Direction buttonType , PositionCube point)

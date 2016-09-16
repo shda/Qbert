@@ -9,7 +9,7 @@ public class Transport : GameplayObject
     public float speedMovingToPoint = 1.0f;
     public float offsetDrop = 1.0f;
 
-    public override Type typeGameobject
+    public override Type typeObject
     {
         get { return Type.Transport; }
     }
@@ -23,7 +23,7 @@ public class Transport : GameplayObject
     public override void Init()
     {
         var startPos =  levelController.gameField.mapGenerator.
-            GetPointOutsideFieldToId(startPositionId);
+            GetPointOutsideFieldStartPointToType(Type.Transport);
 
         if(startPos != null)
         {
@@ -39,23 +39,37 @@ public class Transport : GameplayObject
         {
             Debug.Log("Don't find start transport positions.");
         }
-
     }
 
     public void SetPosition(PointOutsideField setPosition)
     {
-        var movePos = levelController.gameField.mapGenerator.
-            GetCubeById(endPositionId);
-
-        if (movePos == null)
-        {
-            movePos = levelController.gameField.mapGenerator.
-                GetCubeById(0);
-        }
-
         currentPosition = setPosition.curentPoint;
-        positionMove = movePos.cubePosition;
 
+        var movePosCube = levelController.gameField.mapGenerator.
+            GetCubeEndByType(Type.Transport);
+
+
+        if (movePosCube != null)
+        {
+            positionMove = movePosCube.currentPosition;
+            
+        }
+        else
+        {
+            var movePosOut = levelController.gameField.mapGenerator.
+                GetPointsOutsideFieldEndPointToType(Type.Transport);
+
+            if (movePosOut != null && movePosOut.Count > 0)
+            {
+                positionMove = movePosOut[0].curentPoint;
+            }
+            else
+            {
+                Debug.LogError("Dont set end point position");
+
+            }
+        }
+            
         transform.position = setPosition.transform.position;
         transform.rotation = setPosition.transform.rotation * Quaternion.Euler(new Vector3(0, -90, 0));
     }
@@ -97,19 +111,14 @@ public class Transport : GameplayObject
 
     private Vector3 GetMovePosition()
     {
-        var posMove = levelController.gameField.mapGenerator.GetCubeById(endPositionId);
+        var posMove = levelController.gameField.mapGenerator.GetCubeEndByType(typeObject);
         if (posMove != null)
         {
             return posMove.upSide.position + new Vector3(0, offsetDrop, 0);
         }
         else
         {
-            posMove = levelController.gameField.mapGenerator.GetCubeById(0);
-
-            if (posMove == null)
-            {
-                Debug.LogError("Don't find move point to transport.");
-            }  
+            Debug.LogError("Don't find move point to transport.");
         }
 
         return Vector3.zero;

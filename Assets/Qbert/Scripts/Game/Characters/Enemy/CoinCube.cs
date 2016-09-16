@@ -1,27 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class CoinCube : RedCube
 {
-    public override Type typeGameobject
+    public override Type typeObject
     {
         get { return Type.CoinCube; }
     }
 
     public override GameplayObject Create(Transform root, LevelController levelController)
     {
-        int maxLevel = levelController.gameField.mapGenerator.levels;
+        Cube cubeSet = null;
 
-        int level = Random.Range(0, maxLevel - 1);
-        int position = Random.Range(0, level);
+        var points = levelController.gameField.mapGenerator.map.Where(
+            x => x.cubeInMap.listTypeObjectsStartPoint != null &&
+                 x.cubeInMap.listTypeObjectsStartPoint.Contains(typeObject));
 
-        PositionCube positionCube = new PositionCube(level , position);
+        if (points.Any())
+        {
+            cubeSet = points.Mix().First();
+        }
+        else
+        {
+            var map = levelController.gameField.mapGenerator.map.ToArray();
+            cubeSet = map.Mix().First();
+        }
 
-        var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(positionCube);
+        var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(cubeSet.currentPosition);
         if (gaToPoint == null)
         {
-            return SetObject(root, levelController, positionCube);
+            return SetObject(root, levelController, cubeSet.currentPosition);
         }
 
         return null;

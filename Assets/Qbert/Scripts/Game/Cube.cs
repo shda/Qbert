@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Cube : MonoBehaviour
 {
-    public PositionCube cubePosition;
+    public PositionCube currentPosition;
     public Transform upSide;
     public Transform leftSide;
     public Transform rightSide;

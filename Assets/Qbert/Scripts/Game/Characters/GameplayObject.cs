@@ -1,27 +1,10 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameplayObject : Character 
 {
-    public enum Type
-    {
-        RedCube,
-        PurpleCube,
-        Transport,
-        BlueCube,
-        ColoredCube,
-        PinkCube,
-        CoinCube,
-    }
-    public virtual Type typeGameobject
-    {
-        get { return Type.RedCube; }
-    }
-
-    public int startPositionId =  -1;
-    public int endPositionId =  -1;
-
     public Action<GameplayObject> OnDestroyEvents;
 
     //если на объект можно прыгнуть
@@ -34,6 +17,8 @@ public class GameplayObject : Character
     {
 
     }
+
+
 
     public virtual bool OnColisionToQbert(Qbert qbert)
     {

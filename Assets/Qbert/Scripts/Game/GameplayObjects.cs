@@ -42,7 +42,7 @@ public class GameplayObjects : MonoBehaviour , ITimeScale
     {
         foreach (var gameplayObjectPatern in gameplayObjectPaterns.prefabs)
         {
-            if (gameplayObjectPatern.typeGameobject == type)
+            if (gameplayObjectPatern.typeObject == type)
             {
                 return gameplayObjectPatern.Create(root , levelController);
             }
@@ -91,7 +91,7 @@ public class GameplayObjects : MonoBehaviour , ITimeScale
 
     public int GetCountObjectToScene(GameplayObject.Type type)
     {
-        return gameplayObjectsList.Count(x => x.typeGameobject == type);
+        return gameplayObjectsList.Count(x => x.typeObject == type);
     }
 
     public T[] GetObjectsToType<T>() where T : GameplayObject
@@ -115,7 +115,7 @@ public class GameplayObjects : MonoBehaviour , ITimeScale
 
         foreach (GameplayObject gObject in gameplayObjectsList)
         {
-            if (gObject.typeGameobject == type)
+            if (gObject.typeObject == type)
             {
                 list.Add(gObject as T);
             }

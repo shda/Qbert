@@ -66,11 +66,11 @@ public abstract class LevelBase : MonoBehaviour
     {
         currentRoundConfig.ResetRound();
 
-        Cube cubeQbertStart = levelController.gameField.mapGenerator.GetCubeById(idStartPositionQbert);
+        Cube cubeQbertStart = levelController.gameField.mapGenerator.GetCubeStartByType(Character.Type.Qbert);
 
         levelController.qbert.StopAllCoroutines();
         levelController.qbert.levelController = levelController;
-        levelController.qbert.SetStartPosition(cubeQbertStart.cubePosition);
+        levelController.qbert.SetStartPosition(cubeQbertStart.currentPosition);
 
         foreach (var cube in levelController.gameField.field)
         {

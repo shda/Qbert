@@ -19,6 +19,22 @@ public class Character : MonoBehaviour
         }
     }
 
+    public enum Type
+    {
+        RedCube,
+        PurpleCube,
+        Transport,
+        BlueCube,
+        ColoredCube,
+        PinkCube,
+        CoinCube,
+        Qbert,
+    }
+    public virtual Type typeObject
+    {
+        get { return Type.Qbert; }
+    }
+
     [Header("Character")]
     public Transform root;
     public LevelController levelController;
@@ -96,7 +112,7 @@ public class Character : MonoBehaviour
 
     public bool MoveToCube(Cube cube)
     {
-        return MoveToCube(cube.cubePosition);
+        return MoveToCube(cube.currentPosition);
     }
 
     public bool MoveToCube( PositionCube point )
@@ -220,10 +236,10 @@ public class Character : MonoBehaviour
     {
         if (!isMoving)
         {
-            positionMove = cube.cubePosition;
+            positionMove = cube.currentPosition;
             yield return StartCoroutine(RotateToCube(cube));
             yield return StartCoroutine(JumpAndMove(cube));
-            currentPosition = cube.cubePosition;
+            currentPosition = cube.currentPosition;
             positionMove = currentPosition;
 
             cube.OnPressMy(this);
@@ -289,6 +305,4 @@ public class Character : MonoBehaviour
 
         return retFloat;
     }
-
-    
 }

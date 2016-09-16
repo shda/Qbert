@@ -12,7 +12,7 @@ public class CubeCreateAnimator : MonoBehaviour
     {
         PositionCube centerPoint = new PositionCube(gameFieldGenerator.startLine , gameFieldGenerator.startPos);
 
-        var workCubes = gameFieldGenerator.map.Where(x => x.cubePosition != centerPoint).ToArray();
+        var workCubes = gameFieldGenerator.map.Where(x => x.currentPosition != centerPoint).ToArray();
 
         for (int c = 0; c < workCubes.Count(); c++)
         {

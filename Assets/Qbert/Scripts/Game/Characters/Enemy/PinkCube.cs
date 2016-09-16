@@ -24,7 +24,7 @@ public class PinkCube : RedCube
     private bool stuck = false;
     private float currentStuckTimer;
 
-    public override Type typeGameobject
+    public override Type typeObject
     {
         get { return Type.PinkCube; }
     }
@@ -211,10 +211,10 @@ public class PinkCube : RedCube
     {
         if (!isMoving)
         {
-            positionMove = GetHungPosition(cube.cubePosition);
+            positionMove = GetHungPosition(cube.currentPosition);
             yield return StartCoroutine(RotateToCube(cube));
             yield return StartCoroutine(JumpAndMove(cube));
-            stuckPosition = cube.cubePosition;
+            stuckPosition = cube.currentPosition;
             positionMove = new PositionCube(-10,-10);
 
             currentPosition = GetHungPosition(stuckPosition);
@@ -302,7 +302,7 @@ public class PinkCube : RedCube
         if (retCube && currentStuckTimer < maxStuckTime)
         {
             //var gObject     = GetGamplayObjectInPoint(retCube.cubePosition);
-            var hungObject  = GetGamplayObjectInPoint(GetHungPosition(retCube.cubePosition));
+            var hungObject  = GetGamplayObjectInPoint(GetHungPosition(retCube.currentPosition));
 
             if (/*gObject ||*/ hungObject)
             {

@@ -2,8 +2,13 @@
 using UnityEngine;
 using System.Collections;
 
-public class Qbert : Character
+public class Qbert : GameplayObject
 {
+    public virtual Type typeObject
+    {
+        get { return Type.Qbert; }
+    }
+
     public override void SetStartPosition(PositionCube startPositionQbert)
     {
         base.SetStartPosition(startPositionQbert);

@@ -12,17 +12,21 @@ public class CubeMap
     {
         public int x;
         public int y;
-        public int id = -1;
         public Transform cubePatern;
         public bool isEnable = false;
+
+        public List<GameplayObject.Type> listTypeObjectsStartPoint;
+        public List<GameplayObject.Type> listTypeObjectsEndPoint;
 
         public void Set(CubeInMap value)
         {
             x = value.x;
             y = value.y;
-            id = value.id;
+            //id = value.id;
             cubePatern = value.cubePatern;
             isEnable = value.isEnable;
+            listTypeObjectsStartPoint = value.listTypeObjectsStartPoint;
+            listTypeObjectsEndPoint = value.listTypeObjectsEndPoint;
         }
     }
 
@@ -59,8 +63,6 @@ public class CubeMap
         int offset = 0;
 
         var newArray = new List<CubeInMap>();
-
-        //cubeArray = new List<CubeInMap>();
         for (int posY = 0; posY < hight; ++posY)
         {
             if (posY % 2 == 0)
@@ -84,7 +86,6 @@ public class CubeMap
     {
         foreach (var cubeInMap in cubeArray)
         {
-            //var find = newArray.FirstOrDefault(x => x.x == cubeInMap.x && x.y == cubeInMap.y);
             var offset = newArray.FirstOrDefault(
                 x => x.x == cubeInMap.x + offsetX && x.y == cubeInMap.y + offsetY);
 
@@ -108,9 +109,11 @@ public class CubeMap
     {
         foreach (var cubeInMap in cubeArray)
         {
-            cubeInMap.id = -1;
+           // cubeInMap.id = -1;
             cubeInMap.isEnable = false;
             cubeInMap.cubePatern = null;
+            cubeInMap.listTypeObjectsEndPoint = null;
+            cubeInMap.listTypeObjectsStartPoint = null;
         }
     }
 }

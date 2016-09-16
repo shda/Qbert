@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.VersionControl;
@@ -12,31 +13,38 @@ public class MapConfigurationInspectorWindow : Editor
     private const float buttonSizeY = 20;
 
     private bool listVisibility = true;
-    private int selectPatern = 0;
-    private int selectColor = 0;
+    private int selectCubePattern;
+    private int selectColor;
+    private int selectGameplayObject;
 
     private int sizeWidth;
     private int sizeHight;
 
+    private GameplayObject[] gameplayObjects = null;
 
     private Color[] colors = new Color[]
     {
         Color.cyan,
-        Color.gray,
-        Color.green,
-        Color.grey,
-        Color.magenta,
         Color.red,
-        Color.yellow,
     };
 
     public override void OnInspectorGUI()
     {
+        var gamePlayPaterns = serializedObject.FindProperty("gameplayObjectsAsset");
+        if (gamePlayPaterns != null)
+        {
+            var gameplayObjectsAsset = gamePlayPaterns.objectReferenceValue as GameplayObjectsAsset;
+            if (gameplayObjectsAsset)
+            {
+                gameplayObjects = gameplayObjectsAsset.prefabs;
+            }
+        }
+
         DrawParams();
         DrawCubePaterns();
         DrawMap();
         DrawMove();
-        DrawColor();
+        DrawSelectGameplayObject();
         serializedObject.ApplyModifiedProperties();
     }
 
@@ -83,73 +91,64 @@ public class MapConfigurationInspectorWindow : Editor
         }
 
     }
-    public void UpdateProp()
-    {
 
-    }
-    private void DrawColor()
+    private void DrawSelectGameplayObject()
     {
         EditorGUILayout.Separator();
-        GUILayout.Label("Start points id:");
-
-        GameplayObject[] gameplayObjects = null;
-
-        var gamePlayPaterns = serializedObject.FindProperty("gameplayObjectsAsset");
-        if (gamePlayPaterns != null)
-        {
-            var gameplayObjectsAsset = gamePlayPaterns.objectReferenceValue as GameplayObjectsAsset;
-            if (gameplayObjectsAsset)
-            {
-                gameplayObjects = gameplayObjectsAsset.prefabs;
-            }
-        }
-
+        GUILayout.Label("Select color:");
 
         GUILayout.BeginHorizontal();
         {
-                var oldColor = GUI.backgroundColor;
+            var oldColor = GUI.backgroundColor;
 
-                for (int x = 0; x < colors.Length; x++)
+            for (int x = 0; x < colors.Length; x++)
+            {
+                GUILayout.BeginVertical();
                 {
-                    GUILayout.BeginVertical();
+                    if(x == 0)
+                        GUILayout.Label("Start point");
+                    else if (x == 1)
+                        GUILayout.Label("End point");
+
+                    GUI.backgroundColor = colors[x];
+
+                    bool isSelect = selectColor == x;
+
+                    if (GUILayout.Toggle(isSelect, "", GUILayout.Width(buttonSizeX + 10),
+                        GUILayout.Height(buttonSizeY + 10)))
                     {
-                        GUILayout.Label("" + x);
-
-                        GUI.backgroundColor = colors[x];
-
-                        bool isSelect = selectColor == x;
-
-                        if (GUILayout.Toggle(isSelect, "", GUILayout.Width(buttonSizeX + 10),
-                            GUILayout.Height(buttonSizeY + 10)))
-                        {
-                            selectColor = x;   
-                        }
-                        
-                        if (gameplayObjects != null)
-                        {
-                            var find = gameplayObjects.Where(obj => obj.startPositionId == x).ToArray();
-                            foreach (var gameplayObject in find)
-                            {
-                                GUILayout.Label("sp_" + gameplayObject.typeGameobject.ToString());
-                            }
-
-                            
-                            find = gameplayObjects.Where(obj => obj.endPositionId == x).ToArray();
-                            foreach (var gameplayObject in find)
-                            {
-                                GUILayout.Label("ep_" + gameplayObject.typeGameobject.ToString());
-                            }
-                            
+                        selectColor = x;
                     }
-                        
-                    }
-                    GUILayout.EndVertical();
                 }
+                GUILayout.EndVertical();
+            }
 
-                GUI.backgroundColor = oldColor;
+            GUI.backgroundColor = oldColor;
         }
         GUILayout.EndHorizontal();
+
+
+
+        EditorGUILayout.Separator();
+        GUILayout.Label("Select object:");
+        GUILayout.BeginVertical();
+        {
+            if (gameplayObjects != null)
+            {
+                for (int x = 0; x < gameplayObjects.Length; x++)
+                {
+                    bool isSelect = selectGameplayObject == x;
+
+                    if (GUILayout.Toggle(isSelect, gameplayObjects[x].typeObject.ToString()))
+                    {
+                        selectGameplayObject = x;
+                    }
+                }
+            }
+        }
+        GUILayout.EndVertical();
     }
+
     private void DrawParams()
     {
         var widthInt = serializedObject.FindProperty("mapWidth");
@@ -188,8 +187,8 @@ public class MapConfigurationInspectorWindow : Editor
                 cubePaterns.arraySize = changeSize;
             }
 
-            if (selectPatern >= cubePaterns.arraySize)
-                selectPatern = 0;
+            if (selectCubePattern >= cubePaterns.arraySize)
+                selectCubePattern = 0;
 
             for (int i = 0; i < cubePaterns.arraySize; i++)
             {
@@ -197,9 +196,9 @@ public class MapConfigurationInspectorWindow : Editor
                 {
                     SerializedProperty elementProperty = cubePaterns.GetArrayElementAtIndex(i);
 
-                    if (GUILayout.Toggle(selectPatern == i, ""))
+                    if (GUILayout.Toggle(selectCubePattern == i, ""))
                     {
-                        selectPatern = i;
+                        selectCubePattern = i;
                     }
 
                     Rect drawZone = GUILayoutUtility.GetRect(30, 16f);
@@ -239,7 +238,6 @@ public class MapConfigurationInspectorWindow : Editor
 
                     var oldColor = GUI.backgroundColor;
 
-
                     if (cube.isEnable)
                     {
                         var patern = cube.cubePatern;
@@ -256,32 +254,71 @@ public class MapConfigurationInspectorWindow : Editor
                         }
                     }
 
-                    if (cube.id >= 0)
+                    GameplayObject go = gameplayObjects[selectGameplayObject];
+
+                    var type = go.typeObject;
+
+                    if (cube.listTypeObjectsStartPoint != null)
                     {
-                        GUI.backgroundColor = colors[cube.id];
+                        if ( cube.listTypeObjectsStartPoint.Any(ob => ob == type) )
+                        {
+                            GUI.backgroundColor = colors[0];
+                        }
                     }
-                    //text + "\n" + cube.x + "_" + cube.y
+
+                    if (cube.listTypeObjectsEndPoint != null)
+                    {
+                        if (cube.listTypeObjectsEndPoint.Any(ob => ob == type))
+                        {
+                            GUI.backgroundColor = colors[1];
+                        }
+                    }
+
                     if (GUILayout.Button(text, GUILayout.Width(buttonSizeX),
                         GUILayout.Height(buttonSizeY)))
                     {
                         if (Event.current.button == 0)
                         {
                             cube.isEnable = !cube.isEnable;
-                            cube.cubePatern = mapAsset.cubePaterns[selectPatern];
+                            cube.cubePatern = mapAsset.cubePaterns[selectCubePattern];
                         }
                         else if (Event.current.button == 1)
                         {
-                            if (cube.id == selectColor)
+                            if (selectColor == 0)
                             {
-                                cube.id = -1;
+                                if (cube.listTypeObjectsStartPoint == null)
+                                {
+                                    cube.listTypeObjectsStartPoint = new List<GameplayObject.Type>();
+                                }
+
+                                var index = cube.listTypeObjectsStartPoint.FindIndex(ob => ob == type);
+                                if (index != -1)
+                                {
+                                    cube.listTypeObjectsStartPoint.RemoveAt(index);
+                                }
+                                else
+                                {
+                                    cube.listTypeObjectsStartPoint.Add(type);
+                                }
                             }
-                            else
+                            else if (selectColor == 1)
                             {
-                                cube.id = selectColor;
+                                if (cube.listTypeObjectsEndPoint == null)
+                                {
+                                    cube.listTypeObjectsEndPoint = new List<GameplayObject.Type>();
+                                }
+
+                                var index = cube.listTypeObjectsEndPoint.FindIndex(ob => ob == type);
+                                if (index != -1)
+                                {
+                                    cube.listTypeObjectsEndPoint.RemoveAt(index);
+                                }
+                                else
+                                {
+                                    cube.listTypeObjectsEndPoint.Add(type);
+                                }
                             }
                         }
-
-                        UpdateProp();
                     }
 
                     GUI.backgroundColor = oldColor;

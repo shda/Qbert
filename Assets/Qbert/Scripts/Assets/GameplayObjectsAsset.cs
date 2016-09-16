@@ -4,6 +4,4 @@ using System.Collections;
 public class GameplayObjectsAsset : ScriptableObject
 {
     public GameplayObject[] prefabs;
-
-
 }

@@ -20,31 +20,43 @@ public class GameFieldGenerator : MonoBehaviour
 
     [HideInInspector]
     public List<Cube> map;
-
-    public MultiValueDictionary<int, PointOutsideField> fieldPoints;
+    public List<PointOutsideField> fieldPoints;
 
     public PointOutsideField GetPointOutsideFieldToPosition(PositionCube position)
     {
         foreach (var fieldPoint in fieldPoints)
         {
-            var ret = fieldPoint.Value.FirstOrDefault(x => x.curentPoint == position);
-            if (ret)
-            {
-                return ret;
-            }
+            if (fieldPoint.curentPoint == position)
+                return fieldPoint;
         }
 
         return null;
     }
 
-    public List<PointOutsideField> GetPointOutsideFieldToId(int id)
+    public List<PointOutsideField> GetPointOutsideFieldStartPointToType(GameplayObject.Type type)
     {
-        if (fieldPoints.ContainsKey(id))
+        List<PointOutsideField> ll = new List<PointOutsideField>();
+
+        foreach (var fieldPoint in fieldPoints)
         {
-            return fieldPoints[id];
+            if(fieldPoint.cubeInMap.listTypeObjectsStartPoint.Contains(type))
+                ll.Add(fieldPoint);
         }
 
-        return null;
+        return ll;
+    }
+
+    public List<PointOutsideField> GetPointsOutsideFieldEndPointToType(GameplayObject.Type type)
+    {
+        List<PointOutsideField> ll = new List<PointOutsideField>();
+
+        foreach (var fieldPoint in fieldPoints)
+        {
+            if (fieldPoint.cubeInMap.listTypeObjectsEndPoint.Contains(type))
+                ll.Add(fieldPoint);
+        }
+
+        return ll;
     }
 
     public void CreateMap()
@@ -56,7 +68,7 @@ public class GameFieldGenerator : MonoBehaviour
             var mapCreate = mapAsset.map;
 
             map = new List<Cube>();
-            fieldPoints = new MultiValueDictionary<int, PointOutsideField>();
+            fieldPoints = new List<PointOutsideField>();
 
             for (int y = 0; y < mapCreate.hight; y++)
             {
@@ -83,12 +95,13 @@ public class GameFieldGenerator : MonoBehaviour
                             Cube cube = createPattern.GetComponent<Cube>();
                             if (cube)
                             {
-                                cube.cubePosition = new PositionCube(cubeInMap.y, cubeInMap.x);
+                                cube.currentPosition = new PositionCube(cubeInMap.y, cubeInMap.x);
                                 cube.cubeInMap = cubeInMap;
                                 map.Add(cube);
                             }
                         }
-                        else if (cubeInMap.id != -1)
+                        else if (cubeInMap.listTypeObjectsStartPoint != null 
+                            && cubeInMap.listTypeObjectsStartPoint.Count > 0)
                         {
                             Transform createPattern = CreateFieldPoint(point, 
                                 lineRoot.transform,
@@ -98,7 +111,7 @@ public class GameFieldGenerator : MonoBehaviour
                             fieldPoint.curentPoint = new PositionCube(cubeInMap.y, cubeInMap.x);
                             fieldPoint.cubeInMap = cubeInMap;
 
-                            fieldPoints.Add(cubeInMap.id , fieldPoint);
+                            fieldPoints.Add(fieldPoint);
                         }
                     }
                 }
@@ -132,7 +145,7 @@ public class GameFieldGenerator : MonoBehaviour
     {
         foreach (var cube in map)
         {
-            var currentPos = cube.cubePosition;
+            var currentPos = cube.currentPosition;
 
             PositionCube[] pos = new[]
             {
@@ -144,7 +157,7 @@ public class GameFieldGenerator : MonoBehaviour
 
             foreach (var positionCube in pos)
             {
-                var findCube = map.FirstOrDefault(x => x.cubePosition == positionCube);
+                var findCube = map.FirstOrDefault(x => x.currentPosition == positionCube);
                 if (findCube != null)
                 {
                     cube.nodes.Add(findCube);
@@ -156,7 +169,7 @@ public class GameFieldGenerator : MonoBehaviour
 
     public Cube FindCubeToPoint(PositionCube point)
     {
-        return map.FirstOrDefault(x => x.cubePosition == point);
+        return map.FirstOrDefault(x => x.currentPosition == point);
     }
 
     private Transform CreatePattern(Vector3 position, Transform rootLine, int line, int pos)
@@ -202,13 +215,23 @@ public class GameFieldGenerator : MonoBehaviour
 
     }
 
-    public Cube GetCubeById(int id)
+    public Cube GetCubeStartByType(GameplayObject.Type type)
     {
-        return map.FirstOrDefault(x => x.cubeInMap.id == id);
+        return map.FirstOrDefault(x => x.cubeInMap.listTypeObjectsStartPoint.Contains(type));
     }
 
-    public Cube[] GetCubesById(int id)
+    public Cube[] GetCubesStartByType(GameplayObject.Type type)
     {
-        return map.Where(x => x.cubeInMap.id == id).ToArray();
+        return map.Where(x => x.cubeInMap.listTypeObjectsStartPoint.Contains(type)).ToArray();
+    }
+
+    public Cube GetCubeEndByType(GameplayObject.Type type)
+    {
+        return map.FirstOrDefault(x => x.cubeInMap.listTypeObjectsEndPoint.Contains(type));
+    }
+
+    public Cube[] GetCubesEndByType(GameplayObject.Type type)
+    {
+        return map.Where(x => x.cubeInMap.listTypeObjectsEndPoint.Contains(type)).ToArray();
     }
 }

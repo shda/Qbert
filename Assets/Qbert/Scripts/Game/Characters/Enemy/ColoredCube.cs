@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ColoredCube : RedCube 
 {
-    public override Type typeGameobject
+    public override Type typeObject
     {
         get { return Type.ColoredCube; }
     }

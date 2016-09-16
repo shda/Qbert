@@ -5,27 +5,25 @@ using System.Linq;
 
 public class RedCube : GameplayObject
 {
-    //public PositionCube[] startPositions;
-   // public int idStartPosition;
     [Header("RedCube")]
     public float heightDrop = 3.0f;
    
-    public override Type typeGameobject
+    public override Type typeObject
     {
         get { return Type.RedCube; }
     }
 
     public override GameplayObject Create(Transform root, LevelController levelController)
     {
-        var positions = levelController.gameField.mapGenerator.GetCubesById(startPositionId).ToList();
+        var positions = levelController.gameField.mapGenerator.GetCubesStartByType(typeObject).ToList();
         positions = positions.Mix();
 
         foreach (var positionCube in positions)
         {
-            var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(positionCube.cubePosition);
+            var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(positionCube.currentPosition);
             if (gaToPoint == null || gaToPoint.CanJumpToMy())
             {
-                return SetObject(root, levelController, positionCube.cubePosition);
+                return SetObject(root, levelController, positionCube.currentPosition);
             }
         }
 
@@ -90,7 +88,7 @@ public class RedCube : GameplayObject
     private bool IsEndLine()
     {
         var cube = levelController.gameField.GetCube(currentPosition);
-        return cube.nodes.Exists(x => x.cubePosition.line < currentPosition.line);
+        return cube.nodes.Exists(x => x.currentPosition.line < currentPosition.line);
     }
 
 
@@ -117,7 +115,7 @@ public class RedCube : GameplayObject
             var cubeTarget = levelController.gameField.GetCubeDirection(direction, currentPosition);
             if (cubeTarget)
             {
-                var targetCube = levelController.gameplayObjects.GetGamplayObjectInPoint(cubeTarget.cubePosition);
+                var targetCube = levelController.gameplayObjects.GetGamplayObjectInPoint(cubeTarget.currentPosition);
                 if (targetCube == null || targetCube.CanJumpToMy())
                 {
                     refCube = cubeTarget;
