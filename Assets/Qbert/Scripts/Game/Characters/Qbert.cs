@@ -32,4 +32,36 @@ public class Qbert : GameplayObject
         
         return base.OnPressCube(cube);
     }
+
+    public void OnCommandMove(DirectionMove.Direction buttonType)
+    {
+        if (!isFrize)
+        {
+            Cube findCube = levelController.gameField.GetCubeDirection(buttonType, currentPosition);
+            if (findCube)
+            {
+                MoveToCube(findCube);
+            }
+            else
+            {
+                var pointToJump = levelController.gameField.GetPointCubeDirection(buttonType, currentPosition);
+                var findObject = levelController.gameplayObjects.GetGamplayObjectInPoint(pointToJump);
+                if (findObject && findObject.typeObject == Type.Transport)
+                {
+                    MoveToPointAndDropDown(findObject.transform.position);
+                }
+                else
+                {
+                    Vector3 newPos = root.position + levelController.gameField.GetOffsetDirection(buttonType);
+                    MoveToPointAndDropDown(newPos, character =>
+                    {
+                        levelController.OnQubertDead();
+                        Debug.Log("OnDead");
+                    });
+                }
+
+
+            }
+        }
+    }
 }

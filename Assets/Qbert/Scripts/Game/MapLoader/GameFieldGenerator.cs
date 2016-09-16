@@ -9,7 +9,7 @@ public class GameFieldGenerator : MonoBehaviour
     public float offsetY = 1.0f;
 
     public Transform root;
-    public Transform pattern;
+    //public Transform pattern;
 
     public int levels = 7;
 
@@ -26,7 +26,7 @@ public class GameFieldGenerator : MonoBehaviour
     {
         foreach (var fieldPoint in fieldPoints)
         {
-            if (fieldPoint.curentPoint == position)
+            if (fieldPoint.currentPoint == position)
                 return fieldPoint;
         }
 
@@ -61,7 +61,7 @@ public class GameFieldGenerator : MonoBehaviour
 
     public void CreateMap()
     {
-        if (root && pattern)
+        if (root)
         {
             DestroyOldMap();
 
@@ -88,7 +88,7 @@ public class GameFieldGenerator : MonoBehaviour
 
                         if (cubeInMap.isEnable)
                         {
-                            Transform createPattern = CreatePattern(
+                            Transform createPattern = CreatePattern(cubeInMap.cubePatern,
                              point, lineRoot.transform,
                                 cubeInMap.y, cubeInMap.x);
 
@@ -100,15 +100,15 @@ public class GameFieldGenerator : MonoBehaviour
                                 map.Add(cube);
                             }
                         }
-                        else if (cubeInMap.listTypeObjectsStartPoint != null 
-                            && cubeInMap.listTypeObjectsStartPoint.Count > 0)
+                        else if ( (cubeInMap.listTypeObjectsStartPoint != null && cubeInMap.listTypeObjectsStartPoint.Count > 0) ||
+                            (cubeInMap.listTypeObjectsEndPoint != null && cubeInMap.listTypeObjectsEndPoint.Count > 0) )
                         {
                             Transform createPattern = CreateFieldPoint(point, 
                                 lineRoot.transform,
                                 cubeInMap.y, cubeInMap.x);
 
                             PointOutsideField fieldPoint = createPattern.gameObject.AddComponent<PointOutsideField>();
-                            fieldPoint.curentPoint = new PositionCube(cubeInMap.y, cubeInMap.x);
+                            fieldPoint.currentPoint = new PositionCube(cubeInMap.y, cubeInMap.x);
                             fieldPoint.cubeInMap = cubeInMap;
 
                             fieldPoints.Add(fieldPoint);
@@ -146,35 +146,42 @@ public class GameFieldGenerator : MonoBehaviour
         foreach (var cube in map)
         {
             var currentPos = cube.currentPosition;
-
-            PositionCube[] pos = new[]
-            {
-                new PositionCube( currentPos.line - 1 , currentPos.position - 1),
-                new PositionCube( currentPos.line - 1 , currentPos.position),
-                new PositionCube( currentPos.line + 1 , currentPos.position),
-                new PositionCube( currentPos.line + 1 , currentPos.position + 1),
-            };
-
-            foreach (var positionCube in pos)
-            {
-                var findCube = map.FirstOrDefault(x => x.currentPosition == positionCube);
-                if (findCube != null)
-                {
-                    cube.nodes.Add(findCube);
-                }
-            }
-
+            cube.nodes.AddRange(GetNeighborsCubes(currentPos));
         }
     }
+
+    public List<Cube> GetNeighborsCubes(PositionCube point)
+    {
+        List<Cube> list = new List<Cube>();
+
+        PositionCube[] pos = new[]
+        {
+            new PositionCube( point.line - 1 , point.position - 1),
+            new PositionCube( point.line - 1 , point.position),
+            new PositionCube( point.line + 1 , point.position),
+            new PositionCube( point.line + 1 , point.position + 1),
+        };
+
+        foreach (var positionCube in pos)
+        {
+            var findCube = map.FirstOrDefault(x => x.currentPosition == positionCube);
+            if (findCube != null)
+            {
+                list.Add(findCube);
+            }
+        }
+
+        return list;
+    } 
 
     public Cube FindCubeToPoint(PositionCube point)
     {
         return map.FirstOrDefault(x => x.currentPosition == point);
     }
 
-    private Transform CreatePattern(Vector3 position, Transform rootLine, int line, int pos)
+    private Transform CreatePattern(Transform cubePatern, Vector3 position, Transform rootLine, int line, int pos)
     {
-        Transform createPattern = Instantiate(pattern) as Transform;
+        Transform createPattern = Instantiate(cubePatern) as Transform;
         createPattern.SetParent(rootLine);
         createPattern.transform.localRotation = Quaternion.identity;
         createPattern.localPosition = position;

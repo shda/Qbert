@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public abstract class LevelBase : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public abstract class LevelBase : MonoBehaviour
     public int idStartPositionQbert;
     [Header("Цвета по умолчанию")]
     public Color[] globalLevelColors;
+
+    public Material[] globalLevelMaterials;
 
     private float currentTime;
     private bool isLevelRun = false;
@@ -62,6 +65,7 @@ public abstract class LevelBase : MonoBehaviour
     {
         return false;
     }
+
     public virtual void ResetLevel()
     {
         currentRoundConfig.ResetRound();
@@ -76,7 +80,7 @@ public abstract class LevelBase : MonoBehaviour
         {
             if (currentRoundConfig.customColors != null && currentRoundConfig.customColors.Length > 0)
             {
-                cube.SetColors(currentRoundConfig.customColors);
+                cube.SetColors(currentRoundConfig.customColors );
             }
             else
             {
@@ -87,6 +91,26 @@ public abstract class LevelBase : MonoBehaviour
         }
 
         levelController.gameplayObjects.DestroyAllEnemies();
+    }
+
+
+    public Material[] CreateMaterials(Color[] colors)
+    {
+        List<Material> newMaterials = new List<Material>();
+
+        foreach (var color in colors)
+        {
+            Shader shader = Shader.Find("Custom/ColorDefault");
+            if (shader != null)
+            {
+                Material mat = new Material(shader);
+                mat.color = color;
+
+                newMaterials.Add(mat);
+            }
+        }
+
+        return newMaterials.ToArray();
     }
     public virtual bool CheckToWin()
     {

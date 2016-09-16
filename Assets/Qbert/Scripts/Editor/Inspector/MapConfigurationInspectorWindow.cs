@@ -105,7 +105,6 @@ public class MapConfigurationInspectorWindow : Editor
 
                 for (int x = 0; x < colors.Length; x++)
                 {
-
                     var go = gameplayObjects[selectGameplayObject];
 
                     if (x == 0 && !go.editorRules.isUsingStartPosition)
@@ -329,8 +328,19 @@ public class MapConfigurationInspectorWindow : Editor
                                 {
                                     cube.listTypeObjectsStartPoint.Add(type);
                                 }
+
+                                if (cube.listTypeObjectsEndPoint == null)
+                                {
+                                    cube.listTypeObjectsEndPoint = new List<GameplayObject.Type>();
+                                }
+                                index = cube.listTypeObjectsEndPoint.FindIndex(ob => ob == type);
+                                if (index != -1)
+                                {
+                                    cube.listTypeObjectsEndPoint.RemoveAt(index);
+                                }
                             }
-                            else if (selectColor == 1)
+                            else 
+                            if (selectColor == 1)
                             {
                                 if (cube.listTypeObjectsEndPoint == null)
                                 {
@@ -345,6 +355,16 @@ public class MapConfigurationInspectorWindow : Editor
                                 else
                                 {
                                     cube.listTypeObjectsEndPoint.Add(type);
+                                }
+
+                                if (cube.listTypeObjectsStartPoint == null)
+                                {
+                                    cube.listTypeObjectsStartPoint = new List<GameplayObject.Type>();
+                                }
+                                index = cube.listTypeObjectsStartPoint.FindIndex(ob => ob == type);
+                                if (index != -1)
+                                {
+                                    cube.listTypeObjectsStartPoint.RemoveAt(index);
                                 }
                             }
                         }

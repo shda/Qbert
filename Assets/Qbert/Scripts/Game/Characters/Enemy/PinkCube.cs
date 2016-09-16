@@ -31,53 +31,40 @@ public class PinkCube : RedCube
 
     public override GameplayObject Create(Transform root, LevelController levelController)
     {
-        //Todo:fix this
-        /*
-        if (startPositions == null || startPositions.Length == 0)
-        {
-            startPositions = GetStartPositions(levelController);
-        }
+        var startPos = levelController.gameField.mapGenerator.
+            GetPointOutsideFieldStartPointToType(typeObject);
 
-        List<PositionCube> positions = new List<PositionCube>(startPositions);
-        positions = positions.Mix();
+        var positions = startPos.Mix();
 
         foreach (var positionCube in positions)
         {
-            var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(positionCube);
-            if (gaToPoint == null || gaToPoint.CanJumpToMy())
+            var neighbors = levelController.gameField.mapGenerator.
+                    GetNeighborsCubes(positionCube.currentPoint);
+
+            if (neighbors.Count > 0)
             {
-                if (positionCube.position == 0)
+                foreach (var neighbor in neighbors)
                 {
-                    sideCube = SideCube.Left;
-                    
-                }
-                else
-                {
-                    sideCube = SideCube.Right;
-                }
+                    var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(neighbor.currentPosition);
+                    if (gaToPoint == null || gaToPoint.CanJumpToMy())
+                    {
+                        sideCube = SideCube.Right;
 
-                currentPosition = positionCube;
+                        currentPosition = neighbor.currentPosition;
 
-                return SetObject(root, levelController, positionCube);
+                        return SetObject(root, levelController, currentPosition);
+                    }
+                }
             }
         }
-        */
+
         return null;
     }
-
-    public PositionCube[] GetStartPositions(LevelController levelController)
-    {
-        int level = levelController.gameField.mapGenerator.levels - 1;
-
-        return new[] {new PositionCube(level, 0), new PositionCube(level, level),};
-    }   
 
     public override void SetStartPosition(PositionCube point)
     {
         StopAllCoroutines();
 
-        //Todo:fix this
-        /*
         stuckPosition = point;
         positionMove = point;
 
@@ -96,7 +83,6 @@ public class PinkCube : RedCube
             root.rotation = startCube.rightSide.rotation;
         }
         moveCoroutine = null;
-        */
     }
 
     protected override IEnumerator DropToCube()

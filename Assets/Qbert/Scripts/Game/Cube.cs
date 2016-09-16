@@ -15,6 +15,7 @@ public class Cube : MonoBehaviour
     public Action<Cube , Character> OnPressEvents;
     public List<Cube> nodes = new List<Cube>(); 
     public Color[] colors;
+    //public Material[] materilas;
     public TextMesh debugText;
 
     [HideInInspector]
@@ -25,9 +26,10 @@ public class Cube : MonoBehaviour
     public int stateColor = 0;
     public int lastState = 0;
 
-    public void SetColors(Color[] colors)
+    public void SetColors(Color[] colors /* , Material[] materilas*/)
     {
         this.colors = colors;
+        //this.materilas = materilas;
         SetColorOne();
     }
 
@@ -115,7 +117,7 @@ public class Cube : MonoBehaviour
 	
 	void Update ()
 	{
-	  //  debugText.text = string.Format("{0},{1}", cubePosition.line, cubePosition.position);
+	   // debugText.text = string.Format("{0},{1}", currentPosition.line, currentPosition.position);
 	}
 
     public void Reset()

@@ -22,6 +22,11 @@ public class LevelController : MonoBehaviour
         gameGui.AddCoins(coint);
     }
 
+    public void OnQubertDead()
+    {
+        RestartLevel();
+    }
+
     public void SetPauseGamplayObjects(bool isPause)
     {
         float timeScale = isPause ? 0.0000001f : 1.0f;
@@ -44,23 +49,7 @@ public class LevelController : MonoBehaviour
 
     private void OnPressControl(DirectionMove.Direction buttonType)
     {
-        if (!qbert.isFrize)
-        {
-            Cube findCube = gameField.GetCubeDirection(buttonType, qbert.currentPosition);
-            if (findCube)
-            {
-                qbert.MoveToCube(findCube);
-            }
-            else
-            {
-                Vector3 newPos = qbert.root.position + gameField.GetOffsetDirection(buttonType);
-                qbert.MoveToPointAndDropDown(newPos, character =>
-                {
-                    RestartLevel();
-                    Debug.Log("OnDead");
-                });
-            }
-        }
+        qbert.OnCommandMove(buttonType);
     }
 
     void ConnectEvents()

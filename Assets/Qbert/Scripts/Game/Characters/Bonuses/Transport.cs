@@ -5,9 +5,13 @@ using System.Linq;
 public class Transport : GameplayObject
 {
     [Header("Transport")]
-    public Transform pointMoveTransport;
     public float speedMovingToPoint = 1.0f;
     public float offsetDrop = 1.0f;
+
+    public Vector3 offsetToStartPoint;
+
+    private Cube cubeJumpAfterMove;
+    private Vector3 transportMoveToPoint;
 
     public override Type typeObject
     {
@@ -29,7 +33,7 @@ public class Transport : GameplayObject
         {
             foreach (var pos in startPos.Mix())
             {
-                if (!levelController.gameplayObjects.GetGamplayObjectInPoint(pos.curentPoint))
+                if (!levelController.gameplayObjects.GetGamplayObjectInPoint(pos.currentPoint))
                 {
                     SetPosition(pos);
                 }
@@ -43,16 +47,15 @@ public class Transport : GameplayObject
 
     public void SetPosition(PointOutsideField setPosition)
     {
-        currentPosition = setPosition.curentPoint;
+        currentPosition = setPosition.currentPoint;
 
-        var movePosCube = levelController.gameField.mapGenerator.
+        cubeJumpAfterMove = levelController.gameField.mapGenerator.
             GetCubeEndByType(Type.Transport);
 
-
-        if (movePosCube != null)
+        if (cubeJumpAfterMove != null)
         {
-            positionMove = movePosCube.currentPosition;
-            
+            positionMove = cubeJumpAfterMove.currentPosition;
+            transportMoveToPoint = cubeJumpAfterMove.upSide.position + new Vector3(0 , offsetDrop ,0);
         }
         else
         {
@@ -61,16 +64,23 @@ public class Transport : GameplayObject
 
             if (movePosOut != null && movePosOut.Count > 0)
             {
-                positionMove = movePosOut[0].curentPoint;
+                var neighbors = levelController.gameField.mapGenerator.
+                    GetNeighborsCubes(movePosOut[0].currentPoint);
+
+                transportMoveToPoint = movePosOut[0].transform.position + new Vector3(0, offsetDrop, 0);
+
+                if (neighbors.Count > 0)
+                {
+                    cubeJumpAfterMove = neighbors[0];
+                }
             }
             else
             {
                 Debug.LogError("Dont set end point position");
-
             }
         }
             
-        transform.position = setPosition.transform.position;
+        transform.position = setPosition.transform.position + offsetToStartPoint;
         transform.rotation = setPosition.transform.rotation * Quaternion.Euler(new Vector3(0, -90, 0));
     }
 
@@ -94,36 +104,38 @@ public class Transport : GameplayObject
 
     public IEnumerator MoveTransport(Qbert qbert)
     {
-        var posMove = GetMovePosition();
+        //StartCoroutine(this.MovingSpeedTransformTo(qbert.root, transportMoveToPoint, speedMovingToPoint));
+        //yield return StartCoroutine(this.MovingSpeedTransformTo(transform, transportMoveToPoint, speedMovingToPoint));
 
-        StartCoroutine(this.MovingSpeedTransformTo(qbert.root, posMove, speedMovingToPoint));
-        yield return StartCoroutine(this.MovingSpeedTransformTo(transform, posMove, speedMovingToPoint));
+        //var cp = currentPosition;
+        //var movePos = positionMove;
+
+        //if()
+
+        var offset = Mathf.Abs(qbert.positionMove.line - cubeJumpAfterMove.currentPosition.line);
+
+        var offsetF = offset*0.5f;
+
+        var move = qbert.root.position + new Vector3(0, offsetF, -offsetF);
+
+        yield return StartCoroutine(MoveTwo(qbert.root, transform, move, 10.0f));
+        yield return StartCoroutine(MoveTwo(qbert.root , transform , transportMoveToPoint , speedMovingToPoint) );
+
         yield return new WaitForSeconds(0.5f);
 
         gameObject.SetActive(false);
         qbert.isFrize = false;
         qbert.isCheckColision = true;
-        qbert.MoveToCube(positionMove);
+        qbert.MoveToCube(cubeJumpAfterMove.currentPosition);
 
         OnStartDestroy();
     }
 
-
-    private Vector3 GetMovePosition()
+    IEnumerator MoveTwo(Transform one, Transform two , Vector3 moveTo , float speed)
     {
-        var posMove = levelController.gameField.mapGenerator.GetCubeEndByType(typeObject);
-        if (posMove != null)
-        {
-            return posMove.upSide.position + new Vector3(0, offsetDrop, 0);
-        }
-        else
-        {
-            Debug.LogError("Don't find move point to transport.");
-        }
-
-        return Vector3.zero;
+        StartCoroutine(this.MovingSpeedTransformTo(one, moveTo, speed));
+        yield return StartCoroutine(this.MovingSpeedTransformTo(two, moveTo, speed));
     }
-
     public override bool CanJumpToMy()
     {
         return true;
