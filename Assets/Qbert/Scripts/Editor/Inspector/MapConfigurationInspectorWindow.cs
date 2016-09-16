@@ -37,10 +37,6 @@ public class MapConfigurationInspectorWindow : Editor
         DrawMap();
         DrawMove();
         DrawColor();
-
-        //DrawDefaultInspector();
-
-
         serializedObject.ApplyModifiedProperties();
     }
 
@@ -49,8 +45,7 @@ public class MapConfigurationInspectorWindow : Editor
         MapAsset mapAsset = serializedObject.targetObject as MapAsset;
         var map = mapAsset.map;
 
-        // Rect drawZone = GUILayoutUtility.GetRect(30, 16f);
-        // EditorGUI.LabelField(drawZone, "" + i);
+        EditorUtility.SetDirty(mapAsset);
 
         GUILayout.BeginHorizontal();
         {
@@ -85,7 +80,6 @@ public class MapConfigurationInspectorWindow : Editor
             {
                 map.Clear();
             }
-            
         }
 
     }
@@ -182,7 +176,6 @@ public class MapConfigurationInspectorWindow : Editor
 
         listVisibility = EditorGUILayout.Foldout(listVisibility, "Cube patterns");
 
-        MapAsset mapAsset = serializedObject.targetObject as MapAsset;
 
         if (listVisibility)
         {

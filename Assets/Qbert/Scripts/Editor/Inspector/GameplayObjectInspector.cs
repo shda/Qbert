@@ -25,6 +25,8 @@ public class GameplayObjectInspector : Editor
         {
             foreach (var prefab in asset.prefabs)
             {
+                EditorUtility.SetDirty(prefab);
+
                 GUILayout.BeginHorizontal();
                 {
                     Rect drawZone = GUILayoutUtility.GetRect(0, 16f);
@@ -47,6 +49,8 @@ public class GameplayObjectInspector : Editor
             }
             
         }
+
+        gamePlayPaterns.serializedObject.UpdateIfDirtyOrScript();
 
         gamePlayPaterns.serializedObject.ApplyModifiedProperties();
     }
