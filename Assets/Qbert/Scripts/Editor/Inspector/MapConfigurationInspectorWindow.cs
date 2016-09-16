@@ -94,46 +94,75 @@ public class MapConfigurationInspectorWindow : Editor
 
     private void DrawSelectGameplayObject()
     {
-        EditorGUILayout.Separator();
-        GUILayout.Label("Select color:");
-
-        GUILayout.BeginHorizontal();
+        if (gameplayObjects != null)
         {
-            var oldColor = GUI.backgroundColor;
+            EditorGUILayout.Separator();
+            GUILayout.Label("Select color:");
 
-            for (int x = 0; x < colors.Length; x++)
+            GUILayout.BeginHorizontal();
             {
-                GUILayout.BeginVertical();
+                var oldColor = GUI.backgroundColor;
+
+                for (int x = 0; x < colors.Length; x++)
                 {
-                    if(x == 0)
-                        GUILayout.Label("Start point");
-                    else if (x == 1)
-                        GUILayout.Label("End point");
 
-                    GUI.backgroundColor = colors[x];
+                    var go = gameplayObjects[selectGameplayObject];
 
-                    bool isSelect = selectColor == x;
+                    if (x == 0 && !go.editorRules.isUsingStartPosition)
+                        continue;
 
-                    if (GUILayout.Toggle(isSelect, "", GUILayout.Width(buttonSizeX + 10),
-                        GUILayout.Height(buttonSizeY + 10)))
+                    if (x == 1 && !go.editorRules.isUsingEndPosition)
+                        continue;
+
+                    GUILayout.BeginVertical();
                     {
-                        selectColor = x;
+                        if (x == 0)
+                        {
+                            if (go.editorRules.isNecessaryStartPoint)
+                            {
+                                GUILayout.Label("Start point(necessary)");
+                            }
+                            else
+                            {
+                                GUILayout.Label("Start point(not necessary)");
+                            }
+                            
+                        }
+                        else if (x == 1)
+                        {
+                            if (go.editorRules.isNecessaryEndPoint)
+                            {
+                                GUILayout.Label("End point(necessary)");
+                            }
+                            else
+                            {
+                                GUILayout.Label("End point(not necessary)");
+                            }
+                        }
+                            
+
+                        GUI.backgroundColor = colors[x];
+
+                        bool isSelect = selectColor == x;
+
+                        if (GUILayout.Toggle(isSelect, "", GUILayout.Width(buttonSizeX + 10),
+                            GUILayout.Height(buttonSizeY + 10)))
+                        {
+                            selectColor = x;
+                        }
                     }
+                    GUILayout.EndVertical();
                 }
-                GUILayout.EndVertical();
+
+                GUI.backgroundColor = oldColor;
             }
-
-            GUI.backgroundColor = oldColor;
-        }
-        GUILayout.EndHorizontal();
+            GUILayout.EndHorizontal();
 
 
 
-        EditorGUILayout.Separator();
-        GUILayout.Label("Select object:");
-        GUILayout.BeginVertical();
-        {
-            if (gameplayObjects != null)
+            EditorGUILayout.Separator();
+            GUILayout.Label("Select object:");
+            GUILayout.BeginVertical();
             {
                 for (int x = 0; x < gameplayObjects.Length; x++)
                 {
@@ -145,8 +174,8 @@ public class MapConfigurationInspectorWindow : Editor
                     }
                 }
             }
+            GUILayout.EndVertical();
         }
-        GUILayout.EndVertical();
     }
 
     private void DrawParams()

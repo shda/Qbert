@@ -35,6 +35,18 @@ public class Character : MonoBehaviour
         get { return Type.Qbert; }
     }
 
+    [System.Serializable]
+    public class EditorRules
+    {
+        public bool isUsingStartPosition = true;
+        public bool isUsingEndPosition = true;
+        public bool isNecessaryStartPoint = true;
+        public bool isNecessaryEndPoint = true;
+    }
+
+    [Header("EditorInfo")]
+    public EditorRules editorRules;
+
     [Header("Character")]
     public Transform root;
     public LevelController levelController;
