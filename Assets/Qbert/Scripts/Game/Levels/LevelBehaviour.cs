@@ -2,9 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class LevelBase : MonoBehaviour
+public abstract class LevelBehaviour : MonoBehaviour
 {
-    public ConfigRound configurationAsset;
+    public enum Type
+    {
+        LevelType1,
+        LevelType2,
+        LevelType3,
+        LevelType4,
+        LevelType5,
+    }
+
+    public virtual Type type
+    {
+        get { return Type.LevelType1; ; }
+    }
+
+    public LevelConfigAsset configurationAsset;
     public int roundCurrent;
     public Round[] rounds
     {
@@ -15,16 +29,23 @@ public abstract class LevelBase : MonoBehaviour
         get { return rounds[roundCurrent]; }
     }
 
-    public int idStartPositionQbert;
     [Header("Цвета по умолчанию")]
     public Color[] globalLevelColors;
-
-    public Material[] globalLevelMaterials;
 
     private float currentTime;
     private bool isLevelRun = false;
 
     protected LevelController levelController;
+
+    public MapAsset GetMapAssetFromCurrentRound()
+    {
+        if (currentRoundConfig.customMap != null)
+        {
+            return currentRoundConfig.customMap;
+        }
+
+        return configurationAsset.globalMap;
+    }
 
     public virtual void InitLevel()
     {
@@ -93,25 +114,6 @@ public abstract class LevelBase : MonoBehaviour
         levelController.gameplayObjects.DestroyAllEnemies();
     }
 
-
-    public Material[] CreateMaterials(Color[] colors)
-    {
-        List<Material> newMaterials = new List<Material>();
-
-        foreach (var color in colors)
-        {
-            Shader shader = Shader.Find("Custom/ColorDefault");
-            if (shader != null)
-            {
-                Material mat = new Material(shader);
-                mat.color = color;
-
-                newMaterials.Add(mat);
-            }
-        }
-
-        return newMaterials.ToArray();
-    }
     public virtual bool CheckToWin()
     {
         foreach (var cube in levelController.gameField.field)

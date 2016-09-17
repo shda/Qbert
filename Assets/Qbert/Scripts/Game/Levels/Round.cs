@@ -13,9 +13,15 @@ public class Round : ITimeScale
         set { _timeScale = value; }
     }
     //end ITimeScale
-    public RuleCreateGameplayObject[] rulesCreateGamplayObjects;
+
     [Header("Цвета раунда(можно не ставить)")]
     public Color[] customColors;
+
+    [Header("Карта раунда(можно не ставить)")]
+    public MapAsset customMap;
+
+    public RuleCreateGameplayObject[] rulesCreateGamplayObjects;
+    
     [HideInInspector]
     public float timeToStartRound;
     [HideInInspector]

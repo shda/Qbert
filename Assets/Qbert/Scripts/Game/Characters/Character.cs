@@ -63,6 +63,8 @@ public class Character : MonoBehaviour
 
     public PositionCube currentPosition;
     public PositionCube positionMove;
+
+    public Action<Character , Cube> OnEventPressCube;
     public bool isMoving
     {
         get { return moveCoroutine != null; }
@@ -103,6 +105,11 @@ public class Character : MonoBehaviour
 
     public virtual bool OnPressCube(Cube cube)
     {
+        if (OnEventPressCube != null)
+        {
+            OnEventPressCube(this , cube);
+        }
+
         return false;
     }
 

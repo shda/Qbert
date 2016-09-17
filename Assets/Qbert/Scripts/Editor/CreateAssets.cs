@@ -15,13 +15,19 @@ public class CreateAssets : MonoBehaviour
     [MenuItem("Assets/Create asset/Create configuration asset")]
     static void CreateConfigurationAsset()
     {
-        CreateAsset<ConfigRound>("Configuration");
+        CreateAsset<LevelConfigAsset>("Configuration");
     }
 
     [MenuItem("Assets/Create asset/Create gameplay objects asset")]
     static void CreateGameplayobjectsAsset()
     {
         CreateAsset<GameplayObjectsAsset>("GameplayObjects");
+    }
+
+    [MenuItem("Assets/Create asset/Create global configuration")]
+    static void CreateGlobalAsset()
+    {
+        CreateAsset<GlobalConfigurationAsset>("GlobalConfigurationAsset");
     }
 
     static private void CreateAsset<T>(string name) where T : ScriptableObject

@@ -8,14 +8,11 @@ public class GameGui : MonoBehaviour
     public Text levelLabel;
     public Text coinsLabel;
 
-    private float score;
-    private int coins;
-
-    public void ResetScore()
+    public void UpdateScore()
     {
-        scoreText._labelCount = 0;
+        scoreText._labelCount = GlobalSettings.score;
         scoreText.UpdateText();
-        SetScore(0);
+        SetScore(GlobalSettings.score);
     }
     public void SetLevel(int level , int round)
     {
@@ -23,7 +20,7 @@ public class GameGui : MonoBehaviour
     }
     public void SetScore(float setScore)
     {
-        score = setScore;
+        GlobalSettings.score = setScore;
         scoreText.SetValue(setScore);
     }
 
@@ -32,16 +29,16 @@ public class GameGui : MonoBehaviour
         coinsLabel.text = string.Format("{0}", (int)setConis);
     }
 
-    public void AddCoins(int addScore)
+    public void AddCoins(int addCoins)
     {
-        coins += addScore;
-        SetCoins(coins);
+        GlobalSettings.coins += addCoins;
+        SetCoins(GlobalSettings.coins);
     }
 
     public void AddScore(float addScore)
     {
-        score += addScore;
-        SetScore(score);
+        GlobalSettings.score += addScore;
+        SetScore(GlobalSettings.score);
     }
 	void Start () 
 	{

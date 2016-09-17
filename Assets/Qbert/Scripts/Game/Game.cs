@@ -12,6 +12,8 @@ public class Game : MonoBehaviour
     public GuiDispatcher    guiDispatcher;
     public GuiSettings      guiSettings;
 
+    public bool isLevelSelect = false;
+
     public void RestartLevel()
     {
         levelController.RestartLevel();
@@ -20,7 +22,19 @@ public class Game : MonoBehaviour
     public void StartGame()
     {
         levelController.ResetScore();
-        levelController.InitLevel(SelectLevel.selectLevel , 0);
+
+        if (isLevelSelect)
+        {
+            levelController.InitLevelLoad();
+            levelController.StartLoadingLevel();
+            return;
+        }
+        else
+        {
+            levelController.InitLevel(GlobalSettings.currentLevel, GlobalSettings.currentRound);
+        }
+
+        
         levelController.StartLevel();
     }
 
@@ -62,7 +76,7 @@ public class Game : MonoBehaviour
 
     void Start()
     {
-      //  StartGame();
+        StartGame();
     }
 
     void Update()

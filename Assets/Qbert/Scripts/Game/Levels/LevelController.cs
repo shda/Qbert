@@ -6,20 +6,27 @@ public class LevelController : MonoBehaviour
 {
     public InputController controlController;
     public GameplayObjects gameplayObjects;
-    public LevelBase currentLevel;
     public GameField gameField;
     public Qbert qbert;
     public GameGui gameGui;
     public LevelSwitcher levelSwitcher;
 
+    public LevelBehaviour levelLogic;
+
     public void AddScore(float score)
     {
-        gameGui.AddScore(score);
+        if (gameGui)
+        {
+            gameGui.AddScore(score);
+        }
     }
 
     public void AddCoins(int coint)
     {
-        gameGui.AddCoins(coint);
+        if (gameGui)
+        {
+            gameGui.AddCoins(coint);
+        }
     }
 
     public void OnQubertDead()
@@ -31,12 +38,17 @@ public class LevelController : MonoBehaviour
     {
         float timeScale = isPause ? 0.0000001f : 1.0f;
         gameplayObjects.SetTimeScale(timeScale);
-        currentLevel.SetTimeScaleGameplayObjects(timeScale);
+        levelLogic.SetTimeScaleGameplayObjects(timeScale);
+    }
+
+    public MapAsset GetMapAssetFromLevel()
+    {
+        return levelLogic.GetMapAssetFromCurrentRound();
     }
 
     private void OnPressCubeEvents(Cube cube, Character character)
     {
-        currentLevel.OnCharacterPressToCube(cube , character);
+        levelLogic.OnCharacterPressToCube(cube , character);
     }
 
     private void OnCollisionCharacters(Transform owner1, Transform owner2)
@@ -44,7 +56,7 @@ public class LevelController : MonoBehaviour
         var character1 = owner1.GetComponent<Character>();
         var character2 = owner2.GetComponent<Character>();
 
-        currentLevel.OnCollisionCharacters(character1, character2);
+        levelLogic.OnCollisionCharacters(character1, character2);
     }
 
     private void OnPressControl(DirectionMove.Direction buttonType)
@@ -54,20 +66,29 @@ public class LevelController : MonoBehaviour
 
     void ConnectEvents()
     {
-        controlController.OnPress = OnPressControl;
+        if (controlController != null)
+        {
+            controlController.OnPress = OnPressControl;
+        }
+           
         gameField.OnPressCubeEvents = OnPressCubeEvents;
         qbert.collisionProxy.triggerEnterEvent = OnCollisionCharacters;
     }
 
     public void RestartLevel()
     {
-        gameGui.SetLevel(levelSwitcher.currentLevel, currentLevel.roundCurrent);
+        if (gameGui != null)
+        {
+            gameGui.SetLevel(levelSwitcher.currentLevel, levelLogic.roundCurrent);
+        }
+
+        InitLevel(levelSwitcher.currentLevel , levelLogic.roundCurrent);
 
         StopAllCoroutines();
         SetPauseGamplayObjects(false);
 
-        currentLevel.ResetLevel();
-        currentLevel.StartLevel(currentLevel.roundCurrent);
+        levelLogic.ResetLevel();
+        levelLogic.StartLevel(levelLogic.roundCurrent);
         qbert.isFrize = false;
         qbert.isCheckColision = true;
         SetPauseGamplayObjects(false);
@@ -75,7 +96,10 @@ public class LevelController : MonoBehaviour
 
     public void ResetScore()
     {
-        gameGui.ResetScore();
+        if (gameGui != null)
+        {
+            gameGui.UpdateScore();
+        }
     }
 
     public void NextLevel()
@@ -86,7 +110,7 @@ public class LevelController : MonoBehaviour
 
     public void NextRound()
     {
-        currentLevel.NextRound();
+        levelLogic.NextRound();
     }
 
     public void EndLevels()
@@ -94,14 +118,39 @@ public class LevelController : MonoBehaviour
         InitLevel(0,0);
     }
 
+    public void InitLevelLoad()
+    {
+        //  GlobalSettings.currentLevel = 3;
+
+        levelLogic = levelSwitcher.InitLevelLoad(GlobalSettings.currentLevel);
+        levelLogic.InitLevel();
+
+        gameField.mapGenerator.mapAsset = GetMapAssetFromLevel();
+        gameField.mapGenerator.CreateMap();
+
+        gameField.Init();
+    }
+
     public void InitLevel(int level , int round)
     {
-        gameGui.SetLevel(level, round);
+        if (gameGui)
+        {
+            gameGui.SetLevel(level, round);
+        }
 
-        levelSwitcher.SetLevel(level, round);
-        currentLevel.SetController(this);
-        currentLevel.InitLevel();
+        levelLogic = levelSwitcher.SetLevel(level, round);
+        levelLogic.InitLevel();
+
+        gameField.mapGenerator.mapAsset = GetMapAssetFromLevel();
+        gameField.mapGenerator.CreateMap();
+
         gameField.Init();
+    }
+
+    public void StartLoadingLevel()
+    {
+        ConnectEvents();
+        levelLogic.ResetLevel();
     }
 
     public void StartLevel()
