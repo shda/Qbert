@@ -12,7 +12,7 @@ public class CubeMap
     {
         public int x;
         public int y;
-        public Transform cubePatern;
+        public Transform cubePattern;
         public bool isEnable = false;
 
         public List<GameplayObject.Type> listTypeObjectsStartPoint;
@@ -22,8 +22,7 @@ public class CubeMap
         {
             x = value.x;
             y = value.y;
-            //id = value.id;
-            cubePatern = value.cubePatern;
+            cubePattern = value.cubePattern;
             isEnable = value.isEnable;
             listTypeObjectsStartPoint = value.listTypeObjectsStartPoint;
             listTypeObjectsEndPoint = value.listTypeObjectsEndPoint;
@@ -109,9 +108,8 @@ public class CubeMap
     {
         foreach (var cubeInMap in cubeArray)
         {
-           // cubeInMap.id = -1;
             cubeInMap.isEnable = false;
-            cubeInMap.cubePatern = null;
+            cubeInMap.cubePattern = null;
             cubeInMap.listTypeObjectsEndPoint = null;
             cubeInMap.listTypeObjectsStartPoint = null;
         }

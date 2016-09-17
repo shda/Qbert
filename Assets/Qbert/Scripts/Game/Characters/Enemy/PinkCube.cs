@@ -48,10 +48,10 @@ public class PinkCube : RedCube
                     var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(neighbor.currentPosition);
                     if (gaToPoint == null || gaToPoint.CanJumpToMy())
                     {
-                        sideCube = SideCube.Right;
+                        sideCube = IsLeft(neighbor.currentPosition, positionCube.currentPoint) ?
+                            SideCube.Left : SideCube.Right;
 
                         currentPosition = neighbor.currentPosition;
-
                         return SetObject(root, levelController, currentPosition);
                     }
                 }
@@ -59,6 +59,17 @@ public class PinkCube : RedCube
         }
 
         return null;
+    }
+
+    public bool IsLeft(PositionCube one , PositionCube two)
+    {
+        if (two == new PositionCube(one.line - 1, one.position - 1) ||
+            two == new PositionCube(one.line + 1, one.position))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public override void SetStartPosition(PositionCube point)
@@ -109,7 +120,6 @@ public class PinkCube : RedCube
 
     protected override IEnumerator WorkThead()
     {
-        //yield return null;
         yield return StartCoroutine(DropToCube());
 
         while (true)
@@ -303,44 +313,34 @@ public class PinkCube : RedCube
 
     private Cube GetNextCube()
     {
-        bool down = Random.Range(0, 2) == 0;
-
-        int x, y;
+        PositionCube[] position = null;
 
         if (sideCube == SideCube.Left)
         {
-            if (stuckPosition.position < stuckPosition.line)
+            position = new[]
             {
-                if (down)
-                {
-                    x = stuckPosition.line - 1;
-                    y = stuckPosition.position;
-                }
-                else
-                {
-                    x = stuckPosition.line ;
-                    y = stuckPosition.position + 1;
-                }
-
-                return levelController.gameField.GetCube(new PositionCube(x, y));
-            }
+                new PositionCube(stuckPosition.line - 1, stuckPosition.position),
+                new PositionCube(stuckPosition.line, stuckPosition.position + 1),
+            };
         }
         else
         {
-            if (stuckPosition.position > 0)
+            position = new[]
             {
-                if (down)
-                {
-                    x = stuckPosition.line - 1;
-                    y = stuckPosition.position - 1;
-                }
-                else
-                {
-                    x = stuckPosition.line;
-                    y = stuckPosition.position - 1;
-                }
+                new PositionCube(stuckPosition.line - 1, stuckPosition.position -1),
+                new PositionCube(stuckPosition.line, stuckPosition.position - 1),
+            };
+        }
 
-                return levelController.gameField.GetCube(new PositionCube(x, y));
+        position = position.Mix().ToArray();
+
+        foreach (var positionCube in position)
+        {
+            Cube ret = levelController.gameField.GetCube(positionCube);
+
+            if (ret != null)
+            {
+                return ret;
             }
         }
 

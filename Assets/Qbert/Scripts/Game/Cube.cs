@@ -15,6 +15,20 @@ public class Cube : MonoBehaviour
     public Action<Cube , Character> OnPressEvents;
     public List<Cube> nodes = new List<Cube>(); 
     public Color[] colors;
+
+    private bool _isDebudLabel;
+
+    public bool isDebudLabel
+    {
+        set
+        {
+            _isDebudLabel = value;
+            debugText.gameObject.SetActive(value);
+        }
+
+        get { return _isDebudLabel; }
+    }
+
     //public Material[] materilas;
     public TextMesh debugText;
 
@@ -109,7 +123,6 @@ public class Cube : MonoBehaviour
     }
 
     
-
 	void Start () 
 	{
 	    
@@ -117,7 +130,11 @@ public class Cube : MonoBehaviour
 	
 	void Update ()
 	{
-	   // debugText.text = string.Format("{0},{1}", currentPosition.line, currentPosition.position);
+	    if (_isDebudLabel)
+	    {
+            debugText.text = string.Format("{0},{1}", currentPosition.line, currentPosition.position);
+        }
+	   
 	}
 
     public void Reset()

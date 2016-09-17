@@ -62,7 +62,7 @@ public class Game : MonoBehaviour
 
     void Start()
     {
-        StartGame();
+      //  StartGame();
     }
 
     void Update()

@@ -9,9 +9,8 @@ public class GameFieldGenerator : MonoBehaviour
     public float offsetY = 1.0f;
 
     public Transform root;
-    //public Transform pattern;
 
-    public int levels = 7;
+    public bool isDebug = false;
 
     public int startLine = 0;
     public int startPos = 0;
@@ -88,13 +87,14 @@ public class GameFieldGenerator : MonoBehaviour
 
                         if (cubeInMap.isEnable)
                         {
-                            Transform createPattern = CreatePattern(cubeInMap.cubePatern,
+                            Transform createPattern = CreatePattern(cubeInMap.cubePattern,
                              point, lineRoot.transform,
                                 cubeInMap.y, cubeInMap.x);
 
                             Cube cube = createPattern.GetComponent<Cube>();
                             if (cube)
                             {
+                                cube.isDebudLabel = isDebug;
                                 cube.currentPosition = new PositionCube(cubeInMap.y, cubeInMap.x);
                                 cube.cubeInMap = cubeInMap;
                                 map.Add(cube);
@@ -214,7 +214,8 @@ public class GameFieldGenerator : MonoBehaviour
 
     void Awake()
     {
-        CreateMap();
+        DestroyOldMap();
+        //CreateMap();
     }
 
     void Start()

@@ -20,7 +20,9 @@ public class MapConfigurationInspectorWindow : Editor
     private int sizeWidth;
     private int sizeHight;
 
+    private Transform[] oldPaterns;
     private GameplayObject[] gameplayObjects = null;
+
 
     private Color[] colors = new Color[]
     {
@@ -45,6 +47,9 @@ public class MapConfigurationInspectorWindow : Editor
         DrawMap();
         DrawMove();
         DrawSelectGameplayObject();
+
+       // DrawDefaultInspector();
+
         serializedObject.ApplyModifiedProperties();
     }
 
@@ -87,6 +92,7 @@ public class MapConfigurationInspectorWindow : Editor
             if (EditorUtility.DisplayDialog("Clear?", "Clear?", "Ok", "Cancel"))
             {
                 map.Clear();
+                oldPaterns = null;
             }
         }
 
@@ -188,14 +194,47 @@ public class MapConfigurationInspectorWindow : Editor
         EditorGUILayout.PropertyField(widthInt, new GUIContent("Width map"));
         EditorGUILayout.PropertyField(hightInt, new GUIContent("Hight map"));
 
-        if(GUILayout.Button("Update size"))
+        MapAsset mapAsset = (MapAsset) serializedObject.targetObject ;
+
+        if (GUILayout.Button("Update size"))
         {
-            MapAsset mapAsset = serializedObject.targetObject as MapAsset;
             mapAsset.UpdateFromInspector();
         }
 
         var gamePlayPaterns = serializedObject.FindProperty("gameplayObjectsAsset");
         EditorGUILayout.PropertyField(gamePlayPaterns, new GUIContent("Gameplay objects asset"));
+
+        /*
+        if (oldPaterns == null)
+        {
+            oldPaterns = mapAsset.cubePaterns.ToArray();
+        }
+        else if(oldPaterns.Length != mapAsset.cubePaterns.Length)
+        {
+            oldPaterns = mapAsset.cubePaterns.ToArray();
+        }
+        else
+        {
+            for (int i = 0; i < oldPaterns.Length; i++)
+            {
+                if (mapAsset.cubePaterns[i] != oldPaterns[i])
+                {
+                    Debug.Log("No");
+
+                    foreach (var cube in mapAsset.map.cubeArray)
+                    {
+                        if (cube.cubePattern == oldPaterns[i])
+                        {
+                            cube.cubePattern = mapAsset.cubePaterns[i];
+                        }
+                    }
+                }
+
+                oldPaterns[i] = mapAsset.cubePaterns[i];
+            }
+        }
+        */
+      //  oldPaterns = mapAsset.cubePaterns;
     }
     private void DrawCubePaterns()
     {
@@ -268,7 +307,7 @@ public class MapConfigurationInspectorWindow : Editor
 
                     if (cube.isEnable)
                     {
-                        var patern = cube.cubePatern;
+                        var patern = cube.cubePattern;
 
                         if (patern)
                         {
@@ -308,7 +347,7 @@ public class MapConfigurationInspectorWindow : Editor
                         if (Event.current.button == 0)
                         {
                             cube.isEnable = !cube.isEnable;
-                            cube.cubePatern = mapAsset.cubePaterns[selectCubePattern];
+                            cube.cubePattern = mapAsset.cubePaterns[selectCubePattern];
                         }
                         else if (Event.current.button == 1)
                         {
