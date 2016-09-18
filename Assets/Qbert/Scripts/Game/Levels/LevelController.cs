@@ -123,6 +123,7 @@ public class LevelController : MonoBehaviour
         //  GlobalSettings.currentLevel = 3;
 
         levelLogic = levelSwitcher.InitLevelLoad(GlobalSettings.currentLevel);
+
         levelLogic.InitLevel();
 
         gameField.mapGenerator.mapAsset = GetMapAssetFromLevel();

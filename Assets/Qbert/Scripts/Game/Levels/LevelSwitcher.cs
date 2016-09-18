@@ -17,11 +17,33 @@ public class LevelSwitcher : MonoBehaviour
     public LevelBehaviour InitLevelLoad(int level)
     {
         var configLevel = globalConfiguraion.assetLoadLevel;
-        var levelBehaviour = levelBehaviours[level];
+        var configCurrentLevel = globalConfiguraion.levelsAssets[level];
+        configLevel.typeLevel = configCurrentLevel.typeLevel;
+
+        Color[] colorsLevel = GetInitColors(level);
+
+        if (colorsLevel != null)
+        {
+            configLevel.globalLevelColors = colorsLevel;
+        }
+
+        var levelBehaviour = levelBehaviours.First(x => x.type == configLevel.typeLevel);
         levelBehaviour.SetController(levelController);
         levelBehaviour.configurationAsset = configLevel;
 
         return levelBehaviour;
+    }
+
+    public Color[] GetInitColors(int level)
+    {
+        var configLevel = globalConfiguraion.levelsAssets[level];
+        if (configLevel.globalLevelColors != null)
+            return configLevel.globalLevelColors;
+
+        if(configLevel.rounds != null && configLevel.rounds.Length > 0)
+            return configLevel.rounds[0].customColors;
+
+        return null;
     }
 
     public LevelBehaviour SetLevel(int level, int round)

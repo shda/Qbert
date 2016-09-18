@@ -6,13 +6,10 @@ using UnityEngine.SceneManagement;
 public class Game : MonoBehaviour
 {
     public LevelController      levelController;
-    public CameraController     cameraController;
-    public CubeCreateAnimator   cubeCreateAnimator;
+    public FadeScreen           fadeScreen;
 
-    public GuiDispatcher    guiDispatcher;
-    public GuiSettings      guiSettings;
+    public InputController  inputController;
 
-    public bool isLevelSelect = false;
 
     public void RestartLevel()
     {
@@ -22,22 +19,12 @@ public class Game : MonoBehaviour
     public void StartGame()
     {
         levelController.ResetScore();
+        levelController.InitLevel(GlobalSettings.currentLevel, GlobalSettings.currentRound);
 
-        if (isLevelSelect)
-        {
-            levelController.InitLevelLoad();
-            levelController.StartLoadingLevel();
-            return;
-        }
-        else
-        {
-            levelController.InitLevel(GlobalSettings.currentLevel, GlobalSettings.currentRound);
-        }
-
-        
         levelController.StartLevel();
     }
 
+    /*
     public void OnTapScreenStartGame()
     {
         guiDispatcher.inputScreenControls.SetActive(false);
@@ -55,8 +42,9 @@ public class Game : MonoBehaviour
     {
         guiDispatcher.inputScreenControls.SetActive(false);
         guiDispatcher.mainMenuGui.SetActive(false);
-        guiSettings.OnMoveCameraToSettings();
+       // guiSettings.OnMoveCameraToSettings();
     }
+    */
 
     public void OnPressSelectCharacter()
     { }
@@ -77,6 +65,16 @@ public class Game : MonoBehaviour
     void Start()
     {
         StartGame();
+        levelController.SetPauseGamplayObjects(true);
+        inputController.isEnable = false;
+
+        fadeScreen.OnEnd = transform1 =>
+        {
+            levelController.SetPauseGamplayObjects(false);
+            inputController.isEnable = true;
+        };
+
+        fadeScreen.StartDisable(0.5f);
     }
 
     void Update()

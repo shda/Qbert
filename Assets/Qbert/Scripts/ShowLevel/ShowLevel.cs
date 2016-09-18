@@ -11,27 +11,26 @@ public class ShowLevel : MonoBehaviour
     public LoadScene loadSceneAfter;
     public float waitBetweenJump = 0.5f;
 
-
     public void SetLevel()
     {
         textLevel.text = "level " + (GlobalSettings.currentLevel + 1);
     }
 
-    IEnumerator Start ()
+    void Start ()
 	{
         levelController.InitLevelLoad();
         levelController.StartLoadingLevel();
 
 	    SetLevel();
 
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
 
 	    fadeScreen.OnEnd = transform1 =>
 	    {
             StartCoroutine(Jumper());
         };
 
-        fadeScreen.Hide(1.0f);
+        fadeScreen.StartDisable(1.0f);
     }
 
 
@@ -62,14 +61,14 @@ public class ShowLevel : MonoBehaviour
             yield return JumpToCube(1, 2);
         }
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
 
         fadeScreen.OnEnd = transform1 =>
         {
             LoadLevel();
         };
 
-        fadeScreen.Show(1.0f);
+        fadeScreen.StartEnable(1.0f);
     }
 
 

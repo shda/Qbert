@@ -103,6 +103,10 @@ public abstract class LevelBehaviour : MonoBehaviour
             {
                 cube.SetColors(currentRoundConfig.customColors );
             }
+            else if (configurationAsset.globalLevelColors != null)
+            {
+                cube.SetColors(configurationAsset.globalLevelColors);
+            }
             else
             {
                 cube.SetColors(globalLevelColors);
