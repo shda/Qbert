@@ -16,7 +16,7 @@ public class GameplayObjects : MonoBehaviour , ITimeScale
     //end ITimeScale
 
     public LevelController levelController;
-    public GameplayObjectsAsset gameplayObjectPaterns;
+   // public GameplayObjectsAsset gameplayObjectPaterns;
     public List<GameplayObject> gameplayObjectsList = new List<GameplayObject>();
     public Transform root;
 
@@ -40,6 +40,11 @@ public class GameplayObjects : MonoBehaviour , ITimeScale
 
     private GameplayObject CreateGameplayObject(GameplayObject.Type type)
     {
+        var obj =  PoolGameplayObjects.GetGameplayObject(type);
+        obj.InitObject(root, levelController);
+        return obj;
+
+        /*
         foreach (var gameplayObjectPatern in gameplayObjectPaterns.prefabs)
         {
             if (gameplayObjectPatern.typeObject == type)
@@ -47,7 +52,7 @@ public class GameplayObjects : MonoBehaviour , ITimeScale
                 return gameplayObjectPatern.Create(root , levelController);
             }
         }
-
+        */
         return null;
     }
 
@@ -70,9 +75,11 @@ public class GameplayObjects : MonoBehaviour , ITimeScale
     private void OnDestroyEvents(GameplayObject gameplayObject)
     {
         gameplayObjectsList.Remove(gameplayObject);
-
         gameplayObject.gameObject.SetActive(false);
-        Destroy(gameplayObject.gameObject);
+
+        PoolGameplayObjects.ReturnObject(gameplayObject);
+
+        //Destroy(gameplayObject.gameObject);
     }
 
     public void DestroyAllEnemies()

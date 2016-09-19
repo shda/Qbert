@@ -10,7 +10,7 @@ public class CoinCube : RedCube
         get { return Type.CoinCube; }
     }
 
-    public override GameplayObject Create(Transform root, LevelController levelController)
+    public override GameplayObject InitObject(Transform root, LevelController levelController)
     {
         Cube cubeSet = null;
 

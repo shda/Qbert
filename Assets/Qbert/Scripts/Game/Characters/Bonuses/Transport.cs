@@ -18,9 +18,9 @@ public class Transport : GameplayObject
         get { return Type.Transport; }
     }
 
-    public override GameplayObject Create(Transform root, LevelController levelController)
+    public override GameplayObject InitObject(Transform root, LevelController levelController)
     {
-        var transport = base.Create(root, levelController) as Transport;
+        var transport = base.InitObject(root, levelController) as Transport;
         return transport;
     }
 

@@ -28,17 +28,16 @@ public class GameplayObject : Character
         return false;
     }
 
-    public virtual GameplayObject Create(Transform root , LevelController levelController)
+    public virtual GameplayObject InitObject(Transform root , LevelController levelController)
     {
-        Transform instance = Instantiate(transform);
-        instance.SetParent(root);
-        instance.localPosition = Vector3.zero;
-        instance.localRotation = Quaternion.identity;
+        transform.SetParent(root);
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
 
-        var enemy = instance.GetComponent<GameplayObject>();
+        var enemy = transform.GetComponent<GameplayObject>();
         enemy.levelController = levelController;
 
-        instance.gameObject.SetActive(true);
+        transform.gameObject.SetActive(true);
 
         return enemy;
     }

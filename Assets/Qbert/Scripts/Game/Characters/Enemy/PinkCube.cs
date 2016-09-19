@@ -29,7 +29,7 @@ public class PinkCube : RedCube
         get { return Type.PinkCube; }
     }
 
-    public override GameplayObject Create(Transform root, LevelController levelController)
+    public override GameplayObject InitObject(Transform root, LevelController levelController)
     {
         var startPos = levelController.gameField.mapGenerator.
             GetPointOutsideFieldStartPointToType(typeObject);

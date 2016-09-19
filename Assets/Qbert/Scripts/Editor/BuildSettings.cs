@@ -109,8 +109,8 @@ public class BuildSettings : MonoBehaviour
 
         var scenes = EditorBuildSettings.scenes.Select(scene => scene.path).ToArray();
 
-        string properVersionName = string.Format("{0}.{1}", PlayerSettings.bundleVersion, PlayerSettings.Android.bundleVersionCode);
-        PlayerSettings.iOS.buildNumber = properVersionName;
+        string properVersionName = string.Format("{0} build {1}", PlayerSettings.bundleVersion, PlayerSettings.Android.bundleVersionCode);
+        //PlayerSettings.iOS.buildNumber = properVersionName;
 
         UpdateScenes(scenes, properVersionName);
 
@@ -205,7 +205,10 @@ public class BuildSettings : MonoBehaviour
             EditorApplication.OpenScene(scene);
 
             var findObjectOfType = FindObjectOfType<Version>();
+            
             if (findObjectOfType) {
+
+                EditorUtility.SetDirty(findObjectOfType);
                 findObjectOfType.version = properVersionName;
                 findObjectOfType.buildCounter++;
                 findObjectOfType.date =

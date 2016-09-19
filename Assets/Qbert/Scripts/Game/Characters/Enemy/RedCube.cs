@@ -13,7 +13,7 @@ public class RedCube : GameplayObject
         get { return Type.RedCube; }
     }
 
-    public override GameplayObject Create(Transform root, LevelController levelController)
+    public override GameplayObject InitObject(Transform root, LevelController levelController)
     {
         var positions = levelController.gameField.mapGenerator.GetCubesStartByType(typeObject).ToList();
         positions = positions.Mix();
@@ -32,7 +32,7 @@ public class RedCube : GameplayObject
 
     public virtual GameplayObject SetObject(Transform root, LevelController levelController , PositionCube startPosition)
     {
-        var gObject = base.Create(root, levelController);
+        var gObject = base.InitObject(root, levelController);
         gObject.SetStartPosition(startPosition);
         gObject.transform.rotation *= Quaternion.Euler(0, 45, 0);
         return gObject;
