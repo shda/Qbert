@@ -5,7 +5,7 @@ using System.Linq;
 public class LevelSwitcher : MonoBehaviour
 {
     public GlobalConfigurationAsset globalConfiguraion;
-    public LevelBehaviour[] levelBehaviours;
+    public LevelLogic[] levelBehaviours;
    
     public LevelController levelController;
     public int currentLevel = 0;
@@ -14,7 +14,7 @@ public class LevelSwitcher : MonoBehaviour
         get { return globalConfiguraion.levelsAssets.Length; }
     }
 
-    public LevelBehaviour InitLevelLoad(int level)
+    public LevelLogic InitLevelLoad(int level)
     {
         var configLevel = globalConfiguraion.assetLoadLevel;
         var configCurrentLevel = globalConfiguraion.levelsAssets[level];
@@ -46,7 +46,7 @@ public class LevelSwitcher : MonoBehaviour
         return null;
     }
 
-    public LevelBehaviour SetLevel(int level, int round)
+    public LevelLogic GetLevelLogic(int level, int round)
     {
         currentLevel = level;
 
@@ -60,6 +60,7 @@ public class LevelSwitcher : MonoBehaviour
         return levelBehaviour;
     }
 
+    /*
     public void NextLevel()
     {
         if (currentLevel < countLevels - 1)
@@ -73,6 +74,12 @@ public class LevelSwitcher : MonoBehaviour
         }
 
         levelController.InitLevel(currentLevel , 0);
+    }
+    */
+
+    public bool IsCanNextLevels()
+    {
+        return currentLevel < countLevels - 1;
     }
 
 	void Start ()

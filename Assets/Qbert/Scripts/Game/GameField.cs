@@ -10,6 +10,39 @@ public class GameField : MonoBehaviour
     public Action<Cube, Character> OnPressCubeEvents; 
     public Cube[] field;
 
+
+    public void FlashGameFiels(Action OnEndFlash)
+    {
+        StartCoroutine(FlashField(OnEndFlash));
+    }
+
+    private IEnumerator FlashField(Action OnEndFlash)
+    {
+        yield return null;
+
+        for (int i = 0; i < 4; i++)
+        {
+            foreach (var cube in field)
+            {
+                cube.SetFlashColorOne();
+            }
+
+            yield return new WaitForSeconds(0.3f);
+
+            foreach (var cube in field)
+            {
+                cube.SetFlashColorTwo();
+            }
+
+            yield return new WaitForSeconds(0.3f);
+        }
+
+        if (OnEndFlash != null)
+        {
+            OnEndFlash();
+        }
+    }
+
     public void Init()
     {
         ParseMap();

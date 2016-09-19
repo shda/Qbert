@@ -9,9 +9,11 @@ public class LevelController : MonoBehaviour
     public GameField gameField;
     public Qbert qbert;
     public GameGui gameGui;
-    public LevelSwitcher levelSwitcher;
+    public LevelSwitcher levelLogicSwitcher;
+    public Game game;
 
-    public LevelBehaviour levelLogic;
+    [HideInInspector]
+    public LevelLogic levelLogic;
 
     public void AddScore(float score)
     {
@@ -34,24 +36,23 @@ public class LevelController : MonoBehaviour
         RestartLevel();
     }
 
-    public void OnDeadQbert()
+
+    public void DestroyAllEnemies()
     {
-        controlController.isEnable = false;
-        float oldScale = Time.timeScale;
-        Time.timeScale = 0.0000001f;
-        UnscaleTimer.Create(2.0f, timer =>
-        {
-            controlController.isEnable = true;
-            Time.timeScale = oldScale;
-            RestartLevel();
-        });
+        gameplayObjects.DestroyAllEnemies();
     }
+ 
 
     public void SetPauseGamplayObjects(bool isPause)
     {
         float timeScale = isPause ? 0.0000001f : 1.0f;
         gameplayObjects.SetTimeScale(timeScale);
         levelLogic.SetTimeScaleGameplayObjects(timeScale);
+    }
+
+    public void SetPauseGame(bool isPause)
+    {
+        Time.timeScale = isPause ? 0.0000001f : 1.0f;
     }
 
     public MapAsset GetMapAssetFromLevel()
@@ -88,14 +89,29 @@ public class LevelController : MonoBehaviour
         qbert.collisionProxy.triggerEnterEvent = OnCollisionCharacters;
     }
 
+    public void OnRoundCubesInWin()
+    {
+        levelLogic.StopLevel();
+        DestroyAllEnemies();
+        controlController.isEnable = false;
+
+        gameField.FlashGameFiels(() =>
+        {
+            controlController.isEnable = true;
+            NextRound();
+        });
+
+        // NextRound();
+    }
+
     public void RestartLevel()
     {
+        DestroyAllEnemies();
+
         if (gameGui != null)
         {
-            gameGui.SetLevel(levelSwitcher.currentLevel, levelLogic.roundCurrent);
+            gameGui.SetLevelNumber(levelLogicSwitcher.currentLevel, levelLogic.roundCurrent);
         }
-
-        InitLevel(levelSwitcher.currentLevel , levelLogic.roundCurrent);
 
         StopAllCoroutines();
         SetPauseGamplayObjects(false);
@@ -103,12 +119,23 @@ public class LevelController : MonoBehaviour
         levelLogic.ResetLevel();
         levelLogic.StartLevel(levelLogic.roundCurrent);
 
-        qbert.isFrize = false;
-        qbert.isCheckColision = true;
         qbert.Run();
 
         SetPauseGamplayObjects(false);
         Time.timeScale = 1.0f;
+    }
+
+    public void InitLevel(int level, int round)
+    {
+        if (gameGui)
+            gameGui.SetLevelNumber(level, round);
+
+        levelLogic = levelLogicSwitcher.GetLevelLogic(level, round);
+        levelLogic.InitLevel();
+
+        gameField.mapGenerator.mapAsset = GetMapAssetFromLevel();
+        gameField.mapGenerator.CreateMap();
+        gameField.Init();
     }
 
     public void ResetScore()
@@ -121,8 +148,21 @@ public class LevelController : MonoBehaviour
 
     public void NextLevel()
     {
-        levelSwitcher.NextLevel();
-        RestartLevel();
+        if (levelLogicSwitcher.IsCanNextLevels())
+        {
+            GlobalSettings.currentLevel++;
+            GlobalSettings.currentRound = 0;
+
+            game.LoadSceneShowLevel();
+        }
+        else
+        {
+            game.LoadMainScene();
+            //End game
+        }
+
+        //levelLogicSwitcher.NextLevel();
+       // RestartLevel();
     }
 
     public void NextRound()
@@ -135,11 +175,9 @@ public class LevelController : MonoBehaviour
         InitLevel(0,0);
     }
 
-    public void InitLevelLoad()
+    public void InitSceneLevelNumber()
     {
-        //  GlobalSettings.currentLevel = 3;
-
-        levelLogic = levelSwitcher.InitLevelLoad(GlobalSettings.currentLevel);
+        levelLogic = levelLogicSwitcher.InitLevelLoad(GlobalSettings.currentLevel);
 
         levelLogic.InitLevel();
 
@@ -149,20 +187,9 @@ public class LevelController : MonoBehaviour
         gameField.Init();
     }
 
-    public void InitLevel(int level , int round)
+    public void InitNextLevel()
     {
-        if (gameGui)
-        {
-            gameGui.SetLevel(level, round);
-        }
-
-        levelLogic = levelSwitcher.SetLevel(level, round);
-        levelLogic.InitLevel();
-
-        gameField.mapGenerator.mapAsset = GetMapAssetFromLevel();
-        gameField.mapGenerator.CreateMap();
-
-        gameField.Init();
+        
     }
 
     public void StartLoadingLevel()

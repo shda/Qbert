@@ -10,6 +10,9 @@ public class Game : MonoBehaviour
 
     public InputController  inputController;
 
+    public LoadScene sceneShowLevel;
+    public LoadScene sceneMainMenu;
+
 
     public void RestartLevel()
     {
@@ -20,8 +23,31 @@ public class Game : MonoBehaviour
     {
         levelController.ResetScore();
         levelController.InitLevel(GlobalSettings.currentLevel, GlobalSettings.currentRound);
-
         levelController.StartLevel();
+    }
+
+
+    public void LoadSceneShowLevel()
+    {
+        inputController.isEnable = false;
+        fadeScreen.OnEnd = transform1 =>
+        {
+            sceneShowLevel.OnLoadScene();
+        };
+
+        fadeScreen.StartEnable(0.5f);
+    }
+
+
+    public void LoadMainScene()
+    {
+        inputController.isEnable = false;
+        fadeScreen.OnEnd = transform1 =>
+        {
+            sceneMainMenu.OnLoadScene();
+        };
+
+        fadeScreen.StartEnable(0.5f);
     }
 
     /*

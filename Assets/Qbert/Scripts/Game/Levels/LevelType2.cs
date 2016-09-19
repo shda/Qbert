@@ -3,11 +3,11 @@ using System.Collections;
 
 //Уровень 2. Первый прыжок на кубик устанавливает промежуточный цвет.
 //Повторный прыжок изменяет цвет на нужный.Последующие прыжки не изменяют цвет.
-public class LevelType2 : LevelBehaviour
+public class LevelType2 : LevelLogic
 {
-    public override LevelBehaviour.Type type
+    public override LevelLogic.Type type
     {
-        get { return LevelBehaviour.Type.LevelType2; ; }
+        get { return LevelLogic.Type.LevelType2; ; }
     }
 
     public override bool OnQbertPressToCube(Cube cube, Qbert qbert)

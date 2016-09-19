@@ -18,7 +18,7 @@ public class ShowLevel : MonoBehaviour
 
     void Start ()
 	{
-        levelController.InitLevelLoad();
+        levelController.InitSceneLevelNumber();
         levelController.StartLoadingLevel();
 
 	    SetLevel();
@@ -36,20 +36,20 @@ public class ShowLevel : MonoBehaviour
 
     public IEnumerator Jumper()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.4f);
 
         var logic = levelController.levelLogic;
-        if (logic.type == LevelBehaviour.Type.LevelType1 ||
-            logic.type == LevelBehaviour.Type.LevelType2)
+        if (logic.type == LevelLogic.Type.LevelType1 ||
+            logic.type == LevelLogic.Type.LevelType2)
         {
             yield return JumpToCube(1, 1);
             yield return JumpToCube(0, 1);
             yield return JumpToCube(1, 2);
             yield return JumpToCube(0, 1);
         }
-        else if (logic.type == LevelBehaviour.Type.LevelType3 ||
-            logic.type == LevelBehaviour.Type.LevelType4 ||
-            logic.type == LevelBehaviour.Type.LevelType5)
+        else if (logic.type == LevelLogic.Type.LevelType3 ||
+            logic.type == LevelLogic.Type.LevelType4 ||
+            logic.type == LevelLogic.Type.LevelType5)
         {
             yield return JumpToCube(1, 2);
             yield return JumpToCube(0, 1);

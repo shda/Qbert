@@ -14,7 +14,7 @@ public class GameGui : MonoBehaviour
         scoreText.UpdateText();
         SetScore(GlobalSettings.score);
     }
-    public void SetLevel(int level , int round)
+    public void SetLevelNumber(int level , int round)
     {
         levelLabel.text = string.Format("{0}-{1}", level + 1, round + 1);
     }

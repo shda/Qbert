@@ -47,6 +47,18 @@ public class Cube : MonoBehaviour
         SetColorOne();
     }
 
+    public void SetFlashColorOne()
+    {
+        colorLerp.SetColorSrart(colors[0]);
+        colorLerp.SetColorEnd(colors[1]);
+    }
+
+    public void SetFlashColorTwo()
+    {
+        colorLerp.SetColorSrart(colors[1]);
+        colorLerp.SetColorEnd(colors[0]);
+    }
+
     private void SetColorOne()
     {
         colorLerp.SetColorSrart(colors[0]);

@@ -16,7 +16,7 @@ public class Qbert : GameplayObject
         boobleDead.gameObject.SetActive(true);
         boobleDead.rotation = Quaternion.Euler(0, 0, 0);
 
-        levelController.OnDeadQbert();
+        levelController.levelLogic.OnDeadQbert();
     }
 
     void Update()
@@ -83,5 +83,7 @@ public class Qbert : GameplayObject
     public override void Run()
     {
         boobleDead.gameObject.SetActive(false);
+        isFrize = false;
+        isCheckColision = true;
     }
 }

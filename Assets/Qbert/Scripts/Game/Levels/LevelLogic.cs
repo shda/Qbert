@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class LevelBehaviour : MonoBehaviour
+public abstract class LevelLogic : MonoBehaviour
 {
     public enum Type
     {
@@ -78,7 +78,7 @@ public abstract class LevelBehaviour : MonoBehaviour
         {
             if (CheckToWin())
             {
-                NextRound();
+                levelController.OnRoundCubesInWin();
             }
         }
     }
@@ -115,7 +115,7 @@ public abstract class LevelBehaviour : MonoBehaviour
             cube.Reset();
         }
 
-        levelController.gameplayObjects.DestroyAllEnemies();
+        levelController.DestroyAllEnemies();
     }
 
     public virtual bool CheckToWin()
@@ -160,6 +160,12 @@ public abstract class LevelBehaviour : MonoBehaviour
         isLevelRun = true;
         StartRound(round);
     }
+
+    public void StopLevel()
+    {
+        isLevelRun = false;
+    }
+
     void Update()
     {
         if (isLevelRun)
@@ -174,5 +180,23 @@ public abstract class LevelBehaviour : MonoBehaviour
     public void SetRound(int round)
     {
         roundCurrent = round;
+    }
+
+    public void OnDeadQbert()
+    {
+        levelController.controlController.isEnable = false;
+        float oldScale = Time.timeScale;
+        Time.timeScale = 0.0000001f;
+        UnscaleTimer.Create(2.0f, timer =>
+        {
+            levelController.controlController.isEnable = true;
+            Time.timeScale = oldScale;
+
+            levelController.gameplayObjects.DestroyAllEnemies();
+            currentRoundConfig.ResetRound();
+            levelController.qbert.SetStartPosition(levelController.qbert.currentPosition);
+            levelController.DestroyAllEnemies();
+            levelController.qbert.Run();
+        });
     }
 }

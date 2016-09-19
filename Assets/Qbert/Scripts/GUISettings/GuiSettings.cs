@@ -28,6 +28,9 @@ public class GuiSettings : MonoBehaviour
 
         fadeScreen.OnEnd = transform1 =>
         {
+            GlobalSettings.currentLevel = 0;
+            GlobalSettings.currentRound = 0;
+
             loadScene.OnLoadScene();
         };
 
