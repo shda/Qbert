@@ -18,12 +18,8 @@ public class GameplayObject : Character
 
     }
 
-
-
     public virtual bool OnColisionToQbert(Qbert qbert)
     {
-       // return true;
-
         if (!qbert.isCheckColision)
         {
             return true;

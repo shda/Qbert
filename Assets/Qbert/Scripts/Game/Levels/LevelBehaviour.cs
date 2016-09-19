@@ -151,7 +151,7 @@ public abstract class LevelBehaviour : MonoBehaviour
     {
         if (!gameplayObject.OnColisionToQbert(qbert))
         {
-            ResetLevel();
+            qbert.OnEnemyAttack();
         }
     }
     public virtual void StartLevel(int round)

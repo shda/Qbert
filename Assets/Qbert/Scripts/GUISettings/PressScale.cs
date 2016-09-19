@@ -3,6 +3,13 @@ using System.Collections;
 
 public class PressScale : MonoBehaviour  , ITouch
 {
+    public enum ScaleDirection
+    {
+        X,Y,Z,
+    }
+
+    public ScaleDirection scaleDirection = ScaleDirection.Y;
+
     public float scale;
     public Transform rootScale;
 
@@ -14,8 +21,11 @@ public class PressScale : MonoBehaviour  , ITouch
         {
             oldLocalScale = rootScale.localScale;
 
-            rootScale.localScale = 
-                new Vector3(oldLocalScale.x, scale, oldLocalScale.z);
+            float x = scaleDirection == ScaleDirection.X ? scale : oldLocalScale.x;
+            float y = scaleDirection == ScaleDirection.Y ? scale : oldLocalScale.y;
+            float z = scaleDirection == ScaleDirection.Z ? scale : oldLocalScale.z;
+
+            rootScale.localScale = new Vector3(x,y,z);
         }
         else
         {

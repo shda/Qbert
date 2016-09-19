@@ -50,11 +50,11 @@ public class FadeScreen : MonoBehaviour
         OnEndAction(false);
     }
 
-	void Start ()
-	{
-	    SetEnable();
-	}
-	
+    void Awake()
+    {
+        SetEnable();
+    }
+
 	void Update () 
 	{
 	

@@ -4,9 +4,24 @@ using System.Collections;
 
 public class Qbert : GameplayObject
 {
+    public Transform boobleDead;
+
     public virtual Type typeObject
     {
         get { return Type.Qbert; }
+    }
+
+    public void OnEnemyAttack()
+    {
+        boobleDead.gameObject.SetActive(true);
+        boobleDead.rotation = Quaternion.Euler(0, 0, 0);
+
+        levelController.OnDeadQbert();
+    }
+
+    void Update()
+    {
+        
     }
 
     public override void SetStartPosition(PositionCube startPositionQbert)
@@ -55,7 +70,7 @@ public class Qbert : GameplayObject
                     Vector3 newPos = root.position + levelController.gameField.GetOffsetDirection(buttonType);
                     MoveToPointAndDropDown(newPos, character =>
                     {
-                        levelController.OnQubertDead();
+                        levelController.OnQbertDropDown();
                         Debug.Log("OnDead");
                     });
                 }
@@ -63,5 +78,10 @@ public class Qbert : GameplayObject
 
             }
         }
+    }
+
+    public override void Run()
+    {
+        boobleDead.gameObject.SetActive(false);
     }
 }

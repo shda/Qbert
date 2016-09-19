@@ -29,9 +29,22 @@ public class LevelController : MonoBehaviour
         }
     }
 
-    public void OnQubertDead()
+    public void OnQbertDropDown()
     {
         RestartLevel();
+    }
+
+    public void OnDeadQbert()
+    {
+        controlController.isEnable = false;
+        float oldScale = Time.timeScale;
+        Time.timeScale = 0.0000001f;
+        UnscaleTimer.Create(2.0f, timer =>
+        {
+            controlController.isEnable = true;
+            Time.timeScale = oldScale;
+            RestartLevel();
+        });
     }
 
     public void SetPauseGamplayObjects(bool isPause)
@@ -89,9 +102,13 @@ public class LevelController : MonoBehaviour
 
         levelLogic.ResetLevel();
         levelLogic.StartLevel(levelLogic.roundCurrent);
+
         qbert.isFrize = false;
         qbert.isCheckColision = true;
+        qbert.Run();
+
         SetPauseGamplayObjects(false);
+        Time.timeScale = 1.0f;
     }
 
     public void ResetScore()
