@@ -38,7 +38,7 @@ public class ShaderSwitchColorLerp : MonoBehaviour
 
     void Awake()
     {
-        _valueLerp = render.material.GetFloat("_Lerp");
+       _valueLerp = render.material.GetFloat("_Lerp");
         SetColorSrart(start);
         SetColorEnd(end);
     }

@@ -16,7 +16,6 @@ public class GameplayObjects : MonoBehaviour , ITimeScale
     //end ITimeScale
 
     public LevelController levelController;
-   // public GameplayObjectsAsset gameplayObjectPaterns;
     public List<GameplayObject> gameplayObjectsList = new List<GameplayObject>();
     public Transform root;
 
@@ -41,18 +40,14 @@ public class GameplayObjects : MonoBehaviour , ITimeScale
     private GameplayObject CreateGameplayObject(GameplayObject.Type type)
     {
         var obj =  PoolGameplayObjects.GetGameplayObject(type);
-        obj.InitObject(root, levelController);
-        return obj;
-
-        /*
-        foreach (var gameplayObjectPatern in gameplayObjectPaterns.prefabs)
+        var init = obj.TryInitializeObject(root, levelController);
+        if (init)
         {
-            if (gameplayObjectPatern.typeObject == type)
-            {
-                return gameplayObjectPatern.Create(root , levelController);
-            }
+            return init;
         }
-        */
+
+        PoolGameplayObjects.ReturnObject(obj);
+
         return null;
     }
 

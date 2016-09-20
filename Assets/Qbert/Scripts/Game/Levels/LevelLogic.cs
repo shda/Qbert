@@ -24,7 +24,7 @@ public abstract class LevelLogic : MonoBehaviour
     {
         get { return configurationAsset.rounds; }
     }
-    private Round currentRoundConfig
+    public Round currentRoundConfig
     {
         get { return rounds[roundCurrent]; }
     }
@@ -189,14 +189,9 @@ public abstract class LevelLogic : MonoBehaviour
         Time.timeScale = 0.0000001f;
         UnscaleTimer.Create(2.0f, timer =>
         {
-            levelController.controlController.isEnable = true;
-            Time.timeScale = oldScale;
+            levelController.OnQbertDead();
 
-            levelController.gameplayObjects.DestroyAllEnemies();
-            currentRoundConfig.ResetRound();
-            levelController.qbert.SetStartPosition(levelController.qbert.currentPosition);
-            levelController.DestroyAllEnemies();
-            levelController.qbert.Run();
+            
         });
     }
 }

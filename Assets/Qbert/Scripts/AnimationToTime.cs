@@ -23,8 +23,12 @@ public class AnimationToTime : MonoBehaviour , ITimeScale
         set
         {
             value = Mathf.Clamp01(value);
-            animator.Play(heshAnimationName, 0, reverse ? 1.0f - value : value);
-            animator.Update(0);
+            if (animator != null && animator.gameObject.activeSelf)
+            {
+                animator.Play(heshAnimationName, 0, reverse ? 1.0f - value : value);
+                animator.Update(0);
+            }
+            
         }
     }
 

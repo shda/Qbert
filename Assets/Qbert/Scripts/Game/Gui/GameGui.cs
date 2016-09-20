@@ -8,6 +8,26 @@ public class GameGui : MonoBehaviour
     public Text levelLabel;
     public Text coinsLabel;
 
+    public CubeChangeTo cubeChangeTo;
+    public GuiLive lives;
+
+    public Transform gameOver;
+
+    public void ShowGameOver()
+    {
+        gameOver.gameObject.SetActive(true);
+    }
+
+    public void SetColorCube(Color color)
+    {
+        cubeChangeTo.SetColor(color);
+    }
+
+    public void UpdateLiveCount()
+    {
+        lives.SetLiveCount(GlobalSettings.countLive);
+    }
+
     public void UpdateScore()
     {
         scoreText._labelCount = GlobalSettings.score;

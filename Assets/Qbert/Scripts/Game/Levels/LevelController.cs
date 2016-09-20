@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class LevelController : MonoBehaviour
 {
@@ -31,9 +32,31 @@ public class LevelController : MonoBehaviour
         }
     }
 
+    public void OnQbertDead()
+    {
+        GlobalSettings.countLive--;
+        UpdareCountLives();
+
+        if (GlobalSettings.countLive > 0)
+        {
+            controlController.isEnable = true;
+            Time.timeScale = 1.0f;
+
+            gameplayObjects.DestroyAllEnemies();
+            levelLogic.currentRoundConfig.ResetRound();
+            qbert.SetStartPosition(qbert.currentPosition);
+            DestroyAllEnemies();
+            qbert.Run();
+        }
+        else
+        {
+            GameOver();
+        }
+    }
+
     public void OnQbertDropDown()
     {
-        RestartLevel();
+        OnQbertDead();
     }
 
 
@@ -41,7 +64,30 @@ public class LevelController : MonoBehaviour
     {
         gameplayObjects.DestroyAllEnemies();
     }
- 
+
+
+    public void GameOver()
+    {
+        gameGui.ShowGameOver();
+        controlController.isEnable = false;
+
+        gameplayObjects.DestroyAllEnemies();
+        qbert.gameObject.SetActive(false);
+
+        levelLogic.currentRoundConfig.Stop();
+
+        Time.timeScale = 1.0f;
+
+        UnscaleTimer.Create(3.0f, timer =>
+        {
+            game.LoadMainScene();
+        });
+    }
+
+    public void UpdareCountLives()
+    {
+        gameGui.UpdateLiveCount();
+    }
 
     public void SetPauseGamplayObjects(bool isPause)
     {
@@ -111,6 +157,7 @@ public class LevelController : MonoBehaviour
         if (gameGui != null)
         {
             gameGui.SetLevelNumber(levelLogicSwitcher.currentLevel, levelLogic.roundCurrent);
+            gameGui.UpdateLiveCount();
         }
 
         StopAllCoroutines();
@@ -118,6 +165,8 @@ public class LevelController : MonoBehaviour
 
         levelLogic.ResetLevel();
         levelLogic.StartLevel(levelLogic.roundCurrent);
+
+        UpdateColorGuiCubeChangeTo();
 
         qbert.Run();
 
@@ -136,6 +185,16 @@ public class LevelController : MonoBehaviour
         gameField.mapGenerator.mapAsset = GetMapAssetFromLevel();
         gameField.mapGenerator.CreateMap();
         gameField.Init();
+
+    }
+
+    public void UpdateColorGuiCubeChangeTo()
+    {
+        var first = gameField.mapGenerator.map.FirstOrDefault();
+        if (first != null)
+        {
+            gameGui.SetColorCube(first.colors.Last());
+        }
     }
 
     public void ResetScore()
@@ -158,11 +217,7 @@ public class LevelController : MonoBehaviour
         else
         {
             game.LoadMainScene();
-            //End game
         }
-
-        //levelLogicSwitcher.NextLevel();
-       // RestartLevel();
     }
 
     public void NextRound()
@@ -200,6 +255,8 @@ public class LevelController : MonoBehaviour
 
     public void StartLevel()
     {
+        gameGui.UpdateLiveCount();
+
         ConnectEvents();
         RestartLevel();
     }

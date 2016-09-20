@@ -62,6 +62,20 @@ public static class CoroutinesHalpers
         LanchAction(OnEnd, obj.transform);
     }
 
+    public static IEnumerator ChangeColor(this MonoBehaviour mono, Color startColor ,  Action<Color> OnChange , Color colorTo, float duration)
+    {
+        float t = 0;
+        Color fr = startColor;
+        Color to = colorTo;
+        while (t < 1)
+        {
+            t += Time.smoothDeltaTime / duration;
+            startColor = Color.Lerp(fr, to, t);
+            OnChange(startColor);
+            yield return null;
+        }
+    }
+
     public static IEnumerator WaitForSecondITime(this MonoBehaviour mono, float duration, ITimeScale ITimeScale = null)
     {
         float t = 0;

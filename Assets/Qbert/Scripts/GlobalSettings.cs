@@ -8,4 +8,5 @@ public class GlobalSettings
 
     public static float score = 0;
     public static int coins = 0;
+    public static int countLive = 3;
 }

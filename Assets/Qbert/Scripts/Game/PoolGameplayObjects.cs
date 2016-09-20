@@ -54,7 +54,7 @@ public class PoolGameplayObjects : MonoBehaviour
 
         gameplayObject.StopAllCoroutines();
         gameplayObject.transform.SetParent(null);
-        gameplayObject.gameObject.SetActive(true);
+       // gameplayObject.gameObject.SetActive(true);
         return gameplayObject;
     }
 

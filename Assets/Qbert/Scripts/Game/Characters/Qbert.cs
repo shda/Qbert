@@ -13,6 +13,7 @@ public class Qbert : GameplayObject
 
     public void OnEnemyAttack()
     {
+        return;;
         boobleDead.gameObject.SetActive(true);
         boobleDead.rotation = Quaternion.Euler(0, 0, 0);
 

@@ -45,6 +45,11 @@ public class Round : ITimeScale
         Run();
     }
 
+    public void Stop()
+    {
+        isRun = false;
+    }
+
     public void Run()
     {
         timeToStartRound = 0;

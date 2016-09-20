@@ -140,6 +140,8 @@ public class Character : MonoBehaviour
 
         if (cube && moveCoroutine == null)
         {
+            GameSound.PlayJump(this);
+
             moveCoroutine = StartCoroutine(MoveToCubeAnimation(cube));
             return true;
         }
@@ -162,6 +164,7 @@ public class Character : MonoBehaviour
     {
         if (moveCoroutine == null)
         {
+            GameSound.PlayJump(this);
             moveCoroutine = StartCoroutine(DropDownAnimation(point , OnEnd));
             return true;
         }

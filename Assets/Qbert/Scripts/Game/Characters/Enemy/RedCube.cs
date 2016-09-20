@@ -13,7 +13,7 @@ public class RedCube : GameplayObject
         get { return Type.RedCube; }
     }
 
-    public override GameplayObject InitObject(Transform root, LevelController levelController)
+    public override GameplayObject TryInitializeObject(Transform root, LevelController levelController)
     {
         var positions = levelController.gameField.mapGenerator.GetCubesStartByType(typeObject).ToList();
         positions = positions.Mix();
@@ -32,7 +32,7 @@ public class RedCube : GameplayObject
 
     public virtual GameplayObject SetObject(Transform root, LevelController levelController , PositionCube startPosition)
     {
-        var gObject = base.InitObject(root, levelController);
+        var gObject = base.TryInitializeObject(root, levelController);
         gObject.SetStartPosition(startPosition);
         gObject.transform.rotation *= Quaternion.Euler(0, 45, 0);
         return gObject;
@@ -72,7 +72,7 @@ public class RedCube : GameplayObject
                         MoveToCube(cubeTarget);
                         yield return StartCoroutine(this.WaitForSecondITime(1.0f, iTimeScaler));
                     }
-                    else if (IsEndLine())
+                    else if (!IsEndLine())
                     {
                         yield return StartCoroutine(ReachedLowerLevel(direction));
                         yield break;
@@ -88,7 +88,7 @@ public class RedCube : GameplayObject
     private bool IsEndLine()
     {
         var cube = levelController.gameField.GetCube(currentPosition);
-        return cube.nodes.Exists(x => x.currentPosition.line < currentPosition.line);
+        return cube.nodes.Any(x => x.currentPosition.line > currentPosition.line);
     }
 
 

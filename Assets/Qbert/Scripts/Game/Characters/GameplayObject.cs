@@ -28,7 +28,7 @@ public class GameplayObject : Character
         return false;
     }
 
-    public virtual GameplayObject InitObject(Transform root , LevelController levelController)
+    public virtual GameplayObject TryInitializeObject(Transform root , LevelController levelController)
     {
         transform.SetParent(root);
         transform.localPosition = Vector3.zero;

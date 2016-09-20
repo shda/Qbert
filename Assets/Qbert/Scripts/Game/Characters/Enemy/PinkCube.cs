@@ -15,10 +15,10 @@ public class PinkCube : RedCube
     public SideCube sideCube;
     public Transform jumpRoot;
     public Vector3 jumpVector;
+    public Transform rootModel;
 
     public PositionCube stuckPosition;
 
-    
     public float maxStuckTime = 4.0f;
 
     private bool stuck = false;
@@ -29,7 +29,7 @@ public class PinkCube : RedCube
         get { return Type.PinkCube; }
     }
 
-    public override GameplayObject InitObject(Transform root, LevelController levelController)
+    public override GameplayObject TryInitializeObject(Transform root, LevelController levelController)
     {
         var startPos = levelController.gameField.mapGenerator.
             GetPointOutsideFieldStartPointToType(typeObject);
@@ -52,7 +52,19 @@ public class PinkCube : RedCube
                             SideCube.Left : SideCube.Right;
 
                         currentPosition = neighbor.currentPosition;
-                        return SetObject(root, levelController, currentPosition);
+
+                        var obj = SetObject(root, levelController, currentPosition);
+
+                        if (sideCube == SideCube.Right)
+                        {
+                            rootModel.localRotation = Quaternion.Euler(0,0,0);
+                        }
+                        else
+                        {
+                            rootModel.localRotation = Quaternion.Euler(0, 180, 0);
+                        }
+
+                        return obj;
                     }
                 }
             }
@@ -102,6 +114,7 @@ public class PinkCube : RedCube
 
         var cube = levelController.gameField.GetCube(stuckPosition);
 
+
         if (sideCube == SideCube.Left)
         {
             root.position += Vector3.left*heightDrop;
@@ -128,7 +141,7 @@ public class PinkCube : RedCube
 
             if (!isMoving)
             {
-                Cube cubeTarget = null; GetNextCube();
+                Cube cubeTarget = null;// GetNextCube();
 
                 if (GetMoveCube(ref cubeTarget))
                 {
