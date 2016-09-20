@@ -9,6 +9,7 @@ public class GuiSettings : MonoBehaviour
     public float durationMoveCameraToSettings;
     public Transform rootMainGame;
     public Transform rootSetting;
+
     public Transform rootRules;
 
     public CameraController cameraController;
@@ -56,6 +57,8 @@ public class GuiSettings : MonoBehaviour
     public void OnPressRules()
     {
         cameraController.MoveCameraToPoint(rootRules.position, durationMoveCameraToSettings);
+
+        rootRules.gameObject.SetActive(true);
     }
 
     public void OnPressCloseSetting(PressProxy pressProxy)
