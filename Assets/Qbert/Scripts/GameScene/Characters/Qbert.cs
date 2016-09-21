@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Scripts.GameScene.Characters
 {
@@ -49,7 +50,7 @@ namespace Scripts.GameScene.Characters
             return base.OnPressCube(cube);
         }
 
-        public void OnCommandMove(DirectionMove.Direction buttonType)
+        public void OnCommandMove(DirectionMove.Direction buttonType , Action<Character> OnDownEnd)
         {
             if (!isFrize)
             {
@@ -69,11 +70,7 @@ namespace Scripts.GameScene.Characters
                     else
                     {
                         Vector3 newPos = root.position + levelController.mapField.GetOffsetDirection(buttonType);
-                        MoveToPointAndDropDown(newPos, character =>
-                        {
-                            levelController.OnQbertDropDown();
-                            UnityEngine.Debug.Log("OnDead");
-                        });
+                        MoveToPointAndDropDown(newPos, OnDownEnd);
                     }
 
 

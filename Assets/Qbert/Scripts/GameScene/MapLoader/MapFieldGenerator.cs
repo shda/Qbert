@@ -74,7 +74,7 @@ namespace Scripts.GameScene.MapLoader
 
                 for (int y = 0; y < mapCreate.hight; y++)
                 {
-                    GameObject lineRoot = new GameObject("Line" + y);
+                    GameObject lineRoot = new GameObject("Line_" + y);
                     lineRoot.transform.SetParent(root);
                     lineRoot.transform.localRotation = Quaternion.identity;
 
@@ -92,7 +92,7 @@ namespace Scripts.GameScene.MapLoader
                             {
                                 Transform createPattern = CreatePattern(cubeInMap.cubePattern,
                                     point, lineRoot.transform,
-                                    cubeInMap.y, cubeInMap.x);
+                                     cubeInMap.x , cubeInMap.y);
 
                                 Cube cube = createPattern.GetComponent<Cube>();
                                 if (cube)
@@ -108,7 +108,7 @@ namespace Scripts.GameScene.MapLoader
                             {
                                 Transform createPattern = CreateFieldPoint(point, 
                                     lineRoot.transform,
-                                    cubeInMap.y, cubeInMap.x);
+                                    cubeInMap.x , cubeInMap.y);
 
                                 PointOutsideField fieldPoint = createPattern.gameObject.AddComponent<PointOutsideField>();
                                 fieldPoint.currentPoint = new PositionCube(cubeInMap.x , cubeInMap.y);
@@ -182,25 +182,25 @@ namespace Scripts.GameScene.MapLoader
             return map.FirstOrDefault(x => x.currentPosition == point);
         }
 
-        private Transform CreatePattern(Transform cubePatern, Vector3 position, Transform rootLine, int line, int pos)
+        private Transform CreatePattern(Transform cubePatern, Vector3 position, Transform rootLine, int x, int y)
         {
             Transform createPattern = Instantiate(cubePatern) as Transform;
             createPattern.SetParent(rootLine);
             createPattern.transform.localRotation = Quaternion.identity;
             createPattern.localPosition = position;
             createPattern.localScale = new Vector3(offsetX, offsetY, offsetX);
-            createPattern.name = string.Format("Cube_{0}_{1}", line, pos);
+            createPattern.name = string.Format("Cube_{0}_{1}", x, y);
             return createPattern;
         }
 
-        private Transform CreateFieldPoint(Vector3 position, Transform rootLine, int line, int pos)
+        private Transform CreateFieldPoint(Vector3 position, Transform rootLine, int x, int y)
         {
             GameObject fieldPoint = new GameObject();
             fieldPoint.transform.SetParent(rootLine);
             fieldPoint.transform.localRotation = Quaternion.identity;
             fieldPoint.transform.localPosition = position;
             fieldPoint.transform.localScale = new Vector3(offsetX, offsetY, offsetX);
-            fieldPoint.transform.name = string.Format("Field_{0}_{1}", line, pos);
+            fieldPoint.transform.name = string.Format("Field_{0}_{1}", x, y);
             return fieldPoint.transform;
         }
 

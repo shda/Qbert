@@ -129,7 +129,11 @@ namespace Scripts.GameScene.Characters
             if (startCube)
             {
                 root.position = startCube.upSide.position;
-                root.rotation = Quaternion.Euler(0,180,0);
+                root.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+               Debug.LogError("Dont find cube start position.");
             }
             moveCoroutine = null;
         }
@@ -243,7 +247,7 @@ namespace Scripts.GameScene.Characters
             yield return StartCoroutine(this.MovingTransformTo(root, dropDownPoint, timeDropDown , iTimeScaler));
         }
 
-        protected virtual IEnumerator MoveToPointAnimation(Vector3 point, Action<Character> OnEnd = null)
+        public virtual IEnumerator MoveToPointAnimation(Vector3 point, Action<Character> OnEnd = null)
         {
             if (!isMoving)
             {
@@ -259,7 +263,7 @@ namespace Scripts.GameScene.Characters
             }
         }
 
-        protected virtual IEnumerator MoveToCubeAnimation(Cube cube , Action<Character> OnEnd = null)
+        public virtual IEnumerator MoveToCubeAnimation(Cube cube , Action<Character> OnEnd = null)
         {
             if (!isMoving)
             {

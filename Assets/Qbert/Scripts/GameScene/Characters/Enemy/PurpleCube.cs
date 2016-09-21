@@ -31,12 +31,12 @@ namespace Scripts.GameScene.Characters.Enemy
             yield return StartCoroutine(FallowToQbert());
         }
 
-        private IEnumerator RebornToEnemy()
+        public IEnumerator RebornToEnemy()
         {
             yield return StartCoroutine(rebornAnimation.PlayToTime(2.0f , iTimeScaler));
         }
 
-        private IEnumerator FallowToQbert()
+        public IEnumerator FallowToQbert()
         {
             while (true)
             {
@@ -119,7 +119,7 @@ namespace Scripts.GameScene.Characters.Enemy
 
         }
 
-        private void Drop(PositionCube start , PositionCube end)
+        public void Drop(PositionCube start , PositionCube end)
         {
             var jumpTo = levelController.mapField.mapGenerator.GetPointOutsideFieldToPosition(end);
 

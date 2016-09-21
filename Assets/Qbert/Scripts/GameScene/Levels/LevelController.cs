@@ -127,7 +127,11 @@ namespace Scripts.GameScene.Levels
 
         private void OnPressControl(DirectionMove.Direction buttonType)
         {
-            qbert.OnCommandMove(buttonType);
+            qbert.OnCommandMove(buttonType , character =>
+            {
+                OnQbertDropDown();
+                UnityEngine.Debug.Log("OnDead");
+            });
         }
 
         void ConnectEvents()

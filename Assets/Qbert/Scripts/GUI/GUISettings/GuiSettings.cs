@@ -17,7 +17,7 @@ namespace Scripts.GUI.GUISettings
         public CameraController cameraController;
 
         public GuiHandle guiHandle;
-        public LoadScene.SelectSceneLoader SelectSceneLoader;
+        public LoadScene.SelectSceneLoader selectSceneLoader;
         public FadeScreen fadeScreen;
 
         public Image[] hideImages;
@@ -34,7 +34,7 @@ namespace Scripts.GUI.GUISettings
                 GlobalSettings.currentLevel = 0;
                 GlobalSettings.currentRound = 0;
 
-                SelectSceneLoader.OnLoadScene();
+                selectSceneLoader.OnLoadScene();
             };
 
             fadeScreen.StartEnable(0.5f);

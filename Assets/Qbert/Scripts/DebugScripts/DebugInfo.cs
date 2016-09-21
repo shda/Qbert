@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Scripts.Debug
+namespace Scripts.DebugScripts
 {
     public class DebugInfo : MonoBehaviour 
     {

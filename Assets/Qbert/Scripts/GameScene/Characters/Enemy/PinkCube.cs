@@ -218,7 +218,7 @@ namespace Scripts.GameScene.Characters.Enemy
             yield return null;
         }
 
-        protected override IEnumerator MoveToCubeAnimation(Cube cube, Action<Character> OnEnd = null)
+        public override IEnumerator MoveToCubeAnimation(Cube cube, Action<Character> OnEnd = null)
         {
             if (!isMoving)
             {
