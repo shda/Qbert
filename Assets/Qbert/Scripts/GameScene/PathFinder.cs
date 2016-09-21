@@ -145,8 +145,8 @@ namespace Scripts.GameScene
 
         public int CalcDist(Cube start, Cube end)
         {
-            return 10 * Mathf.Abs(start.currentPosition.position - end.currentPosition.position)
-                   + Mathf.Abs(start.currentPosition.line - end.currentPosition.line);
+            return 10 * Mathf.Abs(start.currentPosition.x - end.currentPosition.x)
+                   + Mathf.Abs(start.currentPosition.y - end.currentPosition.y);
         }
     }
 }

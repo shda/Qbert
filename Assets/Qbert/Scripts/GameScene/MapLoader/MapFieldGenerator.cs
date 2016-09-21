@@ -15,8 +15,8 @@ namespace Scripts.GameScene.MapLoader
 
         public bool isDebug = false;
 
-        public int startLine = 0;
-        public int startPos = 0;
+      // public int startLine = 0;
+      //  public int startPos = 0;
 
         public MapAsset mapAsset;
 
@@ -98,7 +98,7 @@ namespace Scripts.GameScene.MapLoader
                                 if (cube)
                                 {
                                     cube.isDebudLabel = isDebug;
-                                    cube.currentPosition = new PositionCube(cubeInMap.y, cubeInMap.x);
+                                    cube.currentPosition = new PositionCube(cubeInMap.x , cubeInMap.y);
                                     cube.cubeInMap = cubeInMap;
                                     map.Add(cube);
                                 }
@@ -111,7 +111,7 @@ namespace Scripts.GameScene.MapLoader
                                     cubeInMap.y, cubeInMap.x);
 
                                 PointOutsideField fieldPoint = createPattern.gameObject.AddComponent<PointOutsideField>();
-                                fieldPoint.currentPoint = new PositionCube(cubeInMap.y, cubeInMap.x);
+                                fieldPoint.currentPoint = new PositionCube(cubeInMap.x , cubeInMap.y);
                                 fieldPoint.cubeInMap = cubeInMap;
 
                                 fieldPoints.Add(fieldPoint);
@@ -159,10 +159,10 @@ namespace Scripts.GameScene.MapLoader
 
             PositionCube[] pos = new[]
             {
-                new PositionCube( point.line - 1 , point.position - 1),
-                new PositionCube( point.line - 1 , point.position),
-                new PositionCube( point.line + 1 , point.position),
-                new PositionCube( point.line + 1 , point.position + 1),
+                new PositionCube(  point.x - 1 , point.y - 1),
+                new PositionCube(  point.x , point.y - 1),
+                new PositionCube(  point.x , point.y + 1),
+                new PositionCube(  point.x + 1 , point.y + 1),
             };
 
             foreach (var positionCube in pos)

@@ -91,26 +91,26 @@ namespace Scripts.GameScene
 
             if (buttonType == DirectionMove.Direction.DownLeft)
             {
-                findLevel = point.line + 1;
-                findNumber = point.position;
+                findLevel = point.y + 1;
+                findNumber = point.x;
             }
             else if (buttonType == DirectionMove.Direction.UpRight)
             {
-                findLevel = point.line - 1;
-                findNumber = point.position;
+                findLevel = point.y - 1;
+                findNumber = point.x;
             }
             else if (buttonType == DirectionMove.Direction.DownRight)
             {
-                findLevel = point.line + 1;
-                findNumber = point.position + 1;
+                findLevel = point.y + 1;
+                findNumber = point.x + 1;
             }
             else if (buttonType == DirectionMove.Direction.UpLeft)
             {
-                findLevel = point.line - 1;
-                findNumber = point.position - 1;
+                findLevel = point.y - 1;
+                findNumber = point.x - 1;
             }
 
-            return new PositionCube(findLevel , findNumber);
+            return new PositionCube(findNumber , findLevel);
         }
 
         public Vector3 GetOffsetDirection(DirectionMove.Direction direction)
@@ -148,8 +148,8 @@ namespace Scripts.GameScene
 
         public Vector3 GetOffset(PositionCube start, PositionCube end)
         {
-            int x = start.line - end.line;
-            int y = start.position - end.position;
+            int x = start.y - end.y;
+            int y = start.x - end.x;
 
             return new Vector3(x * mapGenerator.offsetX, y * mapGenerator.offsetX,
                 0);

@@ -92,7 +92,7 @@ namespace Scripts.GameScene.Characters.Enemy
         private bool IsEndLine()
         {
             var cube = levelController.mapField.GetCube(currentPosition);
-            return cube.nodes.Any(x => x.currentPosition.line > currentPosition.line);
+            return cube.nodes.Any(x => x.currentPosition.y > currentPosition.y);
         }
 
 

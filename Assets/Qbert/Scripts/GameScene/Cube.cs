@@ -147,7 +147,7 @@ namespace Scripts.GameScene
         {
             if (_isDebudLabel)
             {
-                debugText.text = string.Format("{0},{1}", currentPosition.line, currentPosition.position);
+                debugText.text = string.Format("{0},{1}", currentPosition.y, currentPosition.x);
             }
 	   
         }

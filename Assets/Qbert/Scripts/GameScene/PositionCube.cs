@@ -3,18 +3,18 @@
     [System.Serializable]
     public struct PositionCube
     {
-        public int line;
-        public int position;
+        public int y;
+        public int x;
 
-        public PositionCube(int line, int position)
+        public PositionCube(int x  , int y)
         {
-            this.line = line;
-            this.position = position;
+            this.y = y;
+            this.x = x;
         }
 
         public static bool operator ==(PositionCube a, PositionCube b)
         {
-            return a.position == b.position && a.line == b.line;
+            return a.x == b.x && a.y == b.y;
         }
 
         public static bool operator !=(PositionCube a, PositionCube b)
@@ -24,7 +24,7 @@
 
         public new string ToString()
         {
-            return line + " - " + position;
+            return y + " - " + x;
         }
     }
 }

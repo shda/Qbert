@@ -14,7 +14,8 @@ namespace Scripts.GameScene
 
         public void StartAnimateShow()
         {
-            PositionCube centerPoint = new PositionCube(MapFieldGenerator.startLine , MapFieldGenerator.startPos);
+            /*
+            PositionCube centerPoint = new PositionCube( MapFieldGenerator.startPos , MapFieldGenerator.startLine);
 
             var workCubes = MapFieldGenerator.map.Where(x => x.currentPosition != centerPoint).ToArray();
 
@@ -26,6 +27,7 @@ namespace Scripts.GameScene
 
                 StartCoroutine(StartCubeShow(currentCube, offset, duration, c * (duration * 0.5f)));
             }
+            */
         }
 
         IEnumerator StartCubeShow(Cube cube , float offset , float duration , float delayStart)

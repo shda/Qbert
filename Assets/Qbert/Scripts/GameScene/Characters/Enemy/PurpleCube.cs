@@ -134,7 +134,7 @@ namespace Scripts.GameScene.Characters.Enemy
 
         public int GetDistance(PositionCube start, PositionCube end)
         {
-            return Mathf.Abs(start.line - end.line) + Mathf.Abs(start.position - end.position);
+            return Mathf.Abs(start.y - end.y) + Mathf.Abs(start.x - end.x);
         }
 
         public override bool OnColisionToQbert(Qbert qbert)

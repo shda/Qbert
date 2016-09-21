@@ -77,8 +77,8 @@ namespace Scripts.GameScene.Characters.Enemy
 
         public bool IsLeft(PositionCube one , PositionCube two)
         {
-            if (two == new PositionCube(one.line - 1, one.position - 1) ||
-                two == new PositionCube(one.line + 1, one.position))
+            if (two == new PositionCube(one.x - 1 , one.y - 1) ||
+                two == new PositionCube(one.x , one.y + 1))
             {
                 return true;
             }
@@ -245,10 +245,10 @@ namespace Scripts.GameScene.Characters.Enemy
         {
             if (sideCube == SideCube.Left)
             {
-                return new PositionCube(stuckPosition.line + 1, stuckPosition.position);
+                return new PositionCube( stuckPosition.x , stuckPosition.y + 1);
             }
 
-            return new PositionCube(stuckPosition.line + 1, stuckPosition.position + 1);
+            return new PositionCube( stuckPosition.x + 1 , stuckPosition.y + 1);
         }
 
         protected override IEnumerator JumpAndMoveToPoint(Vector3 point)
@@ -334,16 +334,16 @@ namespace Scripts.GameScene.Characters.Enemy
             {
                 position = new[]
                 {
-                    new PositionCube(stuckPosition.line - 1, stuckPosition.position),
-                    new PositionCube(stuckPosition.line, stuckPosition.position + 1),
+                    new PositionCube( stuckPosition.x , stuckPosition.y - 1 ),
+                    new PositionCube( stuckPosition.x + 1 , stuckPosition.y ),
                 };
             }
             else
             {
                 position = new[]
                 {
-                    new PositionCube(stuckPosition.line - 1, stuckPosition.position -1),
-                    new PositionCube(stuckPosition.line, stuckPosition.position - 1),
+                    new PositionCube(stuckPosition.x -1 , stuckPosition.y - 1 ),
+                    new PositionCube(stuckPosition.x - 1 , stuckPosition.y ),
                 };
             }
 

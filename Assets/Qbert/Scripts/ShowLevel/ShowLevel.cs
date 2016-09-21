@@ -81,7 +81,7 @@ namespace Scripts.ShowLevel
             SelectSceneLoaderAfter.OnLoadScene();
         }
 
-        IEnumerator JumpToCube(int lint , int  pos)
+        IEnumerator JumpToCube(int y , int  x)
         {
             bool onPress = false;
 
@@ -91,7 +91,7 @@ namespace Scripts.ShowLevel
             };
 
             onPress = false;
-            qbert.MoveToCube(new PositionCube(lint , pos));
+            qbert.MoveToCube(new PositionCube( x , y ));
 
             while (!onPress)
             {

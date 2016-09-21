@@ -115,7 +115,7 @@ namespace Scripts.GameScene.Characters.Bonuses
 
             //if()
 
-            var offset = Mathf.Abs(qbert.positionMove.line - cubeJumpAfterMove.currentPosition.line);
+            var offset = Mathf.Abs(qbert.positionMove.y - cubeJumpAfterMove.currentPosition.y);
 
             var offsetF = offset*0.5f;
 
