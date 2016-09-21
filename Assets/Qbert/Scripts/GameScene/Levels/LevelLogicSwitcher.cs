@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GameScene.Levels
 {
-    public class LevelSwitcher : MonoBehaviour
+    public class LevelLogicSwitcher : MonoBehaviour
     {
         public GlobalConfigurationAsset globalConfiguraion;
         public LevelLogic[] levelBehaviours;

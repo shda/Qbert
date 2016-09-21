@@ -10,7 +10,7 @@ namespace Assets.Qbert.Scripts.GameScene
     {
         public Camera gameCamera;
         public Transform rootCamera;
-        public GameFieldGenerator fieldGenerator;
+        public MapFieldGenerator fieldGenerator;
 
         public float durationMove;
 

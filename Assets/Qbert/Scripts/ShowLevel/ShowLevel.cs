@@ -12,7 +12,7 @@ namespace Assets.Qbert.Scripts.ShowLevel
         public GameScene.Characters.Qbert qbert;
         public FadeScreen fadeScreen;
         public LevelController levelController;
-        public LoadScene.LoadScene loadSceneAfter;
+        public LoadScene.SelectSceneLoader SelectSceneLoaderAfter;
         public float waitBetweenJump = 0.5f;
 
         public void SetLevel()
@@ -78,7 +78,7 @@ namespace Assets.Qbert.Scripts.ShowLevel
 
         public void LoadLevel()
         {
-            loadSceneAfter.OnLoadScene();
+            SelectSceneLoaderAfter.OnLoadScene();
         }
 
         IEnumerator JumpToCube(int lint , int  pos)

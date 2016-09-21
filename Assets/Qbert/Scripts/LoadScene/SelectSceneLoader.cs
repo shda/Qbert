@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace Assets.Qbert.Scripts.LoadScene
 {
     [ExecuteInEditMode]
-    public class LoadScene : MonoBehaviour
+    public class SelectSceneLoader : MonoBehaviour
     {
         public string sceneName;
         // public bool clearScensSteck = false;
@@ -17,8 +17,6 @@ namespace Assets.Qbert.Scripts.LoadScene
         public void OnLoadScene()
         {
             SceneManager.LoadScene(sceneName);
-            // Sound.PlayClickToButton();
-            // MenuNavigator.LoadScene(sceneName, clearScensSteck);
         }
 
         void Start ()

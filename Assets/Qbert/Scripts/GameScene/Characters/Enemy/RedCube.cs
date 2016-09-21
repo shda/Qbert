@@ -19,7 +19,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
         public override GameplayObject TryInitializeObject(Transform root, LevelController levelController)
         {
-            var positions = levelController.gameField.mapGenerator.GetCubesStartByType(typeObject).ToList();
+            var positions = levelController.mapField.mapGenerator.GetCubesStartByType(typeObject).ToList();
             positions = positions.Mix();
 
             foreach (var positionCube in positions)
@@ -91,14 +91,14 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
         private bool IsEndLine()
         {
-            var cube = levelController.gameField.GetCube(currentPosition);
+            var cube = levelController.mapField.GetCube(currentPosition);
             return cube.nodes.Any(x => x.currentPosition.line > currentPosition.line);
         }
 
 
         protected virtual IEnumerator ReachedLowerLevel(DirectionMove.Direction direction)
         {
-            Vector3 newPos = root.position + levelController.gameField.GetOffsetDirection(direction);
+            Vector3 newPos = root.position + levelController.mapField.GetOffsetDirection(direction);
             MoveToPointAndDropDown(newPos, character =>
             {
                 OnStartDestroy();
@@ -116,7 +116,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
             foreach (var direction in directions)
             {
-                var cubeTarget = levelController.gameField.GetCubeDirection(direction, currentPosition);
+                var cubeTarget = levelController.mapField.GetCubeDirection(direction, currentPosition);
                 if (cubeTarget)
                 {
                     var targetCube = levelController.gameplayObjects.GetGamplayObjectInPoint(cubeTarget.currentPosition);

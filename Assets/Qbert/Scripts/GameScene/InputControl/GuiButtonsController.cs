@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GameScene.InputControl
 {
-    public class ControlController : SingletonT<ControlController>
+    public class GuiButtonsController : SingletonT<GuiButtonsController>
     {
         [Serializable]
         public class ButtonControl
@@ -35,7 +35,7 @@ namespace Assets.Qbert.Scripts.GameScene.InputControl
             }
         }
 
-        public bool GetInDown(DirectionMove.Direction buttonType)
+        public bool GetIsButtonDown(DirectionMove.Direction buttonType)
         {
             return GetButtonByType(buttonType).button.GetInDown();
         }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GameScene.MapLoader
 {
-    public class GameFieldGenerator : MonoBehaviour 
+    public class MapFieldGenerator : MonoBehaviour 
     {
         public float offsetX = 1.0f;
         public float offsetY = 1.0f;

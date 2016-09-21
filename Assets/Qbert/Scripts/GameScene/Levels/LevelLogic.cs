@@ -94,13 +94,13 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         {
             currentRoundConfig.ResetRound();
 
-            Cube cubeQbertStart = levelController.gameField.mapGenerator.GetCubeStartByType(Character.Type.Qbert);
+            Cube cubeQbertStart = levelController.mapField.mapGenerator.GetCubeStartByType(Character.Type.Qbert);
 
             levelController.qbert.StopAllCoroutines();
             levelController.qbert.levelController = levelController;
             levelController.qbert.SetStartPosition(cubeQbertStart.currentPosition);
 
-            foreach (var cube in levelController.gameField.field)
+            foreach (var cube in levelController.mapField.field)
             {
                 if (currentRoundConfig.customColors != null && currentRoundConfig.customColors.Length > 0)
                 {
@@ -123,7 +123,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
         public virtual bool CheckToWin()
         {
-            foreach (var cube in levelController.gameField.field)
+            foreach (var cube in levelController.mapField.field)
             {
                 if (!cube.isSet)
                 {
@@ -187,7 +187,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
         public void OnDeadQbert()
         {
-            levelController.controlController.isEnable = false;
+            levelController.inputController.isEnable = false;
             float oldScale = Time.timeScale;
             Time.timeScale = 0.0000001f;
             UnscaleTimer.Create(2.0f, timer =>

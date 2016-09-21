@@ -17,7 +17,7 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
         public CameraController cameraController;
 
         public GuiHandle guiHandle;
-        public LoadScene.LoadScene loadScene;
+        public LoadScene.SelectSceneLoader SelectSceneLoader;
         public FadeScreen fadeScreen;
 
         public Image[] hideImages;
@@ -34,7 +34,7 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
                 GlobalSettings.currentLevel = 0;
                 GlobalSettings.currentRound = 0;
 
-                loadScene.OnLoadScene();
+                SelectSceneLoader.OnLoadScene();
             };
 
             fadeScreen.StartEnable(0.5f);

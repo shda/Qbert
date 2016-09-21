@@ -17,7 +17,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
         {
             Cube cubeSet = null;
 
-            var points = levelController.gameField.mapGenerator.map.Where(
+            var points = levelController.mapField.mapGenerator.map.Where(
                 x => x.cubeInMap.listTypeObjectsStartPoint != null &&
                      x.cubeInMap.listTypeObjectsStartPoint.Contains(typeObject));
 
@@ -27,7 +27,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             }
             else
             {
-                var map = levelController.gameField.mapGenerator.map.ToArray();
+                var map = levelController.mapField.mapGenerator.map.ToArray();
                 cubeSet = map.Mix().First();
             }
 

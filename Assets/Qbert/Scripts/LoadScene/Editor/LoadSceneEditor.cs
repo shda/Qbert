@@ -4,10 +4,10 @@ using System.Collections;
 using Assets.Qbert.Scripts.LoadScene;
 using UnityEditor;
 
-[CustomEditor(typeof(LoadScene))]
+[CustomEditor(typeof(SelectSceneLoader))]
 public class LoadSceneEditor : Editor
 {
-    private LoadScene script;
+    private SelectSceneLoader script;
     private SerializedProperty sceneSelect;
     private SerializedProperty stringScenes;
 
@@ -17,7 +17,7 @@ public class LoadSceneEditor : Editor
 
     private void OnEnable()
     {
-        script = target as LoadScene;
+        script = target as SelectSceneLoader;
 
         stringScenes        = serializedObject.FindProperty("scenes");
         sceneSelect         = serializedObject.FindProperty("sceneName");

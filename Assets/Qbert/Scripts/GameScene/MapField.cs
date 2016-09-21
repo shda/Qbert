@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GameScene
 {
-    public class GameField : MonoBehaviour
+    public class MapField : MonoBehaviour
     {
-        public GameFieldGenerator mapGenerator;
+        public MapFieldGenerator mapGenerator;
         public Action<Cube, Character> OnPressCubeEvents; 
         public Cube[] field;
 

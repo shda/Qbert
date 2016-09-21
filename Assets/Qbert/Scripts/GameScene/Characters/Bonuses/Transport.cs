@@ -29,7 +29,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
 
         public override void Init()
         {
-            var startPos =  levelController.gameField.mapGenerator.
+            var startPos =  levelController.mapField.mapGenerator.
                 GetPointOutsideFieldStartPointToType(Type.Transport);
 
             if(startPos != null)
@@ -52,7 +52,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
         {
             currentPosition = setPosition.currentPoint;
 
-            cubeJumpAfterMove = levelController.gameField.mapGenerator.
+            cubeJumpAfterMove = levelController.mapField.mapGenerator.
                 GetCubeEndByType(Type.Transport);
 
             if (cubeJumpAfterMove != null)
@@ -62,12 +62,12 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
             }
             else
             {
-                var movePosOut = levelController.gameField.mapGenerator.
+                var movePosOut = levelController.mapField.mapGenerator.
                     GetPointsOutsideFieldEndPointToType(Type.Transport);
 
                 if (movePosOut != null && movePosOut.Count > 0)
                 {
-                    var neighbors = levelController.gameField.mapGenerator.
+                    var neighbors = levelController.mapField.mapGenerator.
                         GetNeighborsCubes(movePosOut[0].currentPoint);
 
                     transportMoveToPoint = movePosOut[0].transform.position + new Vector3(0, offsetDrop, 0);

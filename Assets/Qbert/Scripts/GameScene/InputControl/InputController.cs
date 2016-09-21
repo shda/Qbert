@@ -6,7 +6,7 @@ namespace Assets.Qbert.Scripts.GameScene.InputControl
     public class InputController : MonoBehaviour
     {
         public Action<DirectionMove.Direction> OnPress; 
-        public ControlController controlController;
+        public GuiButtonsController guiButtonsController;
 
         public bool isEnable;
 
@@ -21,7 +21,7 @@ namespace Assets.Qbert.Scripts.GameScene.InputControl
                 foreach (var value in Enum.GetValues(typeof(DirectionMove.Direction)))
                 {
                     var eValue = (DirectionMove.Direction)value;
-                    if (controlController.GetInDown(eValue))
+                    if (guiButtonsController.GetIsButtonDown(eValue))
                     {
                         if (OnPress != null)
                         {

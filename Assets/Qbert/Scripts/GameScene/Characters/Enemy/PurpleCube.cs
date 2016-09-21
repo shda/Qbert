@@ -26,7 +26,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
         protected override IEnumerator ReachedLowerLevel(DirectionMove.Direction direction)
         {
-            qbertCube = levelController.gameField.GetCube(levelController.qbert.currentPosition);
+            qbertCube = levelController.mapField.GetCube(levelController.qbert.currentPosition);
             yield return StartCoroutine(RebornToEnemy());
             yield return StartCoroutine(FallowToQbert());
         }
@@ -69,7 +69,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
                 return null;
             }
 
-            var qbertCubePath = levelController.gameField.GetCube(qbertPoint);
+            var qbertCubePath = levelController.mapField.GetCube(qbertPoint);
             if (qbertCubePath == null && qbertCube == null)
             {
                 return null;
@@ -82,15 +82,15 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
                 return null;
             }
 
-            return levelController.gameField.GetCube(step);
+            return levelController.mapField.GetCube(step);
         }
 
         public List<Cube> findPath; 
 
         public PositionCube GetNeighborPoint(PositionCube myPoint, PositionCube qbertPoint)
         {
-            var myCubePath      = levelController.gameField.GetCube(myPoint);
-            var qbertCubePath   = levelController.gameField.GetCube(qbertPoint);
+            var myCubePath      = levelController.mapField.GetCube(myPoint);
+            var qbertCubePath   = levelController.mapField.GetCube(qbertPoint);
 
             if (qbertCubePath == null)
             {
@@ -121,7 +121,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
         private void Drop(PositionCube start , PositionCube end)
         {
-            var jumpTo = levelController.gameField.mapGenerator.GetPointOutsideFieldToPosition(end);
+            var jumpTo = levelController.mapField.mapGenerator.GetPointOutsideFieldToPosition(end);
 
             AddScore(ScorePrice.dropPurpeCube);
 

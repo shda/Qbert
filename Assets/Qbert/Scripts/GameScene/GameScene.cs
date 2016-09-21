@@ -5,15 +5,15 @@ using UnityEngine.SceneManagement;
 
 namespace Assets.Qbert.Scripts.GameScene
 {
-    public class Game : MonoBehaviour
+    public class GameScene : MonoBehaviour
     {
         public LevelController      levelController;
         public FadeScreen           fadeScreen;
 
         public InputController  inputController;
 
-        public LoadScene.LoadScene sceneShowLevel;
-        public LoadScene.LoadScene sceneMainMenu;
+        public LoadScene.SelectSceneLoader SceneLoaderShowLevel;
+        public LoadScene.SelectSceneLoader SceneLoaderMainMenu;
 
 
         public void RestartLevel()
@@ -28,13 +28,12 @@ namespace Assets.Qbert.Scripts.GameScene
             levelController.StartLevel();
         }
 
-
         public void LoadSceneShowLevel()
         {
             inputController.isEnable = false;
             fadeScreen.OnEnd = transform1 =>
             {
-                sceneShowLevel.OnLoadScene();
+                SceneLoaderShowLevel.OnLoadScene();
             };
 
             fadeScreen.StartEnable(0.5f);
@@ -46,33 +45,11 @@ namespace Assets.Qbert.Scripts.GameScene
             inputController.isEnable = false;
             fadeScreen.OnEnd = transform1 =>
             {
-                sceneMainMenu.OnLoadScene();
+                SceneLoaderMainMenu.OnLoadScene();
             };
 
             fadeScreen.StartEnable(0.5f);
         }
-
-        /*
-    public void OnTapScreenStartGame()
-    {
-        guiDispatcher.inputScreenControls.SetActive(false);
-        guiDispatcher.mainMenuGui.SetActive(false);
-
-        cubeCreateAnimator.StartAnimateShow();
-        cameraController.MoveCameraToCube(new PositionCube(4, 2), 4.5f, 1.0f , transform1 =>
-        {
-            guiDispatcher.inputScreenControls.SetActive(true);
-            guiDispatcher.scoreAndCoins.SetActive(true);
-        });
-    }
-
-    public void OnPressSettings()
-    {
-        guiDispatcher.inputScreenControls.SetActive(false);
-        guiDispatcher.mainMenuGui.SetActive(false);
-       // guiSettings.OnMoveCameraToSettings();
-    }
-    */
 
         public void OnPressSelectCharacter()
         { }

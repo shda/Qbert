@@ -33,14 +33,14 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
         public override GameplayObject TryInitializeObject(Transform root, LevelController levelController)
         {
-            var startPos = levelController.gameField.mapGenerator.
+            var startPos = levelController.mapField.mapGenerator.
                 GetPointOutsideFieldStartPointToType(typeObject);
 
             var positions = startPos.Mix();
 
             foreach (var positionCube in positions)
             {
-                var neighbors = levelController.gameField.mapGenerator.
+                var neighbors = levelController.mapField.mapGenerator.
                     GetNeighborsCubes(positionCube.currentPoint);
 
                 if (neighbors.Count > 0)
@@ -93,7 +93,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             stuckPosition = point;
             positionMove = point;
 
-            var startCube = levelController.gameField.GetCube(point);
+            var startCube = levelController.mapField.GetCube(point);
             if (startCube)
             {
                 if (sideCube == SideCube.Left)
@@ -114,7 +114,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
         {
             var targetPosition = root.position;
 
-            var cube = levelController.gameField.GetCube(stuckPosition);
+            var cube = levelController.mapField.GetCube(stuckPosition);
 
 
             if (sideCube == SideCube.Left)
@@ -351,7 +351,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
             foreach (var positionCube in position)
             {
-                Cube ret = levelController.gameField.GetCube(positionCube);
+                Cube ret = levelController.mapField.GetCube(positionCube);
 
                 if (ret != null)
                 {

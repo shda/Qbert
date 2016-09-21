@@ -79,7 +79,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 
         public Cube GetCubeCurrentPosition()
         {
-            return levelController.gameField.GetCube(currentPosition);
+            return levelController.mapField.GetCube(currentPosition);
         }
 
         public void SetTimeScaler(ITimeScale timeScaler)
@@ -125,7 +125,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             currentPosition = point;
             positionMove = point;
 
-            var startCube = levelController.gameField.GetCube(point);
+            var startCube = levelController.mapField.GetCube(point);
             if (startCube)
             {
                 root.position = startCube.upSide.position;
@@ -141,7 +141,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 
         public bool MoveToCube( PositionCube point )
         {
-            var cube = levelController.gameField.GetCube(point);
+            var cube = levelController.mapField.GetCube(point);
 
             if (cube && moveCoroutine == null)
             {

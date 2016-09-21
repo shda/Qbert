@@ -53,14 +53,14 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
         {
             if (!isFrize)
             {
-                Cube findCube = levelController.gameField.GetCubeDirection(buttonType, currentPosition);
+                Cube findCube = levelController.mapField.GetCubeDirection(buttonType, currentPosition);
                 if (findCube)
                 {
                     MoveToCube(findCube);
                 }
                 else
                 {
-                    var pointToJump = levelController.gameField.GetPointCubeDirection(buttonType, currentPosition);
+                    var pointToJump = levelController.mapField.GetPointCubeDirection(buttonType, currentPosition);
                     var findObject = levelController.gameplayObjects.GetGamplayObjectInPoint(pointToJump);
                     if (findObject && findObject.typeObject == Type.Transport)
                     {
@@ -68,7 +68,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
                     }
                     else
                     {
-                        Vector3 newPos = root.position + levelController.gameField.GetOffsetDirection(buttonType);
+                        Vector3 newPos = root.position + levelController.mapField.GetOffsetDirection(buttonType);
                         MoveToPointAndDropDown(newPos, character =>
                         {
                             levelController.OnQbertDropDown();

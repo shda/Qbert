@@ -8,15 +8,15 @@ namespace Assets.Qbert.Scripts.GameScene
 {
     public class CubeCreateAnimator : MonoBehaviour
     {
-        public GameFieldGenerator gameFieldGenerator;
+        public MapFieldGenerator MapFieldGenerator;
         public float offset;
         public float duration;
 
         public void StartAnimateShow()
         {
-            PositionCube centerPoint = new PositionCube(gameFieldGenerator.startLine , gameFieldGenerator.startPos);
+            PositionCube centerPoint = new PositionCube(MapFieldGenerator.startLine , MapFieldGenerator.startPos);
 
-            var workCubes = gameFieldGenerator.map.Where(x => x.currentPosition != centerPoint).ToArray();
+            var workCubes = MapFieldGenerator.map.Where(x => x.currentPosition != centerPoint).ToArray();
 
             for (int c = 0; c < workCubes.Count(); c++)
             {

@@ -11,13 +11,13 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 {
     public class LevelController : MonoBehaviour
     {
-        public InputController controlController;
+        public InputController inputController;
         public GameplayObjects gameplayObjects;
-        public GameField gameField;
+        public MapField mapField;
         public Characters.Qbert qbert;
         public GameGui gameGui;
-        public LevelSwitcher levelLogicSwitcher;
-        public Game game;
+        public LevelLogicSwitcher levelLogicSwitcher;
+        public GameScene gameScene;
 
         [HideInInspector]
         public LevelLogic levelLogic;
@@ -45,7 +45,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
             if (GlobalSettings.countLive > 0)
             {
-                controlController.isEnable = true;
+                inputController.isEnable = true;
                 Time.timeScale = 1.0f;
 
                 gameplayObjects.DestroyAllEnemies();
@@ -75,7 +75,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         public void GameOver()
         {
             gameGui.ShowGameOver();
-            controlController.isEnable = false;
+            inputController.isEnable = false;
 
             gameplayObjects.DestroyAllEnemies();
             qbert.gameObject.SetActive(false);
@@ -86,7 +86,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
             UnscaleTimer.Create(3.0f, timer =>
             {
-                game.LoadMainScene();
+                gameScene.LoadMainScene();
             });
         }
 
@@ -132,12 +132,12 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
         void ConnectEvents()
         {
-            if (controlController != null)
+            if (inputController != null)
             {
-                controlController.OnPress = OnPressControl;
+                inputController.OnPress = OnPressControl;
             }
            
-            gameField.OnPressCubeEvents = OnPressCubeEvents;
+            mapField.OnPressCubeEvents = OnPressCubeEvents;
             qbert.collisionProxy.triggerEnterEvent = OnCollisionCharacters;
         }
 
@@ -145,11 +145,11 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         {
             levelLogic.StopLevel();
             DestroyAllEnemies();
-            controlController.isEnable = false;
+            inputController.isEnable = false;
 
-            gameField.FlashGameFiels(() =>
+            mapField.FlashGameFiels(() =>
             {
-                controlController.isEnable = true;
+                inputController.isEnable = true;
                 NextRound();
             });
 
@@ -188,15 +188,15 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             levelLogic = levelLogicSwitcher.GetLevelLogic(level, round);
             levelLogic.InitLevel();
 
-            gameField.mapGenerator.mapAsset = GetMapAssetFromLevel();
-            gameField.mapGenerator.CreateMap();
-            gameField.Init();
+            mapField.mapGenerator.mapAsset = GetMapAssetFromLevel();
+            mapField.mapGenerator.CreateMap();
+            mapField.Init();
 
         }
 
         public void UpdateColorGuiCubeChangeTo()
         {
-            var first = gameField.mapGenerator.map.FirstOrDefault();
+            var first = mapField.mapGenerator.map.FirstOrDefault();
             if (first != null)
             {
                 gameGui.SetColorCube(first.colors.Last());
@@ -218,11 +218,11 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
                 GlobalSettings.currentLevel++;
                 GlobalSettings.currentRound = 0;
 
-                game.LoadSceneShowLevel();
+                gameScene.LoadSceneShowLevel();
             }
             else
             {
-                game.LoadMainScene();
+                gameScene.LoadMainScene();
             }
         }
 
@@ -242,10 +242,10 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
             levelLogic.InitLevel();
 
-            gameField.mapGenerator.mapAsset = GetMapAssetFromLevel();
-            gameField.mapGenerator.CreateMap();
+            mapField.mapGenerator.mapAsset = GetMapAssetFromLevel();
+            mapField.mapGenerator.CreateMap();
 
-            gameField.Init();
+            mapField.Init();
         }
 
         public void InitNextLevel()
