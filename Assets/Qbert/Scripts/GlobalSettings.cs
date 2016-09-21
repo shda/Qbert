@@ -1,4 +1,4 @@
-﻿namespace Assets.Qbert.Scripts
+﻿namespace Scripts
 {
     public class GlobalSettings
     {

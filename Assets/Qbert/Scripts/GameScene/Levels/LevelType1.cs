@@ -1,6 +1,6 @@
 ﻿//Уровень 1.Необходимо прыгнуть на кубик один раз, чтобы изменить цвет
 //на нужный.Последующие прыжки не изменяют цвет.
-namespace Assets.Qbert.Scripts.GameScene.Levels
+namespace Scripts.GameScene.Levels
 {
     public class LevelType1 : LevelLogic
     {

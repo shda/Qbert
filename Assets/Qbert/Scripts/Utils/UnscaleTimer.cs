@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.Utils
+namespace Scripts.Utils
 {
     public class UnscaleTimer : MonoBehaviour
     {

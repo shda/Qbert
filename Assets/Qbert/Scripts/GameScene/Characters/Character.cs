@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
-using Assets.Qbert.Scripts.GameScene.Levels;
-using Assets.Qbert.Scripts.GameScene.Sound;
-using Assets.Qbert.Scripts.Utils;
+using Scripts.GameScene.Levels;
+using Scripts.GameScene.Sound;
+using Scripts.Utils;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene.Characters
+namespace Scripts.GameScene.Characters
 {
     public class Character : MonoBehaviour
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.Utils {
+namespace Scripts.Utils {
 	[ExecuteInEditMode]
 	public class GuiHandle : MonoBehaviour {
 		public const string ON_PRESS = "OnPress";

@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Qbert.Scripts.GameScene.Levels;
-using Assets.Qbert.Scripts.Utils;
+using Scripts.GameScene.Levels;
+using Scripts.Utils;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
+namespace Scripts.GameScene.Characters.Enemy
 {
     public class RedCube : GameplayObject
     {

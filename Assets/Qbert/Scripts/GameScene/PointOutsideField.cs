@@ -1,7 +1,7 @@
-﻿using Assets.Qbert.Scripts.GameScene.Map;
+﻿using Scripts.GameScene.Map;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene
+namespace Scripts.GameScene
 {
     public class PointOutsideField : MonoBehaviour
     {

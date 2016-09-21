@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene
+namespace Scripts.GameScene
 {
     public abstract class SingletonT<T> : MonoBehaviour where T : SingletonT<T>
     {

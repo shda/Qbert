@@ -1,7 +1,7 @@
-﻿using Assets.Qbert.Scripts.Utils;
+﻿using Scripts.Utils;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GUI.Button
+namespace Scripts.GUI.Button
 {
     public class PressScale : MonoBehaviour  , ITouch
     {

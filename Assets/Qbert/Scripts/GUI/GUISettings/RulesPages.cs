@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GUI.GUISettings
+namespace Scripts.GUI.GUISettings
 {
     public class RulesPages : MonoBehaviour
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
-using Assets.Qbert.Scripts.GameScene.MapLoader;
-using Assets.Qbert.Scripts.Utils;
+using Scripts.GameScene.MapLoader;
+using Scripts.Utils;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene
+namespace Scripts.GameScene
 {
     public class CameraController : MonoBehaviour
     {

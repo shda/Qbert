@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Assets.Qbert.Scripts.Utils
+namespace Scripts.Utils
 {
     public class MultiValueDictionary<Key, Value> : Dictionary<Key, List<Value>>
     {

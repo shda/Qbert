@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Assets.Qbert.Scripts.GameScene.InputControl
+namespace Scripts.GameScene.InputControl
 {
     public class ButtonTouchPanel : MonoBehaviour , IPointerClickHandler ,IPointerDownHandler , IPointerUpHandler
     {

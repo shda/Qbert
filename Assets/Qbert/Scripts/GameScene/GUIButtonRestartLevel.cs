@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene
+namespace Scripts.GameScene
 {
     public class GUIButtonRestartLevel : MonoBehaviour
     {

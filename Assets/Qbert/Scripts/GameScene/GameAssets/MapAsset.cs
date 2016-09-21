@@ -1,7 +1,7 @@
-﻿using Assets.Qbert.Scripts.GameScene.Map;
+﻿using Scripts.GameScene.Map;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene.GameAssets
+namespace Scripts.GameScene.GameAssets
 {
     public class MapAsset : ScriptableObject
     {

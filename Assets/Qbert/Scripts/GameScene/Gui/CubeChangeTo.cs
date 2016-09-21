@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene.Gui
+namespace Scripts.GameScene.Gui
 {
     public class CubeChangeTo : MonoBehaviour
     {

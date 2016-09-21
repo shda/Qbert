@@ -1,15 +1,21 @@
-﻿using Assets.Qbert.Scripts.GameScene.MapLoader;
+﻿using Scripts.GameScene.GameAssets;
+using Scripts.GameScene.Characters;
+using Scripts.GameScene.MapLoader;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.InstructionScene
+namespace Scripts.InstructionScene
 {
-    public class Instruction : MonoBehaviour 
+    public class Instruction : MonoBehaviour
     {
+        public GlobalConfigurationAsset globalSettingAsset;
         public FadeScreen fadeScreen;
-        public MapFieldGenerator map;
+        public MapFieldGenerator mapGenerator;
+        public Qbert qbert;
 
-        void Start () 
+        void Start ()
         {
+            CreateMap();
+
             fadeScreen.OnEnd = transform1 =>
             {
                 StartInstruction();
@@ -20,7 +26,12 @@ namespace Assets.Qbert.Scripts.InstructionScene
 
         public void CreateMap()
         {
-            
+            mapGenerator.mapAsset = globalSettingAsset.assetInstruction.globalMap;
+            mapGenerator.CreateMap();
+
+
+            //qbert.SetStartPosition();
+
         }
 
 

@@ -1,8 +1,8 @@
-﻿using Assets.Qbert.Scripts.Utils;
+﻿using Scripts.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Qbert.Scripts.GameScene
+namespace Scripts.GameScene
 {
     public class GameOverText : MonoBehaviour
     {

@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Assets.Qbert.Scripts.Utils;
+using Scripts.Utils;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
+namespace Scripts.GameScene.Characters.Enemy
 {
     public class PurpleCube : RedCube
     {

@@ -1,7 +1,7 @@
-﻿using Assets.Qbert.Scripts.GameScene.Characters;
+﻿using Scripts.GameScene.Characters;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene.Sound
+namespace Scripts.GameScene.Sound
 {
     public class GameSound : MonoBehaviour
     {

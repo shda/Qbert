@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Qbert.Scripts.Utils
+namespace Scripts.Utils
 {
     public interface ITouch  
     {

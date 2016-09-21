@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using Assets.Qbert.Scripts.GameScene.GameAssets;
+using Scripts.GameScene.GameAssets;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene.Levels
+namespace Scripts.GameScene.Levels
 {
     public class LevelLogicSwitcher : MonoBehaviour
     {
@@ -61,23 +61,6 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
             return levelBehaviour;
         }
-
-        /*
-    public void NextLevel()
-    {
-        if (currentLevel < countLevels - 1)
-        {
-            currentLevel++;
-        }
-        else
-        {
-            levelController.EndLevels();
-            return;
-        }
-
-        levelController.InitLevel(currentLevel , 0);
-    }
-    */
 
         public bool IsCanNextLevels()
         {

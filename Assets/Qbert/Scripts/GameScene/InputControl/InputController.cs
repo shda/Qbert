@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene.InputControl
+namespace Scripts.GameScene.InputControl
 {
     public class InputController : MonoBehaviour
     {

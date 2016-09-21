@@ -1,8 +1,8 @@
 ﻿using System;
-using Assets.Qbert.Scripts.GameScene.Levels;
+using Scripts.GameScene.Levels;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene.Characters
+namespace Scripts.GameScene.Characters
 {
     public class GameplayObject : Character 
     {

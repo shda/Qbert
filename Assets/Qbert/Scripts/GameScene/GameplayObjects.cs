@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Qbert.Scripts.GameScene.Characters;
-using Assets.Qbert.Scripts.GameScene.Levels;
+using Scripts.GameScene.Characters;
+using Scripts.GameScene.Levels;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene
+namespace Scripts.GameScene
 {
     public class GameplayObjects : MonoBehaviour , ITimeScale
     {

@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Linq;
-using Assets.Qbert.Scripts.GameScene.GameAssets;
+using Scripts.GameScene.GameAssets;
 using UnityEditor;
 using UnityEditor.VersionControl;
 

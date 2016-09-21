@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
-using Assets.Qbert.Scripts.GameScene;
+using Scripts.GameScene;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Qbert.Scripts.Utils
+namespace Scripts.Utils
 {
     public static class CoroutinesHalpers 
     {

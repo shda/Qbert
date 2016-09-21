@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Qbert.Scripts.Debug
+namespace Scripts.Debug
 {
     public class DebugInfo : MonoBehaviour 
     {

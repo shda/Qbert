@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
+namespace Scripts.GameScene.Characters.Enemy
 {
     public class ColoredCube : RedCube 
     {

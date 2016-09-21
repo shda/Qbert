@@ -1,9 +1,9 @@
-﻿using Assets.Qbert.Scripts.GameScene.InputControl;
-using Assets.Qbert.Scripts.GameScene.Levels;
+﻿using Scripts.GameScene.InputControl;
+using Scripts.GameScene.Levels;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Assets.Qbert.Scripts.GameScene
+namespace Scripts.GameScene
 {
     public class GameScene : MonoBehaviour
     {
@@ -12,9 +12,8 @@ namespace Assets.Qbert.Scripts.GameScene
 
         public InputController  inputController;
 
-        public LoadScene.SelectSceneLoader SceneLoaderShowLevel;
-        public LoadScene.SelectSceneLoader SceneLoaderMainMenu;
-
+        public LoadScene.SelectSceneLoader sceneLoaderShowLevel;
+        public LoadScene.SelectSceneLoader sceneLoaderMainMenu;
 
         public void RestartLevel()
         {
@@ -23,7 +22,6 @@ namespace Assets.Qbert.Scripts.GameScene
 
         public void StartGame()
         {
-            levelController.ResetScore();
             levelController.InitLevel(GlobalSettings.currentLevel, GlobalSettings.currentRound);
             levelController.StartLevel();
         }
@@ -33,7 +31,7 @@ namespace Assets.Qbert.Scripts.GameScene
             inputController.isEnable = false;
             fadeScreen.OnEnd = transform1 =>
             {
-                SceneLoaderShowLevel.OnLoadScene();
+                sceneLoaderShowLevel.OnLoadScene();
             };
 
             fadeScreen.StartEnable(0.5f);
@@ -45,26 +43,15 @@ namespace Assets.Qbert.Scripts.GameScene
             inputController.isEnable = false;
             fadeScreen.OnEnd = transform1 =>
             {
-                SceneLoaderMainMenu.OnLoadScene();
+                sceneLoaderMainMenu.OnLoadScene();
             };
 
             fadeScreen.StartEnable(0.5f);
         }
 
-        public void OnPressSelectCharacter()
-        { }
-
-
-        public string sceneName;
-        public void LoadSelectLevelScene()
-        {
-            SceneManager.LoadScene(sceneName);
-        }
-
         void Awake()
         {
-            // QualitySettings.vSyncCount = 0;
-            // Application.targetFrameRate = 10;
+
         }
 
         void Start()

@@ -1,7 +1,7 @@
-﻿using Assets.Qbert.Scripts.GameScene.Levels;
+﻿using Scripts.GameScene.Levels;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene.GameAssets
+namespace Scripts.GameScene.GameAssets
 {
     public class LevelConfigAsset : ScriptableObject
     {

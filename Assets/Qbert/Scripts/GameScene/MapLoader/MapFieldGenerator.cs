@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Qbert.Scripts.GameScene.Characters;
-using Assets.Qbert.Scripts.GameScene.GameAssets;
+using Scripts.GameScene.Characters;
+using Scripts.GameScene.GameAssets;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene.MapLoader
+namespace Scripts.GameScene.MapLoader
 {
     public class MapFieldGenerator : MonoBehaviour 
     {
@@ -122,12 +122,12 @@ namespace Assets.Qbert.Scripts.GameScene.MapLoader
                     float offsetLocalX = y*offsetX*0.5f;
                     lineRoot.transform.localPosition = new Vector3(offsetLocalX, 0 , -offsetLocalX);
                 }
-                MoveToCenter();
-                CreateTree();
+                MoveToCenterMap();
+                ConnectNodesInCubes();
             }
         }
 
-        public void MoveToCenter()
+        public void MoveToCenterMap()
         {
             root.localPosition = Vector3.zero;
 
@@ -144,7 +144,7 @@ namespace Assets.Qbert.Scripts.GameScene.MapLoader
         }
 
 
-        public void CreateTree()
+        public void ConnectNodesInCubes()
         {
             foreach (var cube in map)
             {

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Qbert.Scripts.GameScene.Characters;
+using Scripts.GameScene.Characters;
 using UnityEngine;
 
-namespace Assets.Qbert.Scripts.GameScene.Map
+namespace Scripts.GameScene.Map
 {
     [System.Serializable]
     public class CubeMap

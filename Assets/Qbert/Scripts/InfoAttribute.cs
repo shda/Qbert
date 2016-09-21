@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets.Qbert.Scripts
+namespace Scripts
 {
     [System.AttributeUsage(System.AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
     public class InfoAttribute : Attribute
