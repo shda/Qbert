@@ -1,245 +1,249 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Qbert.Scripts.GameScene.Characters;
+using Assets.Qbert.Scripts.GameScene.GameAssets;
+using UnityEngine;
 
-public class GameFieldGenerator : MonoBehaviour 
+namespace Assets.Qbert.Scripts.GameScene.MapLoader
 {
-    public float offsetX = 1.0f;
-    public float offsetY = 1.0f;
-
-    public Transform root;
-
-    public bool isDebug = false;
-
-    public int startLine = 0;
-    public int startPos = 0;
-
-    public MapAsset mapAsset;
-
-    [HideInInspector]
-    public List<Cube> map;
-    public List<PointOutsideField> fieldPoints;
-
-    public PointOutsideField GetPointOutsideFieldToPosition(PositionCube position)
+    public class GameFieldGenerator : MonoBehaviour 
     {
-        foreach (var fieldPoint in fieldPoints)
+        public float offsetX = 1.0f;
+        public float offsetY = 1.0f;
+
+        public Transform root;
+
+        public bool isDebug = false;
+
+        public int startLine = 0;
+        public int startPos = 0;
+
+        public MapAsset mapAsset;
+
+        [HideInInspector]
+        public List<Cube> map;
+        public List<PointOutsideField> fieldPoints;
+
+        public PointOutsideField GetPointOutsideFieldToPosition(PositionCube position)
         {
-            if (fieldPoint.currentPoint == position)
-                return fieldPoint;
-        }
-
-        return null;
-    }
-
-    public List<PointOutsideField> GetPointOutsideFieldStartPointToType(GameplayObject.Type type)
-    {
-        List<PointOutsideField> ll = new List<PointOutsideField>();
-
-        foreach (var fieldPoint in fieldPoints)
-        {
-            if(fieldPoint.cubeInMap.listTypeObjectsStartPoint.Contains(type))
-                ll.Add(fieldPoint);
-        }
-
-        return ll;
-    }
-
-    public List<PointOutsideField> GetPointsOutsideFieldEndPointToType(GameplayObject.Type type)
-    {
-        List<PointOutsideField> ll = new List<PointOutsideField>();
-
-        foreach (var fieldPoint in fieldPoints)
-        {
-            if (fieldPoint.cubeInMap.listTypeObjectsEndPoint.Contains(type))
-                ll.Add(fieldPoint);
-        }
-
-        return ll;
-    }
-
-    public void CreateMap()
-    {
-        if (root)
-        {
-            DestroyOldMap();
-
-            var mapCreate = mapAsset.map;
-
-            map = new List<Cube>();
-            fieldPoints = new List<PointOutsideField>();
-
-            for (int y = 0; y < mapCreate.hight; y++)
+            foreach (var fieldPoint in fieldPoints)
             {
-                GameObject lineRoot = new GameObject("Line" + y);
-                lineRoot.transform.SetParent(root);
-                lineRoot.transform.localRotation = Quaternion.identity;
+                if (fieldPoint.currentPoint == position)
+                    return fieldPoint;
+            }
 
-                for (int x = 0; x < mapCreate.width; x++)
+            return null;
+        }
+
+        public List<PointOutsideField> GetPointOutsideFieldStartPointToType(GameplayObject.Type type)
+        {
+            List<PointOutsideField> ll = new List<PointOutsideField>();
+
+            foreach (var fieldPoint in fieldPoints)
+            {
+                if(fieldPoint.cubeInMap.listTypeObjectsStartPoint.Contains(type))
+                    ll.Add(fieldPoint);
+            }
+
+            return ll;
+        }
+
+        public List<PointOutsideField> GetPointsOutsideFieldEndPointToType(GameplayObject.Type type)
+        {
+            List<PointOutsideField> ll = new List<PointOutsideField>();
+
+            foreach (var fieldPoint in fieldPoints)
+            {
+                if (fieldPoint.cubeInMap.listTypeObjectsEndPoint.Contains(type))
+                    ll.Add(fieldPoint);
+            }
+
+            return ll;
+        }
+
+        public void CreateMap()
+        {
+            if (root)
+            {
+                DestroyOldMap();
+
+                var mapCreate = mapAsset.map;
+
+                map = new List<Cube>();
+                fieldPoints = new List<PointOutsideField>();
+
+                for (int y = 0; y < mapCreate.hight; y++)
                 {
-                    var cubeInMap = mapCreate.GetCubeInMap(x, y);
+                    GameObject lineRoot = new GameObject("Line" + y);
+                    lineRoot.transform.SetParent(root);
+                    lineRoot.transform.localRotation = Quaternion.identity;
 
-                    if (cubeInMap != null)
+                    for (int x = 0; x < mapCreate.width; x++)
                     {
-                        float offsetSet = offsetX*x - (offsetX * (y%2) * 0.5f);
+                        var cubeInMap = mapCreate.GetCubeInMap(x, y);
 
-                        var point = new Vector3(offsetSet, -offsetY*y, offsetSet);
-
-                        if (cubeInMap.isEnable)
+                        if (cubeInMap != null)
                         {
-                            Transform createPattern = CreatePattern(cubeInMap.cubePattern,
-                             point, lineRoot.transform,
-                                cubeInMap.y, cubeInMap.x);
+                            float offsetSet = offsetX*x - (offsetX * (y%2) * 0.5f);
 
-                            Cube cube = createPattern.GetComponent<Cube>();
-                            if (cube)
+                            var point = new Vector3(offsetSet, -offsetY*y, offsetSet);
+
+                            if (cubeInMap.isEnable)
                             {
-                                cube.isDebudLabel = isDebug;
-                                cube.currentPosition = new PositionCube(cubeInMap.y, cubeInMap.x);
-                                cube.cubeInMap = cubeInMap;
-                                map.Add(cube);
+                                Transform createPattern = CreatePattern(cubeInMap.cubePattern,
+                                    point, lineRoot.transform,
+                                    cubeInMap.y, cubeInMap.x);
+
+                                Cube cube = createPattern.GetComponent<Cube>();
+                                if (cube)
+                                {
+                                    cube.isDebudLabel = isDebug;
+                                    cube.currentPosition = new PositionCube(cubeInMap.y, cubeInMap.x);
+                                    cube.cubeInMap = cubeInMap;
+                                    map.Add(cube);
+                                }
+                            }
+                            else if ( (cubeInMap.listTypeObjectsStartPoint != null && cubeInMap.listTypeObjectsStartPoint.Count > 0) ||
+                                      (cubeInMap.listTypeObjectsEndPoint != null && cubeInMap.listTypeObjectsEndPoint.Count > 0) )
+                            {
+                                Transform createPattern = CreateFieldPoint(point, 
+                                    lineRoot.transform,
+                                    cubeInMap.y, cubeInMap.x);
+
+                                PointOutsideField fieldPoint = createPattern.gameObject.AddComponent<PointOutsideField>();
+                                fieldPoint.currentPoint = new PositionCube(cubeInMap.y, cubeInMap.x);
+                                fieldPoint.cubeInMap = cubeInMap;
+
+                                fieldPoints.Add(fieldPoint);
                             }
                         }
-                        else if ( (cubeInMap.listTypeObjectsStartPoint != null && cubeInMap.listTypeObjectsStartPoint.Count > 0) ||
-                            (cubeInMap.listTypeObjectsEndPoint != null && cubeInMap.listTypeObjectsEndPoint.Count > 0) )
-                        {
-                            Transform createPattern = CreateFieldPoint(point, 
-                                lineRoot.transform,
-                                cubeInMap.y, cubeInMap.x);
-
-                            PointOutsideField fieldPoint = createPattern.gameObject.AddComponent<PointOutsideField>();
-                            fieldPoint.currentPoint = new PositionCube(cubeInMap.y, cubeInMap.x);
-                            fieldPoint.cubeInMap = cubeInMap;
-
-                            fieldPoints.Add(fieldPoint);
-                        }
                     }
+
+                    float offsetLocalX = y*offsetX*0.5f;
+                    lineRoot.transform.localPosition = new Vector3(offsetLocalX, 0 , -offsetLocalX);
                 }
-
-                float offsetLocalX = y*offsetX*0.5f;
-                lineRoot.transform.localPosition = new Vector3(offsetLocalX, 0 , -offsetLocalX);
+                MoveToCenter();
+                CreateTree();
             }
-            MoveToCenter();
-            CreateTree();
-        }
-    }
-
-    public void MoveToCenter()
-    {
-        root.localPosition = Vector3.zero;
-
-        Vector3 center = Vector3.zero;
-        foreach (var cube in map)
-        {
-            center += cube.transform.position;
         }
 
-        center = center/(map.Count);
-
-        var localCenter = root.InverseTransformPoint(center);
-        root.localPosition = root.localPosition - localCenter;
-    }
-
-
-    public void CreateTree()
-    {
-        foreach (var cube in map)
+        public void MoveToCenter()
         {
-            var currentPos = cube.currentPosition;
-            cube.nodes.AddRange(GetNeighborsCubes(currentPos));
-        }
-    }
+            root.localPosition = Vector3.zero;
 
-    public List<Cube> GetNeighborsCubes(PositionCube point)
-    {
-        List<Cube> list = new List<Cube>();
-
-        PositionCube[] pos = new[]
-        {
-            new PositionCube( point.line - 1 , point.position - 1),
-            new PositionCube( point.line - 1 , point.position),
-            new PositionCube( point.line + 1 , point.position),
-            new PositionCube( point.line + 1 , point.position + 1),
-        };
-
-        foreach (var positionCube in pos)
-        {
-            var findCube = map.FirstOrDefault(x => x.currentPosition == positionCube);
-            if (findCube != null)
+            Vector3 center = Vector3.zero;
+            foreach (var cube in map)
             {
-                list.Add(findCube);
+                center += cube.transform.position;
+            }
+
+            center = center/(map.Count);
+
+            var localCenter = root.InverseTransformPoint(center);
+            root.localPosition = root.localPosition - localCenter;
+        }
+
+
+        public void CreateTree()
+        {
+            foreach (var cube in map)
+            {
+                var currentPos = cube.currentPosition;
+                cube.nodes.AddRange(GetNeighborsCubes(currentPos));
             }
         }
 
-        return list;
-    } 
-
-    public Cube FindCubeToPoint(PositionCube point)
-    {
-        return map.FirstOrDefault(x => x.currentPosition == point);
-    }
-
-    private Transform CreatePattern(Transform cubePatern, Vector3 position, Transform rootLine, int line, int pos)
-    {
-        Transform createPattern = Instantiate(cubePatern) as Transform;
-        createPattern.SetParent(rootLine);
-        createPattern.transform.localRotation = Quaternion.identity;
-        createPattern.localPosition = position;
-        createPattern.localScale = new Vector3(offsetX, offsetY, offsetX);
-        createPattern.name = string.Format("Cube_{0}_{1}", line, pos);
-        return createPattern;
-    }
-
-    private Transform CreateFieldPoint(Vector3 position, Transform rootLine, int line, int pos)
-    {
-        GameObject fieldPoint = new GameObject();
-        fieldPoint.transform.SetParent(rootLine);
-        fieldPoint.transform.localRotation = Quaternion.identity;
-        fieldPoint.transform.localPosition = position;
-        fieldPoint.transform.localScale = new Vector3(offsetX, offsetY, offsetX);
-        fieldPoint.transform.name = string.Format("Field_{0}_{1}", line, pos);
-        return fieldPoint.transform;
-    }
-
-    private void DestroyOldMap()
-    {
-        var list = root.Cast<Transform>().ToArray();
-
-        foreach (var child in list)
+        public List<Cube> GetNeighborsCubes(PositionCube point)
         {
-            child.gameObject.SetActive(false);
-            DestroyImmediate(child.gameObject, true);
+            List<Cube> list = new List<Cube>();
+
+            PositionCube[] pos = new[]
+            {
+                new PositionCube( point.line - 1 , point.position - 1),
+                new PositionCube( point.line - 1 , point.position),
+                new PositionCube( point.line + 1 , point.position),
+                new PositionCube( point.line + 1 , point.position + 1),
+            };
+
+            foreach (var positionCube in pos)
+            {
+                var findCube = map.FirstOrDefault(x => x.currentPosition == positionCube);
+                if (findCube != null)
+                {
+                    list.Add(findCube);
+                }
+            }
+
+            return list;
+        } 
+
+        public Cube FindCubeToPoint(PositionCube point)
+        {
+            return map.FirstOrDefault(x => x.currentPosition == point);
         }
-    }
 
-    void Awake()
-    {
-        DestroyOldMap();
-        //CreateMap();
-    }
+        private Transform CreatePattern(Transform cubePatern, Vector3 position, Transform rootLine, int line, int pos)
+        {
+            Transform createPattern = Instantiate(cubePatern) as Transform;
+            createPattern.SetParent(rootLine);
+            createPattern.transform.localRotation = Quaternion.identity;
+            createPattern.localPosition = position;
+            createPattern.localScale = new Vector3(offsetX, offsetY, offsetX);
+            createPattern.name = string.Format("Cube_{0}_{1}", line, pos);
+            return createPattern;
+        }
 
-    void Start()
-    {
+        private Transform CreateFieldPoint(Vector3 position, Transform rootLine, int line, int pos)
+        {
+            GameObject fieldPoint = new GameObject();
+            fieldPoint.transform.SetParent(rootLine);
+            fieldPoint.transform.localRotation = Quaternion.identity;
+            fieldPoint.transform.localPosition = position;
+            fieldPoint.transform.localScale = new Vector3(offsetX, offsetY, offsetX);
+            fieldPoint.transform.name = string.Format("Field_{0}_{1}", line, pos);
+            return fieldPoint.transform;
+        }
 
-    }
+        private void DestroyOldMap()
+        {
+            var list = root.Cast<Transform>().ToArray();
 
-    public Cube GetCubeStartByType(GameplayObject.Type type)
-    {
-        return map.FirstOrDefault(x => x.cubeInMap.listTypeObjectsStartPoint.Contains(type));
-    }
+            foreach (var child in list)
+            {
+                child.gameObject.SetActive(false);
+                DestroyImmediate(child.gameObject, true);
+            }
+        }
 
-    public Cube[] GetCubesStartByType(GameplayObject.Type type)
-    {
-        return map.Where(x => x.cubeInMap.listTypeObjectsStartPoint.Contains(type)).ToArray();
-    }
+        void Awake()
+        {
+            DestroyOldMap();
+            //CreateMap();
+        }
 
-    public Cube GetCubeEndByType(GameplayObject.Type type)
-    {
-        return map.FirstOrDefault(x => x.cubeInMap.listTypeObjectsEndPoint.Contains(type));
-    }
+        void Start()
+        {
 
-    public Cube[] GetCubesEndByType(GameplayObject.Type type)
-    {
-        return map.Where(x => x.cubeInMap.listTypeObjectsEndPoint.Contains(type)).ToArray();
+        }
+
+        public Cube GetCubeStartByType(GameplayObject.Type type)
+        {
+            return map.FirstOrDefault(x => x.cubeInMap.listTypeObjectsStartPoint.Contains(type));
+        }
+
+        public Cube[] GetCubesStartByType(GameplayObject.Type type)
+        {
+            return map.Where(x => x.cubeInMap.listTypeObjectsStartPoint.Contains(type)).ToArray();
+        }
+
+        public Cube GetCubeEndByType(GameplayObject.Type type)
+        {
+            return map.FirstOrDefault(x => x.cubeInMap.listTypeObjectsEndPoint.Contains(type));
+        }
+
+        public Cube[] GetCubesEndByType(GameplayObject.Type type)
+        {
+            return map.Where(x => x.cubeInMap.listTypeObjectsEndPoint.Contains(type)).ToArray();
+        }
     }
 }

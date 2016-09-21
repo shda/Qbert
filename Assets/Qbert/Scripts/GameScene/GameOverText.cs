@@ -1,27 +1,30 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Assets.Qbert.Scripts.Utils;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class GameOverText : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene
 {
-    public Text text;
-
-    void OnEnable()
+    public class GameOverText : MonoBehaviour
     {
-        text.color =  new Color(1,1,1,0);
-        StartCoroutine(this.ChangeColor(text.color, color =>
-        {
-            text.color = color;
-        }, new Color(1, 1, 1, 1), 0.5f));
-    }
+        public Text text;
 
-	void Start () 
-	{
+        void OnEnable()
+        {
+            text.color =  new Color(1,1,1,0);
+            StartCoroutine(this.ChangeColor(text.color, color =>
+            {
+                text.color = color;
+            }, new Color(1, 1, 1, 1), 0.5f));
+        }
+
+        void Start () 
+        {
 	
-	}
+        }
 	
-	void Update () 
-	{
+        void Update () 
+        {
 	
-	}
+        }
+    }
 }

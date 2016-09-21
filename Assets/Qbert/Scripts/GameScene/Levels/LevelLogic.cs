@@ -1,197 +1,201 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Assets.Qbert.Scripts.GameScene.Characters;
+using Assets.Qbert.Scripts.GameScene.GameAssets;
+using Assets.Qbert.Scripts.Utils;
+using UnityEngine;
 
-public abstract class LevelLogic : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene.Levels
 {
-    public enum Type
+    public abstract class LevelLogic : MonoBehaviour
     {
-        LevelType1,
-        LevelType2,
-        LevelType3,
-        LevelType4,
-        LevelType5,
-    }
-
-    public virtual Type type
-    {
-        get { return Type.LevelType1; ; }
-    }
-
-    public LevelConfigAsset configurationAsset;
-    public int roundCurrent;
-    public Round[] rounds
-    {
-        get { return configurationAsset.rounds; }
-    }
-    public Round currentRoundConfig
-    {
-        get { return rounds[roundCurrent]; }
-    }
-
-    [Header("Цвета по умолчанию")]
-    public Color[] globalLevelColors;
-
-    private float currentTime;
-    private bool isLevelRun = false;
-
-    protected LevelController levelController;
-
-    public MapAsset GetMapAssetFromCurrentRound()
-    {
-        if (currentRoundConfig.customMap != null)
+        public enum Type
         {
-            return currentRoundConfig.customMap;
+            LevelType1,
+            LevelType2,
+            LevelType3,
+            LevelType4,
+            LevelType5,
         }
 
-        return configurationAsset.globalMap;
-    }
+        public virtual Type type
+        {
+            get { return Type.LevelType1; ; }
+        }
 
-    public virtual void InitLevel()
-    {
+        public LevelConfigAsset configurationAsset;
+        public int roundCurrent;
+        public Round[] rounds
+        {
+            get { return configurationAsset.rounds; }
+        }
+        public Round currentRoundConfig
+        {
+            get { return rounds[roundCurrent]; }
+        }
+
+        [Header("Цвета по умолчанию")]
+        public Color[] globalLevelColors;
+
+        private float currentTime;
+        private bool isLevelRun = false;
+
+        protected LevelController levelController;
+
+        public MapAsset GetMapAssetFromCurrentRound()
+        {
+            if (currentRoundConfig.customMap != null)
+            {
+                return currentRoundConfig.customMap;
+            }
+
+            return configurationAsset.globalMap;
+        }
+
+        public virtual void InitLevel()
+        {
        
-    }
-    public virtual void NextRound()
-    {
-        if (roundCurrent < rounds.Length - 1)
-        {
-            roundCurrent++;
-            levelController.RestartLevel();
         }
-        else
+        public virtual void NextRound()
         {
-            levelController.NextLevel();
-        }
-    }
-
-    public virtual void OnCharacterPressToCube(Cube cube, Character character)
-    {
-        if (character is Qbert)
-        {
-            if ( OnQbertPressToCube( cube , (Qbert) character) )
+            if (roundCurrent < rounds.Length - 1)
             {
-                return;
-            }
-        }
-
-        if (!character.OnPressCube(cube))
-        {
-            if (CheckToWin())
-            {
-                levelController.OnRoundCubesInWin();
-            }
-        }
-    }
-    public virtual bool OnQbertPressToCube(Cube cube , Qbert qbert)
-    {
-        return false;
-    }
-
-    public virtual void ResetLevel()
-    {
-        currentRoundConfig.ResetRound();
-
-        Cube cubeQbertStart = levelController.gameField.mapGenerator.GetCubeStartByType(Character.Type.Qbert);
-
-        levelController.qbert.StopAllCoroutines();
-        levelController.qbert.levelController = levelController;
-        levelController.qbert.SetStartPosition(cubeQbertStart.currentPosition);
-
-        foreach (var cube in levelController.gameField.field)
-        {
-            if (currentRoundConfig.customColors != null && currentRoundConfig.customColors.Length > 0)
-            {
-                cube.SetColors(currentRoundConfig.customColors );
-            }
-            else if (configurationAsset.globalLevelColors != null)
-            {
-                cube.SetColors(configurationAsset.globalLevelColors);
+                roundCurrent++;
+                levelController.RestartLevel();
             }
             else
             {
-                cube.SetColors(globalLevelColors);
+                levelController.NextLevel();
             }
-
-            cube.Reset();
         }
 
-        levelController.DestroyAllEnemies();
-    }
-
-    public virtual bool CheckToWin()
-    {
-        foreach (var cube in levelController.gameField.field)
+        public virtual void OnCharacterPressToCube(Cube cube, Character character)
         {
-            if (!cube.isSet)
+            if (character is Characters.Qbert)
             {
-                return false;
+                if ( OnQbertPressToCube( cube , (Characters.Qbert) character) )
+                {
+                    return;
+                }
+            }
+
+            if (!character.OnPressCube(cube))
+            {
+                if (CheckToWin())
+                {
+                    levelController.OnRoundCubesInWin();
+                }
             }
         }
-
-        return true;
-    }
-    public virtual void OnCollisionCharacters(Character character1, Character character2)
-    {
-        if (character1 is GameplayObject && character2 is Qbert)
+        public virtual bool OnQbertPressToCube(Cube cube , Characters.Qbert qbert)
         {
-            OnCollisionQbertToGameplayObject((GameplayObject) character1 , (Qbert) character2);
+            return false;
         }
-    }
-    public virtual void SetTimeScaleGameplayObjects(float scale)
-    {
-        currentRoundConfig.timeScale = scale;
-    }
-    public void StartRound(int round)
-    {
-        roundCurrent = round;
-        currentRoundConfig.Init(levelController);
-        currentRoundConfig.Run();
-    }
-    public virtual void OnCollisionQbertToGameplayObject(GameplayObject gameplayObject , Qbert qbert)
-    {
-        if (!gameplayObject.OnColisionToQbert(qbert))
+
+        public virtual void ResetLevel()
         {
-            qbert.OnEnemyAttack();
+            currentRoundConfig.ResetRound();
+
+            Cube cubeQbertStart = levelController.gameField.mapGenerator.GetCubeStartByType(Character.Type.Qbert);
+
+            levelController.qbert.StopAllCoroutines();
+            levelController.qbert.levelController = levelController;
+            levelController.qbert.SetStartPosition(cubeQbertStart.currentPosition);
+
+            foreach (var cube in levelController.gameField.field)
+            {
+                if (currentRoundConfig.customColors != null && currentRoundConfig.customColors.Length > 0)
+                {
+                    cube.SetColors(currentRoundConfig.customColors );
+                }
+                else if (configurationAsset.globalLevelColors != null)
+                {
+                    cube.SetColors(configurationAsset.globalLevelColors);
+                }
+                else
+                {
+                    cube.SetColors(globalLevelColors);
+                }
+
+                cube.Reset();
+            }
+
+            levelController.DestroyAllEnemies();
         }
-    }
-    public virtual void StartLevel(int round)
-    {
-        levelController.gameplayObjects.DestroyAllEnemies();
-        isLevelRun = true;
-        StartRound(round);
-    }
 
-    public void StopLevel()
-    {
-        isLevelRun = false;
-    }
-
-    void Update()
-    {
-        if (isLevelRun)
+        public virtual bool CheckToWin()
         {
-            currentRoundConfig.Update();
+            foreach (var cube in levelController.gameField.field)
+            {
+                if (!cube.isSet)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
-    }
-    public void SetController(LevelController controller)
-    {
-        levelController = controller;
-    }
-    public void SetRound(int round)
-    {
-        roundCurrent = round;
-    }
-
-    public void OnDeadQbert()
-    {
-        levelController.controlController.isEnable = false;
-        float oldScale = Time.timeScale;
-        Time.timeScale = 0.0000001f;
-        UnscaleTimer.Create(2.0f, timer =>
+        public virtual void OnCollisionCharacters(Character character1, Character character2)
         {
-            levelController.OnQbertDead();
+            if (character1 is GameplayObject && character2 is Characters.Qbert)
+            {
+                OnCollisionQbertToGameplayObject((GameplayObject) character1 , (Characters.Qbert) character2);
+            }
+        }
+        public virtual void SetTimeScaleGameplayObjects(float scale)
+        {
+            currentRoundConfig.timeScale = scale;
+        }
+        public void StartRound(int round)
+        {
+            roundCurrent = round;
+            currentRoundConfig.Init(levelController);
+            currentRoundConfig.Run();
+        }
+        public virtual void OnCollisionQbertToGameplayObject(GameplayObject gameplayObject , Characters.Qbert qbert)
+        {
+            if (!gameplayObject.OnColisionToQbert(qbert))
+            {
+                qbert.OnEnemyAttack();
+            }
+        }
+        public virtual void StartLevel(int round)
+        {
+            levelController.gameplayObjects.DestroyAllEnemies();
+            isLevelRun = true;
+            StartRound(round);
+        }
+
+        public void StopLevel()
+        {
+            isLevelRun = false;
+        }
+
+        void Update()
+        {
+            if (isLevelRun)
+            {
+                currentRoundConfig.Update();
+            }
+        }
+        public void SetController(LevelController controller)
+        {
+            levelController = controller;
+        }
+        public void SetRound(int round)
+        {
+            roundCurrent = round;
+        }
+
+        public void OnDeadQbert()
+        {
+            levelController.controlController.isEnable = false;
+            float oldScale = Time.timeScale;
+            Time.timeScale = 0.0000001f;
+            UnscaleTimer.Create(2.0f, timer =>
+            {
+                levelController.OnQbertDead();
 
             
-        });
+            });
+        }
     }
 }

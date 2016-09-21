@@ -1,22 +1,24 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class CubeChangeTo : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene.Gui
 {
-    public Renderer render;
-
-    public void SetColor(Color color)
+    public class CubeChangeTo : MonoBehaviour
     {
-        render.material.color = color;
-    }
+        public Renderer render;
 
-	void Start () 
-	{
+        public void SetColor(Color color)
+        {
+            render.material.color = color;
+        }
+
+        void Start () 
+        {
 	
-	}
+        }
 	
-	void Update () 
-	{
+        void Update () 
+        {
 	
-	}
+        }
+    }
 }

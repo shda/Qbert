@@ -1,66 +1,68 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Linq;
+﻿using System.Linq;
+using Assets.Qbert.Scripts.GameScene.GameAssets;
+using UnityEngine;
 
-public class LevelSwitcher : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene.Levels
 {
-    public GlobalConfigurationAsset globalConfiguraion;
-    public LevelLogic[] levelBehaviours;
+    public class LevelSwitcher : MonoBehaviour
+    {
+        public GlobalConfigurationAsset globalConfiguraion;
+        public LevelLogic[] levelBehaviours;
    
-    public LevelController levelController;
-    public int currentLevel = 0;
-    public int countLevels
-    {
-        get { return globalConfiguraion.levelsAssets.Length; }
-    }
-
-    public LevelLogic InitLevelLoad(int level)
-    {
-        var configLevel = globalConfiguraion.assetLoadLevel;
-        var configCurrentLevel = globalConfiguraion.levelsAssets[level];
-        configLevel.typeLevel = configCurrentLevel.typeLevel;
-
-        Color[] colorsLevel = GetInitColors(level);
-
-        if (colorsLevel != null)
+        public LevelController levelController;
+        public int currentLevel = 0;
+        public int countLevels
         {
-            configLevel.globalLevelColors = colorsLevel;
+            get { return globalConfiguraion.levelsAssets.Length; }
         }
 
-        var levelBehaviour = levelBehaviours.First(x => x.type == configLevel.typeLevel);
-        levelBehaviour.SetController(levelController);
-        levelBehaviour.configurationAsset = configLevel;
+        public LevelLogic InitLevelLoad(int level)
+        {
+            var configLevel = globalConfiguraion.assetLoadLevel;
+            var configCurrentLevel = globalConfiguraion.levelsAssets[level];
+            configLevel.typeLevel = configCurrentLevel.typeLevel;
 
-        return levelBehaviour;
-    }
+            Color[] colorsLevel = GetInitColors(level);
 
-    public Color[] GetInitColors(int level)
-    {
-        var configLevel = globalConfiguraion.levelsAssets[level];
-        if (configLevel.globalLevelColors != null)
-            return configLevel.globalLevelColors;
+            if (colorsLevel != null)
+            {
+                configLevel.globalLevelColors = colorsLevel;
+            }
 
-        if(configLevel.rounds != null && configLevel.rounds.Length > 0)
-            return configLevel.rounds[0].customColors;
+            var levelBehaviour = levelBehaviours.First(x => x.type == configLevel.typeLevel);
+            levelBehaviour.SetController(levelController);
+            levelBehaviour.configurationAsset = configLevel;
 
-        return null;
-    }
+            return levelBehaviour;
+        }
 
-    public LevelLogic GetLevelLogic(int level, int round)
-    {
-        currentLevel = level;
+        public Color[] GetInitColors(int level)
+        {
+            var configLevel = globalConfiguraion.levelsAssets[level];
+            if (configLevel.globalLevelColors != null)
+                return configLevel.globalLevelColors;
 
-        var configLevel = globalConfiguraion.levelsAssets[level];
+            if(configLevel.rounds != null && configLevel.rounds.Length > 0)
+                return configLevel.rounds[0].customColors;
 
-        var levelBehaviour = levelBehaviours.First(x => x.type == configLevel.typeLevel);
-        levelBehaviour.SetController(levelController);
-        levelBehaviour.configurationAsset = configLevel;
-        levelBehaviour.SetRound(round);
+            return null;
+        }
 
-        return levelBehaviour;
-    }
+        public LevelLogic GetLevelLogic(int level, int round)
+        {
+            currentLevel = level;
 
-    /*
+            var configLevel = globalConfiguraion.levelsAssets[level];
+
+            var levelBehaviour = levelBehaviours.First(x => x.type == configLevel.typeLevel);
+            levelBehaviour.SetController(levelController);
+            levelBehaviour.configurationAsset = configLevel;
+            levelBehaviour.SetRound(round);
+
+            return levelBehaviour;
+        }
+
+        /*
     public void NextLevel()
     {
         if (currentLevel < countLevels - 1)
@@ -77,18 +79,19 @@ public class LevelSwitcher : MonoBehaviour
     }
     */
 
-    public bool IsCanNextLevels()
-    {
-        return currentLevel < countLevels - 1;
-    }
+        public bool IsCanNextLevels()
+        {
+            return currentLevel < countLevels - 1;
+        }
 
-	void Start ()
-	{
+        void Start ()
+        {
 	  
-	}
+        }
 	
-	void Update () 
-	{
+        void Update () 
+        {
 	
-	}
+        }
+    }
 }

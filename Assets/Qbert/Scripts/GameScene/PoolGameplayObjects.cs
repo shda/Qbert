@@ -1,100 +1,104 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Qbert.Scripts.GameScene.Characters;
+using Assets.Qbert.Scripts.GameScene.GameAssets;
+using UnityEngine;
 
-public class PoolGameplayObjects : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene
 {
-    public GameplayObjectsAsset gameplayObjectsAsset;
-    public Transform rootPool;
+    public class PoolGameplayObjects : MonoBehaviour
+    {
+        public GameplayObjectsAsset gameplayObjectsAsset;
+        public Transform rootPool;
 
-    public int initPoolSize = 10;
+        public int initPoolSize = 10;
 
-    public Dictionary<GameplayObject.Type , Stack<GameplayObject>> poolDictionary 
-        = new Dictionary<Character.Type, Stack<GameplayObject>>();
+        public Dictionary<Character.Type , Stack<GameplayObject>> poolDictionary 
+            = new Dictionary<Character.Type, Stack<GameplayObject>>();
 
     
-    private void InitPool()
-    {
-        foreach (var gameplayObject in gameplayObjectsAsset.prefabs)
+        private void InitPool()
         {
-            for (int i = 0; i < initPoolSize; i++)
+            foreach (var gameplayObject in gameplayObjectsAsset.prefabs)
             {
-                AddObjectToDict(gameplayObject);
+                for (int i = 0; i < initPoolSize; i++)
+                {
+                    AddObjectToDict(gameplayObject);
+                }
             }
         }
-    }
 
-    private GameplayObject AddObjectToDict(GameplayObject gameplayObjectPrefab)
-    {
-        var createObject = Instantiate(gameplayObjectPrefab);
-        GameplayObject gameplayObject = createObject.GetComponent<GameplayObject>();
+        private GameplayObject AddObjectToDict(GameplayObject gameplayObjectPrefab)
+        {
+            var createObject = Instantiate(gameplayObjectPrefab);
+            GameplayObject gameplayObject = createObject.GetComponent<GameplayObject>();
   
-        gameplayObject.transform.SetParent(rootPool);
-        GetStack(gameplayObjectPrefab.typeObject).Push(gameplayObject);
+            gameplayObject.transform.SetParent(rootPool);
+            GetStack(gameplayObjectPrefab.typeObject).Push(gameplayObject);
 
-        return gameplayObject;
-    }
+            return gameplayObject;
+        }
     
-    public static GameplayObject GetGameplayObject(GameplayObject.Type type)
-    {
-        var hash = GetStack(type);
-
-        GameplayObject gameplayObject = null;
-
-        if (hash.Count > 0)
+        public static GameplayObject GetGameplayObject(GameplayObject.Type type)
         {
-            gameplayObject = hash.Pop();
-        }
-        else
-        {
-            _instance.AddObjectToDict(_instance.gameplayObjectsAsset.prefabs.First(x => x.typeObject == type));
-            gameplayObject = GetGameplayObject(type);
-        }
+            var hash = GetStack(type);
 
-        gameplayObject.StopAllCoroutines();
-        gameplayObject.transform.SetParent(null);
-       // gameplayObject.gameObject.SetActive(true);
-        return gameplayObject;
-    }
+            GameplayObject gameplayObject = null;
 
-    private static Stack<GameplayObject> GetStack(GameplayObject.Type type)
-    {
-        if (!_instance.poolDictionary.ContainsKey(type))
-        {
-            _instance.poolDictionary.Add(type, new Stack<GameplayObject>());
+            if (hash.Count > 0)
+            {
+                gameplayObject = hash.Pop();
+            }
+            else
+            {
+                _instance.AddObjectToDict(_instance.gameplayObjectsAsset.prefabs.First(x => x.typeObject == type));
+                gameplayObject = GetGameplayObject(type);
+            }
+
+            gameplayObject.StopAllCoroutines();
+            gameplayObject.transform.SetParent(null);
+            // gameplayObject.gameObject.SetActive(true);
+            return gameplayObject;
         }
 
-        return _instance.poolDictionary[type];
-    }
+        private static Stack<GameplayObject> GetStack(GameplayObject.Type type)
+        {
+            if (!_instance.poolDictionary.ContainsKey(type))
+            {
+                _instance.poolDictionary.Add(type, new Stack<GameplayObject>());
+            }
 
-    public static void ReturnObject(GameplayObject gameplayObject)
-    {
-        GetStack(gameplayObject.typeObject).Push(gameplayObject);
-        gameplayObject.transform.SetParent(_instance.rootPool);
-    }
+            return _instance.poolDictionary[type];
+        }
+
+        public static void ReturnObject(GameplayObject gameplayObject)
+        {
+            GetStack(gameplayObject.typeObject).Push(gameplayObject);
+            gameplayObject.transform.SetParent(_instance.rootPool);
+        }
 
 
-    private static PoolGameplayObjects _instance;
-    public static PoolGameplayObjects instance
-    {
-        get { return _instance; }
-    }
+        private static PoolGameplayObjects _instance;
+        public static PoolGameplayObjects instance
+        {
+            get { return _instance; }
+        }
 
-    void Awake()
-    {
-        _instance = this;
-        rootPool.gameObject.SetActive(false);
-        InitPool();
-    }
+        void Awake()
+        {
+            _instance = this;
+            rootPool.gameObject.SetActive(false);
+            InitPool();
+        }
 
-    void Start () 
-	{
+        void Start () 
+        {
 	
-	}
+        }
 	
-	void Update () 
-	{
+        void Update () 
+        {
 	
-	}
+        }
+    }
 }

@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class DebugInfo : MonoBehaviour 
+namespace Assets.Qbert.Scripts.Debug
 {
-	void Start () 
-	{
+    public class DebugInfo : MonoBehaviour 
+    {
+        void Start () 
+        {
 	
-	}
+        }
 	
-	void Update () 
-	{
+        void Update () 
+        {
 	
-	}
+        }
+    }
 }

@@ -1,49 +1,54 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Linq;
+using Assets.Qbert.Scripts.GameScene.MapLoader;
+using Assets.Qbert.Scripts.Utils;
+using UnityEngine;
 
-public class CubeCreateAnimator : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene
 {
-    public GameFieldGenerator gameFieldGenerator;
-    public float offset;
-    public float duration;
-
-    public void StartAnimateShow()
+    public class CubeCreateAnimator : MonoBehaviour
     {
-        PositionCube centerPoint = new PositionCube(gameFieldGenerator.startLine , gameFieldGenerator.startPos);
+        public GameFieldGenerator gameFieldGenerator;
+        public float offset;
+        public float duration;
 
-        var workCubes = gameFieldGenerator.map.Where(x => x.currentPosition != centerPoint).ToArray();
-
-        for (int c = 0; c < workCubes.Count(); c++)
+        public void StartAnimateShow()
         {
-            var currentCube = workCubes[c];
+            PositionCube centerPoint = new PositionCube(gameFieldGenerator.startLine , gameFieldGenerator.startPos);
 
-            currentCube.gameObject.SetActive(false);
+            var workCubes = gameFieldGenerator.map.Where(x => x.currentPosition != centerPoint).ToArray();
 
-            StartCoroutine(StartCubeShow(currentCube, offset, duration, c * (duration * 0.5f)));
+            for (int c = 0; c < workCubes.Count(); c++)
+            {
+                var currentCube = workCubes[c];
+
+                currentCube.gameObject.SetActive(false);
+
+                StartCoroutine(StartCubeShow(currentCube, offset, duration, c * (duration * 0.5f)));
+            }
+        }
+
+        IEnumerator StartCubeShow(Cube cube , float offset , float duration , float delayStart)
+        {
+            yield return new WaitForSeconds(delayStart);
+
+            cube.gameObject.SetActive(true);
+
+            Vector3 endMovePositino = cube.transform.position;
+            cube.transform.position -= new Vector3(0,offset , 0);
+
+            yield return StartCoroutine(
+                this.MovingTransformTo(cube.transform, endMovePositino, duration));
+        }
+
+        void Start () 
+        {
+	
+        }
+	
+        void Update () 
+        {
+	
         }
     }
-
-    IEnumerator StartCubeShow(Cube cube , float offset , float duration , float delayStart)
-    {
-        yield return new WaitForSeconds(delayStart);
-
-        cube.gameObject.SetActive(true);
-
-        Vector3 endMovePositino = cube.transform.position;
-        cube.transform.position -= new Vector3(0,offset , 0);
-
-        yield return StartCoroutine(
-            this.MovingTransformTo(cube.transform, endMovePositino, duration));
-    }
-
-	void Start () 
-	{
-	
-	}
-	
-	void Update () 
-	{
-	
-	}
 }

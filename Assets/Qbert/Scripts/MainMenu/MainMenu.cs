@@ -1,23 +1,28 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Assets.Qbert.Scripts.GameScene;
+using Assets.Qbert.Scripts.GameScene.GameAssets;
+using Assets.Qbert.Scripts.GameScene.MapLoader;
+using UnityEngine;
 
-public class MainMenu : MonoBehaviour
+namespace Assets.Qbert.Scripts.MainMenu
 {
-    public GameFieldGenerator gameFieldGenerator;
-    public Qbert qbert;
-    public MapAsset mapLevelLoad;
-    public Game game;
+    public class MainMenu : MonoBehaviour
+    {
+        public GameFieldGenerator gameFieldGenerator;
+        public GameScene.Characters.Qbert qbert;
+        public MapAsset mapLevelLoad;
+        public Game game;
 
-    void Start () 
-	{
-        gameFieldGenerator.mapAsset = mapLevelLoad;
-        gameFieldGenerator.CreateMap();
+        void Start () 
+        {
+            gameFieldGenerator.mapAsset = mapLevelLoad;
+            gameFieldGenerator.CreateMap();
 
-        game.StartGame();
+            game.StartGame();
+        }
+	
+        void Update () 
+        {
+	
+        }
     }
-	
-	void Update () 
-	{
-	
-	}
 }

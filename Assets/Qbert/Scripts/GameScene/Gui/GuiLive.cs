@@ -1,123 +1,125 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class GuiLive : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene.Gui
 {
-    public int ifOverMaxShowNumber = 4;
-
-    public Transform root;
-    public Transform exampleLive;
-
-    public Transform[] lives;
-
-    public Transform rootIfOverMax;
-    public Text textCountLives;
-
-    public void SetLiveCount(int count)
+    public class GuiLive : MonoBehaviour
     {
-        Debug.Log(count);
-        lives = root.Cast<Transform>().ToArray();
+        public int ifOverMaxShowNumber = 4;
 
-        if (count > lives.Length)
+        public Transform root;
+        public Transform exampleLive;
+
+        public Transform[] lives;
+
+        public Transform rootIfOverMax;
+        public Text textCountLives;
+
+        public void SetLiveCount(int count)
         {
-            for (int i = 0; i <  count - lives.Length; i++)
+            UnityEngine.Debug.Log(count);
+            lives = root.Cast<Transform>().ToArray();
+
+            if (count > lives.Length)
             {
-                AddLive();
+                for (int i = 0; i <  count - lives.Length; i++)
+                {
+                    AddLive();
+                }
             }
-        }
-        else if (count < lives.Length)
-        {
-            for (int i = 0; i < lives.Length - count; i++)
+            else if (count < lives.Length)
             {
-                RemoveLive();
+                for (int i = 0; i < lives.Length - count; i++)
+                {
+                    RemoveLive();
+                }
             }
+            ShowHumberIfnead();
         }
-        ShowHumberIfnead();
-    }
 
 
-    public void AddLive()
-    {
-        Transform newLive = Instantiate(exampleLive);
-        newLive.gameObject.SetActive(true);
-
-        var scale = newLive.localScale;
-        newLive.SetParent(root);
-        newLive.localScale = scale;
-        newLive.localPosition = Vector3.zero;
-
-        ShowHumberIfnead();
-    }
-
-    public void RemoveLive()
-    {
-        lives = root.Cast<Transform>().ToArray();
-        if (lives.Length > 0)
+        public void AddLive()
         {
-            var live = lives.First();
-            live.gameObject.SetActive(false);
-            live.SetParent(null);
-            Destroy(live.gameObject);
+            Transform newLive = Instantiate(exampleLive);
+            newLive.gameObject.SetActive(true);
+
+            var scale = newLive.localScale;
+            newLive.SetParent(root);
+            newLive.localScale = scale;
+            newLive.localPosition = Vector3.zero;
+
+            ShowHumberIfnead();
         }
 
-        ShowHumberIfnead();
-    }
-
-
-    public void ShowHumberIfnead()
-    {
-        lives = root.Cast<Transform>().ToArray();
-
-        if (lives.Length > ifOverMaxShowNumber)
+        public void RemoveLive()
         {
-            root.gameObject.SetActive(false);
-            rootIfOverMax.gameObject.SetActive(true);
+            lives = root.Cast<Transform>().ToArray();
+            if (lives.Length > 0)
+            {
+                var live = lives.First();
+                live.gameObject.SetActive(false);
+                live.SetParent(null);
+                Destroy(live.gameObject);
+            }
+
+            ShowHumberIfnead();
         }
-        else
+
+
+        public void ShowHumberIfnead()
         {
-            root.gameObject.SetActive(true);
-            rootIfOverMax.gameObject.SetActive(false);
+            lives = root.Cast<Transform>().ToArray();
+
+            if (lives.Length > ifOverMaxShowNumber)
+            {
+                root.gameObject.SetActive(false);
+                rootIfOverMax.gameObject.SetActive(true);
+            }
+            else
+            {
+                root.gameObject.SetActive(true);
+                rootIfOverMax.gameObject.SetActive(false);
+            }
+
+
+            textCountLives.text = string.Format("- {0}", lives.Length);
         }
 
 
-        textCountLives.text = string.Format("- {0}", lives.Length);
-    }
-
-
-	void Start ()
-	{
-
-	   // SetLiveCount(0);
-	    // StartCoroutine(AddTest());
-	}
-
-
-    IEnumerator AddTest()
-    {
-        RemoveLive();
-        RemoveLive();
-        yield return new WaitForSeconds(1.0f);
-
-        for (int i = 0; i < 7; i++)
+        void Start ()
         {
-            AddLive();
-            yield return new WaitForSeconds(1.5f);
+
+            // SetLiveCount(0);
+            // StartCoroutine(AddTest());
         }
 
 
-        for (int i = 0; i < 7; i++)
+        IEnumerator AddTest()
         {
             RemoveLive();
-            yield return new WaitForSeconds(1.5f);
-        }
+            RemoveLive();
+            yield return new WaitForSeconds(1.0f);
 
+            for (int i = 0; i < 7; i++)
+            {
+                AddLive();
+                yield return new WaitForSeconds(1.5f);
+            }
+
+
+            for (int i = 0; i < 7; i++)
+            {
+                RemoveLive();
+                yield return new WaitForSeconds(1.5f);
+            }
+
+        }
+	
+        void Update () 
+        {
+	
+        }
     }
-	
-	void Update () 
-	{
-	
-	}
 }

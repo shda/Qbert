@@ -1,27 +1,27 @@
-﻿using UnityEngine;
-using System.Collections;
-
-//Уровень 3. Первый прыжок на кубик изменяет цвет на нужный.Однако повторный 
+﻿//Уровень 3. Первый прыжок на кубик изменяет цвет на нужный.Однако повторный 
 //прыжок возвращает кубику начальный цвет. 
 //Каждый последующий прыжок переключает цвет кубика между начальным и нужным.
-public class LevelType3 : LevelLogic
+namespace Assets.Qbert.Scripts.GameScene.Levels
 {
-    public override LevelLogic.Type type
+    public class LevelType3 : LevelLogic
     {
-        get { return LevelLogic.Type.LevelType3; ; }
-    }
-
-    public override bool OnQbertPressToCube(Cube cube, Qbert qbert)
-    {
-        if (cube.isSet)
+        public override LevelLogic.Type type
         {
-            cube.SetLastColor();
-        }
-        else
-        {
-            cube.SetNextColor();
+            get { return LevelLogic.Type.LevelType3; ; }
         }
 
-        return false;
+        public override bool OnQbertPressToCube(Cube cube, Characters.Qbert qbert)
+        {
+            if (cube.isSet)
+            {
+                cube.SetLastColor();
+            }
+            else
+            {
+                cube.SetNextColor();
+            }
+
+            return false;
+        }
     }
 }

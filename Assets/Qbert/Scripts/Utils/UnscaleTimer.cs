@@ -1,49 +1,51 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections;
 
-public class UnscaleTimer : MonoBehaviour
+namespace Assets.Qbert.Scripts.Utils
 {
-    private Action<UnscaleTimer> OnEndTime;
-    private float time;
-    private bool isRun = false;
-
-    public static UnscaleTimer Create(float time , Action<UnscaleTimer> OnEndTime)
+    public class UnscaleTimer : MonoBehaviour
     {
-        GameObject timer = new GameObject("UnscaleTimer_" + time);
-        UnscaleTimer unscaleTimer = timer.AddComponent<UnscaleTimer>();
-        unscaleTimer.StartTimer(time , OnEndTime);
-        return unscaleTimer;
-    }
+        private Action<UnscaleTimer> OnEndTime;
+        private float time;
+        private bool isRun = false;
 
-    public void StartTimer(float time , Action<UnscaleTimer> OnEndTime)
-    {
-        this.time = time;
-        this.OnEndTime = OnEndTime;
-        isRun = true;
-    }
+        public static UnscaleTimer Create(float time , Action<UnscaleTimer> OnEndTime)
+        {
+            GameObject timer = new GameObject("UnscaleTimer_" + time);
+            UnscaleTimer unscaleTimer = timer.AddComponent<UnscaleTimer>();
+            unscaleTimer.StartTimer(time , OnEndTime);
+            return unscaleTimer;
+        }
 
-	void Start () 
-	{
+        public void StartTimer(float time , Action<UnscaleTimer> OnEndTime)
+        {
+            this.time = time;
+            this.OnEndTime = OnEndTime;
+            isRun = true;
+        }
+
+        void Start () 
+        {
 	
-	}
+        }
 	
-	void Update () 
-	{
-	    if (isRun)
-	    {
-	        time -= Time.unscaledDeltaTime;
-	        if (time <= 0)
-	        {
-	            if (OnEndTime != null)
-	            {
-	                OnEndTime(this);
-	            }
+        void Update () 
+        {
+            if (isRun)
+            {
+                time -= Time.unscaledDeltaTime;
+                if (time <= 0)
+                {
+                    if (OnEndTime != null)
+                    {
+                        OnEndTime(this);
+                    }
 
-                isRun = false;
+                    isRun = false;
 
-                Destroy(gameObject);
+                    Destroy(gameObject);
+                }
             }
-	    }
-	}
+        }
+    }
 }

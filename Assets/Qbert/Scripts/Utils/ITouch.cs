@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public interface ITouch  
+namespace Assets.Qbert.Scripts.Utils
 {
-    void OnPress(bool isPress);
-    void OnTap();
-    void OnDrag(Vector2 delta);
+    public interface ITouch  
+    {
+        void OnPress(bool isPress);
+        void OnTap();
+        void OnDrag(Vector2 delta);
+    }
 }

@@ -1,67 +1,71 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Linq;
+using Assets.Qbert.Scripts.GameScene.Levels;
+using Assets.Qbert.Scripts.Utils;
+using UnityEngine;
 
-public class CoinCube : RedCube
+namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 {
-    public override Type typeObject
+    public class CoinCube : RedCube
     {
-        get { return Type.CoinCube; }
-    }
-
-    public override GameplayObject TryInitializeObject(Transform root, LevelController levelController)
-    {
-        Cube cubeSet = null;
-
-        var points = levelController.gameField.mapGenerator.map.Where(
-            x => x.cubeInMap.listTypeObjectsStartPoint != null &&
-                 x.cubeInMap.listTypeObjectsStartPoint.Contains(typeObject));
-
-        if (points.Any())
+        public override Type typeObject
         {
-            cubeSet = points.Mix().First();
-        }
-        else
-        {
-            var map = levelController.gameField.mapGenerator.map.ToArray();
-            cubeSet = map.Mix().First();
+            get { return Type.CoinCube; }
         }
 
-        var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(cubeSet.currentPosition);
-        if (gaToPoint == null)
+        public override GameplayObject TryInitializeObject(Transform root, LevelController levelController)
         {
-            return SetObject(root, levelController, cubeSet.currentPosition);
+            Cube cubeSet = null;
+
+            var points = levelController.gameField.mapGenerator.map.Where(
+                x => x.cubeInMap.listTypeObjectsStartPoint != null &&
+                     x.cubeInMap.listTypeObjectsStartPoint.Contains(typeObject));
+
+            if (points.Any())
+            {
+                cubeSet = points.Mix().First();
+            }
+            else
+            {
+                var map = levelController.gameField.mapGenerator.map.ToArray();
+                cubeSet = map.Mix().First();
+            }
+
+            var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(cubeSet.currentPosition);
+            if (gaToPoint == null)
+            {
+                return SetObject(root, levelController, cubeSet.currentPosition);
+            }
+
+            return null;
         }
 
-        return null;
-    }
-
-    public override void Run()
-    {
-        StartCoroutine(WorkThead());
-    }
-
-    protected override IEnumerator WorkThead()
-    {
-        yield return StartCoroutine(DropToCube());
-    }
-
-    public override bool OnColisionToQbert(Qbert qbert)
-    {
-        if (qbert.isCheckColision)
+        public override void Run()
         {
-            AddCoins(ScorePrice.addCoinsToCoin);
+            StartCoroutine(WorkThead());
+        }
 
-            OnStartDestroy();
+        protected override IEnumerator WorkThead()
+        {
+            yield return StartCoroutine(DropToCube());
+        }
+
+        public override bool OnColisionToQbert(Qbert qbert)
+        {
+            if (qbert.isCheckColision)
+            {
+                AddCoins(ScorePrice.addCoinsToCoin);
+
+                OnStartDestroy();
+                return true;
+            }
+
             return true;
         }
 
-        return true;
-    }
-
-    public override bool CanJumpToMy()
-    {
-        return true;
+        public override bool CanJumpToMy()
+        {
+            return true;
+        }
     }
 }

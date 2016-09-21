@@ -1,31 +1,34 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Assets.Qbert.Scripts.Utils;
+using UnityEngine;
 using UnityEngine.Events;
 
-public class PressProxy : MonoBehaviour , ITouch
+namespace Assets.Qbert.Scripts.GUI.Button
 {
-    [System.Serializable]
-    public class ButtonPressEvent : UnityEvent<PressProxy>
+    public class PressProxy : MonoBehaviour , ITouch
     {
-    }
-
-    public ButtonPressEvent OnPressButton;
-
-    public void OnPress(bool isPress)
-    {
-        
-    }
-
-    public void OnTap()
-    {
-        if (OnPressButton != null)
+        [System.Serializable]
+        public class ButtonPressEvent : UnityEvent<PressProxy>
         {
-            OnPressButton.Invoke(this);
         }
-    }
 
-    public void OnDrag(Vector2 delta)
-    {
+        public ButtonPressEvent OnPressButton;
+
+        public void OnPress(bool isPress)
+        {
         
+        }
+
+        public void OnTap()
+        {
+            if (OnPressButton != null)
+            {
+                OnPressButton.Invoke(this);
+            }
+        }
+
+        public void OnDrag(Vector2 delta)
+        {
+        
+        }
     }
 }

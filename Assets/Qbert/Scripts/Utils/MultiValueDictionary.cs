@@ -1,18 +1,19 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-public class MultiValueDictionary<Key, Value> : Dictionary<Key, List<Value>>
+namespace Assets.Qbert.Scripts.Utils
 {
-    public void Add(Key key, Value value)
+    public class MultiValueDictionary<Key, Value> : Dictionary<Key, List<Value>>
     {
-        List<Value> values;
-        if (!this.TryGetValue(key, out values))
+        public void Add(Key key, Value value)
         {
-            values = new List<Value>();
-            this.Add(key, values);
+            List<Value> values;
+            if (!this.TryGetValue(key, out values))
+            {
+                values = new List<Value>();
+                this.Add(key, values);
+            }
+            values.Add(value);
         }
-        values.Add(value);
-    }
 
+    }
 }

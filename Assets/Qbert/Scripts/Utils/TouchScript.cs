@@ -1,20 +1,22 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class TouchScript : MonoBehaviour  , ITouch
+namespace Assets.Qbert.Scripts.Utils
 {
-    public void OnPress(bool isPress)
+    public class TouchScript : MonoBehaviour  , ITouch
     {
-        Debug.Log("OnPress + " + isPress);
-    }
+        public void OnPress(bool isPress)
+        {
+            UnityEngine.Debug.Log("OnPress + " + isPress);
+        }
 
-    public void OnTap()
-    {
-        Debug.Log("OnTap");
-    }
+        public void OnTap()
+        {
+            UnityEngine.Debug.Log("OnTap");
+        }
 
-    public void OnDrag(Vector2 delta)
-    {
-        Debug.Log("OnDrag");
+        public void OnDrag(Vector2 delta)
+        {
+            UnityEngine.Debug.Log("OnDrag");
+        }
     }
 }

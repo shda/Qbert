@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.VR_360.Scripts.NewMenu
+namespace Assets.Qbert.Scripts.Utils
 {
     public class ActionCoroutine : MonoBehaviour
     {
@@ -13,7 +13,7 @@ namespace Assets.VR_360.Scripts.NewMenu
             TextMesh tm = obj.GetComponent<TextMesh>();
             if (tm == null)
             {
-                Debug.LogError("Error get component TextMesh!!!");
+                UnityEngine.Debug.LogError("Error get component TextMesh!!!");
             }
             else
             {

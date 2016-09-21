@@ -1,26 +1,28 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class SelectLevel : MonoBehaviour
+namespace Assets.Qbert.Scripts.SelectLevel
 {
-    public static int selectLevel = 0;
-
-    public string sceneName;
-
-    public void RunLevel(int level)
+    public class SelectLevel : MonoBehaviour
     {
-        selectLevel = level;
-        SceneManager.LoadScene(sceneName);
-    }
+        public static int selectLevel = 0;
 
-	void Start () 
-	{
+        public string sceneName;
+
+        public void RunLevel(int level)
+        {
+            selectLevel = level;
+            SceneManager.LoadScene(sceneName);
+        }
+
+        void Start () 
+        {
 	
-	}
+        }
 	
-	void Update () 
-	{
+        void Update () 
+        {
 	
-	}
+        }
+    }
 }

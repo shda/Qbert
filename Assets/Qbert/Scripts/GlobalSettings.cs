@@ -1,12 +1,12 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class GlobalSettings
+﻿namespace Assets.Qbert.Scripts
 {
-    public static int currentLevel = 0;
-    public static int currentRound = 0;
+    public class GlobalSettings
+    {
+        public static int currentLevel = 0;
+        public static int currentRound = 0;
 
-    public static float score = 0;
-    public static int coins = 0;
-    public static int countLive = 3;
+        public static float score = 0;
+        public static int coins = 0;
+        public static int countLive = 3;
+    }
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.VR_360.Scripts
+namespace Assets.Qbert.Scripts.Utils
 {
     public class FPS : MonoBehaviour
     {

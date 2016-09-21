@@ -1,8 +1,11 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Assets.Qbert.Scripts.GameScene.Map;
+using UnityEngine;
 
-public class PointOutsideField : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene
 {
-    public CubeMap.CubeInMap cubeInMap;
-    public PositionCube currentPoint;
+    public class PointOutsideField : MonoBehaviour
+    {
+        public CubeMap.CubeInMap cubeInMap;
+        public PositionCube currentPoint;
+    }
 }

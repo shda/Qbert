@@ -1,16 +1,19 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Assets.Qbert.Scripts.GameScene.Levels;
+using UnityEngine;
 
-public class LevelConfigAsset : ScriptableObject
+namespace Assets.Qbert.Scripts.GameScene.GameAssets
 {
-    [Header("Карта по умолчанию")]
-    public MapAsset globalMap;
+    public class LevelConfigAsset : ScriptableObject
+    {
+        [Header("Карта по умолчанию")]
+        public MapAsset globalMap;
 
-    [Header("Тип уровня")]
-    public LevelLogic.Type typeLevel;
+        [Header("Тип уровня")]
+        public LevelLogic.Type typeLevel;
 
-    [Header("Цвета по умолчанию")]
-    public Color[] globalLevelColors;
+        [Header("Цвета по умолчанию")]
+        public Color[] globalLevelColors;
 
-    public Round[] rounds;
+        public Round[] rounds;
+    }
 }

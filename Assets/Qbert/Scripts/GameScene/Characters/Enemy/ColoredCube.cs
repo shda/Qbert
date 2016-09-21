@@ -1,39 +1,41 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class ColoredCube : RedCube 
+namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 {
-    public override Type typeObject
+    public class ColoredCube : RedCube 
     {
-        get { return Type.ColoredCube; }
-    }
-
-    public override bool OnPressCube(Cube cube)
-    {
-        int randomPress = Random.Range(0, 2);
-
-        if (randomPress == 1)
+        public override Type typeObject
         {
-            cube.SetNextColor();
-        }
-        else
-        {
-            cube.SetLastColor();
+            get { return Type.ColoredCube; }
         }
 
-        //after press to cube, need check to win
-        return false;
-    }
-
-    public override bool OnColisionToQbert(Qbert qbert)
-    {
-        if (qbert.isCheckColision)
+        public override bool OnPressCube(Cube cube)
         {
-            AddScore(ScorePrice.getColorCube);
-            OnStartDestroy();
+            int randomPress = Random.Range(0, 2);
+
+            if (randomPress == 1)
+            {
+                cube.SetNextColor();
+            }
+            else
+            {
+                cube.SetLastColor();
+            }
+
+            //after press to cube, need check to win
+            return false;
+        }
+
+        public override bool OnColisionToQbert(Qbert qbert)
+        {
+            if (qbert.isCheckColision)
+            {
+                AddScore(ScorePrice.getColorCube);
+                OnStartDestroy();
+                return true;
+            }
+
             return true;
         }
-
-        return true;
     }
 }

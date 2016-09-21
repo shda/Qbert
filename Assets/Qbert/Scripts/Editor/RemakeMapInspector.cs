@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Qbert.Scripts.GameScene.MapLoader;
 using UnityEditor;
 
 [CustomEditor(typeof(GameFieldGenerator))]

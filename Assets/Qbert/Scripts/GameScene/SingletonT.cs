@@ -1,45 +1,47 @@
 ﻿using UnityEngine;
-using System.Collections;
 
- public abstract class SingletonT<T> : MonoBehaviour where T : SingletonT<T>
+namespace Assets.Qbert.Scripts.GameScene
 {
-    public abstract void AwakeFirst();
-
-	void Start () 
-	{
-	
-	}
-	void Update () 
-	{
-	
-	}
-
-#region Singleton
-    private static T _instance = null;
-
-    public static T instance
+    public abstract class SingletonT<T> : MonoBehaviour where T : SingletonT<T>
     {
-        get
-        {
-            return _instance;
-        }
-    }
+        public abstract void AwakeFirst();
 
-    public void Awake()
-    {
-        if (_instance == null)
+        void Start () 
         {
-            _instance =  this as T;
+	
         }
-        else
+        void Update () 
         {
-            Destroy(this.gameObject);
-            return;
+	
         }
+
+        #region Singleton
+        private static T _instance = null;
+
+        public static T instance
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
+        public void Awake()
+        {
+            if (_instance == null)
+            {
+                _instance =  this as T;
+            }
+            else
+            {
+                Destroy(this.gameObject);
+                return;
+            }
         
-        AwakeFirst();
+            AwakeFirst();
 
-        _instance = this as T;
+            _instance = this as T;
+        }
+        #endregion
     }
-#endregion
 }

@@ -1,19 +1,21 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections;
 
-public class CollisionProxy : MonoBehaviour
+namespace Assets.Qbert.Scripts
 {
-    public Action<Transform, Transform> triggerEnterEvent;
-    public Transform proxyObject;
-
-    void OnTriggerEnter(Collider other)
+    public class CollisionProxy : MonoBehaviour
     {
-        CollisionProxy collider = other.GetComponent<CollisionProxy>();
+        public Action<Transform, Transform> triggerEnterEvent;
+        public Transform proxyObject;
 
-        if (collider != null && triggerEnterEvent != null)
+        void OnTriggerEnter(Collider other)
         {
-            triggerEnterEvent(collider.proxyObject, proxyObject);
+            CollisionProxy collider = other.GetComponent<CollisionProxy>();
+
+            if (collider != null && triggerEnterEvent != null)
+            {
+                triggerEnterEvent(collider.proxyObject, proxyObject);
+            }
         }
     }
 }

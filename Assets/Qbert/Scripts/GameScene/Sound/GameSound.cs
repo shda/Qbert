@@ -1,62 +1,65 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Assets.Qbert.Scripts.GameScene.Characters;
+using UnityEngine;
 
-public class GameSound : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene.Sound
 {
-    public AudioSource audioSource;
-
-    public AudioClip jumpEnemy;
-    public AudioClip jumpQbert;
-    public AudioClip coinUp;
-    public AudioClip qbertDown;
-
-
-    public static void PlayJump(Character character)
+    public class GameSound : MonoBehaviour
     {
-        if (character.typeObject == Character.Type.Qbert)
+        public AudioSource audioSource;
+
+        public AudioClip jumpEnemy;
+        public AudioClip jumpQbert;
+        public AudioClip coinUp;
+        public AudioClip qbertDown;
+
+
+        public static void PlayJump(Character character)
         {
-            instance.PlaySoundShot(instance.jumpQbert);
+            if (character.typeObject == Character.Type.Qbert)
+            {
+                instance.PlaySoundShot(instance.jumpQbert);
+            }
+            else
+            {
+                instance.PlaySoundShot(instance.jumpEnemy);
+            }
         }
-        else
+
+        public static void PlayQbertDown()
         {
-            instance.PlaySoundShot(instance.jumpEnemy);
+            instance.PlaySoundShot(instance.qbertDown);
         }
-    }
 
-    public static void PlayQbertDown()
-    {
-        instance.PlaySoundShot(instance.qbertDown);
-    }
+        public static void PlayCoinUp()
+        {
+            instance.PlaySoundShot(instance.qbertDown);
+        }
 
-    public static void PlayCoinUp()
-    {
-        instance.PlaySoundShot(instance.qbertDown);
-    }
-
-    public void PlaySoundShot(AudioClip clip)
-    {
-        audioSource.PlayOneShot(clip);
-    }
+        public void PlaySoundShot(AudioClip clip)
+        {
+            audioSource.PlayOneShot(clip);
+        }
 
 
-	void Start () 
-	{
+        void Start () 
+        {
 	
-	}
+        }
 	
-	void Update () 
-	{
+        void Update () 
+        {
 	
-	}
+        }
 
-    private static GameSound _instance;
-    public static GameSound instance
-    {
-        get { return _instance; }
-    }
+        private static GameSound _instance;
+        public static GameSound instance
+        {
+            get { return _instance; }
+        }
 
-    void Awake()
-    {
-        _instance = this;
+        void Awake()
+        {
+            _instance = this;
+        }
     }
 }

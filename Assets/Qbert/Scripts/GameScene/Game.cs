@@ -1,56 +1,58 @@
-﻿using System;
+﻿using Assets.Qbert.Scripts.GameScene.InputControl;
+using Assets.Qbert.Scripts.GameScene.Levels;
 using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Game : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene
 {
-    public LevelController      levelController;
-    public FadeScreen           fadeScreen;
-
-    public InputController  inputController;
-
-    public LoadScene sceneShowLevel;
-    public LoadScene sceneMainMenu;
-
-
-    public void RestartLevel()
+    public class Game : MonoBehaviour
     {
-        levelController.RestartLevel();
-    }
+        public LevelController      levelController;
+        public FadeScreen           fadeScreen;
 
-    public void StartGame()
-    {
-        levelController.ResetScore();
-        levelController.InitLevel(GlobalSettings.currentLevel, GlobalSettings.currentRound);
-        levelController.StartLevel();
-    }
+        public InputController  inputController;
+
+        public LoadScene.LoadScene sceneShowLevel;
+        public LoadScene.LoadScene sceneMainMenu;
 
 
-    public void LoadSceneShowLevel()
-    {
-        inputController.isEnable = false;
-        fadeScreen.OnEnd = transform1 =>
+        public void RestartLevel()
         {
-            sceneShowLevel.OnLoadScene();
-        };
+            levelController.RestartLevel();
+        }
 
-        fadeScreen.StartEnable(0.5f);
-    }
-
-
-    public void LoadMainScene()
-    {
-        inputController.isEnable = false;
-        fadeScreen.OnEnd = transform1 =>
+        public void StartGame()
         {
-            sceneMainMenu.OnLoadScene();
-        };
+            levelController.ResetScore();
+            levelController.InitLevel(GlobalSettings.currentLevel, GlobalSettings.currentRound);
+            levelController.StartLevel();
+        }
 
-        fadeScreen.StartEnable(0.5f);
-    }
 
-    /*
+        public void LoadSceneShowLevel()
+        {
+            inputController.isEnable = false;
+            fadeScreen.OnEnd = transform1 =>
+            {
+                sceneShowLevel.OnLoadScene();
+            };
+
+            fadeScreen.StartEnable(0.5f);
+        }
+
+
+        public void LoadMainScene()
+        {
+            inputController.isEnable = false;
+            fadeScreen.OnEnd = transform1 =>
+            {
+                sceneMainMenu.OnLoadScene();
+            };
+
+            fadeScreen.StartEnable(0.5f);
+        }
+
+        /*
     public void OnTapScreenStartGame()
     {
         guiDispatcher.inputScreenControls.SetActive(false);
@@ -72,39 +74,40 @@ public class Game : MonoBehaviour
     }
     */
 
-    public void OnPressSelectCharacter()
-    { }
+        public void OnPressSelectCharacter()
+        { }
 
 
-    public string sceneName;
-    public void LoadSelectLevelScene()
-    {
-        SceneManager.LoadScene(sceneName);
-    }
-
-    void Awake()
-    {
-       // QualitySettings.vSyncCount = 0;
-       // Application.targetFrameRate = 10;
-    }
-
-    void Start()
-    {
-        StartGame();
-        levelController.SetPauseGamplayObjects(true);
-        inputController.isEnable = false;
-
-        fadeScreen.OnEnd = transform1 =>
+        public string sceneName;
+        public void LoadSelectLevelScene()
         {
-            levelController.SetPauseGamplayObjects(false);
-            inputController.isEnable = true;
-        };
+            SceneManager.LoadScene(sceneName);
+        }
 
-        fadeScreen.StartDisable(0.5f);
-    }
+        void Awake()
+        {
+            // QualitySettings.vSyncCount = 0;
+            // Application.targetFrameRate = 10;
+        }
 
-    void Update()
-    {
+        void Start()
+        {
+            StartGame();
+            levelController.SetPauseGamplayObjects(true);
+            inputController.isEnable = false;
 
+            fadeScreen.OnEnd = transform1 =>
+            {
+                levelController.SetPauseGamplayObjects(false);
+                inputController.isEnable = true;
+            };
+
+            fadeScreen.StartDisable(0.5f);
+        }
+
+        void Update()
+        {
+
+        }
     }
 }

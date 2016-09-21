@@ -1,79 +1,82 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Assets.Qbert.Scripts.GameScene.Characters;
+using UnityEngine;
 
-[System.Serializable]
-public class RuleCreateGameplayObject
+namespace Assets.Qbert.Scripts.GameScene.Levels
 {
-    private ITimeScale timeScale;
-    [Header("Тип объекта")]
-    public GameplayObject.Type createType;
-    [Header("Максимум за весь раунд(-1 без лимита)")]
-    public int maxToRound;
-    [Header("Максимум одновременно")]
-    public int maxOneTime;
-    [Header("Задержка появления после старта")]
-    public float delayToStart;
-    [Header("Задержка между появлениями")]
-    public float delayBetweenCreate;
-    public float oldTimeCreateObject { get; set; }
-    public float counterCreatedObjects { get; set; }
-
-    private bool isFirstStart = true;
-
-    public void SetTimeScale(ITimeScale timescale)
+    [System.Serializable]
+    public class RuleCreateGameplayObject
     {
-       this.timeScale = timescale;
-    }
-    public void Reset()
-    {
-        oldTimeCreateObject = 0;
-        counterCreatedObjects = 0;
-        isFirstStart = true;
-    }
+        private ITimeScale timeScale;
+        [Header("Тип объекта")]
+        public GameplayObject.Type createType;
+        [Header("Максимум за весь раунд(-1 без лимита)")]
+        public int maxToRound;
+        [Header("Максимум одновременно")]
+        public int maxOneTime;
+        [Header("Задержка появления после старта")]
+        public float delayToStart;
+        [Header("Задержка между появлениями")]
+        public float delayBetweenCreate;
+        public float oldTimeCreateObject { get; set; }
+        public float counterCreatedObjects { get; set; }
 
-    public void CheckCreateObject(Round round)
-    {
-        int countInScene = round.GetCountObjectToScene(createType);
+        private bool isFirstStart = true;
 
-        if (countInScene < maxOneTime)
+        public void SetTimeScale(ITimeScale timescale)
         {
-            if (round.timeToStartRound > delayToStart)
+            this.timeScale = timescale;
+        }
+        public void Reset()
+        {
+            oldTimeCreateObject = 0;
+            counterCreatedObjects = 0;
+            isFirstStart = true;
+        }
+
+        public void CheckCreateObject(Round round)
+        {
+            int countInScene = round.GetCountObjectToScene(createType);
+
+            if (countInScene < maxOneTime)
             {
-                if (round.timeToStartRound > oldTimeCreateObject + delayBetweenCreate || isFirstStart)
+                if (round.timeToStartRound > delayToStart)
                 {
-                    if (countInScene < maxOneTime && CheckMaxToRound(round))
+                    if (round.timeToStartRound > oldTimeCreateObject + delayBetweenCreate || isFirstStart)
                     {
-                        if (CreateObject(round))
+                        if (countInScene < maxOneTime && CheckMaxToRound(round))
                         {
-                            isFirstStart = false;
+                            if (CreateObject(round))
+                            {
+                                isFirstStart = false;
+                            }
                         }
                     }
                 }
             }
+            else
+            {
+                oldTimeCreateObject = round.timeToStartRound;
+            }
         }
-        else
+
+        private bool CheckMaxToRound(Round round)
         {
-            oldTimeCreateObject = round.timeToStartRound;
+            return counterCreatedObjects < maxToRound || maxToRound == -1;
         }
-    }
 
-    private bool CheckMaxToRound(Round round)
-    {
-        return counterCreatedObjects < maxToRound || maxToRound == -1;
-    }
-
-    private bool CreateObject(Round round)
-    {
-        var addObj = round.levelController.gameplayObjects.AddGameplayObjectToGame(createType);
-
-        if (addObj != null)
+        private bool CreateObject(Round round)
         {
-            counterCreatedObjects++;
-            oldTimeCreateObject = round.timeToStartRound;
+            var addObj = round.levelController.gameplayObjects.AddGameplayObjectToGame(createType);
 
-            return true;
+            if (addObj != null)
+            {
+                counterCreatedObjects++;
+                oldTimeCreateObject = round.timeToStartRound;
+
+                return true;
+            }
+
+            return false;
         }
-
-        return false;
     }
 }

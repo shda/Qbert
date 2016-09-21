@@ -1,27 +1,29 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class BlueCube : RedCube
+namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 {
-    [Header("BlueCube")] public float timeStopDuration = 2.0f;
-
-    public override Type typeObject
+    public class BlueCube : RedCube
     {
-        get { return Type.BlueCube; }
-    }
+        [Header("BlueCube")] public float timeStopDuration = 2.0f;
 
-    public override bool OnColisionToQbert(Qbert qbert)
-    {
-        if (qbert.isCheckColision)
+        public override Type typeObject
         {
-            AddScore(ScorePrice.getClueCube);
-
-            levelController.StartPauseGameObjectsToSecond(timeStopDuration);
-            OnStartDestroy();
-            return true;
+            get { return Type.BlueCube; }
         }
 
-        return true;
+        public override bool OnColisionToQbert(Qbert qbert)
+        {
+            if (qbert.isCheckColision)
+            {
+                AddScore(ScorePrice.getClueCube);
+
+                levelController.StartPauseGameObjectsToSecond(timeStopDuration);
+                OnStartDestroy();
+                return true;
+            }
+
+            return true;
+        }
     }
 }
 

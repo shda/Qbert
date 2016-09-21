@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class GUIButtonRestartLevel : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene
 {
-    public void OnRestartLevel()
+    public class GUIButtonRestartLevel : MonoBehaviour
     {
-        Application.LoadLevel(Application.loadedLevel);
+        public void OnRestartLevel()
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
+        void Start () 
+        {
+	
+        }
+        void Update () 
+        {
+	
+        }
     }
-	void Start () 
-	{
-	
-	}
-	void Update () 
-	{
-	
-	}
 }

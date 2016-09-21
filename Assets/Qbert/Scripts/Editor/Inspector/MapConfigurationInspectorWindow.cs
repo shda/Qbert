@@ -3,6 +3,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Qbert.Scripts.GameScene.Characters;
+using Assets.Qbert.Scripts.GameScene.GameAssets;
+using Assets.Qbert.Scripts.GameScene.Map;
 using UnityEditor;
 using UnityEditor.VersionControl;
 

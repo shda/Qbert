@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.CommonB.UI {
+namespace Assets.Qbert.Scripts.Utils {
 	[ExecuteInEditMode]
 	public class GuiHandle : MonoBehaviour {
 		public const string ON_PRESS = "OnPress";
@@ -90,7 +90,7 @@ namespace Assets.CommonB.UI {
 						}
 					}
 					if (touchInfo.isDrag) {
-                        Debug.Log("OnDrag");
+                        UnityEngine.Debug.Log("OnDrag");
 						OnDrag(touchInfo.capturedObject, touchInfo.dragDelta , touchInfo._capturedITouch);
 						touchInfo.dragDelta = Vector2.zero;
 					}

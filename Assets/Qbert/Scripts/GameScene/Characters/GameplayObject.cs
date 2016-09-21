@@ -1,52 +1,54 @@
 ﻿using System;
+using Assets.Qbert.Scripts.GameScene.Levels;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
-public class GameplayObject : Character 
+namespace Assets.Qbert.Scripts.GameScene.Characters
 {
-    public Action<GameplayObject> OnDestroyEvents;
-
-    //если на объект можно прыгнуть
-    public virtual bool CanJumpToMy()
+    public class GameplayObject : Character 
     {
-        return false;
-    }
+        public Action<GameplayObject> OnDestroyEvents;
 
-    public virtual void Run()
-    {
-
-    }
-
-    public virtual bool OnColisionToQbert(Qbert qbert)
-    {
-        if (!qbert.isCheckColision)
+        //если на объект можно прыгнуть
+        public virtual bool CanJumpToMy()
         {
-            return true;
+            return false;
         }
 
-        return false;
-    }
-
-    public virtual GameplayObject TryInitializeObject(Transform root , LevelController levelController)
-    {
-        transform.SetParent(root);
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.identity;
-
-        var enemy = transform.GetComponent<GameplayObject>();
-        enemy.levelController = levelController;
-
-        transform.gameObject.SetActive(true);
-
-        return enemy;
-    }
-
-    protected void OnStartDestroy()
-    {
-        if (OnDestroyEvents != null)
+        public virtual void Run()
         {
-            OnDestroyEvents(this);
+
+        }
+
+        public virtual bool OnColisionToQbert(Qbert qbert)
+        {
+            if (!qbert.isCheckColision)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public virtual GameplayObject TryInitializeObject(Transform root , LevelController levelController)
+        {
+            transform.SetParent(root);
+            transform.localPosition = Vector3.zero;
+            transform.localRotation = Quaternion.identity;
+
+            var enemy = transform.GetComponent<GameplayObject>();
+            enemy.levelController = levelController;
+
+            transform.gameObject.SetActive(true);
+
+            return enemy;
+        }
+
+        protected void OnStartDestroy()
+        {
+            if (OnDestroyEvents != null)
+            {
+                OnDestroyEvents(this);
+            }
         }
     }
 }

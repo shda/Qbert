@@ -1,30 +1,30 @@
-﻿using UnityEngine;
-using System.Collections;
-
-[System.Serializable]
-public struct PositionCube
+﻿namespace Assets.Qbert.Scripts.GameScene
 {
-    public int line;
-    public int position;
-
-    public PositionCube(int line, int position)
+    [System.Serializable]
+    public struct PositionCube
     {
-        this.line = line;
-        this.position = position;
-    }
+        public int line;
+        public int position;
 
-    public static bool operator ==(PositionCube a, PositionCube b)
-    {
-        return a.position == b.position && a.line == b.line;
-    }
+        public PositionCube(int line, int position)
+        {
+            this.line = line;
+            this.position = position;
+        }
 
-    public static bool operator !=(PositionCube a, PositionCube b)
-    {
-        return !(a == b);
-    }
+        public static bool operator ==(PositionCube a, PositionCube b)
+        {
+            return a.position == b.position && a.line == b.line;
+        }
 
-    public new string ToString()
-    {
-        return line + " - " + position;
+        public static bool operator !=(PositionCube a, PositionCube b)
+        {
+            return !(a == b);
+        }
+
+        public new string ToString()
+        {
+            return line + " - " + position;
+        }
     }
 }

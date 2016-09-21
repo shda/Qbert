@@ -1,16 +1,19 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Assets.Qbert.Scripts.GameScene.Map;
+using UnityEngine;
 
-public class MapAsset : ScriptableObject
+namespace Assets.Qbert.Scripts.GameScene.GameAssets
 {
-    public int mapWidth;
-    public int mapHight;
-    public GameplayObjectsAsset gameplayObjectsAsset;
-    public Transform[] cubePaterns;
-    public CubeMap map;
-
-    public void UpdateFromInspector()
+    public class MapAsset : ScriptableObject
     {
-        map.UpdateFromInspector(mapWidth, mapHight);
+        public int mapWidth;
+        public int mapHight;
+        public GameplayObjectsAsset gameplayObjectsAsset;
+        public Transform[] cubePaterns;
+        public CubeMap map;
+
+        public void UpdateFromInspector()
+        {
+            map.UpdateFromInspector(mapWidth, mapHight);
+        }
     }
 }

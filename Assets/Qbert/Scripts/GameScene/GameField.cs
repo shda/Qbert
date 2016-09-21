@@ -1,154 +1,158 @@
 ﻿using System;
-using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
+using Assets.Qbert.Scripts.GameScene.Characters;
+using Assets.Qbert.Scripts.GameScene.MapLoader;
+using UnityEngine;
 
-public class GameField : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene
 {
-    public GameFieldGenerator mapGenerator;
-    public Action<Cube, Character> OnPressCubeEvents; 
-    public Cube[] field;
-
-
-    public void FlashGameFiels(Action OnEndFlash)
+    public class GameField : MonoBehaviour
     {
-        StartCoroutine(FlashField(OnEndFlash));
-    }
+        public GameFieldGenerator mapGenerator;
+        public Action<Cube, Character> OnPressCubeEvents; 
+        public Cube[] field;
 
-    private IEnumerator FlashField(Action OnEndFlash)
-    {
-        yield return null;
 
-        for (int i = 0; i < 4; i++)
+        public void FlashGameFiels(Action OnEndFlash)
+        {
+            StartCoroutine(FlashField(OnEndFlash));
+        }
+
+        private IEnumerator FlashField(Action OnEndFlash)
+        {
+            yield return null;
+
+            for (int i = 0; i < 4; i++)
+            {
+                foreach (var cube in field)
+                {
+                    cube.SetFlashColorOne();
+                }
+
+                yield return new WaitForSeconds(0.3f);
+
+                foreach (var cube in field)
+                {
+                    cube.SetFlashColorTwo();
+                }
+
+                yield return new WaitForSeconds(0.3f);
+            }
+
+            if (OnEndFlash != null)
+            {
+                OnEndFlash();
+            }
+        }
+
+        public void Init()
+        {
+            ParseMap();
+            ConnectEvents();
+        }
+
+        public void ConnectEvents()
         {
             foreach (var cube in field)
             {
-                cube.SetFlashColorOne();
+                cube.OnPressEvents = OnPressEvents;
             }
+        }
 
-            yield return new WaitForSeconds(0.3f);
-
-            foreach (var cube in field)
+        private void OnPressEvents(Cube cube, Character character)
+        {
+            if (OnPressCubeEvents != null)
             {
-                cube.SetFlashColorTwo();
+                OnPressCubeEvents(cube , character);
+            }
+        }
+
+        public void ParseMap()
+        {
+            field = mapGenerator.GetComponentsInChildren<Cube>();
+            ConnectEvents();
+        }
+
+        public Cube GetCube(PositionCube cube)
+        {
+            return field.FirstOrDefault(x => x.currentPosition == cube);
+        }
+
+        public Cube GetCubeDirection(DirectionMove.Direction buttonType , PositionCube point)
+        {
+            return GetCube(GetPointCubeDirection(buttonType , point));
+        }
+
+        public PositionCube GetPointCubeDirection(DirectionMove.Direction buttonType, PositionCube point)
+        {
+            int findLevel = -1;
+            int findNumber = -1;
+
+            if (buttonType == DirectionMove.Direction.DownLeft)
+            {
+                findLevel = point.line + 1;
+                findNumber = point.position;
+            }
+            else if (buttonType == DirectionMove.Direction.UpRight)
+            {
+                findLevel = point.line - 1;
+                findNumber = point.position;
+            }
+            else if (buttonType == DirectionMove.Direction.DownRight)
+            {
+                findLevel = point.line + 1;
+                findNumber = point.position + 1;
+            }
+            else if (buttonType == DirectionMove.Direction.UpLeft)
+            {
+                findLevel = point.line - 1;
+                findNumber = point.position - 1;
             }
 
-            yield return new WaitForSeconds(0.3f);
+            return new PositionCube(findLevel , findNumber);
         }
 
-        if (OnEndFlash != null)
+        public Vector3 GetOffsetDirection(DirectionMove.Direction direction)
         {
-            OnEndFlash();
+            float x = 0, y = 0;
+
+            if (direction == DirectionMove.Direction.UpRight)
+            {
+                x += 1;
+                y += 1;
+            }
+            else
+                if (direction == DirectionMove.Direction.UpLeft)
+                {
+                    x += -1;
+                    y += 1;
+                }
+                else
+                    if (direction == DirectionMove.Direction.DownRight)
+                    {
+                        x += 1;
+                        y += -1;
+                    }
+                    else
+                        if (direction == DirectionMove.Direction.DownLeft)
+                        {
+                            x += -1;
+                            y += -1;
+                        }
+
+
+            return new Vector3(x * mapGenerator.offsetX, 0,
+                y * mapGenerator.offsetX);
         }
-    }
 
-    public void Init()
-    {
-        ParseMap();
-        ConnectEvents();
-    }
-
-    public void ConnectEvents()
-    {
-        foreach (var cube in field)
+        public Vector3 GetOffset(PositionCube start, PositionCube end)
         {
-            cube.OnPressEvents = OnPressEvents;
+            int x = start.line - end.line;
+            int y = start.position - end.position;
+
+            return new Vector3(x * mapGenerator.offsetX, y * mapGenerator.offsetX,
+                0);
         }
-    }
-
-    private void OnPressEvents(Cube cube, Character character)
-    {
-        if (OnPressCubeEvents != null)
-        {
-            OnPressCubeEvents(cube , character);
-        }
-    }
-
-    public void ParseMap()
-    {
-        field = mapGenerator.GetComponentsInChildren<Cube>();
-        ConnectEvents();
-    }
-
-    public Cube GetCube(PositionCube cube)
-    {
-        return field.FirstOrDefault(x => x.currentPosition == cube);
-    }
-
-    public Cube GetCubeDirection(DirectionMove.Direction buttonType , PositionCube point)
-    {
-        return GetCube(GetPointCubeDirection(buttonType , point));
-    }
-
-    public PositionCube GetPointCubeDirection(DirectionMove.Direction buttonType, PositionCube point)
-    {
-        int findLevel = -1;
-        int findNumber = -1;
-
-        if (buttonType == DirectionMove.Direction.DownLeft)
-        {
-            findLevel = point.line + 1;
-            findNumber = point.position;
-        }
-        else if (buttonType == DirectionMove.Direction.UpRight)
-        {
-            findLevel = point.line - 1;
-            findNumber = point.position;
-        }
-        else if (buttonType == DirectionMove.Direction.DownRight)
-        {
-            findLevel = point.line + 1;
-            findNumber = point.position + 1;
-        }
-        else if (buttonType == DirectionMove.Direction.UpLeft)
-        {
-            findLevel = point.line - 1;
-            findNumber = point.position - 1;
-        }
-
-        return new PositionCube(findLevel , findNumber);
-    }
-
-    public Vector3 GetOffsetDirection(DirectionMove.Direction direction)
-    {
-        float x = 0, y = 0;
-
-        if (direction == DirectionMove.Direction.UpRight)
-        {
-            x += 1;
-            y += 1;
-        }
-        else
-        if (direction == DirectionMove.Direction.UpLeft)
-        {
-            x += -1;
-            y += 1;
-        }
-        else
-        if (direction == DirectionMove.Direction.DownRight)
-        {
-            x += 1;
-            y += -1;
-        }
-        else
-        if (direction == DirectionMove.Direction.DownLeft)
-        {
-            x += -1;
-            y += -1;
-        }
-
-
-        return new Vector3(x * mapGenerator.offsetX, 0,
-            y * mapGenerator.offsetX);
-    }
-
-    public Vector3 GetOffset(PositionCube start, PositionCube end)
-    {
-        int x = start.line - end.line;
-        int y = start.position - end.position;
-
-        return new Vector3(x * mapGenerator.offsetX, y * mapGenerator.offsetX,
-           0);
     }
 }

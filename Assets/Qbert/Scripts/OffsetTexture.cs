@@ -1,22 +1,24 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class OffsetTexture : MonoBehaviour
+namespace Assets.Qbert.Scripts
 {
-    public float speetX = 1;
-    public float speedY = 1;
+    public class OffsetTexture : MonoBehaviour
+    {
+        public float speetX = 1;
+        public float speedY = 1;
 
-    public Renderer render;
-	void Start () 
-	{
+        public Renderer render;
+        void Start () 
+        {
 	
-	}
+        }
 	
-	void Update () 
-	{
-        render.material.mainTextureOffset = new Vector2(
-            render.material.mainTextureOffset.x + speetX * Time.deltaTime,
-            render.material.mainTextureOffset.y + speedY * Time.deltaTime);
+        void Update () 
+        {
+            render.material.mainTextureOffset = new Vector2(
+                render.material.mainTextureOffset.x + speetX * Time.deltaTime,
+                render.material.mainTextureOffset.y + speedY * Time.deltaTime);
 
+        }
     }
 }

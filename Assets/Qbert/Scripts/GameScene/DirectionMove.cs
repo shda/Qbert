@@ -1,13 +1,13 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class DirectionMove 
+﻿namespace Assets.Qbert.Scripts.GameScene
 {
-    public enum Direction
+    public class DirectionMove 
     {
-        UpLeft,
-        UpRight,
-        DownLeft,
-        DownRight
+        public enum Direction
+        {
+            UpLeft,
+            UpRight,
+            DownLeft,
+            DownRight
+        }
     }
 }

@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Instruction : MonoBehaviour 
+namespace Assets.Qbert.Scripts.Instruction
 {
-	void Start () 
-	{
+    public class Instruction : MonoBehaviour 
+    {
+        void Start () 
+        {
 	
-	}
+        }
 	
-	void Update () 
-	{
+        void Update () 
+        {
 	
-	}
+        }
+    }
 }

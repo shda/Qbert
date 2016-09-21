@@ -1,7 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Assets.Qbert.Scripts.GameScene.Characters;
+using UnityEngine;
 
-public class GameplayObjectsAsset : ScriptableObject
+namespace Assets.Qbert.Scripts.GameScene.GameAssets
 {
-    public GameplayObject[] prefabs;
+    public class GameplayObjectsAsset : ScriptableObject
+    {
+        public GameplayObject[] prefabs;
+    }
 }

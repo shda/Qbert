@@ -1,386 +1,389 @@
 ﻿using System;
-using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using Random = UnityEngine.Random;
+using Assets.Qbert.Scripts.GameScene.Levels;
+using Assets.Qbert.Scripts.Utils;
+using UnityEngine;
 
-public class PinkCube : RedCube 
+namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 {
-    public enum SideCube
+    public class PinkCube : RedCube 
     {
-        Left,
-        Right,
-    }
-
-    public SideCube sideCube;
-    public Transform jumpRoot;
-    public Vector3 jumpVector;
-    public Transform rootModel;
-
-    public PositionCube stuckPosition;
-
-    public float maxStuckTime = 4.0f;
-
-    private bool stuck = false;
-    private float currentStuckTimer;
-
-    public override Type typeObject
-    {
-        get { return Type.PinkCube; }
-    }
-
-    public override GameplayObject TryInitializeObject(Transform root, LevelController levelController)
-    {
-        var startPos = levelController.gameField.mapGenerator.
-            GetPointOutsideFieldStartPointToType(typeObject);
-
-        var positions = startPos.Mix();
-
-        foreach (var positionCube in positions)
+        public enum SideCube
         {
-            var neighbors = levelController.gameField.mapGenerator.
+            Left,
+            Right,
+        }
+
+        public SideCube sideCube;
+        public Transform jumpRoot;
+        public Vector3 jumpVector;
+        public Transform rootModel;
+
+        public PositionCube stuckPosition;
+
+        public float maxStuckTime = 4.0f;
+
+        private bool stuck = false;
+        private float currentStuckTimer;
+
+        public override Type typeObject
+        {
+            get { return Type.PinkCube; }
+        }
+
+        public override GameplayObject TryInitializeObject(Transform root, LevelController levelController)
+        {
+            var startPos = levelController.gameField.mapGenerator.
+                GetPointOutsideFieldStartPointToType(typeObject);
+
+            var positions = startPos.Mix();
+
+            foreach (var positionCube in positions)
+            {
+                var neighbors = levelController.gameField.mapGenerator.
                     GetNeighborsCubes(positionCube.currentPoint);
 
-            if (neighbors.Count > 0)
-            {
-                foreach (var neighbor in neighbors)
+                if (neighbors.Count > 0)
                 {
-                    var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(neighbor.currentPosition);
-                    if (gaToPoint == null || gaToPoint.CanJumpToMy())
+                    foreach (var neighbor in neighbors)
                     {
-                        sideCube = IsLeft(neighbor.currentPosition, positionCube.currentPoint) ?
-                            SideCube.Left : SideCube.Right;
-
-                        currentPosition = neighbor.currentPosition;
-
-                        var obj = SetObject(root, levelController, currentPosition);
-
-                        if (sideCube == SideCube.Right)
+                        var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(neighbor.currentPosition);
+                        if (gaToPoint == null || gaToPoint.CanJumpToMy())
                         {
-                            rootModel.localRotation = Quaternion.Euler(0,0,0);
-                        }
-                        else
-                        {
-                            rootModel.localRotation = Quaternion.Euler(0, 180, 0);
-                        }
+                            sideCube = IsLeft(neighbor.currentPosition, positionCube.currentPoint) ?
+                                SideCube.Left : SideCube.Right;
 
-                        return obj;
+                            currentPosition = neighbor.currentPosition;
+
+                            var obj = SetObject(root, levelController, currentPosition);
+
+                            if (sideCube == SideCube.Right)
+                            {
+                                rootModel.localRotation = Quaternion.Euler(0,0,0);
+                            }
+                            else
+                            {
+                                rootModel.localRotation = Quaternion.Euler(0, 180, 0);
+                            }
+
+                            return obj;
+                        }
                     }
                 }
             }
+
+            return null;
         }
 
-        return null;
-    }
-
-    public bool IsLeft(PositionCube one , PositionCube two)
-    {
-        if (two == new PositionCube(one.line - 1, one.position - 1) ||
-            two == new PositionCube(one.line + 1, one.position))
+        public bool IsLeft(PositionCube one , PositionCube two)
         {
-            return true;
-        }
-
-        return false;
-    }
-
-    public override void SetStartPosition(PositionCube point)
-    {
-        StopAllCoroutines();
-
-        stuckPosition = point;
-        positionMove = point;
-
-        var startCube = levelController.gameField.GetCube(point);
-        if (startCube)
-        {
-            if (sideCube == SideCube.Left)
+            if (two == new PositionCube(one.line - 1, one.position - 1) ||
+                two == new PositionCube(one.line + 1, one.position))
             {
-                root.position = startCube.leftSide.position;
-            }
-            else
-            {
-                root.position = startCube.rightSide.position;
+                return true;
             }
 
-            root.rotation = startCube.rightSide.rotation;
-        }
-        moveCoroutine = null;
-    }
-
-    protected override IEnumerator DropToCube()
-    {
-        var targetPosition = root.position;
-
-        var cube = levelController.gameField.GetCube(stuckPosition);
-
-
-        if (sideCube == SideCube.Left)
-        {
-            root.position += Vector3.left*heightDrop;
-            root.rotation = cube.leftSide.rotation;
-        }
-        else
-        {
-            root.position += Vector3.right * heightDrop;
-            root.rotation = cube.rightSide.rotation;
+            return false;
         }
 
-        yield return new WaitForSeconds(0.2f);
-        yield return StartCoroutine(this.MovingTransformTo(root, targetPosition, 0.5f, iTimeScaler));
-        yield return null;
-    }
-
-    protected override IEnumerator WorkThead()
-    {
-        yield return StartCoroutine(DropToCube());
-
-        while (true)
+        public override void SetStartPosition(PositionCube point)
         {
-            yield return new WaitForSeconds(0.2f);
+            StopAllCoroutines();
 
-            if (!isMoving)
+            stuckPosition = point;
+            positionMove = point;
+
+            var startCube = levelController.gameField.GetCube(point);
+            if (startCube)
             {
-                Cube cubeTarget = null;// GetNextCube();
-
-                if (GetMoveCube(ref cubeTarget))
+                if (sideCube == SideCube.Left)
                 {
-                    stuck = false;
-
-                    if (cubeTarget)
-                    {
-                        MoveToCube(cubeTarget);
-                        yield return StartCoroutine(this.WaitForSecondITime(1.0f, iTimeScaler));
-                    }
-                    else
-                    {
-                        yield return StartCoroutine(ReachedLowerLevel());
-                        yield break;
-                    }
+                    root.position = startCube.leftSide.position;
                 }
                 else
                 {
-                    stuck = true;
+                    root.position = startCube.rightSide.position;
                 }
+
+                root.rotation = startCube.rightSide.rotation;
             }
+            moveCoroutine = null;
         }
 
-        yield return null;
-    }
-
-    protected virtual IEnumerator ReachedLowerLevel()
-    {
-        Vector3 newPos = root.position - jumpVector;
-       // root.position = newPos;
-
-        yield return StartCoroutine(JumpAndMoveToPoint(newPos));
-        yield return StartCoroutine(DropDown());
-        OnStartDestroy();
-    }
-
-    protected override IEnumerator DropDown()
-    {
-        Vector3 dropDownPoint = root.position - new Vector3(dropDownHeight * 0.5f, 0, -dropDownHeight * 0.5f);
-
-        if (sideCube == SideCube.Left)
+        protected override IEnumerator DropToCube()
         {
-            dropDownPoint = root.position + new Vector3(dropDownHeight * 0.5f, 0, dropDownHeight * 0.5f);
-        }
+            var targetPosition = root.position;
 
-        yield return StartCoroutine(this.MovingTransformTo(root, dropDownPoint, timeDropDown, iTimeScaler));
-    }
+            var cube = levelController.gameField.GetCube(stuckPosition);
 
-    public override Vector3 GetRotationToCube(Cube cube)
-    {
-        if (sideCube == SideCube.Left)
-        {
-            return cube.leftSide.rotation.eulerAngles;
-        }
 
-        return cube.rightSide.rotation.eulerAngles;
-    }
+            if (sideCube == SideCube.Left)
+            {
+                root.position += Vector3.left*heightDrop;
+                root.rotation = cube.leftSide.rotation;
+            }
+            else
+            {
+                root.position += Vector3.right * heightDrop;
+                root.rotation = cube.rightSide.rotation;
+            }
 
-    protected override IEnumerator RotateToCube(Cube cube)
-    {
-        var rotateTo = GetRotationToCube(cube);
-        yield return StartCoroutine(RotateTo(rotateTo));
-    }
-
-    protected override IEnumerator JumpAndMove(Cube cube)
-    {
-        Vector3 cubeSide = GetSideCube(cube);
-
-        jumpVector = root.position - cubeSide;
-
-        yield return StartCoroutine(JumpAndMoveToPoint(GetSideCube(cube)));
-        yield return null;
-    }
-
-    protected override IEnumerator MoveToCubeAnimation(Cube cube, Action<Character> OnEnd = null)
-    {
-        if (!isMoving)
-        {
-            positionMove = GetHungPosition(cube.currentPosition);
-            yield return StartCoroutine(RotateToCube(cube));
-            yield return StartCoroutine(JumpAndMove(cube));
-            stuckPosition = cube.currentPosition;
-            positionMove = new PositionCube(-10,-10);
-
-            currentPosition = GetHungPosition(stuckPosition);
-
-            cube.OnPressMy(this);
-        }
-
-        moveCoroutine = null;
-
-        if (OnEnd != null)
-        {
-            OnEnd(this);
-        }
-    }
-
-    public PositionCube GetHungPosition(PositionCube stuckPosition)
-    {
-        if (sideCube == SideCube.Left)
-        {
-            return new PositionCube(stuckPosition.line + 1, stuckPosition.position);
-        }
-
-        return new PositionCube(stuckPosition.line + 1, stuckPosition.position + 1);
-    }
-
-    protected override IEnumerator JumpAndMoveToPoint(Vector3 point)
-    {
-        float t = 0;
-        var movingTo = point;
-        var startTo = root.position;
-
-        while (t < 1)
-        {
-            t += CoroutinesHalpers.GetTimeDeltatimeScale(iTimeScaler) / timeMove;
-            t = Mathf.Clamp01(t);
-            Vector3 pos = Vector3.Lerp(startTo, movingTo, t);
-            JumpOffset(t);
-            SetTimeAnimationJump(t);
-            root.position = pos;
+            yield return new WaitForSeconds(0.2f);
+            yield return StartCoroutine(this.MovingTransformTo(root, targetPosition, 0.5f, iTimeScaler));
             yield return null;
         }
 
-        root.position = movingTo;
-    }
-
-    protected virtual void JumpOffset(float t)
-    {
-        float lerp = GetOffsetLerp(t);
-        jumpRoot.localPosition = new Vector3(0, 0, -lerp);
-    }
-
-    protected override float GetOffsetLerp(float t)
-    {
-        float retFloat = jumpAmplitude;
-
-        if (t < 0.5f)
+        protected override IEnumerator WorkThead()
         {
-            retFloat = jumpAmplitude * t;
-        }
-        else
-        {
-            retFloat = jumpAmplitude - (jumpAmplitude * t);
-        }
+            yield return StartCoroutine(DropToCube());
 
-        return retFloat;
-    }
-
-    public GameplayObject GetGamplayObjectInPoint(PositionCube point)
-    {
-        foreach (var gameplayObject in levelController.gameplayObjects.gameplayObjectsList)
-        {
-            if (gameplayObject.currentPosition == point || gameplayObject.positionMove == point && gameplayObject != this)
+            while (true)
             {
-                return gameplayObject;
+                yield return new WaitForSeconds(0.2f);
+
+                if (!isMoving)
+                {
+                    Cube cubeTarget = null;// GetNextCube();
+
+                    if (GetMoveCube(ref cubeTarget))
+                    {
+                        stuck = false;
+
+                        if (cubeTarget)
+                        {
+                            MoveToCube(cubeTarget);
+                            yield return StartCoroutine(this.WaitForSecondITime(1.0f, iTimeScaler));
+                        }
+                        else
+                        {
+                            yield return StartCoroutine(ReachedLowerLevel());
+                            yield break;
+                        }
+                    }
+                    else
+                    {
+                        stuck = true;
+                    }
+                }
+            }
+
+            yield return null;
+        }
+
+        protected virtual IEnumerator ReachedLowerLevel()
+        {
+            Vector3 newPos = root.position - jumpVector;
+            // root.position = newPos;
+
+            yield return StartCoroutine(JumpAndMoveToPoint(newPos));
+            yield return StartCoroutine(DropDown());
+            OnStartDestroy();
+        }
+
+        protected override IEnumerator DropDown()
+        {
+            Vector3 dropDownPoint = root.position - new Vector3(dropDownHeight * 0.5f, 0, -dropDownHeight * 0.5f);
+
+            if (sideCube == SideCube.Left)
+            {
+                dropDownPoint = root.position + new Vector3(dropDownHeight * 0.5f, 0, dropDownHeight * 0.5f);
+            }
+
+            yield return StartCoroutine(this.MovingTransformTo(root, dropDownPoint, timeDropDown, iTimeScaler));
+        }
+
+        public override Vector3 GetRotationToCube(Cube cube)
+        {
+            if (sideCube == SideCube.Left)
+            {
+                return cube.leftSide.rotation.eulerAngles;
+            }
+
+            return cube.rightSide.rotation.eulerAngles;
+        }
+
+        protected override IEnumerator RotateToCube(Cube cube)
+        {
+            var rotateTo = GetRotationToCube(cube);
+            yield return StartCoroutine(RotateTo(rotateTo));
+        }
+
+        protected override IEnumerator JumpAndMove(Cube cube)
+        {
+            Vector3 cubeSide = GetSideCube(cube);
+
+            jumpVector = root.position - cubeSide;
+
+            yield return StartCoroutine(JumpAndMoveToPoint(GetSideCube(cube)));
+            yield return null;
+        }
+
+        protected override IEnumerator MoveToCubeAnimation(Cube cube, Action<Character> OnEnd = null)
+        {
+            if (!isMoving)
+            {
+                positionMove = GetHungPosition(cube.currentPosition);
+                yield return StartCoroutine(RotateToCube(cube));
+                yield return StartCoroutine(JumpAndMove(cube));
+                stuckPosition = cube.currentPosition;
+                positionMove = new PositionCube(-10,-10);
+
+                currentPosition = GetHungPosition(stuckPosition);
+
+                cube.OnPressMy(this);
+            }
+
+            moveCoroutine = null;
+
+            if (OnEnd != null)
+            {
+                OnEnd(this);
             }
         }
 
-        return null;
-    }
-
-    private bool GetMoveCube(ref Cube retCube)
-    {
-        retCube = GetNextCube();
-
-        if (retCube && currentStuckTimer < maxStuckTime)
+        public PositionCube GetHungPosition(PositionCube stuckPosition)
         {
-            //var gObject     = GetGamplayObjectInPoint(retCube.cubePosition);
-            var hungObject  = GetGamplayObjectInPoint(GetHungPosition(retCube.currentPosition));
-
-            if (/*gObject ||*/ hungObject)
+            if (sideCube == SideCube.Left)
             {
-                return false;
+                return new PositionCube(stuckPosition.line + 1, stuckPosition.position);
             }
+
+            return new PositionCube(stuckPosition.line + 1, stuckPosition.position + 1);
         }
 
-        currentStuckTimer = 0;
-
-        return true;
-    }
-
-    private Cube GetNextCube()
-    {
-        PositionCube[] position = null;
-
-        if (sideCube == SideCube.Left)
+        protected override IEnumerator JumpAndMoveToPoint(Vector3 point)
         {
-            position = new[]
-            {
-                new PositionCube(stuckPosition.line - 1, stuckPosition.position),
-                new PositionCube(stuckPosition.line, stuckPosition.position + 1),
-            };
-        }
-        else
-        {
-            position = new[]
-            {
-                new PositionCube(stuckPosition.line - 1, stuckPosition.position -1),
-                new PositionCube(stuckPosition.line, stuckPosition.position - 1),
-            };
-        }
+            float t = 0;
+            var movingTo = point;
+            var startTo = root.position;
 
-        position = position.Mix().ToArray();
-
-        foreach (var positionCube in position)
-        {
-            Cube ret = levelController.gameField.GetCube(positionCube);
-
-            if (ret != null)
+            while (t < 1)
             {
-                return ret;
+                t += CoroutinesHalpers.GetTimeDeltatimeScale(iTimeScaler) / timeMove;
+                t = Mathf.Clamp01(t);
+                Vector3 pos = Vector3.Lerp(startTo, movingTo, t);
+                JumpOffset(t);
+                SetTimeAnimationJump(t);
+                root.position = pos;
+                yield return null;
             }
+
+            root.position = movingTo;
         }
 
-        return null;
-    }
-
-    public Vector3 GetSideCube(Cube cude)
-    {
-        if (sideCube == SideCube.Left)
+        protected virtual void JumpOffset(float t)
         {
-            return cude.leftSide.position;
+            float lerp = GetOffsetLerp(t);
+            jumpRoot.localPosition = new Vector3(0, 0, -lerp);
         }
 
-        return cude.rightSide.position;
-    }
-
-
-    void Update()
-    {
-        if (stuck)
+        protected override float GetOffsetLerp(float t)
         {
-            currentStuckTimer += timeScale*Time.deltaTime;
+            float retFloat = jumpAmplitude;
+
+            if (t < 0.5f)
+            {
+                retFloat = jumpAmplitude * t;
+            }
+            else
+            {
+                retFloat = jumpAmplitude - (jumpAmplitude * t);
+            }
+
+            return retFloat;
         }
-        else
+
+        public GameplayObject GetGamplayObjectInPoint(PositionCube point)
         {
+            foreach (var gameplayObject in levelController.gameplayObjects.gameplayObjectsList)
+            {
+                if (gameplayObject.currentPosition == point || gameplayObject.positionMove == point && gameplayObject != this)
+                {
+                    return gameplayObject;
+                }
+            }
+
+            return null;
+        }
+
+        private bool GetMoveCube(ref Cube retCube)
+        {
+            retCube = GetNextCube();
+
+            if (retCube && currentStuckTimer < maxStuckTime)
+            {
+                //var gObject     = GetGamplayObjectInPoint(retCube.cubePosition);
+                var hungObject  = GetGamplayObjectInPoint(GetHungPosition(retCube.currentPosition));
+
+                if (/*gObject ||*/ hungObject)
+                {
+                    return false;
+                }
+            }
+
             currentStuckTimer = 0;
-        }
-    }
 
+            return true;
+        }
+
+        private Cube GetNextCube()
+        {
+            PositionCube[] position = null;
+
+            if (sideCube == SideCube.Left)
+            {
+                position = new[]
+                {
+                    new PositionCube(stuckPosition.line - 1, stuckPosition.position),
+                    new PositionCube(stuckPosition.line, stuckPosition.position + 1),
+                };
+            }
+            else
+            {
+                position = new[]
+                {
+                    new PositionCube(stuckPosition.line - 1, stuckPosition.position -1),
+                    new PositionCube(stuckPosition.line, stuckPosition.position - 1),
+                };
+            }
+
+            position = position.Mix().ToArray();
+
+            foreach (var positionCube in position)
+            {
+                Cube ret = levelController.gameField.GetCube(positionCube);
+
+                if (ret != null)
+                {
+                    return ret;
+                }
+            }
+
+            return null;
+        }
+
+        public Vector3 GetSideCube(Cube cude)
+        {
+            if (sideCube == SideCube.Left)
+            {
+                return cude.leftSide.position;
+            }
+
+            return cude.rightSide.position;
+        }
+
+
+        void Update()
+        {
+            if (stuck)
+            {
+                currentStuckTimer += timeScale*Time.deltaTime;
+            }
+            else
+            {
+                currentStuckTimer = 0;
+            }
+        }
+
+    }
 }

@@ -1,33 +1,35 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections;
 
-public class InputController : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene.InputControl
 {
-    public Action<DirectionMove.Direction> OnPress; 
-    public ControlController controlController;
+    public class InputController : MonoBehaviour
+    {
+        public Action<DirectionMove.Direction> OnPress; 
+        public ControlController controlController;
 
-    public bool isEnable;
+        public bool isEnable;
 
-	void Start ()
-	{
-	}
+        void Start ()
+        {
+        }
 	
-	void Update () 
-	{
-	    if (isEnable)
-	    {
-            foreach (var value in Enum.GetValues(typeof(DirectionMove.Direction)))
+        void Update () 
+        {
+            if (isEnable)
             {
-                var eValue = (DirectionMove.Direction)value;
-                if (controlController.GetInDown(eValue))
+                foreach (var value in Enum.GetValues(typeof(DirectionMove.Direction)))
                 {
-                    if (OnPress != null)
+                    var eValue = (DirectionMove.Direction)value;
+                    if (controlController.GetInDown(eValue))
                     {
-                        OnPress(eValue);
+                        if (OnPress != null)
+                        {
+                            OnPress(eValue);
+                        }
                     }
                 }
             }
         }
-	}
+    }
 }

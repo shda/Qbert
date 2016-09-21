@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public interface ITimeScale 
+﻿namespace Assets.Qbert.Scripts.GameScene
 {
-    float timeScale { get; set; }
+    public interface ITimeScale 
+    {
+        float timeScale { get; set; }
+    }
 }

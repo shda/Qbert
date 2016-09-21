@@ -1,144 +1,146 @@
-﻿using System;
-using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using Assets.Qbert.Scripts.Utils;
+using UnityEngine;
 
-public class PurpleCube : RedCube
+namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 {
-    [Header("PurpleCube")]
-    public AnimationToTime rebornAnimation;
-    public PathFinder pathFinder;
-
-    public Cube myCube;
-    public Cube qbertCube;
-
-    public override Type typeObject
+    public class PurpleCube : RedCube
     {
-        get { return Type.PurpleCube; }
-    }
+        [Header("PurpleCube")]
+        public AnimationToTime rebornAnimation;
+        public PathFinder pathFinder;
 
-    public override void Run()
-    {
-        StartCoroutine(WorkThead());
-    }
+        public Cube myCube;
+        public Cube qbertCube;
 
-    protected override IEnumerator ReachedLowerLevel(DirectionMove.Direction direction)
-    {
-        qbertCube = levelController.gameField.GetCube(levelController.qbert.currentPosition);
-        yield return StartCoroutine(RebornToEnemy());
-        yield return StartCoroutine(FallowToQbert());
-    }
-
-    private IEnumerator RebornToEnemy()
-    {
-        yield return StartCoroutine(rebornAnimation.PlayToTime(2.0f , iTimeScaler));
-    }
-
-    private IEnumerator FallowToQbert()
-    {
-        while (true)
+        public override Type typeObject
         {
-            Qbert qbert = levelController.qbert;
-            Cube cube = FindPathToQberd(qbert);
-            if (cube)
+            get { return Type.PurpleCube; }
+        }
+
+        public override void Run()
+        {
+            StartCoroutine(WorkThead());
+        }
+
+        protected override IEnumerator ReachedLowerLevel(DirectionMove.Direction direction)
+        {
+            qbertCube = levelController.gameField.GetCube(levelController.qbert.currentPosition);
+            yield return StartCoroutine(RebornToEnemy());
+            yield return StartCoroutine(FallowToQbert());
+        }
+
+        private IEnumerator RebornToEnemy()
+        {
+            yield return StartCoroutine(rebornAnimation.PlayToTime(2.0f , iTimeScaler));
+        }
+
+        private IEnumerator FallowToQbert()
+        {
+            while (true)
             {
-                jumpAnimationToTime = null;
-                yield return StartCoroutine(MoveToCubeAnimation(cube));
+                Qbert qbert = levelController.qbert;
+                Cube cube = FindPathToQberd(qbert);
+                if (cube)
+                {
+                    jumpAnimationToTime = null;
+                    yield return StartCoroutine(MoveToCubeAnimation(cube));
+                }
+
+                yield return StartCoroutine(this.WaitForSecondITime(0.5f, iTimeScaler));
             }
 
-            yield return StartCoroutine(this.WaitForSecondITime(0.5f, iTimeScaler));
+            yield return null;
         }
 
-        yield return null;
-    }
-
-    void Start()
-    {
-        pathFinder = new PathFinder();
-    }
-
-    private Cube FindPathToQberd(Qbert qbert)
-    {
-        PositionCube qbertPoint = qbert.currentPosition;
-        PositionCube myPoint = currentPosition;
-
-        if (qbertPoint == myPoint)
+        void Start()
         {
-            return null;
+            pathFinder = new PathFinder();
         }
 
-        var qbertCubePath = levelController.gameField.GetCube(qbertPoint);
-        if (qbertCubePath == null && qbertCube == null)
+        private Cube FindPathToQberd(Qbert qbert)
         {
-            return null;
-        }
+            PositionCube qbertPoint = qbert.currentPosition;
+            PositionCube myPoint = currentPosition;
 
-        PositionCube step = GetNeighborPoint(myPoint , qbertPoint);
-        var targetCube = levelController.gameplayObjects.GetGamplayObjectInPoint(step);
-        if (targetCube && !targetCube.CanJumpToMy())
-        {
-            return null;
-        }
-
-        return levelController.gameField.GetCube(step);
-    }
-
-    public List<Cube> findPath; 
-
-    public PositionCube GetNeighborPoint(PositionCube myPoint, PositionCube qbertPoint)
-    {
-        var myCubePath      = levelController.gameField.GetCube(myPoint);
-        var qbertCubePath   = levelController.gameField.GetCube(qbertPoint);
-
-        if (qbertCubePath == null)
-        {
-            qbertCubePath = qbertCube;
-
-            if (myCubePath == qbertCubePath)
+            if (qbertPoint == myPoint)
             {
-                Drop(myPoint, qbertPoint);
-                return qbertPoint;
+                return null;
             }
+
+            var qbertCubePath = levelController.gameField.GetCube(qbertPoint);
+            if (qbertCubePath == null && qbertCube == null)
+            {
+                return null;
+            }
+
+            PositionCube step = GetNeighborPoint(myPoint , qbertPoint);
+            var targetCube = levelController.gameplayObjects.GetGamplayObjectInPoint(step);
+            if (targetCube && !targetCube.CanJumpToMy())
+            {
+                return null;
+            }
+
+            return levelController.gameField.GetCube(step);
         }
 
-        qbertCube = qbertCubePath;
-        findPath = pathFinder.FindPath(myCubePath,qbertCubePath);
+        public List<Cube> findPath; 
 
-        if (findPath != null && findPath.Count >= 2)
+        public PositionCube GetNeighborPoint(PositionCube myPoint, PositionCube qbertPoint)
         {
-            return findPath[findPath.Count - 2].currentPosition;
+            var myCubePath      = levelController.gameField.GetCube(myPoint);
+            var qbertCubePath   = levelController.gameField.GetCube(qbertPoint);
+
+            if (qbertCubePath == null)
+            {
+                qbertCubePath = qbertCube;
+
+                if (myCubePath == qbertCubePath)
+                {
+                    Drop(myPoint, qbertPoint);
+                    return qbertPoint;
+                }
+            }
+
+            qbertCube = qbertCubePath;
+            findPath = pathFinder.FindPath(myCubePath,qbertCubePath);
+
+            if (findPath != null && findPath.Count >= 2)
+            {
+                return findPath[findPath.Count - 2].currentPosition;
+            }
+
+            return qbertPoint;
         }
 
-        return qbertPoint;
-    }
-
-    void Update()
-    {
-
-    }
-
-    private void Drop(PositionCube start , PositionCube end)
-    {
-        var jumpTo = levelController.gameField.mapGenerator.GetPointOutsideFieldToPosition(end);
-
-        AddScore(ScorePrice.dropPurpeCube);
-
-        Vector3 newPos = jumpTo.transform.position;
-        MoveToPointAndDropDown(newPos, character =>
+        void Update()
         {
-            OnStartDestroy();
-        });
-    }
 
-    public int GetDistance(PositionCube start, PositionCube end)
-    {
-        return Mathf.Abs(start.line - end.line) + Mathf.Abs(start.position - end.position);
-    }
+        }
 
-    public override bool OnColisionToQbert(Qbert qbert)
-    {
-        return true;
+        private void Drop(PositionCube start , PositionCube end)
+        {
+            var jumpTo = levelController.gameField.mapGenerator.GetPointOutsideFieldToPosition(end);
+
+            AddScore(ScorePrice.dropPurpeCube);
+
+            Vector3 newPos = jumpTo.transform.position;
+            MoveToPointAndDropDown(newPos, character =>
+            {
+                OnStartDestroy();
+            });
+        }
+
+        public int GetDistance(PositionCube start, PositionCube end)
+        {
+            return Mathf.Abs(start.line - end.line) + Mathf.Abs(start.position - end.position);
+        }
+
+        public override bool OnColisionToQbert(Qbert qbert)
+        {
+            return true;
+        }
     }
 }
 

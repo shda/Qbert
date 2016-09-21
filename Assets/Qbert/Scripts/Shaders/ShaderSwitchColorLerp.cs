@@ -1,61 +1,62 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Runtime.InteropServices;
 
-public class ShaderSwitchColorLerp : MonoBehaviour
+namespace Assets.Qbert.Scripts.Shaders
 {
-    public Renderer render;
-
-    public Color start;
-    public Color end;
-    public float speedUp;
-    public float speedDown;
-    public float value;
-
-    private float _valueLerp;
-    public float valueLerp
+    public class ShaderSwitchColorLerp : MonoBehaviour
     {
-        set
+        public Renderer render;
+
+        public Color start;
+        public Color end;
+        public float speedUp;
+        public float speedDown;
+        public float value;
+
+        private float _valueLerp;
+        public float valueLerp
         {
-            _valueLerp = value;
-            render.material.SetFloat("_Lerp", value);
+            set
+            {
+                _valueLerp = value;
+                render.material.SetFloat("_Lerp", value);
+            }
+            get { return _valueLerp; }
         }
-        get { return _valueLerp; }
-    }
 
-    public void SetColorSrart(Color color)
-    {
-        render.material.SetColor("_ColorIn", color);
-        start = color;
-    }
-
-    public void SetColorEnd(Color color)
-    {
-        render.material.SetColor("_ColorOut", color);
-        end = color;
-    }
-
-
-    void Awake()
-    {
-       _valueLerp = render.material.GetFloat("_Lerp");
-        SetColorSrart(start);
-        SetColorEnd(end);
-    }
-
-    public void Update()
-    {
-        float valueStep = value - valueLerp;
-
-        if (valueStep > 0)
+        public void SetColorSrart(Color color)
         {
-            valueLerp += valueStep * Time.deltaTime * speedUp;
+            render.material.SetColor("_ColorIn", color);
+            start = color;
         }
-        else
+
+        public void SetColorEnd(Color color)
         {
-            valueLerp += valueStep * Time.deltaTime * speedDown;
+            render.material.SetColor("_ColorOut", color);
+            end = color;
         }
+
+
+        void Awake()
+        {
+            _valueLerp = render.material.GetFloat("_Lerp");
+            SetColorSrart(start);
+            SetColorEnd(end);
+        }
+
+        public void Update()
+        {
+            float valueStep = value - valueLerp;
+
+            if (valueStep > 0)
+            {
+                valueLerp += valueStep * Time.deltaTime * speedUp;
+            }
+            else
+            {
+                valueLerp += valueStep * Time.deltaTime * speedDown;
+            }
 
         
+        }
     }
 }

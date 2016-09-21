@@ -1,150 +1,152 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
-[System.Serializable]
-public class PathFinder
+namespace Assets.Qbert.Scripts.GameScene
 {
     [System.Serializable]
-    public class PathPoint
+    public class PathFinder
     {
-        public PathPoint parentPathPoint;
-        public Cube      currentCube;
-        public int G;
-        public int H;
-        public int F;
-    }
-
-
-    public List<PathPoint> closeList;
-    public List<PathPoint> openList;
-
-    public List<Cube> FindPath(Cube start , Cube end)
-    {
-        closeList = new List<PathPoint>();
-        openList = new List<PathPoint>();
-
-        var point = new PathPoint()
+        [System.Serializable]
+        public class PathPoint
         {
-            currentCube = start,
-            G = 0,
-            H = CalcDist(start, end),
-            F = CalcDist(start, end),
-            parentPathPoint = null
-        };
-
-        openList.Add(point);
-
-        int maxIter = 1000;
-
-        int count = 0;
-        while (openList.Count > 0 && maxIter > 0)
-        {
-            PathPoint min = GetMinFInOpen();
-            count++;
-            if (min.currentCube == end)
-            {
-                return CreateArrayPathPoints(min);
-            }
-            maxIter--;
-
-            FindAllNeighborNodes(RemoveOpenSetToClose(min));
+            public PathPoint parentPathPoint;
+            public Cube      currentCube;
+            public int G;
+            public int H;
+            public int F;
         }
 
-        return null;
-    }
 
-    private List<Cube> CreateArrayPathPoints(PathPoint currentPoint)
-    {
-        List<Cube> path = new List<Cube>();
+        public List<PathPoint> closeList;
+        public List<PathPoint> openList;
 
-        path.Add(currentPoint.currentCube);
-
-        while (true)
+        public List<Cube> FindPath(Cube start , Cube end)
         {
-            if (currentPoint.parentPathPoint == null)
-                break;
+            closeList = new List<PathPoint>();
+            openList = new List<PathPoint>();
 
-            currentPoint = currentPoint.parentPathPoint;
+            var point = new PathPoint()
+            {
+                currentCube = start,
+                G = 0,
+                H = CalcDist(start, end),
+                F = CalcDist(start, end),
+                parentPathPoint = null
+            };
+
+            openList.Add(point);
+
+            int maxIter = 1000;
+
+            int count = 0;
+            while (openList.Count > 0 && maxIter > 0)
+            {
+                PathPoint min = GetMinFInOpen();
+                count++;
+                if (min.currentCube == end)
+                {
+                    return CreateArrayPathPoints(min);
+                }
+                maxIter--;
+
+                FindAllNeighborNodes(RemoveOpenSetToClose(min));
+            }
+
+            return null;
+        }
+
+        private List<Cube> CreateArrayPathPoints(PathPoint currentPoint)
+        {
+            List<Cube> path = new List<Cube>();
 
             path.Add(currentPoint.currentCube);
-        }
 
-        return path;
-    } 
-
-    private PathPoint RemoveOpenSetToClose(PathPoint point)
-    {
-        closeList.Add(point);
-        openList.Remove(point);
-
-        return closeList.Last();
-    }
-
-    private PathPoint GetMinFInOpen()
-    {
-        PathPoint findValue = null;
-
-        foreach (var pathPoint in openList)
-        {
-            if (findValue == null || findValue.F > pathPoint.F)
+            while (true)
             {
-                findValue = pathPoint;
+                if (currentPoint.parentPathPoint == null)
+                    break;
+
+                currentPoint = currentPoint.parentPathPoint;
+
+                path.Add(currentPoint.currentCube);
             }
+
+            return path;
+        } 
+
+        private PathPoint RemoveOpenSetToClose(PathPoint point)
+        {
+            closeList.Add(point);
+            openList.Remove(point);
+
+            return closeList.Last();
         }
 
-        return findValue;
-    }
-
-    private bool IsInCloseList(Cube cube)
-    {
-        return closeList.Any(x => x.currentCube == cube);
-    }
-
-    private PathPoint GetInOpenList(Cube cube)
-    {
-        return openList.FirstOrDefault(x => x.currentCube == cube);
-    }
-
-    private void FindAllNeighborNodes(PathPoint point)
-    {
-        foreach (var node in point.currentCube.nodes)
+        private PathPoint GetMinFInOpen()
         {
-            if(IsInCloseList(node))
-                continue;
+            PathPoint findValue = null;
 
-            int Gscore = 10 + point.G;
-
-            var findPoint = GetInOpenList(node);
-
-            if (findPoint != null)
+            foreach (var pathPoint in openList)
             {
-                if (Gscore < findPoint.G)
+                if (findValue == null || findValue.F > pathPoint.F)
                 {
-                    findPoint.parentPathPoint = point;
-                    findPoint.G = Gscore;
+                    findValue = pathPoint;
                 }
             }
-            else
-            {
-                var pathPoint = new PathPoint()
-                {
-                    currentCube = node,
-                    G = Gscore,
-                    H = CalcDist(node, point.currentCube),
-                    F = CalcDist(node, point.currentCube) + Gscore,
-                    parentPathPoint = point,
-                };
 
-                openList.Add(pathPoint);
+            return findValue;
+        }
+
+        private bool IsInCloseList(Cube cube)
+        {
+            return closeList.Any(x => x.currentCube == cube);
+        }
+
+        private PathPoint GetInOpenList(Cube cube)
+        {
+            return openList.FirstOrDefault(x => x.currentCube == cube);
+        }
+
+        private void FindAllNeighborNodes(PathPoint point)
+        {
+            foreach (var node in point.currentCube.nodes)
+            {
+                if(IsInCloseList(node))
+                    continue;
+
+                int Gscore = 10 + point.G;
+
+                var findPoint = GetInOpenList(node);
+
+                if (findPoint != null)
+                {
+                    if (Gscore < findPoint.G)
+                    {
+                        findPoint.parentPathPoint = point;
+                        findPoint.G = Gscore;
+                    }
+                }
+                else
+                {
+                    var pathPoint = new PathPoint()
+                    {
+                        currentCube = node,
+                        G = Gscore,
+                        H = CalcDist(node, point.currentCube),
+                        F = CalcDist(node, point.currentCube) + Gscore,
+                        parentPathPoint = point,
+                    };
+
+                    openList.Add(pathPoint);
+                }
             }
         }
-    }
 
-    public int CalcDist(Cube start, Cube end)
-    {
-        return 10 * Mathf.Abs(start.currentPosition.position - end.currentPosition.position)
-            + Mathf.Abs(start.currentPosition.line - end.currentPosition.line);
+        public int CalcDist(Cube start, Cube end)
+        {
+            return 10 * Mathf.Abs(start.currentPosition.position - end.currentPosition.position)
+                   + Mathf.Abs(start.currentPosition.line - end.currentPosition.line);
+        }
     }
 }
