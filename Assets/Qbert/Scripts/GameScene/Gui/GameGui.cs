@@ -10,7 +10,8 @@ namespace Scripts.GameScene.Gui
         public Text coinsLabel;
 
         public CubeChangeTo cubeChangeTo;
-        public GuiLive lives;
+       // public GuiLive lives;
+        public Lives2d lives;
 
         public Transform gameOver;
 
