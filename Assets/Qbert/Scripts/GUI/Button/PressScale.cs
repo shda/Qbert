@@ -19,6 +19,8 @@ namespace Scripts.GUI.Button
 
         public void OnPress(bool isPress)
         {
+            Debug.Log("Press");
+
             if (isPress)
             {
                 oldLocalScale = rootScale.localScale;

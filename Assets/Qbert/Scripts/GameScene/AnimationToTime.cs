@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Scripts.GameScene
 {
-    public class AnimationToTime : MonoBehaviour , ITimeScale
+    public class AnimationToTime : ITime, ITimeScale
     {
         //ITimeScale
         private float _timeScale = 1.0f;
@@ -20,17 +20,12 @@ namespace Scripts.GameScene
 
         private int heshAnimationName;
 
-        public float time
+        public override void ChangeValue(float value)
         {
-            set
+            if (animator != null && animator.gameObject.activeSelf)
             {
-                value = Mathf.Clamp01(value);
-                if (animator != null && animator.gameObject.activeSelf)
-                {
-                    animator.Play(heshAnimationName, 0, reverse ? 1.0f - value : value);
-                    animator.Update(0);
-                }
-            
+                animator.Play(heshAnimationName, 0, reverse ? 1.0f - value : value);
+                animator.Update(0);
             }
         }
 
@@ -60,10 +55,16 @@ namespace Scripts.GameScene
         {
         
         }
-	
+
+        public bool isEnable = false;
+        public float value = 0;
+
         void Update () 
         {
-	
+            if (isEnable)
+            {
+                time = value;
+            }
         }
     }
 }
