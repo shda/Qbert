@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 8781a89264e23d340be5e3a97161de32
-timeCreated: 1474521640
+guid: 37fc5f7e653628441a25113f6676b462
+timeCreated: 1474524101
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
@@ -51,7 +51,7 @@ TextureImporter:
   spriteSheet:
     sprites: []
     outline: []
-  spritePackingTag: Menu
+  spritePackingTag: GameMenu
   userData: 
   assetBundleName: 
   assetBundleVariant: 
