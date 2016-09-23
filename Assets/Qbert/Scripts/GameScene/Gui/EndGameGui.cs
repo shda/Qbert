@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Scripts.GameScene.Levels;
+using Scripts.Utils;
 
 namespace Scripts.GameScene.Gui
 {
@@ -12,11 +14,40 @@ namespace Scripts.GameScene.Gui
         public AnimationToTimeMassive showSecondRailGui;
         public AnimationToTimeMassive showSecondRailGuiButtonAnScore;
 
-        void Start()
+        public LevelController levelController;
+
+        public void AddLiveReturnGame()
         {
-            StartCoroutine(TestShow());
+            levelController.AddLiveReturnGame();
         }
 
+        void Start()
+        {
+            //StartCoroutine(TestShow());
+        }
+
+        public void ReturnToGame()
+        {
+            showFirstRailGui.isReverce = true;
+            StartCoroutine(showFirstRailGui.PlayToTime(timeShow));
+
+            AddLiveReturnGame();
+        }
+
+
+        public void OnPressEndGameFirstRails()
+        {
+            StartCoroutine(HideFirtRailsAndShowSecond());
+        }
+
+        private IEnumerator HideFirtRailsAndShowSecond()
+        {
+            showFirstRailGui.isReverce = false;
+            yield return StartCoroutine(hideFirstRailGui.PlayToTime(timeShow));
+            yield return StartCoroutine(showSecondRailGui.PlayToTime(timeShow));
+            yield return new WaitForSeconds(0.2f);
+            yield return StartCoroutine(showSecondRailGuiButtonAnScore.PlayToTime(timeShow));
+        }
 
         IEnumerator TestShow()
         {

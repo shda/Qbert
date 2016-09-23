@@ -45,14 +45,7 @@ namespace Scripts.GameScene.Levels
 
             if (GlobalSettings.countLive > 0)
             {
-                inputController.isEnable = true;
-                Time.timeScale = 1.0f;
-
-                gameplayObjects.DestroyAllEnemies();
-                levelLogic.currentRoundConfig.ResetRound();
-                qbert.SetStartPosition(qbert.currentPosition);
-                DestroyAllEnemies();
-                qbert.Run();
+                ReturnQbertToPosution();
             }
             else
             {
@@ -60,11 +53,26 @@ namespace Scripts.GameScene.Levels
             }
         }
 
+
+        public void ReturnQbertToPosution()
+        {
+            inputController.isEnable = true;
+            Time.timeScale = 1.0f;
+
+            gameplayObjects.DestroyAllEnemies();
+            levelLogic.currentRoundConfig.ResetRound();
+            qbert.SetStartPosition(qbert.currentPosition);
+            DestroyAllEnemies();
+            qbert.Run();
+
+            SetPauseGamplayObjects(false);
+            UpdareCountLives();
+        }
+
         public void OnQbertDropDown()
         {
             OnQbertDead();
         }
-
 
         public void DestroyAllEnemies()
         {
@@ -76,18 +84,14 @@ namespace Scripts.GameScene.Levels
         {
             gameGui.ShowGameOver();
             inputController.isEnable = false;
-
-            gameplayObjects.DestroyAllEnemies();
-            qbert.gameObject.SetActive(false);
-
-            levelLogic.currentRoundConfig.Stop();
-
+            SetPauseGamplayObjects(true);
             Time.timeScale = 1.0f;
+        }
 
-            UnscaleTimer.Create(3.0f, timer =>
-            {
-                gameScene.LoadMainScene();
-            });
+        public void AddLiveReturnGame()
+        {
+            GlobalSettings.countLive = 3;
+            ReturnQbertToPosution();
         }
 
         public void UpdareCountLives()
@@ -130,7 +134,7 @@ namespace Scripts.GameScene.Levels
             qbert.OnCommandMove(buttonType , character =>
             {
                 OnQbertDropDown();
-                UnityEngine.Debug.Log("OnDead");
+           //     UnityEngine.Debug.Log("OnDead");
             });
         }
 
@@ -286,7 +290,5 @@ namespace Scripts.GameScene.Levels
             SetPauseGamplayObjects(false);
             qbert.isCheckColision = true;
         }
-
-    
     }
 }

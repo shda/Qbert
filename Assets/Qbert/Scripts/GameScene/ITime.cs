@@ -5,6 +5,8 @@ namespace Scripts.GameScene
 {
     public abstract class ITime : MonoBehaviour
     {
+        public bool isReverce = false;
+
         private float _time;
         public virtual float time
         {
@@ -12,7 +14,7 @@ namespace Scripts.GameScene
             set
             {
                 _time = Mathf.Clamp(value, minValue, maxValue);
-                ChangeValue(_time);
+                ChangeValue(isReverce ? 1.0f - _time : _time);
             }
         }
 

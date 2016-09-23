@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using Scripts.GameScene;
 using UnityEngine;
 using UnityEngine.UI;
@@ -116,6 +117,13 @@ namespace Scripts.Utils
             } while (distance > 0);
 
             LanchAction(OnEnd, tr);
+        }
+
+
+        public static IEnumerator WaitCoroutine(this MonoBehaviour mono, IEnumerator coroutine , Action<Transform> OnEnd = null)
+        {
+            yield return coroutine;
+            LanchAction(OnEnd, mono.transform);
         }
 
         public static float GetTimeDeltatimeScale(ITimeScale ITimeScale = null)

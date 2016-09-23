@@ -31,6 +31,8 @@ namespace Scripts.GameScene
 
         public IEnumerator PlayToTime(float duration, ITimeScale ITimeScale = null)
         {
+            time = 0;
+
             ITimeScale iTimeCurrent = ITimeScale ?? this;
             float t = 0;
             while (t < 1)

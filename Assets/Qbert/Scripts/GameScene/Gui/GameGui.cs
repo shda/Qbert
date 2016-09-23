@@ -12,11 +12,20 @@ namespace Scripts.GameScene.Gui
         public CubeChangeTo cubeChangeTo;
         public Lives2d lives;
 
+        public EndGameGui endGameGui;
+
         public Transform gameOver;
+
+        public InfoText infoText;
 
         public void ShowGameOver()
         {
-            gameOver.gameObject.SetActive(true);
+            infoText.UpdateInfo();
+
+            endGameGui.showFirstRailGui.isReverce = false;
+            StartCoroutine(endGameGui.showFirstRailGui.PlayToTime(1.0f));
+
+            // gameOver.gameObject.SetActive(true);
         }
 
         public void SetColorCube(Color color)

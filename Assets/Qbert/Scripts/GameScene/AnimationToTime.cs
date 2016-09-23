@@ -16,7 +16,6 @@ namespace Scripts.GameScene
 
         public string animationName;
         public Animator animator;
-        public bool reverse;
 
         private int heshAnimationName;
 
@@ -24,7 +23,7 @@ namespace Scripts.GameScene
         {
             if (animator != null && animator.gameObject.activeSelf)
             {
-                animator.Play(heshAnimationName, 0, reverse ? 1.0f - value : value);
+                animator.Play(heshAnimationName, 0, value);
                 animator.Update(0);
             }
         }
