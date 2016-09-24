@@ -1,6 +1,8 @@
 ﻿using Assets.Qbert.Scripts.GameScene;
+using Assets.Qbert.Scripts.GameScene.AnimationToTime;
 using Assets.Qbert.Scripts.GameScene.GameAssets;
 using Assets.Qbert.Scripts.LoadScene;
+using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
 
 namespace Assets.Qbert.Scripts.InstructionScene
@@ -11,16 +13,41 @@ namespace Assets.Qbert.Scripts.InstructionScene
         public FadeScreen fadeScreen;
         public MapField mapField;
         public GameScene.Characters.Qbert qbert;
-
         public InstructionSteps instructionSteps;
-
         public SelectSceneLoader loadSceneLevel;
+
+        public AnimationToTimeChangeCanvasGroup showButtonSkip;
+
+        public bool isLock = false;
+
+        public void OnPressSkip()
+        {
+            InstructionEnd();
+        }
+
+        public void TimerShowButtonSkip()
+        {
+            if(isLock)
+                return;
+
+            isLock = true;
+
+            showButtonSkip.gameObject.SetActive(false);
+
+            UnscaleTimer.Create(5.0f, timer =>
+            {
+                showButtonSkip.gameObject.SetActive(true);
+                StartCoroutine(showButtonSkip.PlayToTime(0.5f));
+            });
+        }
 
 
         void Start ()
         {
             CreateMap();
             InitQbert();
+
+            TimerShowButtonSkip();
 
             fadeScreen.OnEnd = transform1 =>
             {
@@ -33,6 +60,8 @@ namespace Assets.Qbert.Scripts.InstructionScene
 
         public void InstructionEnd()
         {
+            instructionSteps.StopAllCoroutines();
+
             fadeScreen.OnEnd = transform1 =>
             {
                 loadSceneLevel.OnLoadScene();

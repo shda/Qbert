@@ -6,7 +6,6 @@
 
         public override void ChangeValue(float value)
         {
-           // Debug.Log(value);
             if (anumations != null)
             {
                 foreach (var animationToTime in anumations)
@@ -18,7 +17,7 @@
 
         void Start()
         {
-            //StartCoroutine(PlayToTime(6.0f));
+
         }
     }
 }

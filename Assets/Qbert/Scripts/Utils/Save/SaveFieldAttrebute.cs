@@ -2,7 +2,7 @@
 
 namespace Assets.Qbert.Scripts.Utils.Save
 {
-    class SaveField : Attribute
+    class SaveFieldAttrebute : Attribute
     {
 
     }

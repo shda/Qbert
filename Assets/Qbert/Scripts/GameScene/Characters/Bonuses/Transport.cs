@@ -8,7 +8,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
     public class Transport : GameplayObject
     {
         [Header("Transport")]
-        public float speedMovingToPoint = 1.0f;
+        public float durationMoveToEndPoint = 2.0f;
         public float offsetDrop = 1.0f;
 
         public Vector3 offsetToStartPoint;
@@ -107,22 +107,14 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
 
         public IEnumerator MoveTransport(Qbert qbert)
         {
-            //StartCoroutine(this.MovingSpeedTransformTo(qbert.root, transportMoveToPoint, speedMovingToPoint));
-            //yield return StartCoroutine(this.MovingSpeedTransformTo(transform, transportMoveToPoint, speedMovingToPoint));
-
-            //var cp = currentPosition;
-            //var movePos = positionMove;
-
-            //if()
-
             var offset = Mathf.Abs(qbert.positionMove.y - cubeJumpAfterMove.currentPosition.y);
 
             var offsetF = offset*0.5f;
 
             var move = qbert.root.position + new Vector3(0, offsetF, -offsetF);
 
-            yield return StartCoroutine(MoveTwo(qbert.root, transform, move, 10.0f));
-            yield return StartCoroutine(MoveTwo(qbert.root , transform , transportMoveToPoint , speedMovingToPoint) );
+            yield return StartCoroutine(MoveTwo(qbert.root, transform, move, 1.0f));
+            yield return StartCoroutine(MoveTwo(qbert.root , transform , transportMoveToPoint , durationMoveToEndPoint) );
 
             yield return new WaitForSeconds(0.5f);
 
@@ -136,8 +128,8 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
 
         IEnumerator MoveTwo(Transform one, Transform two , Vector3 moveTo , float speed)
         {
-            StartCoroutine(this.MovingSpeedTransformTo(one, moveTo, speed));
-            yield return StartCoroutine(this.MovingSpeedTransformTo(two, moveTo, speed));
+            StartCoroutine(this.MovingTransformTo(one, moveTo, speed));
+            yield return StartCoroutine(this.MovingTransformTo(two, moveTo, speed));
         }
         public override bool CanJumpToMy()
         {
