@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Scripts.GameScene.Levels;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Scripts.GameScene.Gui
@@ -8,24 +9,46 @@ namespace Scripts.GameScene.Gui
         public ResourceCounter scoreText;
         public Text levelLabel;
         public Text coinsLabel;
-
         public CubeChangeTo cubeChangeTo;
         public Lives2d lives;
-
         public EndGameGui endGameGui;
-
         public Transform gameOver;
-
         public InfoText infoText;
+        public MenuPause menuPause;
+        public LevelController levelController;
+        
+        public void OnPressButtonPause()
+        {
+            menuPause.Show();
+
+            levelController.SetPauseGamplayObjects(true);
+            levelController.SetPauseQbert(true);
+            levelController.inputController.isEnable = false;
+
+            menuPause.OnCompliteGame = () =>
+            {
+                ShowEndGame();
+            };
+
+            menuPause.OnResumeGame = () =>
+            {
+                levelController.SetPauseGamplayObjects(false);
+                levelController.SetPauseQbert(false);
+                levelController.inputController.isEnable = true;
+            };
+        }
 
         public void ShowGameOver()
         {
             infoText.UpdateInfo();
+            endGameGui.ShowGameOver();
+        }
 
-            endGameGui.showFirstRailGui.isReverce = false;
-            StartCoroutine(endGameGui.showFirstRailGui.PlayToTime(1.0f));
+        public void ShowEndGame()
+        {
+            infoText.UpdateInfo();
 
-            // gameOver.gameObject.SetActive(true);
+            endGameGui.OnShowSecondRails();
         }
 
         public void SetColorCube(Color color)
@@ -72,7 +95,7 @@ namespace Scripts.GameScene.Gui
         }
         void Start () 
         {
-	    
+            menuPause.HideAll();
         }
 	
         void Update () 

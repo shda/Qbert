@@ -79,13 +79,23 @@ namespace Scripts.GameScene.Levels
             gameplayObjects.DestroyAllEnemies();
         }
 
+        private bool isFirstEndGame = true;
 
         public void GameOver()
         {
-            gameGui.ShowGameOver();
             inputController.isEnable = false;
             SetPauseGamplayObjects(true);
             Time.timeScale = 1.0f;
+
+            if (isFirstEndGame)
+            {
+                isFirstEndGame = false;
+                gameGui.ShowGameOver();
+            }
+            else
+            {
+                gameGui.ShowEndGame();
+            }
         }
 
         public void AddLiveReturnGame()
@@ -104,6 +114,12 @@ namespace Scripts.GameScene.Levels
             float timeScale = isPause ? 0.0000001f : 1.0f;
             gameplayObjects.SetTimeScale(timeScale);
             levelLogic.SetTimeScaleGameplayObjects(timeScale);
+        }
+
+        public void SetPauseQbert(bool isPause)
+        {
+           // float timeScale = isPause ? 0.0000001f : 1.0f;
+            qbert.SetTimeScaler(isPause?  gameplayObjects  : null);
         }
 
         public void SetPauseGame(bool isPause)

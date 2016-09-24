@@ -33,7 +33,6 @@ namespace Scripts.GameScene
             heshAnimationName = Animator.StringToHash(animationName);
             animator.speed = 0;
         }
-
         public IEnumerator PlayToTime(float duration , ITimeScale ITimeScale = null)
         {
             ITimeScale iTimeCurrent = ITimeScale ?? this;

@@ -29,8 +29,15 @@ namespace Scripts.GameScene
             }
         }
 
-        public IEnumerator PlayToTime(float duration, ITimeScale ITimeScale = null)
+        public void StartPlayToTime(float duration, ITimeScale ITimeScale = null, bool isReverce = false)
         {
+            StartCoroutine(PlayToTime(duration, ITimeScale, isReverce));
+        }
+
+        public IEnumerator PlayToTime(float duration, ITimeScale ITimeScale = null , bool isReverce = false)
+        {
+            this.isReverce = isReverce;
+
             time = 0;
 
             ITimeScale iTimeCurrent = ITimeScale ?? this;

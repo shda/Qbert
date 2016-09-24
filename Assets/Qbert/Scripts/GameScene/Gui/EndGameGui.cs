@@ -14,7 +14,10 @@ namespace Scripts.GameScene.Gui
         public AnimationToTimeMassive showSecondRailGui;
         public AnimationToTimeMassive showSecondRailGuiButtonAnScore;
 
+        public AnimationToTimeMassive showSecondRailGuiAndHideBack;
+        public MapField mapField;
         public LevelController levelController;
+        public Transform pauseButton;
 
         public void AddLiveReturnGame()
         {
@@ -23,40 +26,51 @@ namespace Scripts.GameScene.Gui
 
         void Start()
         {
-            //StartCoroutine(TestShow());
+
+        }
+
+        public void ShowGameOver()
+        {
+            pauseButton.gameObject.SetActive(false);
+            StartCoroutine(showFirstRailGui.PlayToTime(1.0f));
         }
 
         public void ReturnToGame()
         {
-            showFirstRailGui.isReverce = true;
-            StartCoroutine(showFirstRailGui.PlayToTime(timeShow));
-
+            pauseButton.gameObject.SetActive(true);
+            StartCoroutine(showFirstRailGui.PlayToTime(timeShow , null , true));
             AddLiveReturnGame();
         }
 
 
         public void OnPressEndGameFirstRails()
         {
+            pauseButton.gameObject.SetActive(true);
             StartCoroutine(HideFirtRailsAndShowSecond());
         }
 
-        private IEnumerator HideFirtRailsAndShowSecond()
+        public void OnShowSecondRails()
         {
-            showFirstRailGui.isReverce = false;
-            yield return StartCoroutine(hideFirstRailGui.PlayToTime(timeShow));
-            yield return StartCoroutine(showSecondRailGui.PlayToTime(timeShow));
+            pauseButton.gameObject.SetActive(false);
+            StartCoroutine(ShowSecondRails());
+        }
+
+        public IEnumerator ShowSecondRails()
+        {
+            pauseButton.gameObject.SetActive(false);
+            yield return StartCoroutine(showSecondRailGuiAndHideBack.PlayToTime(timeShow));
+            mapField.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.2f);
             yield return StartCoroutine(showSecondRailGuiButtonAnScore.PlayToTime(timeShow));
         }
 
-        IEnumerator TestShow()
+        private IEnumerator HideFirtRailsAndShowSecond()
         {
-            yield return new WaitForSeconds(1.0f);
-            yield return StartCoroutine(showFirstRailGui.PlayToTime(timeShow));
-            yield return new WaitForSeconds(5.0f);
             yield return StartCoroutine(hideFirstRailGui.PlayToTime(timeShow));
-            //yield return new WaitForSeconds(2.0f);
             yield return StartCoroutine(showSecondRailGui.PlayToTime(timeShow));
+
+            mapField.gameObject.SetActive(false);
+
             yield return new WaitForSeconds(0.2f);
             yield return StartCoroutine(showSecondRailGuiButtonAnScore.PlayToTime(timeShow));
         }
@@ -65,5 +79,6 @@ namespace Scripts.GameScene.Gui
         {
 
         }
+
     }
 }
