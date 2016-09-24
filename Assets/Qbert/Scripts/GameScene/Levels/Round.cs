@@ -1,8 +1,8 @@
-﻿using Scripts.GameScene.Characters;
-using Scripts.GameScene.GameAssets;
+﻿using Assets.Qbert.Scripts.GameScene.Characters;
+using Assets.Qbert.Scripts.GameScene.GameAssets;
 using UnityEngine;
 
-namespace Scripts.GameScene.Levels
+namespace Assets.Qbert.Scripts.GameScene.Levels
 {
     [System.Serializable]
     public class Round : ITimeScale

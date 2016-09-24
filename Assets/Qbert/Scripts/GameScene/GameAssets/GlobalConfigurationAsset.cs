@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Scripts.GameScene.GameAssets
+namespace Assets.Qbert.Scripts.GameScene.GameAssets
 {
     public class GlobalConfigurationAsset : ScriptableObject
     {

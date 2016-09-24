@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Scripts.GUI.GUISettings
+namespace Assets.Qbert.Scripts.GUI.GUISettings
 {
     [ExecuteInEditMode]
     public class VerticalLayoutGroup3d : MonoBehaviour

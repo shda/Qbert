@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Scripts.GameScene
+namespace Assets.Qbert.Scripts.GameScene.AnimationToTime
 {
     public class AnimationToTime : ChangeValueToTime
     {

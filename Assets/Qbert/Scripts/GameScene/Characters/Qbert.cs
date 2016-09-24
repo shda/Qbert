@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Scripts.GameScene.Characters
+namespace Assets.Qbert.Scripts.GameScene.Characters
 {
     public class Qbert : GameplayObject
     {

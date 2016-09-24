@@ -1,4 +1,6 @@
-﻿namespace Scripts
+﻿using Assets.Qbert.Scripts.Utils.Save;
+
+namespace Assets.Qbert.Scripts
 {
     public class GlobalSettings : SaveInPlayerPref<GlobalSettings>
     {

@@ -1,9 +1,8 @@
-﻿using Scripts.GameScene;
-using Scripts.GameScene.GameAssets;
-using Scripts.GameScene.MapLoader;
+﻿using Assets.Qbert.Scripts.GameScene.GameAssets;
+using Assets.Qbert.Scripts.GameScene.MapLoader;
 using UnityEngine;
 
-namespace Scripts.MainMenu
+namespace Assets.Qbert.Scripts.MainMenu
 {
     public class MainMenu : MonoBehaviour
     {

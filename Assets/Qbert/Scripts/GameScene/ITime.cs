@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-namespace Scripts.GameScene
+namespace Assets.Qbert.Scripts.GameScene
 {
     public abstract class ITime : MonoBehaviour , ITimeScale
     {

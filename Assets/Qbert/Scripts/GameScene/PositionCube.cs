@@ -1,4 +1,4 @@
-﻿namespace Scripts.GameScene
+﻿namespace Assets.Qbert.Scripts.GameScene
 {
     [System.Serializable]
     public struct PositionCube

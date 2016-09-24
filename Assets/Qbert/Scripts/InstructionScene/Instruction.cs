@@ -1,19 +1,16 @@
-﻿using System;
-using Scripts.GameScene;
-using Scripts.GameScene.GameAssets;
-using Scripts.GameScene.Characters;
-using Scripts.GameScene.MapLoader;
-using Scripts.LoadScene;
+﻿using Assets.Qbert.Scripts.GameScene;
+using Assets.Qbert.Scripts.GameScene.GameAssets;
+using Assets.Qbert.Scripts.LoadScene;
 using UnityEngine;
 
-namespace Scripts.InstructionScene
+namespace Assets.Qbert.Scripts.InstructionScene
 {
     public class Instruction : MonoBehaviour
     {
         public GlobalConfigurationAsset globalSettingAsset;
         public FadeScreen fadeScreen;
         public MapField mapField;
-        public Qbert qbert;
+        public GameScene.Characters.Qbert qbert;
 
         public InstructionSteps instructionSteps;
 

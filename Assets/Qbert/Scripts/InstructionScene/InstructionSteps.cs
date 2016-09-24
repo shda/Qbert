@@ -1,13 +1,13 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using Scripts.GameScene;
-using Scripts.GameScene.Characters;
-using Scripts.GameScene.Characters.Bonuses;
-using Scripts.GameScene.Characters.Enemy;
-using Scripts.GameScene.Levels;
+using Assets.Qbert.Scripts.GameScene;
+using Assets.Qbert.Scripts.GameScene.Characters;
+using Assets.Qbert.Scripts.GameScene.Characters.Bonuses;
+using Assets.Qbert.Scripts.GameScene.Characters.Enemy;
+using Assets.Qbert.Scripts.GameScene.Levels;
+using UnityEngine;
 
-namespace Scripts.InstructionScene
+namespace Assets.Qbert.Scripts.InstructionScene
 {
     public class InstructionSteps : MonoBehaviour
     {
@@ -17,7 +17,7 @@ namespace Scripts.InstructionScene
         //       (3,2)(4,2)(5,2)
 
         public Instruction instruction;
-        public Qbert qbert;
+        public GameScene.Characters.Qbert qbert;
         public float waitBetweenJump = 0.3f;
         public LevelController levelController;
         public StepsHeadersText stepsHeadeLabels;

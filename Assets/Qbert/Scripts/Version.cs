@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scripts
+namespace Assets.Qbert.Scripts
 {
     public class Version : MonoBehaviour 
     {

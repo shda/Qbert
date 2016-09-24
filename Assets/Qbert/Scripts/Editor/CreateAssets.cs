@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.IO;
-using Scripts.GameScene.GameAssets;
+using Assets.Qbert.Scripts.GameScene.GameAssets;
 using UnityEditor;
 
 public class CreateAssets : MonoBehaviour 

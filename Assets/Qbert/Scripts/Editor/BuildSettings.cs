@@ -15,7 +15,7 @@ using UnityEngine.SceneManagement;
 using UnityEditor.iOS.Xcode;
 #endif
 using Debug = UnityEngine.Debug;
-using Version = Scripts.Version;
+using Version = Assets.Qbert.Scripts.Version;
 
 public class BuildSettings : MonoBehaviour
 {

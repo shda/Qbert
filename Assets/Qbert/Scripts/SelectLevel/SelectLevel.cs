@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Scripts.SelectLevel
+namespace Assets.Qbert.Scripts.SelectLevel
 {
     public class SelectLevel : MonoBehaviour
     {

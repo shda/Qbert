@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Scripts.LoadScene
+namespace Assets.Qbert.Scripts.LoadScene
 {
     [ExecuteInEditMode]
     public class SelectSceneLoader : MonoBehaviour

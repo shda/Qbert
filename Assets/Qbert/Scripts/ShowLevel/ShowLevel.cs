@@ -1,10 +1,10 @@
 ﻿using System.Collections;
-using Scripts.GameScene;
-using Scripts.GameScene.Levels;
+using Assets.Qbert.Scripts.GameScene;
+using Assets.Qbert.Scripts.GameScene.Levels;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scripts.ShowLevel
+namespace Assets.Qbert.Scripts.ShowLevel
 {
     public class ShowLevel : MonoBehaviour
     {

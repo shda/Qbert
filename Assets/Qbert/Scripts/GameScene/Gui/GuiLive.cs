@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scripts.GameScene.Gui
+namespace Assets.Qbert.Scripts.GameScene.Gui
 {
     public class GuiLive : MonoBehaviour
     {

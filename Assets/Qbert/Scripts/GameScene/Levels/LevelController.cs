@@ -1,20 +1,19 @@
 ﻿using System.Collections;
 using System.Linq;
-using Scripts.GameScene.Characters;
-using Scripts.GameScene.GameAssets;
-using Scripts.GameScene.Gui;
-using Scripts.GameScene.InputControl;
-using Scripts.Utils;
+using Assets.Qbert.Scripts.GameScene.Characters;
+using Assets.Qbert.Scripts.GameScene.GameAssets;
+using Assets.Qbert.Scripts.GameScene.Gui;
+using Assets.Qbert.Scripts.GameScene.InputControl;
 using UnityEngine;
 
-namespace Scripts.GameScene.Levels
+namespace Assets.Qbert.Scripts.GameScene.Levels
 {
     public class LevelController : MonoBehaviour
     {
         public InputController inputController;
         public GameplayObjects gameplayObjects;
         public MapField mapField;
-        public Qbert qbert;
+        public Characters.Qbert qbert;
         public GameGui gameGui;
         public LevelLogicSwitcher levelLogicSwitcher;
         public GameScene gameScene;

@@ -1,8 +1,9 @@
 ﻿using System;
-using UnityEngine;
-using System.Collections;
 
-class SaveField : Attribute
+namespace Assets.Qbert.Scripts.Utils.Save
 {
+    class SaveField : Attribute
+    {
 
+    }
 }

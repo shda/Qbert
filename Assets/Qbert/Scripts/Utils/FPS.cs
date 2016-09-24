@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scripts.Utils
+namespace Assets.Qbert.Scripts.Utils
 {
     public class FPS : MonoBehaviour
     {

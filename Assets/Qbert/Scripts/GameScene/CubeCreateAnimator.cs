@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Linq;
-using Scripts.GameScene.MapLoader;
-using Scripts.Utils;
+using Assets.Qbert.Scripts.GameScene.MapLoader;
+using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
 
-namespace Scripts.GameScene
+namespace Assets.Qbert.Scripts.GameScene
 {
     public class CubeCreateAnimator : MonoBehaviour
     {

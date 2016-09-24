@@ -1,9 +1,8 @@
-﻿using Scripts.GameScene.InputControl;
-using Scripts.GameScene.Levels;
+﻿using Assets.Qbert.Scripts.GameScene.InputControl;
+using Assets.Qbert.Scripts.GameScene.Levels;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-namespace Scripts.GameScene
+namespace Assets.Qbert.Scripts.GameScene
 {
     public class GameScene : MonoBehaviour
     {

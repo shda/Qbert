@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Scripts.Shaders
+namespace Assets.Qbert.Scripts.Shaders
 {
     public class ShaderSwitchColorLerp : MonoBehaviour
     {

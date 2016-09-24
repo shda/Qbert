@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
-using Scripts.GameScene.Levels;
-using Scripts.Utils;
+﻿using System.Collections;
+using Assets.Qbert.Scripts.GameScene.AnimationToTime;
+using Assets.Qbert.Scripts.GameScene.Levels;
+using UnityEngine;
 
-namespace Scripts.GameScene.Gui
+namespace Assets.Qbert.Scripts.GameScene.Gui
 {
     public class EndGameGui : MonoBehaviour
     {

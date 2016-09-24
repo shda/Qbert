@@ -1,10 +1,10 @@
-﻿using Scripts.GameScene;
-using Scripts.GUI.Button;
-using Scripts.Utils;
+﻿using Assets.Qbert.Scripts.GameScene;
+using Assets.Qbert.Scripts.GameScene.AnimationToTime;
+using Assets.Qbert.Scripts.GUI.Button;
+using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Scripts.GUI.GUISettings
+namespace Assets.Qbert.Scripts.GUI.GUISettings
 {
     public class GuiSettings : MonoBehaviour
     {

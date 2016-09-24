@@ -1,9 +1,9 @@
 ﻿using System;
-using Scripts.Utils;
+using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scripts
+namespace Assets.Qbert.Scripts
 {
     public class FadeScreen : MonoBehaviour
     {

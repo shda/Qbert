@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-
-namespace Scripts.GameScene.Gui
+namespace Assets.Qbert.Scripts.GameScene.Gui
 {
     public class Lives2d : MonoBehaviour
     {

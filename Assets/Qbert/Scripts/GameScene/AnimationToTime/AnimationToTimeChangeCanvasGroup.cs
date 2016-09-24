@@ -1,28 +1,28 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Scripts.GameScene;
-using UnityEngine.UI;
 
-public class AnimationToTimeChangeCanvasGroup : ChangeValueToTime
+namespace Assets.Qbert.Scripts.GameScene.AnimationToTime
 {
-    public CanvasGroup canvasGroup;
-
-    public float startAlpha;
-    public float endAlpha;
-
-    public override void ChangeValue(float value)
+    public class AnimationToTimeChangeCanvasGroup : ChangeValueToTime
     {
-        canvasGroup.alpha = startAlpha + ((endAlpha - startAlpha)*value);
-    }
+        public CanvasGroup canvasGroup;
 
-    void Start()
-    {
+        public float startAlpha;
+        public float endAlpha;
 
-    }
+        public override void ChangeValue(float value)
+        {
+            canvasGroup.alpha = startAlpha + ((endAlpha - startAlpha)*value);
+        }
 
-    void Update()
-    {
+        void Start()
+        {
 
+        }
+
+        void Update()
+        {
+
+        }
     }
 }
 

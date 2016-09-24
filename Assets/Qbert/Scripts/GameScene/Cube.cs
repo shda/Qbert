@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Scripts.GameScene.Characters;
-using Scripts.GameScene.Map;
-using Scripts.Shaders;
+using Assets.Qbert.Scripts.GameScene.Characters;
+using Assets.Qbert.Scripts.GameScene.Map;
+using Assets.Qbert.Scripts.Shaders;
 using UnityEngine;
 
-namespace Scripts.GameScene
+namespace Assets.Qbert.Scripts.GameScene
 {
     public class Cube : MonoBehaviour
     {

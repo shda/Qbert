@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Scripts.Utils
+namespace Assets.Qbert.Scripts.Utils
 {
     public static class LinqTools 
     {

@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Scripts.GameScene
+namespace Assets.Qbert.Scripts.GameScene
 {
     [System.Serializable]
     public class PathFinder

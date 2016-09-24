@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Scripts
+namespace Assets.Qbert.Scripts
 {
     public class OffsetTexture : MonoBehaviour
     {

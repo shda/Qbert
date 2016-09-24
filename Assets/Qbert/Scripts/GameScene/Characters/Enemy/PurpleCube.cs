@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Scripts.Utils;
+using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
 
-namespace Scripts.GameScene.Characters.Enemy
+namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 {
     public class PurpleCube : RedCube
     {
         [Header("PurpleCube")]
-        public AnimationToTime rebornAnimation;
+        public AnimationToTime.AnimationToTime rebornAnimation;
         public PathFinder pathFinder;
 
         public Cube myCube;

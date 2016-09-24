@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
-using Scripts.GameScene.Characters;
-using Scripts.GameScene.MapLoader;
+using Assets.Qbert.Scripts.GameScene.Characters;
+using Assets.Qbert.Scripts.GameScene.MapLoader;
 using UnityEngine;
 
-namespace Scripts.GameScene
+namespace Assets.Qbert.Scripts.GameScene
 {
     public class MapField : MonoBehaviour
     {

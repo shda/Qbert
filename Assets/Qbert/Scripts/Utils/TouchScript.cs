@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Scripts.Utils
+namespace Assets.Qbert.Scripts.Utils
 {
     public class TouchScript : MonoBehaviour  , ITouch
     {

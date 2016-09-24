@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Scripts.Utils
+namespace Assets.Qbert.Scripts.Utils
 {
     public class ActionCoroutine : MonoBehaviour
     {

@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using Scripts.GameScene.GameAssets;
+using Assets.Qbert.Scripts.GameScene.GameAssets;
 using UnityEngine;
 
-namespace Scripts.GameScene.Levels
+namespace Assets.Qbert.Scripts.GameScene.Levels
 {
     public class LevelLogicSwitcher : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
-using Scripts.LoadScene;
+using Assets.Qbert.Scripts.LoadScene;
 using UnityEditor;
 
 [CustomEditor(typeof(SelectSceneLoader))]

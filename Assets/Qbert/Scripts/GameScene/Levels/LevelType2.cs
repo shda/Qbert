@@ -1,6 +1,6 @@
 ﻿//Уровень 2. Первый прыжок на кубик устанавливает промежуточный цвет.
 //Повторный прыжок изменяет цвет на нужный.Последующие прыжки не изменяют цвет.
-namespace Scripts.GameScene.Levels
+namespace Assets.Qbert.Scripts.GameScene.Levels
 {
     public class LevelType2 : LevelLogic
     {

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Scripts.GameScene.InputControl
+namespace Assets.Qbert.Scripts.GameScene.InputControl
 {
     public class InputArrea : MonoBehaviour , IPointerClickHandler , IPointerDownHandler
     {

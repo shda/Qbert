@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Scripts
+namespace Assets.Qbert.Scripts
 {
     public class CollisionProxy : MonoBehaviour
     {

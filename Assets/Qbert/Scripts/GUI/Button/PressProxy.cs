@@ -1,8 +1,8 @@
-﻿using Scripts.Utils;
+﻿using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Scripts.GUI.Button
+namespace Assets.Qbert.Scripts.GUI.Button
 {
     public class PressProxy : MonoBehaviour , ITouch
     {

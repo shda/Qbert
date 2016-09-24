@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Scripts.Utils {
+namespace Assets.Qbert.Scripts.Utils {
 	public abstract class TouchData {
 		public abstract int id { get; }
 		public abstract Vector2 position { get; }

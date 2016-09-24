@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Scripts.DebugScripts
+namespace Assets.Qbert.Scripts.DebugScripts
 {
     public class GizmoAndLineToParent : MonoBehaviour
     {

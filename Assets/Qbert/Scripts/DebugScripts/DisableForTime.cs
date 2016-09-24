@@ -1,48 +1,51 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class DisableForTime : MonoBehaviour
+namespace Assets.Qbert.Scripts.DebugScripts
 {
-    public Transform[] objects;
-    public float time;
-
-    public Text disableText;
-
-	void Start ()
-	{
-	    StartCoroutine(Timer());
-	}
-
-    IEnumerator Timer()
+    public class DisableForTime : MonoBehaviour
     {
-        while (true)
+        public Transform[] objects;
+        public float time;
+
+        public Text disableText;
+
+        void Start ()
         {
-            yield return new WaitForSeconds(time);
+            StartCoroutine(Timer());
+        }
 
-            string text = "";
-
-            foreach (var o in objects)
+        IEnumerator Timer()
+        {
+            while (true)
             {
-                text += o.name + "\n";
-                if (o.gameObject.activeSelf)
+                yield return new WaitForSeconds(time);
+
+                string text = "";
+
+                foreach (var o in objects)
                 {
-                    text += "<color=red>" + o.name + "</color>";
-                    o.gameObject.SetActive(false);
-                    break;;
+                    text += o.name + "\n";
+                    if (o.gameObject.activeSelf)
+                    {
+                        text += "<color=red>" + o.name + "</color>";
+                        o.gameObject.SetActive(false);
+                        break;;
+                    }
                 }
-            }
 
-            if (disableText)
-            {
-                disableText.text = text;
-            }
+                if (disableText)
+                {
+                    disableText.text = text;
+                }
             
+            }
+        }
+	
+        void Update () 
+        {
+	    
         }
     }
-	
-	void Update () 
-	{
-	    
-	}
 }

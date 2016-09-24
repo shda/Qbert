@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
-using Scripts.Utils;
+﻿using System.Collections;
+using Assets.Qbert.Scripts.Utils;
+using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scripts.InstructionScene
+namespace Assets.Qbert.Scripts.InstructionScene
 {
     public class StepsHeadersText : MonoBehaviour
     {

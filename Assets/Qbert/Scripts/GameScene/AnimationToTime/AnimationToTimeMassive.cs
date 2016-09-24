@@ -1,8 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using Scripts.GameScene;
-
-namespace Scripts.GameScene
+﻿namespace Assets.Qbert.Scripts.GameScene.AnimationToTime
 {
     public class AnimationToTimeMassive : ChangeValueToTime
     {

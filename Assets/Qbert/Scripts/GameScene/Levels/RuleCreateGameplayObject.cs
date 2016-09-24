@@ -1,7 +1,7 @@
-﻿using Scripts.GameScene.Characters;
+﻿using Assets.Qbert.Scripts.GameScene.Characters;
 using UnityEngine;
 
-namespace Scripts.GameScene.Levels
+namespace Assets.Qbert.Scripts.GameScene.Levels
 {
     [System.Serializable]
     public class RuleCreateGameplayObject

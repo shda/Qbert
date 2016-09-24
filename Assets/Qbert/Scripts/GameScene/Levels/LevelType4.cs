@@ -2,7 +2,7 @@
 //Повторный прыжок изменяет цвет на нужный. Однако третий прыжок возвращает 
 //кубику промежуточный цвет. Каждый последующий прыжок переключает цвет кубика между промежуточным 
 //и нужным.
-namespace Scripts.GameScene.Levels
+namespace Assets.Qbert.Scripts.GameScene.Levels
 {
     public class LevelType4 : LevelLogic
     {

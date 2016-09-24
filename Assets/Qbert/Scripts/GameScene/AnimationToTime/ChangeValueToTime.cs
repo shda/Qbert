@@ -1,37 +1,39 @@
-﻿using UnityEngine;
-using System.Collections;
-using Scripts.GameScene;
+﻿using System.Collections;
+using UnityEngine;
 
-public abstract class ChangeValueToTime : ITime
+namespace Assets.Qbert.Scripts.GameScene.AnimationToTime
 {
-    public virtual IEnumerator PlayToTime(float duration, ITimeScale ITimeScale = null , bool isReverce = false)
+    public abstract class ChangeValueToTime : ITime
     {
-        ITimeScale iTimeCurrent = ITimeScale ?? this;
-
-        float t = 0;
-        this.isReverce = isReverce;
-
-        while (t < 1)
+        public virtual IEnumerator PlayToTime(float duration, ITimeScale ITimeScale = null , bool isReverce = false)
         {
-            t += (Time.deltaTime * iTimeCurrent.timeScale) / duration;
+            ITimeScale iTimeCurrent = ITimeScale ?? this;
+
+            float t = 0;
+            this.isReverce = isReverce;
+
+            while (t < 1)
+            {
+                t += (Time.deltaTime * iTimeCurrent.timeScale) / duration;
+                time = t;
+                yield return null;
+            }
+
+            t = 1;
+
             time = t;
-            yield return null;
         }
 
-        t = 1;
-
-        time = t;
-    }
-
-   // public bool isEnable = false;
-   // public float value = 0;
+        // public bool isEnable = false;
+        // public float value = 0;
 
 
-    void Update()
-    {
-       // if (isEnable)
+        void Update()
         {
-          //  time = value;
+            // if (isEnable)
+            {
+                //  time = value;
+            }
         }
     }
 }

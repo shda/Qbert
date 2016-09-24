@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
-using Scripts.GameScene.Levels;
-using Scripts.GameScene.Sound;
-using Scripts.Utils;
+using Assets.Qbert.Scripts.GameScene.Levels;
+using Assets.Qbert.Scripts.GameScene.Sound;
+using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
 
-namespace Scripts.GameScene.Characters
+namespace Assets.Qbert.Scripts.GameScene.Characters
 {
     public class Character : MonoBehaviour
     {
@@ -64,7 +64,7 @@ namespace Scripts.GameScene.Characters
         public float dropDownHeight = 4.0f;
         public bool isFrize = false;
         public bool isCheckColision = true;
-        public AnimationToTime jumpAnimationToTime;
+        public AnimationToTime.AnimationToTime jumpAnimationToTime;
 
         public PositionCube currentPosition;
         public PositionCube positionMove;

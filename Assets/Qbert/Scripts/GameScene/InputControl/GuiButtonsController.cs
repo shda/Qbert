@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Scripts.GameScene.InputControl
+namespace Assets.Qbert.Scripts.GameScene.InputControl
 {
     public class GuiButtonsController : SingletonT<GuiButtonsController>
     {

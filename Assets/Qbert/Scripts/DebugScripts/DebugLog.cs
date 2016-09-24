@@ -1,23 +1,25 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class DebugLog : MonoBehaviour
+namespace Assets.Qbert.Scripts.DebugScripts
 {
-    public string toLog = "DebugLog";
-
-    public void OnLog()
+    public class DebugLog : MonoBehaviour
     {
-        Debug.Log(name + " + " + toLog);
+        public string toLog = "DebugLog";
+
+        public void OnLog()
+        {
+            Debug.Log(name + " + " + toLog);
+        }
+
+
+        void Start () 
+        {
+	
+        }
+	
+        void Update () 
+        {
+	
+        }
     }
-
-
-    void Start () 
-	{
-	
-	}
-	
-	void Update () 
-	{
-	
-	}
 }

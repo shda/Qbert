@@ -1,9 +1,9 @@
 ﻿using System.Collections;
-using Scripts.GameScene.Levels;
-using Scripts.Utils;
+using Assets.Qbert.Scripts.GameScene.Levels;
+using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
 
-namespace Scripts.GameScene.Characters.Bonuses
+namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
 {
     public class Transport : GameplayObject
     {
