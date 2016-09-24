@@ -34,7 +34,7 @@ namespace Scripts.Utils
             LanchAction(OnEnd , tr);
         }
 
-        public static IEnumerator ChangeColorImage(this MonoBehaviour mono, Image obj, Color colorTo,
+        public static IEnumerator ChangeColorGraphic(this MonoBehaviour mono, Graphic obj, Color colorTo,
             float duration, Action<Transform> OnEnd = null)
         {
             float t = 0;

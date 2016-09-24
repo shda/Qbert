@@ -3,8 +3,17 @@ using System.Collections;
 
 namespace Scripts.GameScene
 {
-    public abstract class ITime : MonoBehaviour
+    public abstract class ITime : MonoBehaviour , ITimeScale
     {
+        //ITimeScale
+        private float _timeScale = 1.0f;
+        public float timeScale
+        {
+            get { return _timeScale; }
+            set { _timeScale = value; }
+        }
+        //end ITimeScale
+
         public bool isReverce = false;
 
         private float _time;
@@ -17,8 +26,7 @@ namespace Scripts.GameScene
                 ChangeValue(isReverce ? 1.0f - _time : _time);
             }
         }
-
-
+        
         protected virtual float maxValue
         {
             get { return 0.999f; }

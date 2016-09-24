@@ -20,7 +20,8 @@ namespace Scripts.GUI.GUISettings
         public LoadScene.SelectSceneLoader selectSceneLoader;
         public FadeScreen fadeScreen;
 
-        public Image[] hideImages;
+        public AnimationToTimeMassive hideIfShowSettings;
+
 
         public void StartGame()
         {
@@ -77,17 +78,13 @@ namespace Scripts.GUI.GUISettings
         {
             StopAllCoroutines();
 
-            foreach (var hideImage in hideImages)
+            if (isHide)
             {
-                if (isHide)
-                {
-                    StartCoroutine(this.ChangeColorImage(hideImage, new Color(1, 1, 1, 0), 0.5f));
-                }
-                else
-                {
-                    StartCoroutine(this.ChangeColorImage(hideImage, new Color(1, 1, 1, 1), 0.5f));
-                }
-            
+                StartCoroutine(hideIfShowSettings.PlayToTime(0.5f));
+            }
+            else
+            {
+                StartCoroutine(hideIfShowSettings.PlayToTime(0.5f , null, true));
             }
         }
     }

@@ -3,7 +3,7 @@ using System.Collections;
 using Scripts.GameScene;
 using UnityEngine.UI;
 
-public class AnimationToTimeChangeCanvasGroup : ITime
+public class AnimationToTimeChangeCanvasGroup : ChangeValueToTime
 {
     public CanvasGroup canvasGroup;
 

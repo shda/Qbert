@@ -24,9 +24,9 @@ public class InfoText : MonoBehaviour
                 GlobalSettings.currentRound + 1);
     }
 
-	void Start () 
+	void Start ()
 	{
-	
+	    UpdateInfo();
 	}
 	
 	void Update () 

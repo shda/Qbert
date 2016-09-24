@@ -14,7 +14,7 @@ namespace Scripts
         public void StartEnable(float duration)
         {
             StopAllCoroutines();
-            StartCoroutine(this.ChangeColorImage(frontImage, new Color(0, 0, 0, 1), duration , transform1 =>
+            StartCoroutine(this.ChangeColorGraphic(frontImage, new Color(0, 0, 0, 1), duration , transform1 =>
             {
                 OnEndAction(true);
             }));
@@ -23,7 +23,7 @@ namespace Scripts
         public void StartDisable(float duration)
         {
             StopAllCoroutines();
-            StartCoroutine(this.ChangeColorImage(frontImage, new Color(0, 0, 0, 0), duration , transform1 =>
+            StartCoroutine(this.ChangeColorGraphic(frontImage, new Color(0, 0, 0, 0), duration , transform1 =>
             {
                 OnEndAction(false);
             }));

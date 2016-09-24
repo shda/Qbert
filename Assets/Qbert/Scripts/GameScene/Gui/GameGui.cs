@@ -85,6 +85,8 @@ namespace Scripts.GameScene.Gui
         public void AddCoins(int addCoins)
         {
             GlobalSettings.coins += addCoins;
+            GlobalSettings.Save();
+
             SetCoins(GlobalSettings.coins);
         }
 

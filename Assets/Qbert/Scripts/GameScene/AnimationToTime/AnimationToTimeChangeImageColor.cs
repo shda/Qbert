@@ -3,7 +3,7 @@ using System.Collections;
 using Scripts.GameScene;
 using UnityEngine.UI;
 
-public class AnimationToTimeChangeImageColor : ITime
+public class AnimationToTimeChangeImageColor : ChangeValueToTime
 {
     public Image image;
 

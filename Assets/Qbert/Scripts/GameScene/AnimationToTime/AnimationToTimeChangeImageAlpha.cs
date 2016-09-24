@@ -4,7 +4,7 @@ using Scripts.GameScene;
 using Scripts.Utils;
 using UnityEngine.UI;
 
-public class AnimationToTimeChangeImageAlpha : ITime
+public class AnimationToTimeChangeImageAlpha : ChangeValueToTime
 {
     public Image image;
 
