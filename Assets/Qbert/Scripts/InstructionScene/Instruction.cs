@@ -16,39 +16,22 @@ namespace Assets.Qbert.Scripts.InstructionScene
         public InstructionSteps instructionSteps;
         public SelectSceneLoader loadSceneLevel;
 
-        public AnimationToTimeChangeCanvasGroup showButtonSkip;
-
         public bool isLock = false;
 
         public void OnPressSkip()
-        {
-            InstructionEnd();
-        }
-
-        public void TimerShowButtonSkip()
         {
             if(isLock)
                 return;
 
             isLock = true;
 
-            showButtonSkip.gameObject.SetActive(false);
-
-            UnscaleTimer.Create(5.0f, timer =>
-            {
-                showButtonSkip.gameObject.SetActive(true);
-                StartCoroutine(showButtonSkip.PlayToTime(0.5f));
-            });
+            InstructionEnd();
         }
-
 
         void Start ()
         {
             CreateMap();
             InitQbert();
-
-            TimerShowButtonSkip();
-
             fadeScreen.OnEnd = transform1 =>
             {
                 StartInstruction();
@@ -60,6 +43,8 @@ namespace Assets.Qbert.Scripts.InstructionScene
 
         public void InstructionEnd()
         {
+            isLock = true;
+
             instructionSteps.StopAllCoroutines();
 
             fadeScreen.OnEnd = transform1 =>

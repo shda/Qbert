@@ -73,7 +73,7 @@ namespace Assets.Qbert.Scripts.Utils.Save
         public static bool IsSaveAttribute(FieldInfo fieldInfo)
         {
             var attributes = fieldInfo.GetCustomAttributes(true);
-            return attributes.Any(x => x is SaveFieldAttrebute);
+            return attributes.Any(x => x is SaveFieldAttribute);
         }
 
 

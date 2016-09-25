@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Assets.Qbert.Scripts.GUI.GUISettings;
 
-public class CharacterSelect : MonoBehaviour
+namespace Assets.Qbert.Scripts.GUI.GUISettings
 {
-    public GuiSettings guiSettings;
+    public class CharacterSelect : MonoBehaviour
+    {
+        public GuiSettings guiSettings;
 
-	void Start () 
-	{
+        void Start () 
+        {
 	
-	}
+        }
 	
-	void Update () 
-	{
+        void Update () 
+        {
 	
-	}
+        }
+    }
 }

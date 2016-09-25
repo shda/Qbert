@@ -44,14 +44,15 @@ namespace Assets.Qbert.Scripts.Utils {
 		}
 
 		private void ProcessTouches() {
-			foreach (var touch in Input.touches) {
-				bool pressed = touch.phase == TouchPhase.Began;
-				bool unpressed = touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled;
-				int id = touch.fingerId;
-				TouchEvent(id, touch.position, pressed, unpressed);
-				if (singleTouchMode) break;
-			}
-		}
+            foreach (var touch in Input.touches)
+            {
+                bool pressed = touch.phase == TouchPhase.Began;
+                bool unpressed = touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled;
+                int id = touch.fingerId;
+                TouchEvent(id, touch.position, pressed, unpressed);
+                if (singleTouchMode) break;
+            }
+        }
 
 		private void ProcessMouse() {
 			for (int i = 0; i < 3; i++) {
@@ -90,7 +91,7 @@ namespace Assets.Qbert.Scripts.Utils {
 						}
 					}
 					if (touchInfo.isDrag) {
-                        UnityEngine.Debug.Log("OnDrag");
+                       // UnityEngine.Debug.Log("OnDrag");
 						OnDrag(touchInfo.capturedObject, touchInfo.dragDelta , touchInfo._capturedITouch);
 						touchInfo.dragDelta = Vector2.zero;
 					}

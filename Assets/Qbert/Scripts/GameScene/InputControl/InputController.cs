@@ -13,6 +13,15 @@ namespace Assets.Qbert.Scripts.GameScene.InputControl
         void Start ()
         {
         }
+
+
+        public void DirectionSwipe(DirectionMove.Direction direction)
+        {
+            if (OnPress != null)
+            {
+                OnPress(direction);
+            }
+        }
 	
         void Update () 
         {

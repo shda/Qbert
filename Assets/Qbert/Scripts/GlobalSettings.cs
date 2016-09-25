@@ -9,10 +9,10 @@ namespace Assets.Qbert.Scripts
         public static float score = 0;
         public static int countLive = 1;
 
-        [SaveFieldAttrebute]
+        [SaveFieldAttribute]
         public static float oldMaxScore = 0;
 
-        [SaveFieldAttrebute]
+        [SaveFieldAttribute]
         public static int coins = 0;
 
         static GlobalSettings()

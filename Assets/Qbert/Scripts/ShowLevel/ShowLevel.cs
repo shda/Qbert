@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using Assets.Qbert.Scripts.GameScene;
+using Assets.Qbert.Scripts.GameScene.AnimationToTime;
 using Assets.Qbert.Scripts.GameScene.Levels;
+using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,9 +17,27 @@ namespace Assets.Qbert.Scripts.ShowLevel
         public LoadScene.SelectSceneLoader SelectSceneLoaderAfter;
         public float waitBetweenJump = 0.5f;
 
+        private bool isLock = false;
+
         public void SetLevel()
         {
             textLevel.text = "level " + (GlobalSettings.currentLevel + 1);
+        }
+
+        public void OnPressSkip()
+        {
+            if(isLock)
+                return;
+
+            isLock = true;
+
+            StopAllCoroutines();
+            fadeScreen.OnEnd = transform1 =>
+            {
+                LoadLevel();
+            };
+
+            fadeScreen.StartEnable(1.0f);
         }
 
         void Start ()
@@ -66,6 +86,8 @@ namespace Assets.Qbert.Scripts.ShowLevel
             }
 
             yield return new WaitForSeconds(0.5f);
+
+            isLock = true;
 
             fadeScreen.OnEnd = transform1 =>
             {
