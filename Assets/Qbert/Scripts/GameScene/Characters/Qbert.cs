@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Linq;
+using Assets.Qbert.Scripts.GameScene.GameAssets;
 using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GameScene.Characters
 {
     public class Qbert : GameplayObject
     {
+        public GlobalConfigurationAsset configuration;
+
         public Transform boobleDead;
+        public Transform rootModel;
 
         public virtual Type typeObject
         {
@@ -14,7 +19,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 
         public void OnEnemyAttack()
         {
-            return;;
+            //return;;
             boobleDead.gameObject.SetActive(true);
             boobleDead.rotation = Quaternion.Euler(0, 0, 0);
 
@@ -83,6 +88,43 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             boobleDead.gameObject.SetActive(false);
             isFrize = false;
             isCheckColision = true;
+        }
+
+
+        void Start()
+        {
+            SetModel(GlobalSettings.currentModel);
+        }
+
+        public void SetModel(string name = "Default")
+        {
+            foreach (var cild in rootModel.Cast<Transform>())
+            {
+                cild.gameObject.SetActive(false);
+                Destroy(cild.gameObject);
+            }
+
+            var findModel = configuration.GetModelByName(name);
+
+            if (findModel != null)
+            {
+                Transform tr = Instantiate(findModel.transform);
+                tr.SetParent(rootModel);
+                tr.localPosition = Vector3.zero;
+                tr.localRotation = Quaternion.Euler(0,0,0);
+                tr.localScale = new Vector3(1,1,1);
+
+                var model = tr.GetComponent<QbertModel>();
+                boobleDead = model.booldeDead;
+                collisionProxy = model.collisionProxy;
+                collisionProxy.proxyObject = transform;
+
+                boobleDead.gameObject.SetActive(false);
+            }
+            else
+            {
+                Debug.LogError("Dont find mode.");
+            }
         }
     }
 }

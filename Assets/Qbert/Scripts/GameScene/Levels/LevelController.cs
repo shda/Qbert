@@ -21,6 +21,10 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         [HideInInspector]
         public LevelLogic levelLogic;
 
+        public int level;
+        public int round;
+
+
         public void AddScore(float score)
         {
             if (gameGui)
@@ -179,6 +183,12 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             // NextRound();
         }
 
+
+        public void InitRound(int round)
+        {
+            InitLevel(level , round);
+        }
+
         public void RestartLevel()
         {
             DestroyAllEnemies();
@@ -205,6 +215,9 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
         public void InitLevel(int level, int round)
         {
+            this.level = level;
+            this.round = round;
+
             if (gameGui)
                 gameGui.SetLevelNumber(level, round);
 

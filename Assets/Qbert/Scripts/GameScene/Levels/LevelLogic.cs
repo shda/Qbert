@@ -59,6 +59,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             if (roundCurrent < rounds.Length - 1)
             {
                 roundCurrent++;
+                levelController.InitRound(roundCurrent);
                 levelController.RestartLevel();
             }
             else
