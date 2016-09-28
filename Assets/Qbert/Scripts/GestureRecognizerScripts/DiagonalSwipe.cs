@@ -87,7 +87,7 @@ namespace Assets.Qbert.Scripts.GestureRecognizerScripts
             {
                 OnSwipeDirection.Invoke(dir);
             }
-            Debug.Log(dir.ToString());
+           // Debug.Log(dir.ToString());
         }
     }
 }

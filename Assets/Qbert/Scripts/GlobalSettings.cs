@@ -10,7 +10,7 @@ namespace Assets.Qbert.Scripts
         public static int countLive = 1;
 
         [SaveFieldAttribute]
-        public static string currentModel;
+        public static string currentModel = "";
 
         [SaveFieldAttribute]
         public static float oldMaxScore = 0;

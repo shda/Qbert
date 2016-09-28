@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using Assets.Qbert.Scripts.GameScene.GameAssets;
 using UnityEngine;
@@ -77,8 +78,6 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
                         Vector3 newPos = root.position + levelController.mapField.GetOffsetDirection(buttonType);
                         MoveToPointAndDropDown(newPos, OnDownEnd);
                     }
-
-
                 }
             }
         }
@@ -93,11 +92,18 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 
         void Start()
         {
+            UpdateModel();
+        }
+
+        public void UpdateModel()
+        {
             SetModel(GlobalSettings.currentModel);
         }
 
         public void SetModel(string name = "Default")
         {
+            Debug.Log(name);
+
             foreach (var cild in rootModel.Cast<Transform>())
             {
                 cild.gameObject.SetActive(false);
@@ -126,5 +132,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
                 Debug.LogError("Dont find mode.");
             }
         }
+
+        
     }
 }

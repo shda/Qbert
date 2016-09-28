@@ -8,6 +8,8 @@ public class QbertModel : MonoBehaviour
     public Transform booldeDead;
     public TextMesh booleTextMesh;
     public CollisionProxy collisionProxy;
+    [Multiline]
+    public string description;
 
 	void Start () 
 	{

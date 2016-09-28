@@ -39,11 +39,12 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
         public void OnCamaraMoveToRootMenu()
         {
             HideObjects(false);
-            cameraController.MoveCameraToPoint(
-                rootMainGame.position, durationMoveCameraToSettings, transform1 =>
-                {
+            cameraController.MoveCameraToPoint(rootMainGame.position, durationMoveCameraToSettings);
+        }
 
-                });
+        public void SetCameraToDefaultPosition()
+        {
+            cameraController.MoveCameraToPoint(rootMainGame.position, 0);
         }
 
         public void HideObjects(bool isHide)
