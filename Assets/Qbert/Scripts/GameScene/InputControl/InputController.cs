@@ -14,6 +14,16 @@ namespace Assets.Qbert.Scripts.GameScene.InputControl
         {
         }
 
+        public void HideButtons()
+        {
+            guiButtonsController.DisableButtons();
+        }
+
+
+        public void ShowButtons()
+        {
+            guiButtonsController.EnableButtons();
+        }
 
         public void DirectionSwipe(DirectionMove.Direction direction)
         {

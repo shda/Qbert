@@ -70,6 +70,8 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
             SetPauseGamplayObjects(false);
             UpdareCountLives();
+
+            inputController.ShowButtons();
         }
 
         public void OnQbertDropDown()
@@ -94,10 +96,12 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             {
                 isFirstEndGame = false;
                 gameGui.ShowGameOver();
+                inputController.HideButtons();
             }
             else
             {
                 gameGui.ShowEndGame();
+                inputController.HideButtons();
             }
         }
 

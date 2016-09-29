@@ -24,6 +24,7 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
             levelController.SetPauseGamplayObjects(true);
             levelController.SetPauseQbert(true);
             levelController.inputController.isEnable = false;
+            levelController.inputController.HideButtons();
 
             menuPause.OnCompliteGame = () =>
             {
@@ -35,6 +36,7 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
                 levelController.SetPauseGamplayObjects(false);
                 levelController.SetPauseQbert(false);
                 levelController.inputController.isEnable = true;
+                levelController.inputController.ShowButtons();
             };
         }
 

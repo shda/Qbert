@@ -1,12 +1,51 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using Assets.Qbert.Scripts.GameScene.AnimationToTime;
+using Assets.Qbert.Scripts.Utils;
 
 public class ControlConfigurator : MonoBehaviour
 {
     public ButtonMove[] buttons;
     public Transform buttonSave;
     public Transform textDetectIntersectionButtons;
+    public AnimationToTimeChangeCanvasGroup animationShowHide;
+
+    public Action<ControlConfigurator> OnEndConfiguration;
+
+    public bool isLock = false;
+
+    public void Show()
+    {
+        if (!isLock)
+        {
+            gameObject.SetActive(true);
+
+            isLock = true;
+            StartCoroutine(ActionShow(() =>
+            {
+                isLock = false;
+            }));
+        }
+    }
+
+    IEnumerator ActionShow(Action OnEnd)
+    {
+        yield return StartCoroutine(animationShowHide.PlayToTime(0.5f));
+        if (OnEnd != null)
+        {
+            OnEnd();
+        }
+    }
+
+    IEnumerator ActionHide(Action OnEnd)
+    {
+        yield return StartCoroutine(animationShowHide.PlayToTime(0.5f , null , true));
+        if (OnEnd != null)
+        {
+            OnEnd();
+        }
+    }
 
     private void ConnectEvents()
     {
@@ -33,7 +72,19 @@ public class ControlConfigurator : MonoBehaviour
 
     public void OnCancel()
     {
-       
+        if (!isLock)
+        {
+            isLock = true;
+            StartCoroutine(ActionHide(() =>
+            {
+                if (OnEndConfiguration != null)
+                {
+                    OnEndConfiguration(this);
+                }
+
+                isLock = false;
+            }));
+        }
     }
 
     public void LoadButtonsPositions()

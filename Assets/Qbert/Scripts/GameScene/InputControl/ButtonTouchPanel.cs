@@ -13,6 +13,7 @@ namespace Assets.Qbert.Scripts.GameScene.InputControl
         public KeyCode keyCode;
         public Action OnClick;
         public float scaleTo = 0.9f;
+        public bool isScalePress;
         private Vector3 defaultScele;
 
         void Start ()
@@ -89,12 +90,14 @@ namespace Assets.Qbert.Scripts.GameScene.InputControl
 
         void SetPressScale()
         {
-            this.transform.localScale = new Vector3(scaleTo, scaleTo, scaleTo);
+            if(isScalePress)
+                this.transform.localScale = new Vector3(scaleTo, scaleTo, scaleTo);
         }
 
         void SetUnpressScale()
         {
-            this.transform.localScale = defaultScele;
+            if(isScalePress)
+                this.transform.localScale = defaultScele;
         }
 
         public void OnPointerDown(PointerEventData eventData)

@@ -139,7 +139,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
         public override bool OnColisionToQbert(Qbert qbert)
         {
-            return true;
+            return false;
         }
     }
 }

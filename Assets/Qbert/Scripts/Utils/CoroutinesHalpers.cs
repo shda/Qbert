@@ -18,7 +18,7 @@ namespace Assets.Qbert.Scripts.Utils
 
         public static IEnumerator ScaleTranformTo(this MonoBehaviour mono, Transform tr, float scaleTo, float duration, Action<Transform> OnEnd = null)
         {
-            Vector3 vSceleTo = new Vector3(scaleTo, scaleTo, 1);
+            Vector3 vSceleTo = new Vector3(scaleTo, scaleTo, scaleTo);
             float distance = Vector3.Distance(vSceleTo, tr.localScale);
             float speedScale = distance / duration;
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using Assets.Qbert.Scripts.GameScene.AnimationToTime;
+using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GameScene.InputControl
@@ -15,6 +17,41 @@ namespace Assets.Qbert.Scripts.GameScene.InputControl
         public ButtonControl[] controls;
         public InputArrea inputArrea;
         public Action<Vector2> OnPressToScreen;
+
+        public AnimationToTimeChangeCanvasGroup changeCanvasGroup;
+
+        public void DisableButtons()
+        {
+            StopAllCoroutines();
+            StartCoroutine(this.WaitCoroutine(changeCanvasGroup.PlayToTime(0.2f), transform1 =>
+            {
+
+            }));
+
+            /*
+            foreach (var buttonControl in controls)
+            {
+                buttonControl.button.gameObject.SetActive(false);
+            }
+            */
+        }
+
+
+        public void EnableButtons()
+        {
+            /*
+            foreach (var buttonControl in controls)
+            {
+                buttonControl.button.gameObject.SetActive(true);
+            }
+            */
+
+            StopAllCoroutines();
+            StartCoroutine(this.WaitCoroutine(changeCanvasGroup.PlayToTime(0.2f , null , true), transform1 =>
+            {
+
+            }));
+        }
 
         public override void AwakeFirst()
         {

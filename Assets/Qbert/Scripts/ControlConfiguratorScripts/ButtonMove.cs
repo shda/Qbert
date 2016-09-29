@@ -55,8 +55,11 @@ public class ButtonMove : MonoBehaviour , IDragHandler ,
     {
         defaultColor = centerImage.color;
         defaultPosition = transform.localPosition;
-        button.enabled = false;
-
+        if (button != null)
+        {
+            button.enabled = false;
+        }
+        
         rectTransform = GetComponent<RectTransform>();
     }
 
@@ -103,6 +106,8 @@ public class ButtonMove : MonoBehaviour , IDragHandler ,
 
     public void OnPointerDown(PointerEventData eventData)
     {
+       // Debug.Log(eventData.position);
+
         if (OnButtonStartDrag != null)
         {
             OnButtonStartDrag(this);

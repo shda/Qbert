@@ -11,7 +11,19 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
         public GuiHandle guiHandle;
         public LoadScene.SelectSceneLoader selectSceneLoader;
         public FadeScreen fadeScreen;
+        public ControlConfigurator controlConfigurator;
 
+        public void ShowControlConfigurator()
+        {
+            guiHandle.enabled = false;
+            controlConfigurator.OnEndConfiguration = configurator =>
+            {
+                guiHandle.enabled = true;
+                controlConfigurator.gameObject.SetActive(false);
+            };
+
+            controlConfigurator.Show();
+        }
 
         public void StartGame()
         {
