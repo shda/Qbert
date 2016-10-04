@@ -1,27 +1,28 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Linq;
 
-public class SetButtonsPositions : MonoBehaviour
+namespace Assets.Qbert.Scripts.ControlConfiguratorScripts
 {
-    public Transform root;
-
-	void Start ()
-	{
-	    UpdatePositions();
-	}
-
-    public void UpdatePositions()
+    public class SetButtonsPositions : MonoBehaviour
     {
-        var childs = root.GetComponentsInChildren<ButtonMove>();
-        foreach (var buttonMove in childs)
+        public Transform root;
+
+        void Start ()
         {
-            buttonMove.LoadPosition();
+            UpdatePositions();
+        }
+
+        public void UpdatePositions()
+        {
+            var childs = root.GetComponentsInChildren<ButtonMove>();
+            foreach (var buttonMove in childs)
+            {
+                buttonMove.LoadPosition();
+            }
+        }
+	
+        void Update () 
+        {
+	
         }
     }
-	
-	void Update () 
-	{
-	
-	}
 }

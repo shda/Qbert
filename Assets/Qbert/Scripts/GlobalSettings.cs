@@ -18,6 +18,9 @@ namespace Assets.Qbert.Scripts
         [SaveFieldAttribute]
         public static int coins = 0;
 
+        [SaveFieldAttribute]
+        public static bool isShowHelpHandToSelectCharacter = true;
+
         static GlobalSettings()
         {
             Load();

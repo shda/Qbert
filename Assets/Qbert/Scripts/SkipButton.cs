@@ -34,7 +34,7 @@ namespace Assets.Qbert.Scripts
 
             showButtonSkip.gameObject.SetActive(false);
 
-            UnscaleTimer.Create(timeDelayToSkip, timer =>
+            UnscaleTimer.StartDelay(timeDelayToSkip, timer =>
             {
                 showButtonSkip.gameObject.SetActive(true);
                 StartCoroutine(showButtonSkip.PlayToTime(0.5f));

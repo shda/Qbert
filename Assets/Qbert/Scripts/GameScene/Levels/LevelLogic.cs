@@ -191,7 +191,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             levelController.inputController.isEnable = false;
             float oldScale = Time.timeScale;
             Time.timeScale = 0.0000001f;
-            UnscaleTimer.Create(2.0f, timer =>
+            UnscaleTimer.StartDelay(2.0f, timer =>
             {
                 levelController.OnQbertDead();
 

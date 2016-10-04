@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Assets.Qbert.Scripts.GameScene.Characters;
 using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GameScene.GameAssets

@@ -1,4 +1,5 @@
-﻿using Assets.Qbert.Scripts.GameScene;
+﻿using Assets.Qbert.Scripts.ControlConfiguratorScripts;
+using Assets.Qbert.Scripts.GameScene;
 using Assets.Qbert.Scripts.GameScene.AnimationToTime;
 using Assets.Qbert.Scripts.GUI.Button;
 using Assets.Qbert.Scripts.Utils;

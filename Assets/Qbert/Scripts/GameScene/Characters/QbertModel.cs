@@ -1,23 +1,24 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Assets.Qbert.Scripts;
 
-public class QbertModel : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene.Characters
 {
-    public string nameCharacter;
-    public Transform booldeDead;
-    public TextMesh booleTextMesh;
-    public CollisionProxy collisionProxy;
-    [Multiline]
-    public string description;
+    public class QbertModel : MonoBehaviour
+    {
+        public string nameCharacter;
+        public Transform booldeDead;
+        public TextMesh booleTextMesh;
+        public CollisionProxy collisionProxy;
+        [Multiline]
+        public string description;
 
-	void Start () 
-	{
+        void Start () 
+        {
 	
-	}
+        }
 	
-	void Update () 
-	{
+        void Update () 
+        {
 	
-	}
+        }
+    }
 }

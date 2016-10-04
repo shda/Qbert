@@ -9,7 +9,7 @@ namespace Assets.Qbert.Scripts.Utils
         private float time;
         private bool isRun = false;
 
-        public static UnscaleTimer Create(float time , Action<UnscaleTimer> OnEndTime)
+        public static UnscaleTimer StartDelay(float time , Action<UnscaleTimer> OnEndTime)
         {
             GameObject timer = new GameObject("UnscaleTimer_" + time);
             UnscaleTimer unscaleTimer = timer.AddComponent<UnscaleTimer>();
