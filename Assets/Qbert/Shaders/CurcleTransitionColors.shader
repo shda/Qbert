@@ -37,16 +37,6 @@
                 float4 pos : SV_POSITION;
             };
 			
-			inline float4 UnityObjectToClipPos( in float3 pos )
-			{
-			#if defined(UNITY_SINGLE_PASS_STEREO) || defined(UNITY_USE_CONCATENATED_MATRICES)
-				// More efficient than computing M*VP matrix product
-				return mul(UNITY_MATRIX_VP, mul(unity_ObjectToWorld, float4(pos, 1.0)));
-			#else
-				return mul(UNITY_MATRIX_MVP, float4(pos, 1.0));
-			#endif
-			}
-			
 			float _Lerp;
 			float _MixColorRadius;
 			float _MixColorLerp;
