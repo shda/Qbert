@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GameScene
 {
@@ -16,6 +17,7 @@ namespace Assets.Qbert.Scripts.GameScene
         public bool isReverce = false;
 
         private float _time;
+        private float _oldTime = float.MaxValue;
         public virtual float time
         {
             get { return _time; }

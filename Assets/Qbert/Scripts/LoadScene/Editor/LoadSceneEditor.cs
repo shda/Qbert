@@ -21,7 +21,6 @@ public class LoadSceneEditor : Editor
 
         stringScenes        = serializedObject.FindProperty("scenes");
         sceneSelect         = serializedObject.FindProperty("sceneName");
-        //clearScensSteck     = serializedObject.FindProperty("clearScensSteck");
 
         index = Array.IndexOf(script.scenes, script.sceneName);
 
@@ -39,8 +38,6 @@ public class LoadSceneEditor : Editor
             sceneSelect.stringValue = script.scenes[index];
 
             EditorGUILayout.PropertyField(sceneSelect);
-            //EditorGUILayout.PropertyField(clearScensSteck);
-
             serializedObject.ApplyModifiedProperties(); 
         }
     }

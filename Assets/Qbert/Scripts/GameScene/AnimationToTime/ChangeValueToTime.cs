@@ -6,7 +6,7 @@ namespace Assets.Qbert.Scripts.GameScene.AnimationToTime
     public abstract class ChangeValueToTime : ITime
     {
         public virtual IEnumerator PlayToTime(float duration, ITimeScale ITimeScale = null , bool isReverce = false)
-        {
+        {  
             ITimeScale iTimeCurrent = ITimeScale ?? this;
 
             float t = 0;

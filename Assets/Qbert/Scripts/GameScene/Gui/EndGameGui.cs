@@ -9,12 +9,14 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
     {
         public float timeShow = 1.0f;
 
-        public AnimationToTimeMassive showFirstRailGui;
-        public AnimationToTimeMassive hideFirstRailGui;
-        public AnimationToTimeMassive showSecondRailGui;
-        public AnimationToTimeMassive showSecondRailGuiButtonAnScore;
+        public AnimationToTimeMassive showFirstMenu;
+        public AnimationToTimeMassive hideFirstMenuWitchoutToBackround;
+        public AnimationToTimeMassive showSecondMenu;
 
-        public AnimationToTimeMassive showSecondRailGuiAndHideBack;
+
+        public Transform score;
+        public Transform level;
+
         public MapField mapField;
         public LevelController levelController;
         public Transform pauseButton;
@@ -26,19 +28,22 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
 
         void Start()
         {
-
+           // firstMenuRoot.gameObject.SetActive(false);
+           // secondMenuRoot.gameObject.SetActive(false);
         }
 
         public void ShowGameOver()
         {
             pauseButton.gameObject.SetActive(false);
-            StartCoroutine(showFirstRailGui.PlayToTime(1.0f));
+            showFirstMenu.gameObject.SetActive(true);
+            StartCoroutine(showFirstMenu.PlayToTime(0.5f));
         }
 
         public void ReturnToGame()
         {
             pauseButton.gameObject.SetActive(true);
-            StartCoroutine(showFirstRailGui.PlayToTime(timeShow , null , true));
+            showFirstMenu.gameObject.SetActive(true);
+            StartCoroutine(showFirstMenu.PlayToTime(timeShow , null , true));
             AddLiveReturnGame();
         }
 
@@ -58,21 +63,25 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
         public IEnumerator ShowSecondRails()
         {
             pauseButton.gameObject.SetActive(false);
-            yield return StartCoroutine(showSecondRailGuiAndHideBack.PlayToTime(timeShow));
+            score.gameObject.SetActive(false);
+            level.gameObject.SetActive(false);
+
+            showSecondMenu.gameObject.SetActive(true);
+            yield return StartCoroutine(showSecondMenu.PlayToTime(timeShow ));
             mapField.gameObject.SetActive(false);
-            yield return new WaitForSeconds(0.2f);
-            yield return StartCoroutine(showSecondRailGuiButtonAnScore.PlayToTime(timeShow));
         }
 
         private IEnumerator HideFirtRailsAndShowSecond()
         {
-            yield return StartCoroutine(hideFirstRailGui.PlayToTime(timeShow));
-            yield return StartCoroutine(showSecondRailGui.PlayToTime(timeShow));
+            hideFirstMenuWitchoutToBackround.gameObject.SetActive(true);
+            showSecondMenu.gameObject.SetActive(true);
+            score.gameObject.SetActive(false);
+            level.gameObject.SetActive(false);
+
+            yield return StartCoroutine(hideFirstMenuWitchoutToBackround.PlayToTime(timeShow, null, true));
+            yield return StartCoroutine(showSecondMenu.PlayToTime(timeShow));
 
             mapField.gameObject.SetActive(false);
-
-            yield return new WaitForSeconds(0.2f);
-            yield return StartCoroutine(showSecondRailGuiButtonAnScore.PlayToTime(timeShow));
         }
 
         void Update()
