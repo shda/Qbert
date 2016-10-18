@@ -21,6 +21,8 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
         public LevelController levelController;
         public Transform pauseButton;
 
+        public EndPanelsLogic endPanelsLogic;
+
         public void AddLiveReturnGame()
         {
             levelController.AddLiveReturnGame();
@@ -28,8 +30,10 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
 
         void Start()
         {
-           // firstMenuRoot.gameObject.SetActive(false);
-           // secondMenuRoot.gameObject.SetActive(false);
+            // firstMenuRoot.gameObject.SetActive(false);
+            // secondMenuRoot.gameObject.SetActive(false);
+
+            endPanelsLogic.UpdatePanels();
         }
 
         public void ShowGameOver()
