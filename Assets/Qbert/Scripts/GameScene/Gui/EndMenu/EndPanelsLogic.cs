@@ -8,7 +8,8 @@ public class EndPanelsLogic : MonoBehaviour
 
     public void UpdatePanels()
     {
-
+        firstPanel.UpdatePanels();
+        secondPanel.UpdatePanels();
     }
 
 	void Start () 

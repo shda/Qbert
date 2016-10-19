@@ -12,15 +12,15 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
         public void UpdateInfo()
         {
             if(coinsText)
-                coinsText.text = "" + GlobalSettings.coins;
+                coinsText.text = "" + GlobalValues.coins;
 
             if (scoreText)
-                scoreText.text = "" + GlobalSettings.score;
+                scoreText.text = "" + GlobalValues.score;
 
             if (levelText)
                 levelText.text = string.Format("level {0}-{1}", 
-                    GlobalSettings.currentLevel + 1,
-                    GlobalSettings.currentRound + 1);
+                    GlobalValues.currentLevel + 1,
+                    GlobalValues.currentRound + 1);
         }
 
         void Start ()

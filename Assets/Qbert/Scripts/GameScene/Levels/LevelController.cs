@@ -43,10 +43,10 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
         public void OnQbertDead()
         {
-            GlobalSettings.countLive--;
+            GlobalValues.countLive--;
             UpdareCountLives();
 
-            if (GlobalSettings.countLive > 0)
+            if (GlobalValues.countLive > 0)
             {
                 ReturnQbertToPosution();
             }
@@ -84,7 +84,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             gameplayObjects.DestroyAllEnemies();
         }
 
-        private bool isFirstEndGame = true;
+       // private bool isFirstEndGame = true;
 
         public void GameOver()
         {
@@ -92,22 +92,14 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             SetPauseGamplayObjects(true);
             Time.timeScale = 1.0f;
 
-            if (isFirstEndGame)
-            {
-                isFirstEndGame = false;
-                gameGui.ShowGameOver();
-                inputController.HideButtons();
-            }
-            else
-            {
-                gameGui.ShowEndGame();
-                inputController.HideButtons();
-            }
+            GlobalValues.UpdateBestScore();
+
+            gameGui.ShowGameOver();
         }
 
         public void AddLiveReturnGame()
         {
-            GlobalSettings.countLive = 3;
+            GlobalValues.countLive = 3;
             ReturnQbertToPosution();
         }
 
@@ -255,8 +247,8 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         {
             if (levelLogicSwitcher.IsCanNextLevels())
             {
-                GlobalSettings.currentLevel++;
-                GlobalSettings.currentRound = 0;
+                GlobalValues.currentLevel++;
+                GlobalValues.currentRound = 0;
 
                 gameScene.LoadSceneShowLevel();
             }
@@ -278,7 +270,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
         public void InitSceneLevelNumber()
         {
-            levelLogic = levelLogicSwitcher.InitLevelLoad(GlobalSettings.currentLevel);
+            levelLogic = levelLogicSwitcher.InitLevelLoad(GlobalValues.currentLevel);
 
             levelLogic.InitLevel();
 

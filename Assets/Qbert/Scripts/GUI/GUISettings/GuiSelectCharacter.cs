@@ -37,7 +37,7 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
 
             UnscaleTimer.StartDelay(1.0f, timer =>
             {
-                ShowHalpHand(GlobalSettings.isShowHelpHandToSelectCharacter);
+                ShowHalpHand(GlobalValues.isShowHelpHandToSelectCharacter);
             });
         }
 
@@ -57,8 +57,8 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
         {
             Debug.Log("Select character: " + currentModel.nameCharacter);
 
-            GlobalSettings.currentModel = currentModel.nameCharacter;
-            GlobalSettings.Save();
+            GlobalValues.currentModel = currentModel.nameCharacter;
+            GlobalValues.Save();
 
             diagonalSwipe.gameObject.SetActive(false);
             rootMenu.OnFocusCameraToThis();
@@ -111,8 +111,8 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
             UpdateInfoFromModel(currentModel);
 
             ShowHalpHand(false);
-            GlobalSettings.isShowHelpHandToSelectCharacter = false;
-            GlobalSettings.Save();
+            GlobalValues.isShowHelpHandToSelectCharacter = false;
+            GlobalValues.Save();
         }
 
 
@@ -158,7 +158,7 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
 
         public void SetFocusToGlobalModel()
         {
-            var model = models.FirstOrDefault(x => x.nameCharacter == GlobalSettings.currentModel);
+            var model = models.FirstOrDefault(x => x.nameCharacter == GlobalValues.currentModel);
             if (model != null)
             {
                 ScrollToModel(currentModel , model , 0.0f);

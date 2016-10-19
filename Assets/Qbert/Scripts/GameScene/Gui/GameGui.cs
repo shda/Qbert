@@ -16,6 +16,8 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
         //public InfoText infoText;
         public MenuPause menuPause;
         public LevelController levelController;
+
+        private bool isWatchAd = false;
         
         public void OnPressButtonPause()
         {
@@ -49,7 +51,6 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
         public void ShowEndGame()
         {
            // infoText.UpdateInfo();
-
             endGameGui.OnShowSecondRails();
         }
 
@@ -60,14 +61,14 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
 
         public void UpdateLiveCount()
         {
-            lives.SetLiveCount(GlobalSettings.countLive);
+            lives.SetLiveCount(GlobalValues.countLive);
         }
 
         public void UpdateScore()
         {
-            scoreText._labelCount = GlobalSettings.score;
+            scoreText._labelCount = GlobalValues.score;
             scoreText.UpdateText();
-            SetScore(GlobalSettings.score);
+            SetScore(GlobalValues.score);
         }
         public void SetLevelNumber(int level , int round)
         {
@@ -75,7 +76,7 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
         }
         public void SetScore(float setScore)
         {
-            GlobalSettings.score = setScore;
+            GlobalValues.score = setScore;
             scoreText.SetValue(setScore);
         }
 
@@ -86,16 +87,16 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
 
         public void AddCoins(int addCoins)
         {
-            GlobalSettings.coins += addCoins;
-            GlobalSettings.Save();
+            GlobalValues.coins += addCoins;
+            GlobalValues.Save();
 
-            SetCoins(GlobalSettings.coins);
+            SetCoins(GlobalValues.coins);
         }
 
         public void AddScore(float addScore)
         {
-            GlobalSettings.score += addScore;
-            SetScore(GlobalSettings.score);
+            GlobalValues.score += addScore;
+            SetScore(GlobalValues.score);
         }
         void Start () 
         {

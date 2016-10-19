@@ -33,8 +33,8 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
             guiHandle.enabled = false;
             fadeScreen.OnEnd = transform1 =>
             {
-                GlobalSettings.currentLevel = 0;
-                GlobalSettings.currentRound = 0;
+                GlobalValues.currentLevel = 0;
+                GlobalValues.currentRound = 0;
 
                 selectSceneLoader.OnLoadScene();
             };

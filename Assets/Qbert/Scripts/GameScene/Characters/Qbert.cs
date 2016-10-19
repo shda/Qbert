@@ -97,7 +97,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 
         public void UpdateModel()
         {
-            SetModel(GlobalSettings.currentModel);
+            SetModel(GlobalValues.currentModel);
         }
 
         public void SetModel(string name = "Default")

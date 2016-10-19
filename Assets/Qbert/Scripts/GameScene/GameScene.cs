@@ -21,7 +21,7 @@ namespace Assets.Qbert.Scripts.GameScene
 
         public void StartGame()
         {
-            levelController.InitLevel(GlobalSettings.currentLevel, GlobalSettings.currentRound);
+            levelController.InitLevel(GlobalValues.currentLevel, GlobalValues.currentRound);
             levelController.StartLevel();
         }
 

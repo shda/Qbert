@@ -13,7 +13,6 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
         public AnimationToTimeMassive hideFirstMenuWitchoutToBackround;
         public AnimationToTimeMassive showSecondMenu;
 
-
         public Transform score;
         public Transform level;
 
@@ -30,14 +29,13 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
 
         void Start()
         {
-            // firstMenuRoot.gameObject.SetActive(false);
-            // secondMenuRoot.gameObject.SetActive(false);
-
             endPanelsLogic.UpdatePanels();
         }
 
         public void ShowGameOver()
         {
+            endPanelsLogic.UpdatePanels();
+
             pauseButton.gameObject.SetActive(false);
             showFirstMenu.gameObject.SetActive(true);
             StartCoroutine(showFirstMenu.PlayToTime(0.5f));
@@ -50,7 +48,6 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
             StartCoroutine(showFirstMenu.PlayToTime(timeShow , null , true));
             AddLiveReturnGame();
         }
-
 
         public void OnPressEndGameFirstRails()
         {
