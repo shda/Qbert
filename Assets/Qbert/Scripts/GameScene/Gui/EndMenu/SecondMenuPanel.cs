@@ -107,7 +107,7 @@ public class SecondMenuPanel : BasePanel
 
     private void UpdateUpPanel()
     {
-        int rand = Random.Range(0, 3);
+        int rand = 0; //Random.Range(0, 3);
 
         DisableAllPanels();
 
@@ -136,7 +136,11 @@ public class SecondMenuPanel : BasePanel
         var timesNeedToGift = GlobalValues.timeInGameGift;
 
         var giftTimeIndex = GlobalValues.giftTimeIndex;
-        giftTimeIndex = Mathf.Clamp(0, timesNeedToGift.Length, giftTimeIndex);
+        giftTimeIndex = Mathf.Clamp(giftTimeIndex, 0 , timesNeedToGift.Length);
+
+        EnableTObjest(giftPanel);
+
+        /*
 
         if (timesNeedToGift[giftTimeIndex] < GlobalValues.timeInGame)
         {
@@ -147,6 +151,7 @@ public class SecondMenuPanel : BasePanel
             textTimeToGift.text = timesNeedToGift[giftTimeIndex].ToString();
             EnableTObjest(timeToFreeGift);
         }
+        */
     }
 
     private void EnableTObjest(Transform tr)
@@ -158,12 +163,6 @@ public class SecondMenuPanel : BasePanel
     {
         float bestScore = GlobalValues.bestScore;
         float currentScore = GlobalValues.score;
-
-        if (currentScore > bestScore)
-        {
-            bestScore = currentScore;
-            GlobalValues.bestScore = bestScore;
-        }
 
         lastScoreText.text = currentScore.ToString();
         bestScoreText.text = bestScore.ToString();

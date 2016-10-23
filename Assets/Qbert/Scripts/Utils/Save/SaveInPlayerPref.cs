@@ -26,6 +26,10 @@ namespace Assets.Qbert.Scripts.Utils.Save
                     {
                         fieldInfo.SetValue(null, PlayerPrefs.GetString(nameField, (string)value));
                     }
+                    else if (value is float)
+                    {
+                        fieldInfo.SetValue(null, PlayerPrefs.GetFloat(nameField, (float)value));
+                    }
                     else if (value is int)
                     {
                         fieldInfo.SetValue(null, PlayerPrefs.GetInt(nameField, (int)value));
@@ -54,6 +58,10 @@ namespace Assets.Qbert.Scripts.Utils.Save
                     if (value is string)
                     {
                         PlayerPrefs.SetString(nameField, (string)value);
+                    }
+                    else if (value is float)
+                    {
+                        PlayerPrefs.SetFloat(nameField, (float)value);
                     }
                     else if (value is int)
                     {

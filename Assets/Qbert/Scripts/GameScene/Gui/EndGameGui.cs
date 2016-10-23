@@ -18,6 +18,7 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
 
         public MapField mapField;
         public LevelController levelController;
+        public Transform inputController;
         public Transform pauseButton;
 
         public EndPanelsLogic endPanelsLogic;
@@ -35,6 +36,7 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
         public void ShowGameOver()
         {
             endPanelsLogic.UpdatePanels();
+            inputController.gameObject.SetActive(false);
 
             pauseButton.gameObject.SetActive(false);
             showFirstMenu.gameObject.SetActive(true);
@@ -45,6 +47,8 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
         {
             pauseButton.gameObject.SetActive(true);
             showFirstMenu.gameObject.SetActive(true);
+            inputController.gameObject.SetActive(true);
+
             StartCoroutine(showFirstMenu.PlayToTime(timeShow , null , true));
             AddLiveReturnGame();
         }

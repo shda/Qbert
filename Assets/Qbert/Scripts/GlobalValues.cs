@@ -38,6 +38,7 @@ namespace Assets.Qbert.Scripts
             if (score > bestScore)
             {
                 bestScore = score;
+                Save();
             }
         }
 

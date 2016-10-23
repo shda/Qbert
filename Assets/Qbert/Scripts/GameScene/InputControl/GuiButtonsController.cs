@@ -28,23 +28,11 @@ namespace Assets.Qbert.Scripts.GameScene.InputControl
 
             }));
 
-            /*
-            foreach (var buttonControl in controls)
-            {
-                buttonControl.button.gameObject.SetActive(false);
-            }
-            */
         }
 
 
         public void EnableButtons()
         {
-            /*
-            foreach (var buttonControl in controls)
-            {
-                buttonControl.button.gameObject.SetActive(true);
-            }
-            */
 
             StopAllCoroutines();
             StartCoroutine(this.WaitCoroutine(changeCanvasGroup.PlayToTime(0.2f , null , true), transform1 =>

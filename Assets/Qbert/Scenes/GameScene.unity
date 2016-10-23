@@ -7658,7 +7658,8 @@ MonoBehaviour:
   level: {fileID: 1320481869}
   mapField: {fileID: 16998683}
   levelController: {fileID: 879627223}
-  pauseButton: {fileID: 773385890}
+  inputController: {fileID: 548711206}
+  pauseButton: {fileID: 1984241521}
   endPanelsLogic: {fileID: 665671988}
 --- !u!1 &670487235
 GameObject:

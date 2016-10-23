@@ -20,6 +20,8 @@ public class FirstMenuPanel : BasePanel
         if(isPress)
             return;
 
+        Debug.Log("PressMy");
+
         UpdatePanels();
 
         isWatchAdPress = true;
@@ -34,7 +36,7 @@ public class FirstMenuPanel : BasePanel
         counterInvestPress++;
 
         var cast = GlobalValues.castCoinsInvest;
-        counterInvestPress = Mathf.Clamp(0, cast.Length, counterInvestPress);
+        counterInvestPress = Mathf.Clamp(counterInvestPress , 0, cast.Length);
         textCountCoinsToContinueGame.text = cast[counterInvestPress].ToString();
 
         DisablePressButtons();
