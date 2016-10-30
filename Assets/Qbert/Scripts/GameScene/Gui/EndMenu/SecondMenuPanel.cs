@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using Assets.Qbert.Scripts;
+using Assets.Qbert.Scripts.GameScene.AnimationToTime;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
@@ -21,6 +23,29 @@ public class SecondMenuPanel : BasePanel
     public Text textTimeToGift;
     public Text lastScoreText;
     public Text bestScoreText;
+
+    public AnimationToTimeMassive showSecondMenu;
+    public AnimationToTimeMassive hideSecondMenuWithoutBack;
+
+    public IEnumerator AnimatedShowPanel()
+    {
+        yield return StartCoroutine(showSecondMenu.PlayToTime(0.5f));
+    }
+
+    public IEnumerator AnimatedHidePanel(float timeShow , Action OnEnd = null)
+    {
+        yield return StartCoroutine(hideSecondMenuWithoutBack.PlayToTime(timeShow, null, true));
+        if (OnEnd != null)
+        {
+            OnEnd();
+        }
+    }
+
+    public void AnimatedHidePanel()
+    {
+        StopAllCoroutines();
+        StartCoroutine(AnimatedHidePanel(0.5f));
+    }
 
     public void DisableAllPanels()
     {
@@ -45,6 +70,8 @@ public class SecondMenuPanel : BasePanel
         if(isPress)
             return;
 
+        AnimatedHidePanel();
+
         DisablePressButtons();
     }
 
@@ -52,6 +79,8 @@ public class SecondMenuPanel : BasePanel
     {
         if (isPress)
             return;
+
+        AnimatedHidePanel();
 
         DisablePressButtons();
     }
@@ -61,6 +90,7 @@ public class SecondMenuPanel : BasePanel
         if (isPress)
             return;
 
+        AnimatedHidePanel();
 
         DisablePressButtons();
     }
@@ -69,6 +99,8 @@ public class SecondMenuPanel : BasePanel
     {
         if (isPress)
             return;
+
+        AnimatedHidePanel();
 
         GlobalValues.timeInGame = 0;
         GlobalValues.giftTimeIndex++;

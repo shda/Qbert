@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using Assets.Qbert.Scripts;
-using UnityEngine.Networking;
+using Assets.Qbert.Scripts.GameScene.AnimationToTime;
 using UnityEngine.UI;
 
 public class FirstMenuPanel : BasePanel
@@ -14,6 +14,18 @@ public class FirstMenuPanel : BasePanel
 
     private bool isWatchAdPress = false;
     private int  counterInvestPress = 0;
+
+    public AnimationToTimeMassive showFirstMenu;
+
+    public IEnumerator AnimatedShowPanel()
+    {
+        yield return StartCoroutine(showFirstMenu.PlayToTime(0.5f));
+    }
+
+    public IEnumerator AnimatedHidePanel(float timeShow)
+    {
+        yield return StartCoroutine(showFirstMenu.PlayToTime(timeShow, null, true));
+    }
 
     public void OnPressButtonWatchVideo()
     {

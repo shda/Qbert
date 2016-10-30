@@ -22,6 +22,13 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
             _currentCount = value;
         }
 
+        public void SetValueForce(float value)
+        {
+            _labelCount = value;
+            _currentCount = value;
+            UpdateText();
+        }
+
         void Start () 
         {
 	
