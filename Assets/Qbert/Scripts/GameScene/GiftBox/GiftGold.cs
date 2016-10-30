@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using Assets.Qbert.Scripts;
 using Assets.Qbert.Scripts.GameScene.AnimationToTime;
@@ -15,15 +16,22 @@ public class GiftGold : MonoBehaviour
 
     public void ShowGift()
     {
+        giftGoldAnimator.OnEndGift = OnEndGift;
+
         currentCoinsCount.SetValueForce(GlobalValues.coins);
         addGoldCoinsCount.SetValueForce(50);
 
         giftGoldAnimator.GiftDropToGround();
     }
 
-	void Start () 
+    private void OnEndGift()
+    {
+        Invoke("ShowGift", 2.0f);
+    }
+
+    void Start () 
 	{
-	    Invoke("ShowGift" , 2.0f);
+	    //Invoke("ShowGift" , 2.0f);
 	}
 
 	void Update () 

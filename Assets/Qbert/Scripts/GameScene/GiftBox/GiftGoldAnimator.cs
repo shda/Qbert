@@ -1,9 +1,11 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using Assets.Qbert.Scripts.GameScene;
 using Assets.Qbert.Scripts.GameScene.AnimationToTime;
 using Assets.Qbert.Scripts.GameScene.Gui;
 using Assets.Qbert.Scripts.Utils;
+using UnityEngine.UI;
 
 public class GiftGoldAnimator : MonoBehaviour
 {
@@ -13,15 +15,22 @@ public class GiftGoldAnimator : MonoBehaviour
     public Vector3 setGravity;
     public Transform giftBox;
 
-    public AnimationToTimeMassive showTapAnimation;
-    public AnimationToTimeMassive hideTapAnimation;
-    public AnimationToTime showCenterCoints;
-    public AnimationToTimeMassive showPanelAndLabels;
-
     public ResourceCounter currentCoinsCount;
     public ResourceCounter addGoldCoinsCount;
 
     public TapScreen tapScreenRoot;
+    public Button buttonPressExit;
+
+    public Action OnEndGift;
+
+    [Header("Animations")]
+    public AnimationToTimeMassive showTapAnimation;
+    public AnimationToTimeMassive hideTapAnimation;
+    public AnimationToTime showCenterCoints;
+    public AnimationToTimeMassive showPanelAndLabels;
+    public AnimationToTimeMassive hideAllElements;
+
+    public ITime[] resetAnimations;
 
     private GiftAnimations animations;
     private Vector3 oldGravity;
@@ -31,8 +40,35 @@ public class GiftGoldAnimator : MonoBehaviour
         
     }
 
+    public void OnPressExitButton()
+    {
+        buttonPressExit.onClick.RemoveAllListeners();
+        StopAllCoroutines();
+        StartCoroutine(HideAllElemenysAnimation());
+    }
+
+    IEnumerator HideAllElemenysAnimation()
+    {
+        yield return StartCoroutine(hideAllElements.PlayToTime(0.5f));
+        rootAll.gameObject.SetActive(false);
+        if (OnEndGift != null)
+        {
+            OnEndGift();
+        }
+    }
+
+    void ResetAnimations()
+    {
+        foreach (var resetAnimation in resetAnimations)
+        {
+            resetAnimation.time = 0;
+
+        }
+    }
+
     public void GiftDropToGround()
     {
+        ResetAnimations();
         rootAll.gameObject.SetActive(true);
         CreateNewBox();
 
@@ -63,7 +99,11 @@ public class GiftGoldAnimator : MonoBehaviour
 
         currentCoinsCount.SetValue(currentCoinsCount.count + addGoldCoinsCount.count);
         addGoldCoinsCount.SetValue(0);
+
+        buttonPressExit.onClick.RemoveAllListeners();
+        buttonPressExit.onClick.AddListener(OnPressExitButton);
     }
+
 
     private void OnTapScreen()
     {
