@@ -14,8 +14,13 @@ public class GiftGold : MonoBehaviour
     public ResourceCounter addGoldCoinsCount;
     public Text nextGiftTime;
 
-    public void ShowGift()
+    public Action OnEndGiftAction;
+
+    public void ShowGift(Action OnEndGiftAction)
     {
+        this.OnEndGiftAction = OnEndGiftAction;
+        gameObject.SetActive(true);
+
         giftGoldAnimator.OnEndGift = OnEndGift;
 
         currentCoinsCount.SetValueForce(GlobalValues.coins);
@@ -26,12 +31,17 @@ public class GiftGold : MonoBehaviour
 
     private void OnEndGift()
     {
-        Invoke("ShowGift", 2.0f);
+        if (OnEndGiftAction != null)
+        {
+            OnEndGiftAction();
+        }
+
+        //Invoke("ShowGift", 2.0f);
     }
 
     void Start () 
 	{
-	    //Invoke("ShowGift" , 2.0f);
+	    //Invoke("ShowGift" , 3.0f);
 	}
 
 	void Update () 

@@ -24,6 +24,8 @@ public class SecondMenuPanel : BasePanel
     public Text lastScoreText;
     public Text bestScoreText;
 
+    public GiftGold giftGold;
+
     public AnimationToTimeMassive showSecondMenu;
     public AnimationToTimeMassive hideSecondMenuWithoutBack;
 
@@ -41,10 +43,10 @@ public class SecondMenuPanel : BasePanel
         }
     }
 
-    public void AnimatedHidePanel()
+    public void AnimatedHidePanel(Action OnEnd = null )
     {
         StopAllCoroutines();
-        StartCoroutine(AnimatedHidePanel(0.5f));
+        StartCoroutine(AnimatedHidePanel(0.5f , OnEnd));
     }
 
     public void DisableAllPanels()
@@ -100,11 +102,24 @@ public class SecondMenuPanel : BasePanel
         if (isPress)
             return;
 
-        AnimatedHidePanel();
+        AnimatedHidePanel(() =>
+        {
+            giftGold.ShowGift(() =>
+            {
+                giftGold.gameObject.SetActive(false);
+                StartCoroutine(hideSecondMenuWithoutBack.PlayToTime(0.3f));
+                isPress = false;
+            });
+        });
 
+        
+
+        /*
         GlobalValues.timeInGame = 0;
         GlobalValues.giftTimeIndex++;
         GlobalValues.Save();
+        */
+
 
         DisablePressButtons();
     }

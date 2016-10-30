@@ -24,6 +24,8 @@ public class GiftGoldAnimator : MonoBehaviour
     public Action OnEndGift;
 
     [Header("Animations")]
+
+    public AnimationToTimeChangeImageAlpha background;
     public AnimationToTimeMassive showTapAnimation;
     public AnimationToTimeMassive hideTapAnimation;
     public AnimationToTime showCenterCoints;
@@ -71,7 +73,6 @@ public class GiftGoldAnimator : MonoBehaviour
         ResetAnimations();
         rootAll.gameObject.SetActive(true);
         CreateNewBox();
-
         StopAllCoroutines();
         StartCoroutine(DropBoxAnimation());
     }

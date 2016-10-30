@@ -12,8 +12,6 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
         public CubeChangeTo cubeChangeTo;
         public Lives2d lives;
         public EndGameGui endGameGui;
-        //public Transform gameOver;
-        //public InfoText infoText;
         public MenuPause menuPause;
         public LevelController levelController;
 
@@ -44,13 +42,11 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
 
         public void ShowGameOver()
         {
-           // infoText.UpdateInfo();
             endGameGui.ShowGameOver();
         }
 
         public void ShowEndGame()
         {
-           // infoText.UpdateInfo();
             endGameGui.OnShowSecondRails();
         }
 
