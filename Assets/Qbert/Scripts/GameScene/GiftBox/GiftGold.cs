@@ -22,11 +22,46 @@ public class GiftGold : MonoBehaviour
         gameObject.SetActive(true);
 
         giftGoldAnimator.OnEndGift = OnEndGift;
+        giftGoldAnimator.OnPressVideoToGift = OnPressVideoToGift;
+
+        UpdateNextTimeToGift();
+
+        if (!GlobalValues.isShowGiftDoubleFromVideo)
+        {
+            GlobalValues.isShowGiftDoubleFromVideo = true;
+            GlobalValues.Save();
+            giftGoldAnimator.showDoubleGift = true;
+        }
+        else
+        {
+            GlobalValues.isShowGiftDoubleFromVideo = false;
+            GlobalValues.Save();
+        }
 
         currentCoinsCount.SetValueForce(GlobalValues.coins);
         addGoldCoinsCount.SetValueForce(50);
-
         giftGoldAnimator.GiftDropToGround();
+    }
+
+    public void UpdateNextTimeToGift()
+    {
+        nextGiftTime.text = string.Format("{0}h",
+            GlobalValues.GetNextTimeGift());
+    }
+
+    private void OnPressVideoToGift(bool isOkVideo)
+    {
+        if (isOkVideo)
+        {
+            giftGoldAnimator.showDoubleGift = false;
+            currentCoinsCount.SetValueForce(GlobalValues.coins);
+            addGoldCoinsCount.SetValueForce(50);
+            giftGoldAnimator.GiftDropToGround();
+        }
+        else
+        {
+            OnEndGiftAction();
+        }
     }
 
     private void OnEndGift()

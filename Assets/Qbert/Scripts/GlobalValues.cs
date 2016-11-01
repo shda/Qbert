@@ -15,6 +15,10 @@ namespace Assets.Qbert.Scripts
 
         public static int[] timeInGameGift = new[] { 6, 40, 360 };
 
+        //Show or hide button double gift by watch video
+        [SaveFieldAttribute]
+        public static bool isShowGiftDoubleFromVideo;
+
         [SaveFieldAttribute]
         public static int giftTimeIndex = 0;
 
@@ -32,6 +36,11 @@ namespace Assets.Qbert.Scripts
 
         [SaveFieldAttribute]
         public static bool isShowHelpHandToSelectCharacter = true;
+
+        public static int  GetNextTimeGift()
+        {
+            return 4;
+        }
 
         public static void UpdateBestScore()
         {

@@ -14,14 +14,21 @@ public class GiftGoldAnimator : MonoBehaviour
     public Transform rootAll;
     public Vector3 setGravity;
     public Transform giftBox;
+    public Transform doubleGiftRoot;
+
+    public VideoAD videoAd;
 
     public ResourceCounter currentCoinsCount;
     public ResourceCounter addGoldCoinsCount;
 
     public TapScreen tapScreenRoot;
     public Button buttonPressExit;
+    public Button buttonPressVideoToGift;
+
+    public bool showDoubleGift { get; set; }
 
     public Action OnEndGift;
+    public Action<bool> OnPressVideoToGift;
 
     [Header("Animations")]
 
@@ -44,18 +51,39 @@ public class GiftGoldAnimator : MonoBehaviour
 
     public void OnPressExitButton()
     {
-        buttonPressExit.onClick.RemoveAllListeners();
-        StopAllCoroutines();
-        StartCoroutine(HideAllElemenysAnimation());
+        HidePanels(OnEndGift);
     }
 
-    IEnumerator HideAllElemenysAnimation()
+    public void OnPressVideoToGiftButton()
+    {
+       // 
+        HidePanels(() =>
+        {
+            videoAd.ShowAD((bool isOk) =>
+            {
+                OnPressVideoToGift(isOk);
+            });
+
+        });
+    }
+
+    public void HidePanels(Action AfterAction)
+    {
+        buttonPressExit.onClick.RemoveAllListeners();
+        buttonPressVideoToGift.onClick.RemoveAllListeners();
+
+        StopAllCoroutines();
+        StartCoroutine(HideAllElemenysAnimation(AfterAction));
+    }
+
+    IEnumerator HideAllElemenysAnimation(Action OnEnd)
     {
         yield return StartCoroutine(hideAllElements.PlayToTime(0.5f));
         rootAll.gameObject.SetActive(false);
-        if (OnEndGift != null)
+
+        if (OnEnd != null)
         {
-            OnEndGift();
+            OnEnd();
         }
     }
 
@@ -64,12 +92,13 @@ public class GiftGoldAnimator : MonoBehaviour
         foreach (var resetAnimation in resetAnimations)
         {
             resetAnimation.time = 0;
-
         }
     }
 
     public void GiftDropToGround()
     {
+        doubleGiftRoot.gameObject.SetActive(showDoubleGift);
+
         ResetAnimations();
         rootAll.gameObject.SetActive(true);
         CreateNewBox();
@@ -103,6 +132,9 @@ public class GiftGoldAnimator : MonoBehaviour
 
         buttonPressExit.onClick.RemoveAllListeners();
         buttonPressExit.onClick.AddListener(OnPressExitButton);
+
+        buttonPressVideoToGift.onClick.RemoveAllListeners();
+        buttonPressVideoToGift.onClick.AddListener(OnPressVideoToGiftButton);
     }
 
 
