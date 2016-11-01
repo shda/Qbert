@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Assets.Qbert.Scripts.GameScene.AnimationToTime;
+using Assets.Qbert.Scripts.GameScene.Gui.EndMenu;
 using Assets.Qbert.Scripts.GameScene.Levels;
 using UnityEngine;
 

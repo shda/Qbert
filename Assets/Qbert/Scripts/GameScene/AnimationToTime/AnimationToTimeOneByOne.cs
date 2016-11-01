@@ -1,63 +1,64 @@
-﻿using UnityEngine;
-using System.Collections;
-using Assets.Qbert.Scripts.GameScene;
-using Assets.Qbert.Scripts.GameScene.AnimationToTime;
+﻿using System.Collections;
+using UnityEngine;
 
-public class AnimationToTimeOneByOne : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene.AnimationToTime
 {
-    [System.Serializable]
-    public class TimeOneByOne
+    public class AnimationToTimeOneByOne : MonoBehaviour
     {
-        public ITime animation;
-        public float duration;
-        public float delayBefore;
-    }
-
-    public TimeOneByOne[] animations;
-
-    public void StartOneByOne()
-    {
-        if(animations == null)
-            return;
-
-        StartCoroutine(PlayAnimations());
-    }
-
-    IEnumerator PlayAnimations()
-    {
-        yield return null;
-
-        foreach (var animation in animations)
+        [System.Serializable]
+        public class TimeOneByOne
         {
-            if(animation.delayBefore > 0)
-                yield return new WaitForSeconds(animation.delayBefore);
-
-            yield return StartCoroutine(PlayToTime(animation.animation, animation.duration));
+            public ITime animation;
+            public float duration;
+            public float delayBefore;
         }
-    }
 
-    public virtual IEnumerator PlayToTime(ITime iTime, float duration,bool isReverce = false)
-    {
-        float t = 0;
-        while (t < 1)
+        public TimeOneByOne[] animations;
+
+        public void StartOneByOne()
         {
-            t += (Time.deltaTime * iTime.timeScale) / duration;
-            iTime.time = t;
+            if(animations == null)
+                return;
+
+            StartCoroutine(PlayAnimations());
+        }
+
+        IEnumerator PlayAnimations()
+        {
             yield return null;
+
+            foreach (var animation in animations)
+            {
+                if(animation.delayBefore > 0)
+                    yield return new WaitForSeconds(animation.delayBefore);
+
+                yield return StartCoroutine(PlayToTime(animation.animation, animation.duration));
+            }
         }
 
-        t = 1;
+        public virtual IEnumerator PlayToTime(ITime iTime, float duration,bool isReverce = false)
+        {
+            float t = 0;
+            while (t < 1)
+            {
+                t += (Time.deltaTime * iTime.timeScale) / duration;
+                iTime.time = t;
+                yield return null;
+            }
 
-        iTime.time = t;
+            t = 1;
+
+            iTime.time = t;
+        }
+
+        void Start () 
+        {
+	
+        }
+
+        void Update () 
+        {
+	
+        }
     }
-
-    void Start () 
-	{
-	
-	}
-
-	void Update () 
-	{
-	
-	}
 }

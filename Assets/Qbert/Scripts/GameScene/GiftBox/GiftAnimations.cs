@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Assets.Qbert.Scripts.GameScene.AnimationToTime;
 
-public class GiftAnimations : MonoBehaviour 
+namespace Assets.Qbert.Scripts.GameScene.GiftBox
 {
-    public AnimationToTime dropToGround;
-    public AnimationToTime opennBox;
+    public class GiftAnimations : MonoBehaviour 
+    {
+        public AnimationToTime.AnimationToTime dropToGround;
+        public AnimationToTime.AnimationToTime opennBox;
+    }
 }

@@ -1,22 +1,24 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class BasePanel : MonoBehaviour 
+namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
 {
-    protected bool isPress = false;
-
-    protected void DisablePressButtons()
+    public class BasePanel : MonoBehaviour 
     {
-        isPress = true;
-    }
+        protected bool isPress = false;
 
-    protected void EnablePressButtons()
-    {
-        isPress = false;
-    }
+        protected void DisablePressButtons()
+        {
+            isPress = true;
+        }
 
-    public virtual void UpdatePanels()
-    {
-        EnablePressButtons();
+        protected void EnablePressButtons()
+        {
+            isPress = false;
+        }
+
+        public virtual void UpdatePanels()
+        {
+            EnablePressButtons();
+        }
     }
 }

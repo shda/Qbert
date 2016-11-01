@@ -1,86 +1,89 @@
 ﻿using System;
-using UnityEngine;
-using System.Collections;
-using Assets.Qbert.Scripts;
-using Assets.Qbert.Scripts.GameScene.AnimationToTime;
 using Assets.Qbert.Scripts.GameScene.Gui;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class GiftGold : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene.GiftBox
 {
-    public GiftGoldAnimator giftGoldAnimator;
-
-    public ResourceCounter currentCoinsCount;
-    public ResourceCounter addGoldCoinsCount;
-    public Text nextGiftTime;
-
-    public Action OnEndGiftAction;
-
-    public void ShowGift(Action OnEndGiftAction)
+    public class GiftGold : MonoBehaviour
     {
-        this.OnEndGiftAction = OnEndGiftAction;
-        gameObject.SetActive(true);
+        public GiftGoldAnimator giftGoldAnimator;
 
-        giftGoldAnimator.OnEndGift = OnEndGift;
-        giftGoldAnimator.OnPressVideoToGift = OnPressVideoToGift;
+        public ResourceCounter currentCoinsCount;
+        public ResourceCounter addGoldCoinsCount;
+        public Text nextGiftTime;
 
-        UpdateNextTimeToGift();
+        public Action OnEndGiftAction;
 
-        if (!GlobalValues.isShowGiftDoubleFromVideo)
+        public void ShowGift(Action OnEndGiftAction)
         {
-            GlobalValues.isShowGiftDoubleFromVideo = true;
-            GlobalValues.Save();
-            giftGoldAnimator.showDoubleGift = true;
-        }
-        else
-        {
-            GlobalValues.isShowGiftDoubleFromVideo = false;
-            GlobalValues.Save();
-        }
+            this.OnEndGiftAction = OnEndGiftAction;
+            gameObject.SetActive(true);
 
-        currentCoinsCount.SetValueForce(GlobalValues.coins);
-        addGoldCoinsCount.SetValueForce(50);
-        giftGoldAnimator.GiftDropToGround();
-    }
+            giftGoldAnimator.OnEndGift = OnEndGift;
+            giftGoldAnimator.OnPressVideoToGift = OnPressVideoToGift;
 
-    public void UpdateNextTimeToGift()
-    {
-        nextGiftTime.text = string.Format("{0}h",
-            GlobalValues.GetNextTimeGift());
-    }
+            GlobalValues.AddGiftGold();
+            UpdateNextTimeToGift();
 
-    private void OnPressVideoToGift(bool isOkVideo)
-    {
-        if (isOkVideo)
-        {
-            giftGoldAnimator.showDoubleGift = false;
+            if (!GlobalValues.isShowGiftDoubleFromVideo)
+            {
+                GlobalValues.isShowGiftDoubleFromVideo = true;
+                GlobalValues.Save();
+                giftGoldAnimator.showDoubleGift = true;
+            }
+            else
+            {
+                GlobalValues.isShowGiftDoubleFromVideo = false;
+                GlobalValues.Save();
+            }
+
             currentCoinsCount.SetValueForce(GlobalValues.coins);
             addGoldCoinsCount.SetValueForce(50);
             giftGoldAnimator.GiftDropToGround();
         }
-        else
+
+        private void OnPressVideoToGift(bool isOkVideo)
         {
-            OnEndGiftAction();
-        }
-    }
+            if (isOkVideo)
+            {
+                GlobalValues.AddGiftDoubleByWatchVideo();
 
-    private void OnEndGift()
-    {
-        if (OnEndGiftAction != null)
+                giftGoldAnimator.showDoubleGift = false;
+                currentCoinsCount.SetValueForce(GlobalValues.coins);
+                addGoldCoinsCount.SetValueForce(50);
+                giftGoldAnimator.GiftDropToGround();
+            }
+            else
+            {
+                OnEndGiftAction();
+            }
+        }
+
+        public void UpdateNextTimeToGift()
         {
-            OnEndGiftAction();
+            nextGiftTime.text = string.Format("{0}h",
+                GlobalValues.GetNextTimeGift());
         }
 
-        //Invoke("ShowGift", 2.0f);
-    }
+        private void OnEndGift()
+        {
+            if (OnEndGiftAction != null)
+            {
+                OnEndGiftAction();
+            }
 
-    void Start () 
-	{
-	    //Invoke("ShowGift" , 3.0f);
-	}
+            //Invoke("ShowGift", 2.0f);
+        }
 
-	void Update () 
-	{
+        void Start () 
+        {
+            //Invoke("ShowGift" , 3.0f);
+        }
+
+        void Update () 
+        {
 	
-	}
+        }
+    }
 }

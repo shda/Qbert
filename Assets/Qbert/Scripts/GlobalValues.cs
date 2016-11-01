@@ -9,10 +9,10 @@ namespace Assets.Qbert.Scripts
         public static float score = 0;
         public static int countLive = 1;
 
-        public static int[] castCoinsInvest = new[] { 25, 50, 100 };
-
+        private const int countGoldToGift = 50;
         public const int countCoinsToUnlockChar = 100;
 
+        public static int[] castCoinsInvest = new[] { 25, 50, 100 };
         public static int[] timeInGameGift = new[] { 6, 40, 360 };
 
         //Show or hide button double gift by watch video
@@ -36,6 +36,17 @@ namespace Assets.Qbert.Scripts
 
         [SaveFieldAttribute]
         public static bool isShowHelpHandToSelectCharacter = true;
+
+
+        public static void AddGiftDoubleByWatchVideo()
+        {
+            coins += countGoldToGift;
+        }
+
+        public static void AddGiftGold()
+        {
+            coins += countGoldToGift;
+        }
 
         public static int  GetNextTimeGift()
         {

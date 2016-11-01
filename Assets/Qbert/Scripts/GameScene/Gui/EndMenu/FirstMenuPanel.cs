@@ -1,78 +1,79 @@
-﻿using System;
-using UnityEngine;
-using System.Collections;
-using Assets.Qbert.Scripts;
+﻿using System.Collections;
 using Assets.Qbert.Scripts.GameScene.AnimationToTime;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class FirstMenuPanel : BasePanel
+namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
 {
-    public Transform watchwVideoToContinue;
-    public Transform watchwVideoToContinueDisable;
-
-    public Text textCountCoinsToContinueGame;
-
-    private bool isWatchAdPress = false;
-    private int  counterInvestPress = 0;
-
-    public AnimationToTimeMassive showFirstMenu;
-
-    public IEnumerator AnimatedShowPanel()
+    public class FirstMenuPanel : BasePanel
     {
-        yield return StartCoroutine(showFirstMenu.PlayToTime(0.5f));
-    }
+        public Transform watchwVideoToContinue;
+        public Transform watchwVideoToContinueDisable;
 
-    public IEnumerator AnimatedHidePanel(float timeShow)
-    {
-        yield return StartCoroutine(showFirstMenu.PlayToTime(timeShow, null, true));
-    }
+        public Text textCountCoinsToContinueGame;
 
-    public void OnPressButtonWatchVideo()
-    {
-        if(isPress)
-            return;
+        private bool isWatchAdPress = false;
+        private int  counterInvestPress = 0;
 
-        Debug.Log("PressMy");
+        public AnimationToTimeMassive showFirstMenu;
 
-        UpdatePanels();
+        public IEnumerator AnimatedShowPanel()
+        {
+            yield return StartCoroutine(showFirstMenu.PlayToTime(0.5f));
+        }
 
-        isWatchAdPress = true;
-        DisablePressButtons();
-    }
+        public IEnumerator AnimatedHidePanel(float timeShow)
+        {
+            yield return StartCoroutine(showFirstMenu.PlayToTime(timeShow, null, true));
+        }
 
-    public void OnPressButtonInvestToContinueGame()
-    {
-        if (isPress)
-            return;
+        public void OnPressButtonWatchVideo()
+        {
+            if(isPress)
+                return;
 
-        counterInvestPress++;
+            Debug.Log("PressMy");
 
-        var cast = GlobalValues.castCoinsInvest;
-        counterInvestPress = Mathf.Clamp(counterInvestPress , 0, cast.Length);
-        textCountCoinsToContinueGame.text = cast[counterInvestPress].ToString();
+            UpdatePanels();
 
-        DisablePressButtons();
-    }
+            isWatchAdPress = true;
+            DisablePressButtons();
+        }
 
-    public override void UpdatePanels()
-    {
-        ShowWatchVideoEnable(!isWatchAdPress);
-        base.UpdatePanels();
-    }
+        public void OnPressButtonInvestToContinueGame()
+        {
+            if (isPress)
+                return;
 
-    private void ShowWatchVideoEnable(bool enable)
-    {
-        watchwVideoToContinue.gameObject.SetActive(enable);
-        watchwVideoToContinueDisable.gameObject.SetActive(!enable);
-    }
+            counterInvestPress++;
 
-    void Start ()
-    {
-        ShowWatchVideoEnable(false);
-    }
+            var cast = GlobalValues.castCoinsInvest;
+            counterInvestPress = Mathf.Clamp(counterInvestPress , 0, cast.Length);
+            textCountCoinsToContinueGame.text = cast[counterInvestPress].ToString();
+
+            DisablePressButtons();
+        }
+
+        public override void UpdatePanels()
+        {
+            ShowWatchVideoEnable(!isWatchAdPress);
+            base.UpdatePanels();
+        }
+
+        private void ShowWatchVideoEnable(bool enable)
+        {
+            watchwVideoToContinue.gameObject.SetActive(enable);
+            watchwVideoToContinueDisable.gameObject.SetActive(!enable);
+        }
+
+        void Start ()
+        {
+            ShowWatchVideoEnable(false);
+        }
 	
-	void Update ()
-    {
+        void Update ()
+        {
 	
-	}
+        }
+    }
 }

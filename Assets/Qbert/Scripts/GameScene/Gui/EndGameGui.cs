@@ -1,31 +1,33 @@
-﻿using UnityEngine;
-using System.Collections;
-using Assets.Qbert.Scripts.GameScene.Gui;
+﻿using Assets.Qbert.Scripts.GameScene.Gui.EndMenu;
+using UnityEngine;
 
-public class EndGameGui : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene.Gui
 {
-    public EndGameGuiAnimator endGameGuiAnimator;
-
-    public SecondMenuPanel secondPanel;
-    public FirstMenuPanel firstPanel;
-
-    public void ShowGameOver()
+    public class EndGameGui : MonoBehaviour
     {
-        endGameGuiAnimator.ShowGameOver();
-    }
+        public EndGameGuiAnimator endGameGuiAnimator;
 
-    public void OnShowSecondRails()
-    {
-        endGameGuiAnimator.ShowSecondRails();
-    }
+        public SecondMenuPanel secondPanel;
+        public FirstMenuPanel firstPanel;
 
-    void Start()
-    {
+        public void ShowGameOver()
+        {
+            endGameGuiAnimator.ShowGameOver();
+        }
 
-    }
+        public void OnShowSecondRails()
+        {
+            endGameGuiAnimator.ShowSecondRails();
+        }
 
-    void Update()
-    {
+        void Start()
+        {
 
+        }
+
+        void Update()
+        {
+
+        }
     }
 }

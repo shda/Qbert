@@ -1,27 +1,29 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections;
 using UnityEngine.EventSystems;
 
-public class TapScreen : MonoBehaviour , IPointerClickHandler
+namespace Assets.Qbert.Scripts.GameScene.GiftBox
 {
-    public Action OnTapScreen;
-
-	void Start () 
-	{
-	
-	}
-
-	void Update () 
-	{
-	
-	}
-
-    public void OnPointerClick(PointerEventData eventData)
+    public class TapScreen : MonoBehaviour , IPointerClickHandler
     {
-        if (OnTapScreen != null)
+        public Action OnTapScreen;
+
+        void Start () 
         {
-            OnTapScreen();
+	
+        }
+
+        void Update () 
+        {
+	
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (OnTapScreen != null)
+            {
+                OnTapScreen();
+            }
         }
     }
 }

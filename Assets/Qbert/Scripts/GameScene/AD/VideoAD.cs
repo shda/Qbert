@@ -1,54 +1,57 @@
 ﻿using System;
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
-public class VideoAD : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene.AD
 {
-    public Transform root;
-
-    private Action<bool> OnEndShow;
-
-    public bool ShowAD(Action<bool> OnEndShow)
+    public class VideoAD : MonoBehaviour
     {
-        transform.gameObject.SetActive(true);
+        public Transform root;
 
-        this.OnEndShow = OnEndShow;
-        StartCoroutine(Show());
-        return true;
-    }
+        private Action<bool> OnEndShow;
 
-
-    IEnumerator Show()
-    {
-        root.gameObject.SetActive(true);
-        yield return new WaitForSeconds(3.0f);
-        OnButtonClose();
-    }
-
-
-    public void OnButtonClose()
-    {
-        root.gameObject.SetActive(false);
-
-        if (OnEndShow != null)
+        public bool ShowAD(Action<bool> OnEndShow)
         {
-            //Is ok video
-            OnEndShow(true);
+            transform.gameObject.SetActive(true);
+
+            this.OnEndShow = OnEndShow;
+            StartCoroutine(Show());
+            return true;
+        }
+
+
+        IEnumerator Show()
+        {
+            root.gameObject.SetActive(true);
+            yield return new WaitForSeconds(3.0f);
+            OnButtonClose();
+        }
+
+
+        public void OnButtonClose()
+        {
+            root.gameObject.SetActive(false);
+
+            if (OnEndShow != null)
+            {
+                //Is ok video
+                OnEndShow(true);
+            }
+        }
+
+        void Awake()
+        {
+            root.gameObject.SetActive(false);
+        }
+
+        void Start () 
+        {
+	
+        }
+
+        void Update () 
+        {
+	
         }
     }
-
-    void Awake()
-    {
-        root.gameObject.SetActive(false);
-    }
-
-	void Start () 
-	{
-	
-	}
-
-	void Update () 
-	{
-	
-	}
 }
