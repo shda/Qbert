@@ -23,6 +23,9 @@ namespace Assets.Qbert.Scripts.GameScene.GiftBox
             giftGoldAnimator.OnEndGift = OnEndGift;
             giftGoldAnimator.OnPressVideoToGift = OnPressVideoToGift;
 
+            currentCoinsCount.SetValueForce(GlobalValues.coins);
+            addGoldCoinsCount.SetValueForce(GlobalValues.countGoldToGift);
+
             GlobalValues.AddGiftGold();
             UpdateNextTimeToGift();
 
@@ -38,8 +41,6 @@ namespace Assets.Qbert.Scripts.GameScene.GiftBox
                 GlobalValues.Save();
             }
 
-            currentCoinsCount.SetValueForce(GlobalValues.coins);
-            addGoldCoinsCount.SetValueForce(50);
             giftGoldAnimator.GiftDropToGround();
         }
 
@@ -47,12 +48,12 @@ namespace Assets.Qbert.Scripts.GameScene.GiftBox
         {
             if (isOkVideo)
             {
-                GlobalValues.AddGiftDoubleByWatchVideo();
-
                 giftGoldAnimator.showDoubleGift = false;
                 currentCoinsCount.SetValueForce(GlobalValues.coins);
-                addGoldCoinsCount.SetValueForce(50);
+                addGoldCoinsCount.SetValueForce(GlobalValues.countGoldToGift);
                 giftGoldAnimator.GiftDropToGround();
+
+                GlobalValues.AddGiftDoubleByWatchVideo();
             }
             else
             {

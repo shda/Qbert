@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using Assets.Qbert.Scripts.GameScene.AD;
 using Assets.Qbert.Scripts.GameScene.AnimationToTime;
 using Assets.Qbert.Scripts.GameScene.GiftBox;
 using UnityEngine;
@@ -27,8 +29,12 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
 
         public GiftGold giftGold;
 
+        public ResourceCounter coinsCounter;
+
         public AnimationToTimeMassive showSecondMenu;
         public AnimationToTimeMassive hideSecondMenuWithoutBack;
+
+        public VideoAD videoAd;
 
         public IEnumerator AnimatedShowPanel()
         {
@@ -74,7 +80,6 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
                 return;
 
             AnimatedHidePanel();
-
             DisablePressButtons();
         }
 
@@ -83,9 +88,20 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
             if (isPress)
                 return;
 
-            AnimatedHidePanel();
-
             DisablePressButtons();
+
+            AnimatedHidePanel(() =>
+            {
+                videoAd.ShowAD(isOk =>
+                {
+                    if (isOk)
+                    {
+                        coinsCounter.SetValue(GlobalValues.AddEarnVideo());
+                    }
+                    isPress = false;
+                    StartCoroutine(AnimatedShowPanel());
+                });
+            });
         }
 
         public void OnPressRateApp()
@@ -93,7 +109,16 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
             if (isPress)
                 return;
 
-            AnimatedHidePanel();
+            AnimatedHidePanel(() =>
+            {
+                GlobalValues.appIsRate = true;
+                GlobalValues.Save();
+                
+                isPress = false;
+                UpdateDownPanel();
+                StartCoroutine(AnimatedShowPanel());
+            });
+
 
             DisablePressButtons();
         }
@@ -107,6 +132,8 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
             {
                 giftGold.ShowGift(() =>
                 {
+                    coinsCounter.SetValueForce(GlobalValues.coins);
+
                     giftGold.gameObject.SetActive(false);
                     StartCoroutine(hideSecondMenuWithoutBack.PlayToTime(0.3f));
                     isPress = false;
@@ -155,51 +182,57 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
 
         private void UpdateUpPanel()
         {
-            int rand = 0; //Random.Range(0, 3);
-
             DisableAllPanels();
 
-            switch (rand)
+            List<Action> selector = new List<Action>();
+
+            //App rate
+            if (!GlobalValues.appIsRate)
             {
-                //Gift
-                case 0:
-                    EnableGiftPanel();
-                    break;
-                //Earn
-                case 1:
-                    EnableTObjest(earnPanel);
-                    break;
-                //RateApp
-                case 2:
+                selector.Add(() =>
+                {
                     EnableTObjest(rateAppPanel);
-                    break;
-                default:
-                    EnableTObjest(rateAppPanel);
-                    break;
+                });
             }
+
+            //Earn video
+            selector.Add(() =>
+            {
+                EnableTObjest(earnPanel);
+            });
+
+            //Gift
+            selector.Add(() =>
+            {
+                EnableGiftPanel();
+            });
+
+            selector[2].Invoke();
+
+            //selector[UnityEngine.Random.Range(0, selector.Count)].Invoke();
         }
 
         private void EnableGiftPanel()
         {
             var timesNeedToGift = GlobalValues.timeInGameGift;
-
             var giftTimeIndex = GlobalValues.giftTimeIndex;
-            giftTimeIndex = Mathf.Clamp(giftTimeIndex, 0 , timesNeedToGift.Length);
+
+            giftTimeIndex = Mathf.Clamp(giftTimeIndex, 0 , timesNeedToGift.Length - 1);
 
             EnableTObjest(giftPanel);
 
             /*
 
-        if (timesNeedToGift[giftTimeIndex] < GlobalValues.timeInGame)
-        {
-            EnableTObjest(giftPanel);
-        }
-        else
-        {
-            textTimeToGift.text = timesNeedToGift[giftTimeIndex].ToString();
-            EnableTObjest(timeToFreeGift);
-        }
-        */
+            if (timesNeedToGift[giftTimeIndex] < GlobalValues.timeInGame)
+            {
+                EnableTObjest(giftPanel);
+            }
+            else
+            {
+                textTimeToGift.text = GlobalValues.ConvertMinutesToString(timesNeedToGift[giftTimeIndex]);
+                EnableTObjest(timeToFreeGift);
+            }
+            */
         }
 
         private void EnableTObjest(Transform tr)

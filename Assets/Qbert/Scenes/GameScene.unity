@@ -11647,7 +11647,6 @@ GameObject:
   - 224: {fileID: 919118511}
   - 225: {fileID: 919118513}
   - 114: {fileID: 919118512}
-  - 114: {fileID: 919118514}
   m_Layer: 16
   m_Name: RootInfo
   m_TagString: Untagged
@@ -11703,20 +11702,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &919118514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 919118510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2488cae776990d5438d5dfb9216ed509, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinsText: {fileID: 1899168313}
-  scoreText: {fileID: 0}
-  levelText: {fileID: 0}
 --- !u!1 &929943098
 GameObject:
   m_ObjectHideFlags: 0
@@ -12451,6 +12436,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 1005651404}
   - 222: {fileID: 1005651405}
+  - 114: {fileID: 1005651406}
   m_Layer: 16
   m_Name: Coins
   m_TagString: Untagged
@@ -12485,6 +12471,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1005651403}
+--- !u!114 &1005651406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1005651403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f90fa4947aab54b83963f917561718, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _label: {fileID: 1899168313}
+  _currentCount: 0
+  _labelCount: 0
+  _speedAnimation: 20
 --- !u!1 &1006662714
 GameObject:
   m_ObjectHideFlags: 0
@@ -13510,13 +13511,15 @@ MonoBehaviour:
   timeToFreeGift: {fileID: 1199235472}
   needCoinsToUnlockCharacter: {fileID: 121847137}
   unlockCharacterPanel: {fileID: 1509986263}
-  neerCountCoinsUnlockCharacter: {fileID: 704247216}
+  neerCountCoinsUnlockCharacter: {fileID: 880567486}
   textTimeToGift: {fileID: 704247216}
   lastScoreText: {fileID: 1316368024}
   bestScoreText: {fileID: 824993940}
   giftGold: {fileID: 2146725906}
+  coinsCounter: {fileID: 1005651406}
   showSecondMenu: {fileID: 1753063504}
   hideSecondMenuWithoutBack: {fileID: 637372694}
+  videoAd: {fileID: 1296215478}
 --- !u!1 &1099746520
 GameObject:
   m_ObjectHideFlags: 0
@@ -16842,7 +16845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1320481872}
   levelLabel: {fileID: 1561778838}
-  coinsLabel: {fileID: 1899168313}
+  coinsLabel: {fileID: 1005651406}
   cubeChangeTo: {fileID: 748293848}
   lives: {fileID: 1268233398}
   endGameGui: {fileID: 665671989}

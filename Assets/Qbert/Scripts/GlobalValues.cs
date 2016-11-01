@@ -9,7 +9,8 @@ namespace Assets.Qbert.Scripts
         public static float score = 0;
         public static int countLive = 1;
 
-        private const int countGoldToGift = 50;
+        public const int countGoldToGift = 50;
+        public const int countCoinsToEarnVideo = 30;
         public const int countCoinsToUnlockChar = 100;
 
         public static int[] castCoinsInvest = new[] { 25, 50, 100 };
@@ -35,17 +36,41 @@ namespace Assets.Qbert.Scripts
         public static int coins = 0;
 
         [SaveFieldAttribute]
+        public static bool appIsRate = false;
+
+        [SaveFieldAttribute]
         public static bool isShowHelpHandToSelectCharacter = true;
 
 
-        public static void AddGiftDoubleByWatchVideo()
+        public static string ConvertMinutesToString(int minutes)
         {
-            coins += countGoldToGift;
+            if (minutes < 60)
+            {
+                return string.Format("{0}m", minutes);
+            }
+
+            return string.Format("{0}h", (int)minutes / 60);
         }
 
-        public static void AddGiftGold()
+        public static int AddGiftDoubleByWatchVideo()
         {
             coins += countGoldToGift;
+            Save();
+            return coins;
+        }
+
+        public static int AddGiftGold()
+        {
+            coins += countGoldToGift;
+            Save();
+            return coins;
+        }
+
+        public static int AddEarnVideo()
+        {
+            coins += countCoinsToEarnVideo;
+            Save();
+            return coins;
         }
 
         public static int  GetNextTimeGift()

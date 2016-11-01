@@ -8,7 +8,7 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
     {
         public ResourceCounter scoreText;
         public Text levelLabel;
-        public Text coinsLabel;
+        public ResourceCounter coinsLabel;
         public CubeChangeTo cubeChangeTo;
         public Lives2d lives;
         public EndGameGui endGameGui;
@@ -78,7 +78,8 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
 
         public void SetCoins(int setConis)
         {
-            coinsLabel.text = string.Format("{0}", (int)setConis);
+            Debug.Log(setConis);
+            coinsLabel.SetValueForce(setConis);
         }
 
         public void AddCoins(int addCoins)
@@ -96,6 +97,7 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
         }
         void Start () 
         {
+            SetCoins(GlobalValues.coins);
             menuPause.HideAll();
         }
 	
