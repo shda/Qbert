@@ -36,6 +36,8 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
 
         public VideoAD videoAd;
 
+        private bool isEarnDisable;
+
         public IEnumerator AnimatedShowPanel()
         {
             yield return StartCoroutine(showSecondMenu.PlayToTime(0.5f));
@@ -98,7 +100,9 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
                     {
                         coinsCounter.SetValue(GlobalValues.AddEarnVideo());
                     }
+                    isEarnDisable = true;
                     isPress = false;
+                    UpdatePanels();
                     StartCoroutine(AnimatedShowPanel());
                 });
             });
@@ -113,6 +117,8 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
             {
                 GlobalValues.appIsRate = true;
                 GlobalValues.Save();
+
+                UpdatePanels();
                 
                 isPress = false;
                 UpdateDownPanel();
@@ -133,21 +139,12 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
                 giftGold.ShowGift(() =>
                 {
                     coinsCounter.SetValueForce(GlobalValues.coins);
-
+                    UpdatePanels();
                     giftGold.gameObject.SetActive(false);
                     StartCoroutine(hideSecondMenuWithoutBack.PlayToTime(0.3f));
                     isPress = false;
                 });
             });
-
-        
-
-            /*
-        GlobalValues.timeInGame = 0;
-        GlobalValues.giftTimeIndex++;
-        GlobalValues.Save();
-        */
-
 
             DisablePressButtons();
         }
@@ -196,20 +193,23 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
             }
 
             //Earn video
-            selector.Add(() =>
+            if (!isEarnDisable)
             {
-                EnableTObjest(earnPanel);
-            });
-
+                selector.Add(() =>
+                {
+                    EnableTObjest(earnPanel);
+                });
+            }
+            
             //Gift
             selector.Add(() =>
             {
                 EnableGiftPanel();
             });
 
-            selector[2].Invoke();
+            //selector[2].Invoke();
 
-            //selector[UnityEngine.Random.Range(0, selector.Count)].Invoke();
+            selector[UnityEngine.Random.Range(0, selector.Count)].Invoke();
         }
 
         private void EnableGiftPanel()
@@ -219,9 +219,7 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
 
             giftTimeIndex = Mathf.Clamp(giftTimeIndex, 0 , timesNeedToGift.Length - 1);
 
-            EnableTObjest(giftPanel);
-
-            /*
+            //EnableTObjest(giftPanel);
 
             if (timesNeedToGift[giftTimeIndex] < GlobalValues.timeInGame)
             {
@@ -229,10 +227,11 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
             }
             else
             {
-                textTimeToGift.text = GlobalValues.ConvertMinutesToString(timesNeedToGift[giftTimeIndex]);
+                int minutes = (int) (timesNeedToGift[giftTimeIndex] - GlobalValues.timeInGame);
+                minutes = minutes <= 0 ? 1 : minutes;
+                textTimeToGift.text = GlobalValues.ConvertMinutesToString(minutes);
                 EnableTObjest(timeToFreeGift);
             }
-            */
         }
 
         private void EnableTObjest(Transform tr)

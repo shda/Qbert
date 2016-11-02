@@ -42,6 +42,16 @@ namespace Assets.Qbert.Scripts.GameScene.GiftBox
             }
 
             giftGoldAnimator.GiftDropToGround();
+
+            UpdateValues();
+        }
+
+
+        private void UpdateValues()
+        {
+            GlobalValues.timeInGame = 0;
+            GlobalValues.giftTimeIndex++;
+            GlobalValues.Save();
         }
 
         private void OnPressVideoToGift(bool isOkVideo)
