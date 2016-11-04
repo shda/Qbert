@@ -443,9 +443,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameCharacter: Cat
+  codeName: Cat
   booldeDead: {fileID: 421892}
   booleTextMesh: {fileID: 10274216}
   collisionProxy: {fileID: 11441674}
+  price: 0.99
   description: Cat description.
 --- !u!1001 &100100000
 Prefab:

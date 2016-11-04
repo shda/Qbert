@@ -45,7 +45,7 @@ namespace Assets.Qbert.Scripts
         public static bool isShowHelpHandToSelectCharacter = true;
 
 
-        public string[] GetCodeNamesModelesOpen()
+        public static string[] GetCodeNamesModelesOpen()
         {
             return codeNamesModelsOpens.Split(',');
         }

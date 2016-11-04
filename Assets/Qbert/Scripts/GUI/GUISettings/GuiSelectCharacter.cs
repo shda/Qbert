@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GUI.GUISettings
 {
-    public class GuiSelectCharacter : MonoBehaviour
+    public class GuiSelectCharacter : SwipeModel
     {
         public GlobalConfigurationAsset globalConfigurationAsset;
         public Transform rootModels;
@@ -20,6 +20,9 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
         public GuiMainMenu rootMenu;
         public DiagonalSwipe diagonalSwipe;
         public GameObject swipeHelpShow;
+
+        public Transform playImage;
+        public TextMesh  textPrice;
 
         public float scaleModelNoFocus = 0.8f;
         public float modelsOffset;
@@ -33,22 +36,35 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
             diagonalSwipe.gameObject.SetActive(true);
             cameraMenuController.OnCameraMoveSelectCharacter();
 
-            ShowHalpHand(false);
+            ShowHelpHand(false);
 
             UnscaleTimer.StartDelay(1.0f, timer =>
             {
-                ShowHalpHand(GlobalValues.isShowHelpHandToSelectCharacter);
+                ShowHelpHand(GlobalValues.isShowHelpHandToSelectCharacter);
             });
         }
 
+        public void ShowPrice(float price)
+        {
+            playImage.gameObject.SetActive(false);
+            textPrice.gameObject.SetActive(true);
+
+            textPrice.text = string.Format("$ {0:##.##}", price);
+        }
+
+        public void ShowPlay()
+        {
+            playImage.gameObject.SetActive(true);
+            textPrice.gameObject.SetActive(false);
+        }
 
         public void OnCloseButtonPress()
         {
             cameraMenuController.OnCamaraMoveToRootMenu();
-            ShowHalpHand(false);
+            ShowHelpHand(false);
         }
 
-        private void ShowHalpHand(bool isShow)
+        private void ShowHelpHand(bool isShow)
         {
             swipeHelpShow.gameObject.SetActive(isShow);
         }
@@ -81,6 +97,16 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
                 tr.localScale = new Vector3(scaleModelNoFocus, scaleModelNoFocus, scaleModelNoFocus);
 
                 createCharacter.booldeDead.gameObject.SetActive(false);
+
+                if (!createCharacter.isFree && !createCharacter.isBuyed())
+                {
+                    MeshRenderer[] renders = createCharacter.GetComponentsInChildren<MeshRenderer>();
+                    foreach (var meshRenderer in renders)
+                    {
+                        SetTransparentMaterial(meshRenderer , 
+                            SwitchMaterialRenderingMode.BlendMode.Transparent, 0.3f);
+                    }
+                }
             }
 
             currentModel = models[0];
@@ -89,6 +115,19 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
 
             UpdateInfoFromModel(currentModel);
         }
+
+
+        private void SetTransparentMaterial(MeshRenderer meshRenderer,
+            SwitchMaterialRenderingMode.BlendMode mode, float transparent)
+        {
+            Material newMat = new Material(meshRenderer.material);
+            var material = newMat;
+
+            SwitchMaterialRenderingMode.SetupMaterialWithBlendMode( material, mode);
+            material.color = new Color(material.color.r, material.color.g, material.color.b, transparent);
+            meshRenderer.material = material;
+        }
+
 
         public void Scroll(bool isLeft)
         {
@@ -110,7 +149,7 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
             currentModel = second;
             UpdateInfoFromModel(currentModel);
 
-            ShowHalpHand(false);
+            ShowHelpHand(false);
             GlobalValues.isShowHelpHandToSelectCharacter = false;
             GlobalValues.Save();
         }
@@ -190,11 +229,6 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
             }
 
             scrollInWork = null;
-        }
-
-        void Update () 
-        {
-	
         }
     }
 }

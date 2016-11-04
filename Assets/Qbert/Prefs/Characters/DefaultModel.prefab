@@ -442,10 +442,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a539bf5543aee9f48a70cf796a8aa0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFree: 1
   nameCharacter: Tourist
+  codeName: Tourist
   booldeDead: {fileID: 409496}
   booleTextMesh: {fileID: 10237730}
   collisionProxy: {fileID: 11428836}
+  price: 0.99
   description: likes the pyramids tours
 --- !u!1001 &100100000
 Prefab:

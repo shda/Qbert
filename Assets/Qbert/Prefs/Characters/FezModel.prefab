@@ -443,9 +443,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameCharacter: Fez
+  codeName: Fez
   booldeDead: {fileID: 428684}
   booleTextMesh: {fileID: 10239478}
   collisionProxy: {fileID: 11432488}
+  price: 0.99
   description: Fuz description.
 --- !u!1001 &100100000
 Prefab:

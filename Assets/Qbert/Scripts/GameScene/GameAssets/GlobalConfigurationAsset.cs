@@ -12,21 +12,33 @@ namespace Assets.Qbert.Scripts.GameScene.GameAssets
         public LevelConfigAsset assetInstruction;
         public LevelConfigAsset[] levelsAssets;
 
-
         public QbertModel GetModelByName(string name)
         {
             QbertModel find = characters.FirstOrDefault(x => x.nameCharacter == name);
-            if (find != null)
+            if (find == null)
             {
-                return find;
-            }
-            else if(characters.Length > 0)
-            {
-                Debug.LogError("Set default model.");
-                return characters.First();
+                if (characters.Length > 0)
+                {
+                    find = FindFreeModel();
+
+                    if (find == null)
+                    {
+                        Debug.LogWarning("Set default model.");
+                        find = characters.First(); ;
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Error get model.");
+                }
             }
 
-            return null;
+            return find;
+        }
+
+        private QbertModel FindFreeModel()
+        {
+            return characters.FirstOrDefault(x => x.isFree);
         }
     }
 }
