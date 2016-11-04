@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GameScene.AnimationToTime
@@ -14,6 +15,8 @@ namespace Assets.Qbert.Scripts.GameScene.AnimationToTime
         }
 
         public TimeOneByOne[] animations;
+
+        public Action OnEndAnimation;
 
         public void StartOneByOne()
         {
@@ -33,6 +36,11 @@ namespace Assets.Qbert.Scripts.GameScene.AnimationToTime
                     yield return new WaitForSeconds(animation.delayBefore);
 
                 yield return StartCoroutine(PlayToTime(animation.animation, animation.duration));
+            }
+
+            if (OnEndAnimation != null)
+            {
+                OnEndAnimation();
             }
         }
 

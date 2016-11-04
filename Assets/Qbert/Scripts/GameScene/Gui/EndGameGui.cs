@@ -7,9 +7,6 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
     {
         public EndGameGuiAnimator endGameGuiAnimator;
 
-        public SecondMenuPanel secondPanel;
-        public FirstMenuPanel firstPanel;
-
         public void ShowGameOver()
         {
             endGameGuiAnimator.ShowGameOver();
@@ -17,12 +14,13 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
 
         public void OnShowSecondRails()
         {
+        
             endGameGuiAnimator.ShowSecondRails();
         }
 
         void Start()
         {
-
+            
         }
 
         void Update()

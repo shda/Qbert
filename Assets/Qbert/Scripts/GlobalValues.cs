@@ -16,6 +16,9 @@ namespace Assets.Qbert.Scripts
         public static int[] castCoinsInvest = new[] { 25, 50, 100 };
         public static int[] timeInGameGift = new[] { 6, 40, 360 };
 
+        [SaveFieldAttribute]
+        public static string codeNamesModelsOpens = "";
+
         //Show or hide button double gift by watch video
         [SaveFieldAttribute]
         public static bool isShowGiftDoubleFromVideo = true;
@@ -23,8 +26,8 @@ namespace Assets.Qbert.Scripts
         [SaveFieldAttribute]
         public static int giftTimeIndex = 0;
 
-       // [SaveFieldAttribute]
-        public static float timeInGame = 32;
+        [SaveFieldAttribute]
+        public static float timeInGame = 0;
 
         [SaveFieldAttribute]
         public static string currentModel = "";
@@ -33,7 +36,7 @@ namespace Assets.Qbert.Scripts
         public static float bestScore = 0;
 
         [SaveFieldAttribute]
-        public static int coins = 0;
+        public static int coins = 10000;
 
         [SaveFieldAttribute]
         public static bool appIsRate = false;
@@ -41,6 +44,11 @@ namespace Assets.Qbert.Scripts
         [SaveFieldAttribute]
         public static bool isShowHelpHandToSelectCharacter = true;
 
+
+        public string[] GetCodeNamesModelesOpen()
+        {
+            return codeNamesModelsOpens.Split(',');
+        }
 
         public static string ConvertMinutesToString(int minutes)
         {
@@ -85,6 +93,12 @@ namespace Assets.Qbert.Scripts
                 bestScore = score;
                 Save();
             }
+        }
+
+
+        public static void ReturnQbertLives()
+        {
+            countLive += 3;
         }
 
 

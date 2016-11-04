@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using Assets.Qbert.Scripts.GameScene.AD;
 using Assets.Qbert.Scripts.GameScene.AnimationToTime;
+using Assets.Qbert.Scripts.GameScene.Levels;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +15,12 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
 
         public Text textCountCoinsToContinueGame;
 
+        public VideoAD videoAd;
+
+        public LevelController levelController;
+        public Transform inputController;
+        public ResourceCounter coinsCounter;
+
         private bool isWatchAdPress = false;
         private int  counterInvestPress = 0;
 
@@ -19,12 +28,18 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
 
         public IEnumerator AnimatedShowPanel()
         {
+            EnablePressButtons();
+            UpdateIvestLabel();
             yield return StartCoroutine(showFirstMenu.PlayToTime(0.5f));
         }
 
-        public IEnumerator AnimatedHidePanel(float timeShow)
+        public IEnumerator AnimatedHidePanel(float timeShow , Action OnHidePanel = null)
         {
             yield return StartCoroutine(showFirstMenu.PlayToTime(timeShow, null, true));
+            if (OnHidePanel != null)
+            {
+                OnHidePanel();
+            }
         }
 
         public void OnPressButtonWatchVideo()
@@ -32,31 +47,70 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
             if(isPress)
                 return;
 
-            Debug.Log("PressMy");
-
-            UpdatePanels();
+            Debug.Log("OnPressButtonWatchVideo");
 
             isWatchAdPress = true;
+            UpdatePanels();
             DisablePressButtons();
+
+            videoAd.ShowAD(isOk =>
+            {
+                if (isOk)
+                {
+                    StartCoroutine(AnimatedHidePanel(0.5f , () =>
+                    {
+                        HidePanelAndReturnToGame();
+                    }));
+                }
+            });
+        }
+
+        private void HidePanelAndReturnToGame()
+        {
+            GlobalValues.ReturnQbertLives();
+            inputController.gameObject.SetActive(true);
+            levelController.ReturnQbertToPosution();
+        }
+
+        private void UpdateIvestLabel()
+        {
+            textCountCoinsToContinueGame.text = string.Format("X{0}", CountNeedInvestCoins());
+        }
+
+        private int CountNeedInvestCoins()
+        {
+            var cast = GlobalValues.castCoinsInvest;
+            counterInvestPress = Mathf.Clamp(counterInvestPress, 0, cast.Length - 1);
+            return cast[counterInvestPress];
         }
 
         public void OnPressButtonInvestToContinueGame()
         {
-            if (isPress)
-                return;
+            Debug.Log("Invest");
 
-            counterInvestPress++;
+            if (GlobalValues.coins >= CountNeedInvestCoins())
+            {
+                GlobalValues.coins -= CountNeedInvestCoins();
+                GlobalValues.Save();
 
-            var cast = GlobalValues.castCoinsInvest;
-            counterInvestPress = Mathf.Clamp(counterInvestPress , 0, cast.Length);
-            textCountCoinsToContinueGame.text = cast[counterInvestPress].ToString();
+                coinsCounter.SetValue(GlobalValues.coins);
+                counterInvestPress++;
 
-            DisablePressButtons();
+                StartCoroutine(AnimatedHidePanel(0.5f, () =>
+                {
+                    HidePanelAndReturnToGame();
+                }));
+
+                DisablePressButtons();
+            }
         }
 
         public override void UpdatePanels()
         {
+            ShowWatchVideoEnable(false);
             ShowWatchVideoEnable(!isWatchAdPress);
+            UpdateIvestLabel();
+
             base.UpdatePanels();
         }
 
@@ -68,7 +122,7 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
 
         void Start ()
         {
-            ShowWatchVideoEnable(false);
+            
         }
 	
         void Update ()

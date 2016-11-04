@@ -15,7 +15,7 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
         public Transform score;
         public Transform level;
 
-        public MapField mapField;
+        public Transform gameField;
         public LevelController levelController;
         public Transform inputController;
         public Transform pauseButton;
@@ -31,6 +31,8 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
 
         void Start()
         {
+            HideFirstPanel();
+            HideScecondPanel();
             UpdatePanels();
         }
 
@@ -42,7 +44,9 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
 
         public void ShowGameOver()
         {
+            ShowFirstPanel();
             UpdatePanels();
+
             inputController.gameObject.SetActive(false);
 
             pauseButton.gameObject.SetActive(false);
@@ -52,7 +56,6 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
         public void ReturnToGame()
         {
             pauseButton.gameObject.SetActive(true);
-            //showFirstMenu.gameObject.SetActive(true);
             inputController.gameObject.SetActive(true);
 
             firstPanel.StartCoroutine(firstPanel.AnimatedHidePanel(timeShow));
@@ -79,20 +82,45 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
 
             //showSecondMenu.gameObject.SetActive(true);
             yield return secondPanel.StartCoroutine(secondPanel.AnimatedShowPanel());
-            mapField.gameObject.SetActive(false);
+            gameField.gameObject.SetActive(false);
+        }
+
+
+        public void HideFirstPanel()
+        {
+            firstPanel.gameObject.SetActive(false);
+        }
+
+        public void ShowFirstPanel()
+        {
+            firstPanel.gameObject.SetActive(true);
+        }
+
+        public void HideScecondPanel()
+        {
+            secondPanel.gameObject.SetActive(false);
+        }
+
+        public void ShowSecondPanel()
+        {
+            secondPanel.gameObject.SetActive(true);
         }
 
         private IEnumerator HideFirtRailsAndShowSecond()
         {
+            ShowSecondPanel();
+
             hideFirstMenuWitchoutToBackround.gameObject.SetActive(true);
-           // showSecondMenu.gameObject.SetActive(true);
+            
             score.gameObject.SetActive(false);
             level.gameObject.SetActive(false);
 
             yield return StartCoroutine(hideFirstMenuWitchoutToBackround.PlayToTime(timeShow, null, true));
             yield return secondPanel.StartCoroutine(secondPanel.AnimatedShowPanel());
 
-            mapField.gameObject.SetActive(false);
+            HideFirstPanel();
+
+            gameField.gameObject.SetActive(false);
         }
 
         void Update()
