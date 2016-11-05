@@ -78,13 +78,27 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
         }
         public void OnButtonCharacterSelect()
         {
-            Debug.Log("Select character: " + currentModel.nameCharacter);
+            if (currentModel.isBuyed() || currentModel.isFree)
+            {
+                Debug.Log("Select character: " + currentModel.nameCharacter);
 
-            GlobalValues.currentModel = currentModel.nameCharacter;
-            GlobalValues.Save();
+                GlobalValues.currentModel = currentModel.nameCharacter;
+                GlobalValues.Save();
 
-            diagonalSwipe.gameObject.SetActive(false);
-            rootMenu.OnFocusCameraToThis();
+                diagonalSwipe.gameObject.SetActive(false);
+                rootMenu.OnFocusCameraToThis();
+            }
+            else
+            {
+                
+                //Buy process
+                SetTransparentMaterial(currentModel.transform,
+                        SwitchMaterialRenderingMode.BlendMode.Opaque, 0.3f);
+
+                GlobalValues.AddBuyModel(currentModel.codeName);
+
+                ShowPlay();
+            }
         }
 
         public void InitScene()
@@ -97,28 +111,33 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
             {
                 model.booldeDead.gameObject.SetActive(false);
 
-                if (!model.isFree && !model.isBuyed())
+                if (model.isFree || model.isBuyed())
                 {
-                    MeshRenderer[] renders = model.GetComponentsInChildren<MeshRenderer>();
-                    foreach (var meshRenderer in renders)
-                    {
-                        SetTransparentMaterial(meshRenderer,
-                            SwitchMaterialRenderingMode.BlendMode.Transparent, 0.3f);
-                    }
+                    SetTransparentMaterial(model.transform,
+                        SwitchMaterialRenderingMode.BlendMode.Opaque, 0.3f);
+                }
+                else
+                {
+                    SetTransparentMaterial(model.transform,
+                        SwitchMaterialRenderingMode.BlendMode.Transparent, 0.3f);
                 }
             }
 
             UpdateInfoFromModel(currentModel);
         }
-        private void SetTransparentMaterial(MeshRenderer meshRenderer,
+        private void SetTransparentMaterial(Transform model,
             SwitchMaterialRenderingMode.BlendMode mode, float transparent)
         {
-            Material newMat = new Material(meshRenderer.material);
-            var material = newMat;
+            MeshRenderer[] renders = model.GetComponentsInChildren<MeshRenderer>();
+            foreach (var meshRenderer in renders)
+            {
+                Material newMat = new Material(meshRenderer.material);
+                var material = newMat;
 
-            SwitchMaterialRenderingMode.SetupMaterialWithBlendMode( material, mode);
-            material.color = new Color(material.color.r, material.color.g, material.color.b, transparent);
-            meshRenderer.material = material;
+                SwitchMaterialRenderingMode.SetupMaterialWithBlendMode(material, mode);
+                material.color = new Color(material.color.r, material.color.g, material.color.b, transparent);
+                meshRenderer.material = material;
+            }
         }
 
         public void UpdateInfoFromModel(QbertModel model)

@@ -1,4 +1,7 @@
-﻿using Assets.Qbert.Scripts.Utils.Save;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Assets.Qbert.Scripts.Utils.Save;
 
 namespace Assets.Qbert.Scripts
 {
@@ -48,6 +51,25 @@ namespace Assets.Qbert.Scripts
         public static string[] GetCodeNamesModelesOpen()
         {
             return codeNamesModelsOpens.Split(',');
+        }
+
+        public static bool IsModelBuyed(string codeName)
+        {
+            string name = codeName.Trim().ToLower();
+            return GetCodeNamesModelesOpen().Any(x => x.Contains(name));
+        } 
+
+        public static void AddBuyModel(string codeName)
+        {
+            string name = codeName.Trim().ToLower();
+
+            List<string> models = new List<string>(GetCodeNamesModelesOpen());
+            if (!models.Any(x => x.Contains(name)))
+            {
+                models.Add(name);
+                codeNamesModelsOpens = string.Join(",", models.ToArray());
+                Save();
+            }
         }
 
         public static string ConvertMinutesToString(int minutes)
@@ -106,5 +128,7 @@ namespace Assets.Qbert.Scripts
         {
             Load();
         }
+
+        
     }
 }

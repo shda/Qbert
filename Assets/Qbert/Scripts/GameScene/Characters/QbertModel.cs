@@ -18,8 +18,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 
         public bool isBuyed()
         {
-            var allCodesByModels = GlobalValues.GetCodeNamesModelesOpen();
-            return allCodesByModels.Any(x => x.Equals(codeName));
+            return GlobalValues.IsModelBuyed(codeName);
         }
 
         void Start () 
