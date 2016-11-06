@@ -16,6 +16,11 @@ MonoBehaviour:
   - {fileID: 11471500, guid: ea0ac50fb99de554085248e5af292436, type: 2}
   - {fileID: 11431430, guid: c532f5cc26fbf85439d1cee31c2f68da, type: 2}
   - {fileID: 11441384, guid: 2c7061a0ec0d40c44b37f51c244854d6, type: 2}
+  coinsModels:
+  - {fileID: 114000013992143392, guid: 99f1cd4d77a135349b167de7b2546dc0, type: 2}
+  - {fileID: 114000013314257888, guid: 3f1ba401a08e7bd4aa2c7325e0fee637, type: 2}
+  - {fileID: 114000012656154532, guid: dac93be61f5029045895c859eddb4647, type: 2}
+  - {fileID: 114000013752991108, guid: 609752ecd49813e4da6ffd3164b0c789, type: 2}
   debugQuickStart: 0
   assetLoadLevel: {fileID: 11400000, guid: e83d963050f53b5409638bd78b679a00, type: 2}
   assetInstruction: {fileID: 11400000, guid: 70afaa749854a7b4e853ce9f0a8d4223, type: 2}

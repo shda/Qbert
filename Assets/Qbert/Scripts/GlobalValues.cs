@@ -30,7 +30,7 @@ namespace Assets.Qbert.Scripts
         public static int giftTimeIndex = 0;
 
         [SaveFieldAttribute]
-        public static float timeInGame = 0;
+        public static float timeInGame = 10;
 
         [SaveFieldAttribute]
         public static string currentModel = "";
@@ -39,13 +39,16 @@ namespace Assets.Qbert.Scripts
         public static float bestScore = 0;
 
         [SaveFieldAttribute]
-        public static int coins = 10000;
+        public static int coins = 0;
 
         [SaveFieldAttribute]
         public static bool appIsRate = false;
 
         [SaveFieldAttribute]
         public static bool isShowHelpHandToSelectCharacter = true;
+
+        [SaveFieldAttribute]
+        public static bool isWatchetAdToBuyCoins = false;
 
 
         public static string[] GetCodeNamesModelesOpen()
@@ -99,6 +102,13 @@ namespace Assets.Qbert.Scripts
         public static int AddEarnVideo()
         {
             coins += countCoinsToEarnVideo;
+            Save();
+            return coins;
+        }
+
+        public static int AddCoins(int countAddCoins)
+        {
+            coins += countAddCoins;
             Save();
             return coins;
         }

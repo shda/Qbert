@@ -12,20 +12,28 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
         public Transform rootSetting;
         public Transform rootRules;
         public Transform rootSelectCharecters;
+        public Transform rootCoinsBuy;
 
         public CameraController cameraController;
 
-        public AnimationToTimeMassive hideIfShowSettings;
+        public AnimationToTimeMassive hideAll;
+        public AnimationToTimeMassive hideAllWitchoutCoins;
+
+        public void OnCameraMoveCoinsBuy()
+        {
+            HideAllWitchoutCoins(true);
+            cameraController.MoveCameraToPoint(rootCoinsBuy.position, durationMoveCameraToSettings);
+        }
 
         public void OnCameraMoveSelectCharacter()
         {
-            HideObjects(true);
+            HideAllObjects(true);
             cameraController.MoveCameraToPoint(rootSelectCharecters.position, durationMoveCameraToSettings);
         }
 
         public void OnCameraMoveToMenuButtons()
         {
-            HideObjects(true);
+            HideAllObjects(true);
             cameraController.MoveCameraToPoint(rootSetting.position, durationMoveCameraToSettings);
         }
 
@@ -36,9 +44,10 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
             rootRules.gameObject.SetActive(true);
         }
 
+
         public void OnCamaraMoveToRootMenu()
         {
-            HideObjects(false);
+            HideAllObjects(false);
             cameraController.MoveCameraToPoint(rootMainGame.position, durationMoveCameraToSettings);
         }
 
@@ -47,17 +56,31 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
             cameraController.MoveCameraToPoint(rootMainGame.position, 0);
         }
 
-        public void HideObjects(bool isHide)
+        public void HideAllWitchoutCoins(bool isHide)
         {
             StopAllCoroutines();
 
             if (isHide)
             {
-                StartCoroutine(hideIfShowSettings.PlayToTime(0.5f));
+                StartCoroutine(hideAllWitchoutCoins.PlayToTime(0.5f));
             }
             else
             {
-                StartCoroutine(hideIfShowSettings.PlayToTime(0.5f, null, true));
+                StartCoroutine(hideAllWitchoutCoins.PlayToTime(0.5f, null, true));
+            }
+        }
+
+        public void HideAllObjects(bool isHide)
+        {
+            StopAllCoroutines();
+
+            if (isHide)
+            {
+                StartCoroutine(hideAll.PlayToTime(0.5f));
+            }
+            else
+            {
+                StartCoroutine(hideAll.PlayToTime(0.5f, null, true));
             }
         }
 

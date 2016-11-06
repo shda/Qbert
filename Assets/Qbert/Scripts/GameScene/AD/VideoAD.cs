@@ -23,7 +23,7 @@ namespace Assets.Qbert.Scripts.GameScene.AD
         IEnumerator Show()
         {
             root.gameObject.SetActive(true);
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(2.0f);
             OnButtonClose();
         }
 

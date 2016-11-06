@@ -7,6 +7,8 @@ namespace Assets.Qbert.Scripts.GameScene.GameAssets
     public class GlobalConfigurationAsset : ScriptableObject
     {
         public QbertModel[] characters;
+        public CoinBuyModels[] coinsModels;
+
         public bool debugQuickStart = false;
         public LevelConfigAsset assetLoadLevel;
         public LevelConfigAsset assetInstruction;

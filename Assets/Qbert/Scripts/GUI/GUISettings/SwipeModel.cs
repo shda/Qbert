@@ -6,6 +6,7 @@ using System.Linq;
 using Assets.Qbert.Scripts;
 using Assets.Qbert.Scripts.GameScene;
 using Assets.Qbert.Scripts.GameScene.Characters;
+using Assets.Qbert.Scripts.GestureRecognizerScripts;
 using Assets.Qbert.Scripts.Utils;
 
 public class SwipeModel<T> : MonoBehaviour, IEnumerable<T> where T : MonoBehaviour
@@ -18,6 +19,8 @@ public class SwipeModel<T> : MonoBehaviour, IEnumerable<T> where T : MonoBehavio
 
     public GameObject swipeHelpShow;
     public List<T> models;
+
+    public DiagonalSwipe diagonalSwipe;
 
     private Coroutine scrollInWork;
 
@@ -119,6 +122,19 @@ public class SwipeModel<T> : MonoBehaviour, IEnumerable<T> where T : MonoBehavio
                 Scroll(false);
             }
         }
+    }
+
+    public void ConnectSwipe()
+    {
+        diagonalSwipe.gameObject.SetActive(true);
+        diagonalSwipe.OnSwipeDirection.RemoveAllListeners();
+        diagonalSwipe.OnSwipeDirection.AddListener(OnScrollEvent);
+    }
+
+    public void DisconnectSwipe()
+    {
+        diagonalSwipe.gameObject.SetActive(false);
+        diagonalSwipe.OnSwipeDirection.RemoveAllListeners();
     }
 
     public IEnumerator<T> GetEnumerator()

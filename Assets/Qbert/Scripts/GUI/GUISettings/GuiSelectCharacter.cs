@@ -17,15 +17,13 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
         public TextMesh descriptionCurrentCharacter;
         public CameraMenuController cameraMenuController;
         public GuiMainMenu rootMenu;
-        public DiagonalSwipe diagonalSwipe;
-        
         public Transform playImage;
         public TextMesh textPrice;
         public TextMesh textCountModels;
 
         public void OnFocusCameraToThis()
         {
-            diagonalSwipe.gameObject.SetActive(true);
+            ConnectSwipe();
             cameraMenuController.OnCameraMoveSelectCharacter();
 
             ShowHelpHand(false);
@@ -85,7 +83,7 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
                 GlobalValues.currentModel = currentModel.nameCharacter;
                 GlobalValues.Save();
 
-                diagonalSwipe.gameObject.SetActive(false);
+                DisconnectSwipe();
                 rootMenu.OnFocusCameraToThis();
             }
             else

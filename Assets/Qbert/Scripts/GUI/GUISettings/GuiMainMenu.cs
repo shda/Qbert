@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Qbert.Scripts.GameScene.Gui;
+using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GUI.GUISettings
 {
@@ -7,6 +8,9 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
         public GameScene.Characters.Qbert qbert;
         public GuiSelectCharacter selectCharacterMenu;
         public CameraMenuController cameraMenuController;
+        public GuiBuyCoins buyCoins;
+
+        public ResourceCounter coins;
 
         public void OnFocusCameraToThis()
         {
@@ -24,10 +28,15 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
             selectCharacterMenu.OnFocusCameraToThis();
         }
 
+        public void OnPressButtonCoinsBuy()
+        {
+            buyCoins.OnFocusCameraToThis();
+        }
+
         void Start () 
         {
             cameraMenuController.SetCameraToDefaultPosition();
-
+            coins.SetValueForce(GlobalValues.coins);
         }
 	
         void Update () 
