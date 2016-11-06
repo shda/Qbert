@@ -48,7 +48,7 @@ namespace Assets.Qbert.Scripts
         public static bool isShowHelpHandToSelectCharacter = true;
 
         [SaveFieldAttribute]
-        public static bool isWatchetAdToBuyCoins = false;
+        public static bool isCointsByWatchAdIsBeenViewed = false;
 
 
         public static string[] GetCodeNamesModelesOpen()

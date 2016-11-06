@@ -62,6 +62,18 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
             AddLiveReturnGame();
         }
 
+        public void OnPressButtonClose()
+        {
+            if (firstPanel.isShowBuyPanel)
+            {
+                firstPanel.HideBuyPanel();
+            }
+            else
+            {
+                OnPressEndGameFirstRails();
+            }
+        }
+
         public void OnPressEndGameFirstRails()
         {
             pauseButton.gameObject.SetActive(true);

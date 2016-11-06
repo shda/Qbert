@@ -21,10 +21,13 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
         public Transform inputController;
         public ResourceCounter coinsCounter;
 
+        public bool isShowBuyPanel { get; private set; }
+
         private bool isWatchAdPress = false;
         private int  counterInvestPress = 0;
 
         public AnimationToTimeMassive showFirstMenu;
+        public AnimationToTimeMassive showBuyPanel;
 
         public IEnumerator AnimatedShowPanel()
         {
@@ -88,6 +91,8 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
         {
             Debug.Log("Invest");
 
+            DisablePressButtons();
+
             if (GlobalValues.coins >= CountNeedInvestCoins())
             {
                 GlobalValues.coins -= CountNeedInvestCoins();
@@ -99,10 +104,26 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
                 StartCoroutine(AnimatedHidePanel(0.5f, () =>
                 {
                     HidePanelAndReturnToGame();
-                }));
-
-                DisablePressButtons();
+                })); 
             }
+            else
+            {
+                ShowBuyPanel();
+            }
+        }
+
+        public void HideBuyPanel()
+        {
+            StopAllCoroutines();
+            isShowBuyPanel = false;
+            StartCoroutine(showBuyPanel.PlayToTime(0.4f , null , true));
+        }
+
+        public void ShowBuyPanel()
+        {
+            StopAllCoroutines();
+            isShowBuyPanel = true;
+            StartCoroutine(showBuyPanel.PlayToTime(0.4f));
         }
 
         public override void UpdatePanels()

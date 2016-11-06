@@ -66,7 +66,7 @@ public class GuiBuyCoins : SwipeModel<CoinBuyModels>
             imageWatchAd.gameObject.SetActive(true);
             textPriceToButton.gameObject.SetActive(false);
 
-            if (GlobalValues.isWatchetAdToBuyCoins)
+            if (GlobalValues.isCointsByWatchAdIsBeenViewed)
             {
                 buttonDisabled.gameObject.SetActive(true);
                 buttonEnabled.gameObject.SetActive(false);
@@ -95,7 +95,7 @@ public class GuiBuyCoins : SwipeModel<CoinBuyModels>
     {
         if (currentModel.isWatchAd)
         {
-            if(GlobalValues.isWatchetAdToBuyCoins)
+            if(GlobalValues.isCointsByWatchAdIsBeenViewed)
                 return;
 
             videoAd.ShowAD(isOk =>
@@ -103,7 +103,7 @@ public class GuiBuyCoins : SwipeModel<CoinBuyModels>
                 if (isOk)
                 {
                     coinsCounter.SetValue(GlobalValues.AddCoins(currentModel.coinsAdd));
-                    GlobalValues.isWatchetAdToBuyCoins = true;
+                    GlobalValues.isCointsByWatchAdIsBeenViewed = true;
                     GlobalValues.Save();
 
                     UpdateTextToCorrent();
