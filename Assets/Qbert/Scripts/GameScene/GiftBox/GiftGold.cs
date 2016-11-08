@@ -49,7 +49,7 @@ namespace Assets.Qbert.Scripts.GameScene.GiftBox
 
         private void UpdateValues()
         {
-            GlobalValues.timeInGame = 0;
+            GlobalValues.timeInGameSecond = 0;
             GlobalValues.giftTimeIndex++;
             GlobalValues.Save();
         }

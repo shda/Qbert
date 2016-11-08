@@ -24,6 +24,25 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         public int level;
         public int round;
 
+        public bool isPlay;
+
+        private static float oldTime;
+        void Update()
+        {
+            if (isPlay)
+            {
+                GlobalValues.timeInGameSecond += Time.unscaledDeltaTime;
+
+                float time = Mathf.Abs(oldTime - GlobalValues.timeInGameSecond);
+
+                if (time > 30.0f)
+                {
+                    oldTime = GlobalValues.timeInGameSecond;
+                    GlobalValues.Save();
+                    Debug.Log("Save");
+                }
+            }
+        }
 
         public void AddScore(float score)
         {
@@ -43,6 +62,8 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
         public void OnQbertDead()
         {
+            isPlay = false;
+
             GlobalValues.countLive--;
             UpdareCountLives();
 
@@ -55,7 +76,6 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
                 GameOver();
             }
         }
-
 
         public void ReturnQbertToPosution()
         {
@@ -110,6 +130,8 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
         public void SetPauseGamplayObjects(bool isPause)
         {
+            isPlay = !isPause;
+
             float timeScale = isPause ? 0.0000001f : 1.0f;
             gameplayObjects.SetTimeScale(timeScale);
             levelLogic.SetTimeScaleGameplayObjects(timeScale);
@@ -117,13 +139,9 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
         public void SetPauseQbert(bool isPause)
         {
-           // float timeScale = isPause ? 0.0000001f : 1.0f;
+            isPlay = !isPause;
+            // float timeScale = isPause ? 0.0000001f : 1.0f;
             qbert.SetTimeScaler(isPause?  gameplayObjects  : null);
-        }
-
-        public void SetPauseGame(bool isPause)
-        {
-            Time.timeScale = isPause ? 0.0000001f : 1.0f;
         }
 
         public MapAsset GetMapAssetFromLevel()
@@ -206,7 +224,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             qbert.Run();
 
             SetPauseGamplayObjects(false);
-            Time.timeScale = 1.0f;
+            
         }
 
         public void InitLevel(int level, int round)

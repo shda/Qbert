@@ -30,7 +30,7 @@ namespace Assets.Qbert.Scripts
         public static int giftTimeIndex = 0;
 
         [SaveFieldAttribute]
-        public static float timeInGame = 10;
+        public static float timeInGameSecond = 10;
 
         [SaveFieldAttribute]
         public static string currentModel = "";

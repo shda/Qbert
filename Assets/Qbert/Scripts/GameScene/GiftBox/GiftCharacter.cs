@@ -8,7 +8,7 @@ public class GiftCharacter : MonoBehaviour
 
 	void Start ()
 	{
-	    animationShowCnaracter.StartOneByOne();
+	   // animationShowCnaracter.StartOneByOne();
 	}
 
 	void Update () 

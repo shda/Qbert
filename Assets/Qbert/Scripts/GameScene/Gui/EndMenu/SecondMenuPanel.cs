@@ -221,15 +221,17 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
 
             //EnableTObjest(giftPanel);
 
-            if (timesNeedToGift[giftTimeIndex] < GlobalValues.timeInGame)
+            float minutes = GlobalValues.timeInGameSecond/60.0f;
+
+            if (timesNeedToGift[giftTimeIndex] < minutes)
             {
                 EnableTObjest(giftPanel);
             }
             else
             {
-                int minutes = (int) (timesNeedToGift[giftTimeIndex] - GlobalValues.timeInGame);
-                minutes = minutes <= 0 ? 1 : minutes;
-                textTimeToGift.text = GlobalValues.ConvertMinutesToString(minutes);
+                int minutesToGift = (int) (timesNeedToGift[giftTimeIndex] - minutes);
+                minutesToGift = minutesToGift <= 0 ? 1 : minutesToGift;
+                textTimeToGift.text = GlobalValues.ConvertMinutesToString(minutesToGift);
                 EnableTObjest(timeToFreeGift);
             }
         }
