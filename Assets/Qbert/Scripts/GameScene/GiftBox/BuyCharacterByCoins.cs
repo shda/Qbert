@@ -121,7 +121,7 @@ public class BuyCharacterByCoins : MonoBehaviour
     {
         var closeModel = globalConfigurationAsset.GetFirstCloseModel();
 
-        if (closeModel != null)
+        if (closeModel != null && closeModel.priceCoins <= GlobalValues.coins)
         {
             buttonBuy.gameObject.SetActive(true);
             countBuyNext.text = closeModel.priceCoins.ToString();

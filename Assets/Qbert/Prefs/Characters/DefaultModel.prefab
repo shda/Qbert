@@ -448,6 +448,7 @@ MonoBehaviour:
   booldeDead: {fileID: 409496}
   booleTextMesh: {fileID: 10237730}
   collisionProxy: {fileID: 11428836}
+  priceCoins: 0
   price: 0.99
   description: likes the pyramids tours
 --- !u!1001 &100100000

@@ -40,7 +40,7 @@ namespace Assets.Qbert.Scripts
         public static float bestScore = 0;
 
         [SaveFieldAttribute]
-        public static int coins = 5000;
+        public static int coins = 150;
 
         [SaveFieldAttribute]
         public static bool appIsRate = false;
