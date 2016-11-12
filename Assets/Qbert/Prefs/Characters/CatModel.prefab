@@ -448,6 +448,7 @@ MonoBehaviour:
   booldeDead: {fileID: 421892}
   booleTextMesh: {fileID: 10274216}
   collisionProxy: {fileID: 11441674}
+  priceCoins: 50
   price: 0.99
   description: Cat description.
 --- !u!1001 &100100000

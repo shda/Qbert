@@ -14,6 +14,38 @@ namespace Assets.Qbert.Scripts.GameScene.GameAssets
         public LevelConfigAsset assetInstruction;
         public LevelConfigAsset[] levelsAssets;
 
+        public QbertModel GetFirstCloseModel()
+        {
+            var openCharacters = GlobalValues.GetCodeNamesCharactersOpen();
+            foreach (var qbertModel in characters)
+            {
+                if (!openCharacters.Any(x => x.Equals(qbertModel.codeName.ToLower())) &&
+                    !qbertModel.isFree)
+                {
+                    return qbertModel;
+                }
+            }
+
+            return null;
+        }
+
+        public int GetModelByCoinsOpen()
+        {
+            int count = 0;
+       
+            var openCharacters = GlobalValues.GetCodeNamesCharactersOpen();
+            foreach (var qbertModel in characters)
+            {
+                if (!openCharacters.Any(x => x.Equals(qbertModel.codeName.ToLower())) &&
+                    !qbertModel.isFree)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
         public QbertModel GetModelByName(string name)
         {
             QbertModel find = characters.FirstOrDefault(x => x.nameCharacter == name);

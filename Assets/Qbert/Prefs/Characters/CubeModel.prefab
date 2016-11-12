@@ -442,11 +442,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a539bf5543aee9f48a70cf796a8aa0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFree: 0
   nameCharacter: Cube
   codeName: Cube
   booldeDead: {fileID: 407408}
   booleTextMesh: {fileID: 10294828}
   collisionProxy: {fileID: 11419106}
+  priceCoins: 100
   price: 0.99
   description: Cube description.
 --- !u!1001 &100100000

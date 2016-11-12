@@ -442,11 +442,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a539bf5543aee9f48a70cf796a8aa0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFree: 0
   nameCharacter: Fez
   codeName: Fez
   booldeDead: {fileID: 428684}
   booleTextMesh: {fileID: 10239478}
   collisionProxy: {fileID: 11432488}
+  priceCoins: 150
   price: 0.99
   description: Fuz description.
 --- !u!1001 &100100000

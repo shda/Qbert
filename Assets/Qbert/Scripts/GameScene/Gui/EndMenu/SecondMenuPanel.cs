@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Qbert.Scripts.GameScene.AD;
 using Assets.Qbert.Scripts.GameScene.AnimationToTime;
+using Assets.Qbert.Scripts.GameScene.GameAssets;
 using Assets.Qbert.Scripts.GameScene.GiftBox;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,8 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
 {
     public class SecondMenuPanel : BasePanel
     {
+        public GlobalConfigurationAsset globalConfigurationAsset;
+
         //Up panels
         public Transform earnPanel;
         public Transform rateAppPanel;
@@ -33,6 +36,8 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
 
         public AnimationToTimeMassive showSecondMenu;
         public AnimationToTimeMassive hideSecondMenuWithoutBack;
+
+        public BuyCharacterByCoins giftCharacter;
 
         public VideoAD videoAd;
 
@@ -81,7 +86,16 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
             if(isPress)
                 return;
 
-            AnimatedHidePanel();
+            AnimatedHidePanel(() =>
+            {
+                giftCharacter.OnGift(globalConfigurationAsset);
+                giftCharacter.OnEnd = () =>
+                {
+                    isPress = false;
+                    UpdatePanels();
+                    StartCoroutine(AnimatedShowPanel());
+                };
+            });
             DisablePressButtons();
         }
 
@@ -164,15 +178,25 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
 
         private void UpdateDownPanel()
         {
-            if (GlobalValues.coins > GlobalValues.countCoinsToUnlockChar)
+            var closeModel = globalConfigurationAsset.GetFirstCloseModel();
+
+            if (closeModel != null)
             {
-                needCoinsToUnlockCharacter.gameObject.SetActive(false);
-                unlockCharacterPanel.gameObject.SetActive(true);
+                if (GlobalValues.coins >= closeModel.priceCoins)
+                {
+                    needCoinsToUnlockCharacter.gameObject.SetActive(false);
+                    unlockCharacterPanel.gameObject.SetActive(true);
+                }
+                else
+                {
+                    neerCountCoinsUnlockCharacter.text = closeModel.priceCoins.ToString();
+                    needCoinsToUnlockCharacter.gameObject.SetActive(true);
+                    unlockCharacterPanel.gameObject.SetActive(false);
+                }
             }
             else
             {
-                neerCountCoinsUnlockCharacter.text = GlobalValues.countCoinsToUnlockChar.ToString();
-                needCoinsToUnlockCharacter.gameObject.SetActive(true);
+                needCoinsToUnlockCharacter.gameObject.SetActive(false);
                 unlockCharacterPanel.gameObject.SetActive(false);
             }
         }
@@ -200,16 +224,18 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
                     EnableTObjest(earnPanel);
                 });
             }
-            
+
             //Gift
             selector.Add(() =>
             {
                 EnableGiftPanel();
             });
-
             //selector[2].Invoke();
 
-            selector[UnityEngine.Random.Range(0, selector.Count)].Invoke();
+            if (selector.Count > 0)
+            {
+                selector[UnityEngine.Random.Range(0, selector.Count)].Invoke();
+            }
         }
 
         private void EnableGiftPanel()

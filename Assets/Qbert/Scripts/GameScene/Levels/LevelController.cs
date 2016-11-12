@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using Assets.Qbert.Scripts.GameScene.Characters;
 using Assets.Qbert.Scripts.GameScene.GameAssets;
@@ -27,22 +28,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         public bool isPlay;
 
         private static float oldTime;
-        void Update()
-        {
-            if (isPlay)
-            {
-                GlobalValues.timeInGameSecond += Time.unscaledDeltaTime;
-
-                float time = Mathf.Abs(oldTime - GlobalValues.timeInGameSecond);
-
-                if (time > 30.0f)
-                {
-                    oldTime = GlobalValues.timeInGameSecond;
-                    GlobalValues.Save();
-                    Debug.Log("Save");
-                }
-            }
-        }
+        
 
         public void AddScore(float score)
         {
@@ -331,6 +317,23 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
             SetPauseGamplayObjects(false);
             qbert.isCheckColision = true;
+        }
+
+        void Update()
+        {
+            if (isPlay)
+            {
+                GlobalValues.timeInGameSecond += Time.unscaledDeltaTime;
+
+                float time = Mathf.Abs(oldTime - GlobalValues.timeInGameSecond);
+
+                if (time > 30.0f)
+                {
+                    oldTime = GlobalValues.timeInGameSecond;
+                    GlobalValues.Save();
+                    Debug.Log("Save");
+                }
+            }
         }
     }
 }

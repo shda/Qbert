@@ -11,6 +11,8 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
         public Transform booldeDead;
         public TextMesh booleTextMesh;
         public CollisionProxy collisionProxy;
+
+        public int priceCoins;
         public float price;
 
         [Multiline]

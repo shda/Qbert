@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GameScene.AnimationToTime
@@ -23,7 +24,18 @@ namespace Assets.Qbert.Scripts.GameScene.AnimationToTime
             if(animations == null)
                 return;
 
+            ResetAnimations();
             StartCoroutine(PlayAnimations());
+        }
+
+        public void ResetAnimations()
+        {
+            foreach (var animation in animations.Reverse())
+            {
+                if (animation == null || animation.animation == null)
+                    continue;
+                animation.animation.time = 0.0f;
+            }
         }
 
         IEnumerator PlayAnimations()
@@ -32,7 +44,10 @@ namespace Assets.Qbert.Scripts.GameScene.AnimationToTime
 
             foreach (var animation in animations)
             {
-                if(animation.delayBefore > 0)
+                if (animation == null || animation.animation == null)
+                    continue;
+
+                if (animation.delayBefore > 0)
                     yield return new WaitForSeconds(animation.delayBefore);
 
                 yield return StartCoroutine(PlayToTime(animation.animation, animation.duration));

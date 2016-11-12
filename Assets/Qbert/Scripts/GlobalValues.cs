@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using Assets.Qbert.Scripts.Utils.Save;
+using UnityEngine;
 
 namespace Assets.Qbert.Scripts
 {
@@ -14,7 +15,7 @@ namespace Assets.Qbert.Scripts
 
         public const int countGoldToGift = 50;
         public const int countCoinsToEarnVideo = 20;
-        public const int countCoinsToUnlockChar = 100;
+        //public const int countCoinsToUnlockChar = 100;
 
         public static int[] castCoinsInvest = new[] { 25, 50, 100 };
         public static int[] timeInGameGift = new[] { 6, 40, 360 };
@@ -39,7 +40,7 @@ namespace Assets.Qbert.Scripts
         public static float bestScore = 0;
 
         [SaveFieldAttribute]
-        public static int coins = 0;
+        public static int coins = 5000;
 
         [SaveFieldAttribute]
         public static bool appIsRate = false;
@@ -50,8 +51,7 @@ namespace Assets.Qbert.Scripts
         [SaveFieldAttribute]
         public static bool isCointsByWatchAdIsBeenViewed = false;
 
-
-        public static string[] GetCodeNamesModelesOpen()
+        public static string[] GetCodeNamesCharactersOpen()
         {
             return codeNamesModelsOpens.Split(',');
         }
@@ -59,14 +59,14 @@ namespace Assets.Qbert.Scripts
         public static bool IsModelBuyed(string codeName)
         {
             string name = codeName.Trim().ToLower();
-            return GetCodeNamesModelesOpen().Any(x => x.Contains(name));
+            return GetCodeNamesCharactersOpen().Any(x => x.Contains(name));
         } 
 
         public static void AddBuyModel(string codeName)
         {
             string name = codeName.Trim().ToLower();
 
-            List<string> models = new List<string>(GetCodeNamesModelesOpen());
+            List<string> models = new List<string>(GetCodeNamesCharactersOpen());
             if (!models.Any(x => x.Contains(name)))
             {
                 models.Add(name);
@@ -102,6 +102,14 @@ namespace Assets.Qbert.Scripts
         public static int AddEarnVideo()
         {
             coins += countCoinsToEarnVideo;
+            Save();
+            return coins;
+        }
+
+        public static int RemoveCoins(int counRemoveCoins)
+        {
+            coins -= counRemoveCoins;
+            Mathf.Clamp(coins, 0, int.MaxValue);
             Save();
             return coins;
         }
