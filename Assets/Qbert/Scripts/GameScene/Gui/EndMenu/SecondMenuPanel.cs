@@ -45,6 +45,7 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
 
         public IEnumerator AnimatedShowPanel()
         {
+            UpdatePanels();
             yield return StartCoroutine(showSecondMenu.PlayToTime(0.5f));
         }
 

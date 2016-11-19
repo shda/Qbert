@@ -6964,8 +6964,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Instruction
   scenes:
-  - GameScene
   - MainMenu
+  - GameScene
   - Instruction
   - LevelNumber
   - SelectLevel
