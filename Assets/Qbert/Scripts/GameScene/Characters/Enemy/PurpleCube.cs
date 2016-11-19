@@ -76,13 +76,18 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             }
 
             PositionCube step = GetNeighborPoint(myPoint , qbertPoint);
-            var targetCube = levelController.gameplayObjects.GetGamplayObjectInPoint(step);
-            if (targetCube && !targetCube.CanJumpToMy())
+           // var targetCube = levelController.gameplayObjects.GetGamplayObjectInPoint(step);
+
+            if (CanJumpToThisCube(step))
             {
-                return null;
+                isStuck = false;
+                currentStuckTimer = 0;
+                return levelController.mapField.GetCube(step); ;
             }
 
-            return levelController.mapField.GetCube(step);
+            isStuck = true;
+
+            return null;
         }
 
         public List<Cube> findPath; 
@@ -112,11 +117,6 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             }
 
             return qbertPoint;
-        }
-
-        void Update()
-        {
-
         }
 
         public void Drop(PositionCube start , PositionCube end)

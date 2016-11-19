@@ -11,7 +11,17 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
     {
         [Header("RedCube")]
         public float heightDrop = 3.0f;
-   
+
+        [SerializeField]
+        protected float maxStuckTime = 4.0f;
+        protected bool  isStuck = false;
+        protected float currentStuckTimer;
+
+        public bool isTimeStuckIsDone
+        {
+            get { return currentStuckTimer >= maxStuckTime; }
+        }
+
         public override Type typeObject
         {
             get { return Type.RedCube; }
@@ -119,8 +129,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
                 var cubeTarget = levelController.mapField.GetCubeDirection(direction, currentPosition);
                 if (cubeTarget)
                 {
-                    var targetCube = levelController.gameplayObjects.GetGamplayObjectInPoint(cubeTarget.currentPosition);
-                    if (targetCube == null || targetCube.CanJumpToMy())
+                    if (CanJumpToThisCube(cubeTarget.currentPosition))
                     {
                         refCube = cubeTarget;
                         refDirection = direction;
@@ -130,6 +139,33 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             }
 
             return true;
+        }
+
+        protected virtual bool CanJumpToThisCube(PositionCube positionCube)
+        {
+            var targetCube = levelController.gameplayObjects.GetGamplayObjectInPoint(positionCube);
+
+            if (targetCube == null || targetCube.CanJumpToMy() || isTimeStuckIsDone)
+            {
+                isStuck = false;
+                currentStuckTimer = 0;
+                return true;
+            }
+
+            isStuck = true;
+            return false;
+        }
+
+        protected virtual void Update()
+        {
+            if (isStuck)
+            {
+                currentStuckTimer += timeScale * Time.deltaTime;
+            }
+            else
+            {
+                currentStuckTimer = 0;
+            }
         }
     }
 }

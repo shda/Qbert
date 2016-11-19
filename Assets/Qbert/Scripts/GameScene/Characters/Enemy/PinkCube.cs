@@ -21,10 +21,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
         public PositionCube stuckPosition;
 
-        public float maxStuckTime = 4.0f;
-
-        private bool stuck = false;
-        private float currentStuckTimer;
+        
 
         public override Type typeObject
         {
@@ -147,7 +144,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
                     if (GetMoveCube(ref cubeTarget))
                     {
-                        stuck = false;
+                        isStuck = false;
 
                         if (cubeTarget)
                         {
@@ -162,7 +159,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
                     }
                     else
                     {
-                        stuck = true;
+                        isStuck = true;
                     }
                 }
             }
@@ -310,7 +307,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
         {
             retCube = GetNextCube();
 
-            if (retCube && currentStuckTimer < maxStuckTime)
+            if (retCube && !isTimeStuckIsDone)
             {
                 //var gObject     = GetGamplayObjectInPoint(retCube.cubePosition);
                 var hungObject  = GetGamplayObjectInPoint(GetHungPosition(retCube.currentPosition));
@@ -371,19 +368,5 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
             return cude.rightSide.position;
         }
-
-
-        void Update()
-        {
-            if (stuck)
-            {
-                currentStuckTimer += timeScale*Time.deltaTime;
-            }
-            else
-            {
-                currentStuckTimer = 0;
-            }
-        }
-
     }
 }
