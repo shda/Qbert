@@ -19,6 +19,8 @@ namespace Assets.Qbert.Scripts.GameScene
         public List<Cube> nodes = new List<Cube>(); 
         public Color[] colors;
 
+        public FlashSprite flashSprite;
+
         private bool _isDebudLabel;
 
         public bool isDebudLabel
@@ -138,9 +140,9 @@ namespace Assets.Qbert.Scripts.GameScene
         }
 
     
-        void Start () 
+        void Start ()
         {
-	    
+            
         }
 	
         void Update ()
@@ -154,6 +156,8 @@ namespace Assets.Qbert.Scripts.GameScene
 
         public void Reset()
         {
+            StopFlashPlaceDownObject();
+
             stateColor = 0;
             lastState = 0;
             SetColorOne();;
@@ -170,6 +174,23 @@ namespace Assets.Qbert.Scripts.GameScene
             Gizmos.DrawLine(node.transform.position , transform.position);
         }
         */
+        }
+
+        public void StartFlashPlaceDownObject(float timeFlashPlaceDown)
+        {
+            if (flashSprite != null)
+            {
+                flashSprite.StartFlash(timeFlashPlaceDown);
+            }
+            
+        }
+
+        public void StopFlashPlaceDownObject()
+        {
+            if (flashSprite != null)
+            {
+                flashSprite.StopFlash();
+            }                
         }
     }
 }

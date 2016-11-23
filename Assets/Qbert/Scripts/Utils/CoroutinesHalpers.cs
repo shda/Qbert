@@ -118,6 +118,12 @@ namespace Assets.Qbert.Scripts.Utils
             LanchAction(OnEnd, tr);
         }
 
+        public static IEnumerator WaitForSecondCallback(this MonoBehaviour mono, float time , Action<Transform> OnEnd = null)
+        {
+            yield return new WaitForSeconds(time);
+            LanchAction(OnEnd, mono.transform);
+        }
+
 
         public static IEnumerator WaitCoroutine(this MonoBehaviour mono, IEnumerator coroutine , Action<Transform> OnEnd = null)
         {

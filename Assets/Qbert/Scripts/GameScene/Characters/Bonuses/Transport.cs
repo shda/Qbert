@@ -21,6 +21,16 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
             get { return Type.Transport; }
         }
 
+        public override bool CanJumpToMy
+        {
+            get { return true; }
+        }
+
+        public override bool IsFlashPlaceDownObject
+        {
+            get { return false; }
+        }
+
         public override GameplayObject TryInitializeObject(Transform root, LevelController levelController)
         {
             var transport = base.TryInitializeObject(root, levelController) as Transport;
@@ -36,7 +46,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
             {
                 foreach (var pos in startPos.Mix())
                 {
-                    if (!levelController.gameplayObjects.GetGamplayObjectInPoint(pos.currentPoint))
+                    if (!levelController.gameplayObjects.GetGameplayObjectInPoint(pos.currentPoint))
                     {
                         SetPosition(pos);
                     }
@@ -131,10 +141,5 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
             StartCoroutine(this.MovingTransformTo(one, moveTo, speed));
             yield return StartCoroutine(this.MovingTransformTo(two, moveTo, speed));
         }
-        public override bool CanJumpToMy()
-        {
-            return true;
-        }
-
     }
 }

@@ -13,6 +13,16 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             get { return Type.CoinCube; }
         }
 
+        public override bool CanJumpToMy
+        {
+            get { return true; }
+        }
+
+        public override bool IsFlashPlaceDownObject
+        {
+            get { return false; }
+        }
+
         public override GameplayObject TryInitializeObject(Transform root, LevelController levelController)
         {
             Cube cubeSet = null;
@@ -31,7 +41,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
                 cubeSet = map.Mix().First();
             }
 
-            var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(cubeSet.currentPosition);
+            var gaToPoint = levelController.gameplayObjects.GetGameplayObjectInPoint(cubeSet.currentPosition);
             if (gaToPoint == null)
             {
                 return SetObject(root, levelController, cubeSet.currentPosition);
@@ -60,11 +70,6 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
                 return true;
             }
 
-            return true;
-        }
-
-        public override bool CanJumpToMy()
-        {
             return true;
         }
     }

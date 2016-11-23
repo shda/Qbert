@@ -2530,6 +2530,7 @@ MonoBehaviour:
   - {fileID: 995061545}
   - {fileID: 1906207999}
   colors: []
+  flashSprite: {fileID: 0}
   debugText: {fileID: 1149176675}
   stateColor: 0
   lastState: 0
@@ -14583,6 +14584,7 @@ MonoBehaviour:
   - {fileID: 1523933265}
   - {fileID: 179055420}
   colors: []
+  flashSprite: {fileID: 0}
   debugText: {fileID: 67903738}
   stateColor: 0
   lastState: 0
@@ -15388,6 +15390,7 @@ MonoBehaviour:
   nodes:
   - {fileID: 1523933265}
   colors: []
+  flashSprite: {fileID: 0}
   debugText: {fileID: 1541363933}
   stateColor: 0
   lastState: 0
@@ -17024,6 +17027,7 @@ MonoBehaviour:
   - {fileID: 179055420}
   - {fileID: 1860628144}
   colors: []
+  flashSprite: {fileID: 0}
   debugText: {fileID: 1659041470}
   stateColor: 0
   lastState: 0
@@ -18267,6 +18271,7 @@ MonoBehaviour:
   - {fileID: 2134472184}
   - {fileID: 1152244412}
   colors: []
+  flashSprite: {fileID: 0}
   debugText: {fileID: 1743246709}
   stateColor: 0
   lastState: 0
@@ -21272,6 +21277,7 @@ MonoBehaviour:
   nodes:
   - {fileID: 1860628144}
   colors: []
+  flashSprite: {fileID: 0}
   debugText: {fileID: 1487586771}
   stateColor: 0
   lastState: 0
@@ -21618,6 +21624,7 @@ MonoBehaviour:
   - {fileID: 1070986899}
   - {fileID: 995061545}
   colors: []
+  flashSprite: {fileID: 0}
   debugText: {fileID: 690401223}
   stateColor: 0
   lastState: 0
@@ -26046,6 +26053,7 @@ MonoBehaviour:
   - {fileID: 1906207999}
   - {fileID: 1504915462}
   colors: []
+  flashSprite: {fileID: 0}
   debugText: {fileID: 482752567}
   stateColor: 0
   lastState: 0
@@ -26872,6 +26880,7 @@ MonoBehaviour:
   - {fileID: 179055420}
   - {fileID: 1860628144}
   colors: []
+  flashSprite: {fileID: 0}
   debugText: {fileID: 2021736776}
   stateColor: 0
   lastState: 0
@@ -30624,6 +30633,7 @@ MonoBehaviour:
   - {fileID: 1523933265}
   - {fileID: 179055420}
   colors: []
+  flashSprite: {fileID: 0}
   debugText: {fileID: 709100673}
   stateColor: 0
   lastState: 0

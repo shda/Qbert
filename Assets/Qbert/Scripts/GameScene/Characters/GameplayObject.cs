@@ -9,14 +9,15 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
         public Action<GameplayObject> OnDestroyEvents;
 
         //если на объект можно прыгнуть
-        public virtual bool CanJumpToMy()
+        public virtual bool CanJumpToMy
         {
-            return false;
+            get { return false; }
+            
         }
-
-        public virtual void Run()
+        //обозначить место падения
+        public virtual bool IsFlashPlaceDownObject
         {
-
+            get { return true; }
         }
 
         public virtual bool OnColisionToQbert(Qbert qbert)

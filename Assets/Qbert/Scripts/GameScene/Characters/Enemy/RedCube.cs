@@ -34,8 +34,8 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
             foreach (var positionCube in positions)
             {
-                var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(positionCube.currentPosition);
-                if (gaToPoint == null || gaToPoint.CanJumpToMy())
+                var gaToPoint = levelController.gameplayObjects.GetGameplayObjectInPoint(positionCube.currentPosition);
+                if (gaToPoint == null || gaToPoint.CanJumpToMy)
                 {
                     return SetObject(root, levelController, positionCube.currentPosition);
                 }
@@ -143,9 +143,9 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
         protected virtual bool CanJumpToThisCube(PositionCube positionCube)
         {
-            var targetCube = levelController.gameplayObjects.GetGamplayObjectInPoint(positionCube);
+            var targetCube = levelController.gameplayObjects.GetGameplayObjectInPoint(positionCube);
 
-            if (targetCube == null || targetCube.CanJumpToMy() || isTimeStuckIsDone)
+            if (targetCube == null || targetCube.CanJumpToMy || isTimeStuckIsDone)
             {
                 isStuck = false;
                 currentStuckTimer = 0;

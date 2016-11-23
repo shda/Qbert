@@ -97,6 +97,11 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             levelController.AddCoins(coint);
         }
 
+        public virtual void Run()
+        {
+
+        }
+
         public new void StopAllCoroutines()
         {
             base.StopAllCoroutines();
@@ -105,7 +110,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 
         public virtual void Init()
         {
-
+            
         }
 
         public virtual bool OnPressCube(Cube cube)

@@ -68,7 +68,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
                 else
                 {
                     var pointToJump = levelController.mapField.GetPointCubeDirection(buttonType, currentPosition);
-                    var findObject = levelController.gameplayObjects.GetGamplayObjectInPoint(pointToJump);
+                    var findObject = levelController.gameplayObjects.GetGameplayObjectInPoint(pointToJump);
                     if (findObject && findObject.typeObject == Type.Transport)
                     {
                         MoveToPointAndDropDown(findObject.transform.position);

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Qbert.Scripts.GameScene.Sound;
 using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
         [Header("PurpleCube")]
         public AnimationToTime.AnimationToTime rebornAnimation;
         public PathFinder pathFinder;
+
+        public Transform cubeSnake;
+        public Transform snake;
 
         public Cube myCube;
         public Cube qbertCube;
@@ -34,6 +38,9 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
         public IEnumerator RebornToEnemy()
         {
             yield return StartCoroutine(rebornAnimation.PlayToTime(2.0f , iTimeScaler));
+            cubeSnake.gameObject.SetActive(false);
+            snake.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
         }
 
         public IEnumerator FallowToQbert()
@@ -45,6 +52,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
                 if (cube)
                 {
                     jumpAnimationToTime = null;
+                    GameSound.PlayJump(this);
                     yield return StartCoroutine(MoveToCubeAnimation(cube));
                 }
 
@@ -76,7 +84,6 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             }
 
             PositionCube step = GetNeighborPoint(myPoint , qbertPoint);
-           // var targetCube = levelController.gameplayObjects.GetGamplayObjectInPoint(step);
 
             if (CanJumpToThisCube(step))
             {

@@ -601,7 +601,7 @@ MonoBehaviour:
   timeMove: 0.3
   timeRotate: 0
   jumpAmplitude: 1.5
-  timeDropDown: 0.4
+  timeDropDown: 0
   dropDownHeight: 4
   isFrize: 0
   isCheckColision: 1
@@ -613,6 +613,7 @@ MonoBehaviour:
     y: 0
     x: 0
   heightDrop: 3
+  maxStuckTime: 4
 --- !u!114 &11497920
 MonoBehaviour:
   m_ObjectHideFlags: 1

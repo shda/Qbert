@@ -21,11 +21,14 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
         public PositionCube stuckPosition;
 
-        
-
         public override Type typeObject
         {
             get { return Type.PinkCube; }
+        }
+
+        public override bool IsFlashPlaceDownObject
+        {
+            get { return false; }
         }
 
         public override GameplayObject TryInitializeObject(Transform root, LevelController levelController)
@@ -44,8 +47,8 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
                 {
                     foreach (var neighbor in neighbors)
                     {
-                        var gaToPoint = levelController.gameplayObjects.GetGamplayObjectInPoint(neighbor.currentPosition);
-                        if (gaToPoint == null || gaToPoint.CanJumpToMy())
+                        var gaToPoint = levelController.gameplayObjects.GetGameplayObjectInPoint(neighbor.currentPosition);
+                        if (gaToPoint == null || gaToPoint.CanJumpToMy)
                         {
                             sideCube = IsLeft(neighbor.currentPosition, positionCube.currentPoint) ?
                                 SideCube.Left : SideCube.Right;

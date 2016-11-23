@@ -2,6 +2,7 @@
 using System.Linq;
 using Assets.Qbert.Scripts.GameScene.Characters;
 using Assets.Qbert.Scripts.GameScene.Levels;
+using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GameScene
@@ -21,7 +22,9 @@ namespace Assets.Qbert.Scripts.GameScene
         public List<GameplayObject> gameplayObjectsList = new List<GameplayObject>();
         public Transform root;
 
-        public GameplayObject GetGamplayObjectInPoint(PositionCube point )
+        private const float timeFlashPlaceDown = 1f;
+
+        public GameplayObject GetGameplayObjectInPoint(PositionCube point )
         {
             foreach (var gameplayObject in gameplayObjectsList)
             {
@@ -60,13 +63,36 @@ namespace Assets.Qbert.Scripts.GameScene
             {
                 gameplayObject.SetTimeScaler(this);
                 gameplayObject.Init();
-                gameplayObject.Run();
+                FlashPlaceDownObject(gameplayObject);
                 gameplayObjectsList.Add(gameplayObject);
-
                 gameplayObject.OnDestroyEvents = OnDestroyEvents;
             }
 
             return gameplayObject;
+        }
+
+        public void FlashPlaceDownObject(GameplayObject gameplayObject)
+        {
+            if (gameplayObject.IsFlashPlaceDownObject)
+            {
+                var cubeDown = levelController.mapField.GetCube(gameplayObject.currentPosition);
+                if (cubeDown != null)
+                {
+                    cubeDown.StartFlashPlaceDownObject(timeFlashPlaceDown);
+                }
+
+                gameplayObject.gameObject.SetActive(false);
+
+                StartCoroutine(this.WaitForSecondCallback(timeFlashPlaceDown, transform1 =>
+                {
+                    gameplayObject.gameObject.SetActive(true);
+                    gameplayObject.Run();
+                }));
+            }
+            else
+            {
+                gameplayObject.Run();
+            }
         }
 
         private void OnDestroyEvents(GameplayObject gameplayObject)
@@ -75,8 +101,6 @@ namespace Assets.Qbert.Scripts.GameScene
             gameplayObject.gameObject.SetActive(false);
 
             PoolGameplayObjects.ReturnObject(gameplayObject);
-
-            //Destroy(gameplayObject.gameObject);
         }
 
         public void DestroyAllEnemies()
