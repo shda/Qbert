@@ -10,6 +10,7 @@ Assets/!StreamingAssets*
 *.sln
 *.userprefs
 *.csproj
+.idea
 Assets/Build*
 *.apk
 *.unityproj
