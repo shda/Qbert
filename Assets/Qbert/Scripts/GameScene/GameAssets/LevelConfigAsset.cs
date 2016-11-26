@@ -15,5 +15,6 @@ namespace Assets.Qbert.Scripts.GameScene.GameAssets
         public Color[] globalLevelColors;
 
         public Round[] rounds;
+
     }
 }

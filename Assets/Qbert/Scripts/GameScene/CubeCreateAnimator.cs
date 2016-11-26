@@ -14,9 +14,9 @@ namespace Assets.Qbert.Scripts.GameScene
         public void StartAnimateShow()
         {
             /*
-            PositionCube centerPoint = new PositionCube( MapFieldGenerator.startPos , MapFieldGenerator.startLine);
+            PositionCube centerPoint = new PositionCube( mapFieldGenerator.startPos , mapFieldGenerator.startLine);
 
-            var workCubes = MapFieldGenerator.map.Where(x => x.currentPosition != centerPoint).ToArray();
+            var workCubes = mapFieldGenerator.map.Where(x => x.currentPosition != centerPoint).ToArray();
 
             for (int c = 0; c < workCubes.Count(); c++)
             {

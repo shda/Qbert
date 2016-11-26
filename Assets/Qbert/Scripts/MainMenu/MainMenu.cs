@@ -6,15 +6,15 @@ namespace Assets.Qbert.Scripts.MainMenu
 {
     public class MainMenu : MonoBehaviour
     {
-        public MapFieldGenerator MapFieldGenerator;
+        public MapFieldGenerator mapFieldGenerator;
         public GameScene.Characters.Qbert qbert;
         public MapAsset mapLevelLoad;
         public GameScene.GameScene GameScene;
 
         void Start () 
         {
-            MapFieldGenerator.mapAsset = mapLevelLoad;
-            MapFieldGenerator.CreateMap();
+            mapFieldGenerator.mapAsset = mapLevelLoad;
+            mapFieldGenerator.CreateMap();
 
             GameScene.StartGame();
         }

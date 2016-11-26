@@ -41,6 +41,7 @@ namespace Assets.Qbert.Scripts.GameScene.GiftBox
                 GlobalValues.Save();
             }
 
+
             giftGoldAnimator.GiftDropToGround();
 
             UpdateValues();
