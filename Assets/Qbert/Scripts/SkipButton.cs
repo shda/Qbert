@@ -30,15 +30,29 @@ namespace Assets.Qbert.Scripts
     
         public void StartTimerShowButtonSkip()
         {
-        
-
-            showButtonSkip.gameObject.SetActive(false);
-
-            UnscaleTimer.StartDelay(timeDelayToSkip, timer =>
+            if (GlobalValues.isShowSkipButtonLevel)
             {
-                showButtonSkip.gameObject.SetActive(true);
-                StartCoroutine(showButtonSkip.PlayToTime(0.5f));
-            });
+                showButtonSkip.gameObject.SetActive(false);
+
+                UnscaleTimer.StartDelay(timeDelayToSkip, timer =>
+                {
+                    ShowButtonSkip();
+                });
+
+                GlobalValues.isShowSkipButtonLevel = false;
+                GlobalValues.Save();
+            }
+            else
+            {
+                ShowButtonSkip();
+            }
+
+        }
+
+        private void ShowButtonSkip()
+        {
+            showButtonSkip.gameObject.SetActive(true);
+            StartCoroutine(showButtonSkip.PlayToTime(0.5f));
         }
 
         void Start ()

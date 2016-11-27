@@ -51,6 +51,8 @@ namespace Assets.Qbert.Scripts
         [SaveFieldAttribute]
         public static bool isCointsByWatchAdIsBeenViewed = false;
 
+        public static bool isShowSkipButtonLevel = true;
+
         public static string[] GetCodeNamesCharactersOpen()
         {
             return codeNamesModelsOpens.Split(',');
