@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Assets.Qbert.Scripts.GameScene.Characters;
 using Assets.Qbert.Scripts.GameScene.GameAssets;
@@ -14,11 +15,9 @@ namespace Assets.Qbert.Scripts.GameScene.MapLoader
         public Transform root;
 
         public bool isDebug = false;
-
-      // public int startLine = 0;
-      //  public int startPos = 0;
-
         public MapAsset mapAsset;
+
+        public event Action OnFieldIsCreate;  
 
         [HideInInspector]
         public List<Cube> map;
@@ -124,6 +123,11 @@ namespace Assets.Qbert.Scripts.GameScene.MapLoader
                 }
                 MoveToCenterMap();
                 ConnectNodesInCubes();
+
+                if (OnFieldIsCreate != null)
+                {
+                    OnFieldIsCreate();
+                }
             }
         }
 

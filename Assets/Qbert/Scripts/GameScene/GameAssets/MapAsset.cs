@@ -15,7 +15,5 @@ namespace Assets.Qbert.Scripts.GameScene.GameAssets
         {
             map.UpdateFromInspector(mapWidth, mapHight);
         }
-
-
     }
 }

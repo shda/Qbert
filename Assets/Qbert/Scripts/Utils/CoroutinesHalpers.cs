@@ -131,6 +131,29 @@ namespace Assets.Qbert.Scripts.Utils
             LanchAction(OnEnd, mono.transform);
         }
 
+        public static IEnumerator ChageFloatToTime(this MonoBehaviour mono, 
+            float duration , bool isReverce , Action<float> OnChangeValue = null)
+        {
+            float t = 0;
+
+            Action<float> actionChange = value =>
+            {
+                if (OnChangeValue != null)
+                {
+                    OnChangeValue(isReverce ? 1.0f - value : value);
+                }     
+            };
+
+            while (t < 1)
+            {
+                t += Time.deltaTime / duration;
+                actionChange(t);
+                yield return null;
+            }
+
+            actionChange(1);
+        }
+
         public static float GetTimeDeltatimeScale(ITimeScale ITimeScale = null)
         {
             float timeDeltaTime = Time.deltaTime;

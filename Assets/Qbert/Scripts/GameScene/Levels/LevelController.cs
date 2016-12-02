@@ -29,7 +29,6 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
         private static float oldTime;
         
-
         public void AddScore(float score)
         {
             if (gameGui)

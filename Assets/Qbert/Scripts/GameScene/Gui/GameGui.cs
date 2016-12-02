@@ -78,7 +78,6 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
 
         public void SetCoins(int setConis)
         {
-            Debug.Log(setConis);
             coinsLabel.SetValueForce(setConis);
         }
 

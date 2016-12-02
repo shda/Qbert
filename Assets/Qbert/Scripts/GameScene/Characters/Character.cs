@@ -35,6 +35,9 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             CoinCube,
             Qbert,
         }
+
+        public Vector3 NoOffsetpos { get; private set; }
+
         public virtual Type typeObject
         {
             get { return Type.Qbert; }
@@ -99,7 +102,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 
         public virtual void Run()
         {
-
+            NoOffsetpos = transform.position;
         }
 
         public new void StopAllCoroutines()
@@ -110,7 +113,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 
         public virtual void Init()
         {
-            
+           
         }
 
         public virtual bool OnPressCube(Cube cube)
@@ -315,6 +318,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
                 t += CoroutinesHalpers.GetTimeDeltatimeScale(iTimeScaler) / timeMove;
                 t = Mathf.Clamp01(t);
                 Vector3 pos = Vector3.Lerp(startTo, movingTo, t);
+                NoOffsetpos = pos;
                 pos = new Vector3(pos.x, pos.y + GetOffsetLerp(t), pos.z);
                 root.position = pos;
 
@@ -324,6 +328,22 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             }
 
             root.position = movingTo;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.white;
+            Gizmos.DrawSphere(NoOffsetpos, 0.3f);
+
+            /*
+            Transform draw = _drawLineFrom ? _drawLineFrom : transform.parent;
+
+            if (draw)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, draw.position);
+            }
+            */
         }
 
         protected virtual float GetOffsetLerp(float t)

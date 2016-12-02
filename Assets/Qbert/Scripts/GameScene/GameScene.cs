@@ -6,13 +6,16 @@ namespace Assets.Qbert.Scripts.GameScene
 {
     public class GameScene : MonoBehaviour
     {
-        public LevelController      levelController;
-        public FadeScreen           fadeScreen;
+        public LevelController  levelController;
+        public FadeScreen   fadeScreen;
+        public PreStartLevel preStartLevel;
 
         public InputController  inputController;
 
         public LoadScene.SelectSceneLoader sceneLoaderShowLevel;
         public LoadScene.SelectSceneLoader sceneLoaderMainMenu;
+
+        public CameraFallowToCharacter cameraFallowToCharacter;
 
         public void RestartLevel()
         {
@@ -59,10 +62,15 @@ namespace Assets.Qbert.Scripts.GameScene
             levelController.SetPauseGamplayObjects(true);
             inputController.isEnable = false;
 
+            cameraFallowToCharacter.ResizeCameraShowAllMap();
+
             fadeScreen.OnEnd = transform1 =>
             {
-                levelController.SetPauseGamplayObjects(false);
-                inputController.isEnable = true;
+                preStartLevel.OnStart(() =>
+                {
+                    levelController.SetPauseGamplayObjects(false);
+                    inputController.isEnable = true;
+                });
             };
 
             fadeScreen.StartDisable(0.5f);

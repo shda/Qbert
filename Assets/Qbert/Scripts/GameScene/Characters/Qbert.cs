@@ -8,6 +8,8 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 {
     public class Qbert : GameplayObject
     {
+        public Transform fallowFront;
+
         public GlobalConfigurationAsset configuration;
 
         public Transform boobleDead;
@@ -25,11 +27,6 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             boobleDead.rotation = Quaternion.Euler(0, 0, 0);
 
             levelController.levelLogic.OnDeadQbert();
-        }
-
-        void Update()
-        {
-        
         }
 
         public override void SetStartPosition(PositionCube startPositionQbert)
@@ -87,6 +84,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             boobleDead.gameObject.SetActive(false);
             isFrize = false;
             isCheckColision = true;
+            base.Run();
         }
 
 
