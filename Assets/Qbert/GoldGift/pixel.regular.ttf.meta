@@ -11,7 +11,8 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - Pixel
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 984fa034ce4b0e24db4e5694b0bc7576, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

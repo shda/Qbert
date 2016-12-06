@@ -73,6 +73,7 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
         {
             cameraMenuController.OnCamaraMoveToRootMenu();
             ShowHelpHand(false);
+            DisconnectSwipe();
         }
         public void OnButtonCharacterSelect()
         {
@@ -140,8 +141,8 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
 
         public void UpdateInfoFromModel(QbertModel model)
         {
-            nameCurrentCharacter.text = model.nameCharacter;
-            descriptionCurrentCharacter.text = model.description;
+            nameCurrentCharacter.text = model.nameCharacter.ToUpper();
+            descriptionCurrentCharacter.text = model.description.ToUpper();
 
             if (model.isFree || model.isBuyed())
             {
