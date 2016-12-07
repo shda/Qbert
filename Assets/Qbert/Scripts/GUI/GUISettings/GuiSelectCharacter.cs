@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using Assets.Qbert.Scripts.GameScene;
+using Assets.Qbert.Scripts.GameScene.AnimationToTime;
 using Assets.Qbert.Scripts.GameScene.Characters;
 using Assets.Qbert.Scripts.GameScene.GameAssets;
 using Assets.Qbert.Scripts.GestureRecognizerScripts;
@@ -20,6 +21,7 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
         public Transform playImage;
         public TextMesh textPrice;
         public TextMesh textCountModels;
+
 
         public void OnFocusCameraToThis()
         {
@@ -89,7 +91,6 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
             }
             else
             {
-                
                 //Buy process
                 SetTransparentMaterial(currentModel.transform,
                         SwitchMaterialRenderingMode.BlendMode.Opaque, 0.3f);

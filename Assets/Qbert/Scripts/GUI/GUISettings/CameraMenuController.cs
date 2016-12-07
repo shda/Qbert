@@ -1,4 +1,5 @@
-﻿using Assets.Qbert.Scripts.GameScene;
+﻿using System.Collections;
+using Assets.Qbert.Scripts.GameScene;
 using Assets.Qbert.Scripts.GameScene.AnimationToTime;
 using UnityEngine;
 
@@ -18,6 +19,8 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
 
         public AnimationToTimeMassive hideAll;
         public AnimationToTimeMassive hideAllWitchoutCoins;
+
+        public AnimationToTimeChangeImageAlpha animationToTime;
 
         public void OnCameraMoveCoinsBuy()
         {
@@ -40,10 +43,8 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
         public void OnCameraMoveToRules()
         {
             cameraController.MoveCameraToPoint(rootRules.position, durationMoveCameraToSettings);
-
             rootRules.gameObject.SetActive(true);
         }
-
 
         public void OnCamaraMoveToRootMenu()
         {
@@ -60,6 +61,8 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
         {
             StopAllCoroutines();
 
+            StartCoroutine(ShowLogo(isHide));
+
             if (isHide)
             {
                 StartCoroutine(hideAllWitchoutCoins.PlayToTime(0.5f));
@@ -74,6 +77,8 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
         {
             StopAllCoroutines();
 
+            StartCoroutine(ShowLogo(isHide));
+
             if (isHide)
             {
                 StartCoroutine(hideAll.PlayToTime(0.5f));
@@ -82,6 +87,22 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
             {
                 StartCoroutine(hideAll.PlayToTime(0.5f, null, true));
             }
+        }
+
+        public IEnumerator ShowLogo(bool isShow)
+        {
+            if (!isShow)
+            {
+                yield return new WaitForSeconds(0.3f);
+                StartCoroutine(animationToTime.PlayToTime(0.6f , null , true));
+            }
+            else
+            {
+                animationToTime.isReverce = false;
+                animationToTime.time = 1.0f;
+            }
+
+            yield return null;
         }
 
         void Start () 

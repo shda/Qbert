@@ -1,4 +1,5 @@
-﻿using Assets.Qbert.Scripts.GameScene.Gui;
+﻿using Assets.Qbert.Scripts.GameScene.AnimationToTime;
+using Assets.Qbert.Scripts.GameScene.Gui;
 using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GUI.GUISettings
