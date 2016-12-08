@@ -1688,6 +1688,7 @@ MonoBehaviour:
   gameGui: {fileID: 0}
   levelLogicSwitcher: {fileID: 1354007869}
   gameScene: {fileID: 0}
+  cameraFallowToCharacter: {fileID: 0}
   levelLogic: {fileID: 0}
   level: 0
   round: 0
@@ -1961,7 +1962,7 @@ Camera:
   far clip plane: 20
   field of view: 96
   orthographic: 1
-  orthographic size: 3.85
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3363,8 +3364,8 @@ MonoBehaviour:
   sceneName: GameScene
   scenes:
   - MainMenu
-  - Instruction
   - GameScene
+  - Instruction
   - LevelNumber
   - SelectLevel
 --- !u!4 &1796972887

@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: SpriteGradient
-  m_Shader: {fileID: 4800000, guid: 53f3e5b01b58274499913d027dfd0179, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6934e9f3a22749d46bb1310dd0d6b0cc, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 1000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -87,10 +87,19 @@ Material:
       second: 0
     - first:
         name: _Glossiness
-      second: 0.5
+      second: 0.612
+    - first:
+        name: _Lerp
+      second: 1
     - first:
         name: _Metallic
-      second: 0
+      second: 0.076
+    - first:
+        name: _MixColorLerp
+      second: 1
+    - first:
+        name: _MixColorRadius
+      second: 1
     - first:
         name: _Mode
       second: 0
@@ -109,6 +118,9 @@ Material:
     - first:
         name: _Parallax
       second: 0.02
+    - first:
+        name: _Radius
+      second: 0
     - first:
         name: _Scale
       second: 1
@@ -147,14 +159,23 @@ Material:
         name: _ColorDown
       second: {r: 0.57837844, g: 0.29238755, b: 0.7647059, a: 1}
     - first:
+        name: _ColorIn
+      second: {r: 0.102941185, g: 0.37132347, b: 0.5, a: 1}
+    - first:
         name: _ColorLeft
       second: {r: 0.5442953, g: 0.52184254, b: 0.5588235, a: 1}
+    - first:
+        name: _ColorOut
+      second: {r: 0, g: 0.13419114, b: 0.19852942, a: 1}
     - first:
         name: _ColorRight
       second: {r: 0.23842995, g: 0.2746316, b: 0.5147059, a: 1}
     - first:
         name: _ColorUp
       second: {r: 0.12608132, g: 0.18244243, b: 0.3897059, a: 1}
+    - first:
+        name: _Distort
+      second: {r: 0.5, g: 0.5, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}

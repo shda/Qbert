@@ -2121,6 +2121,7 @@ MonoBehaviour:
   gameGui: {fileID: 0}
   levelLogicSwitcher: {fileID: 1354007869}
   gameScene: {fileID: 0}
+  cameraFallowToCharacter: {fileID: 0}
   levelLogic: {fileID: 0}
   level: 0
   round: 0
@@ -2394,7 +2395,7 @@ Camera:
   far clip plane: 20
   field of view: 96
   orthographic: 1
-  orthographic size: 3.85
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3013,7 +3014,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 474054, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11419272, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: version
@@ -3021,11 +3022,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11419272, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: buildCounter
-      value: 55
+      value: 57
       objectReference: {fileID: 0}
     - target: {fileID: 11419272, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: date
-      value: 161208 04:59
+      value: 161208 13:37
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8100312, guid: d920972237c35e74a88919299e0de2b7, type: 2}
@@ -3857,8 +3858,8 @@ MonoBehaviour:
   sceneName: LevelNumber
   scenes:
   - MainMenu
-  - Instruction
   - GameScene
+  - Instruction
   - LevelNumber
   - SelectLevel
 --- !u!4 &1796972887

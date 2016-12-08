@@ -19,6 +19,8 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         public LevelLogicSwitcher levelLogicSwitcher;
         public GameScene gameScene;
 
+        public CameraFallowToCharacter cameraFallowToCharacter;
+
         [HideInInspector]
         public LevelLogic levelLogic;
 
@@ -88,8 +90,6 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         {
             gameplayObjects.DestroyAllEnemies();
         }
-
-       // private bool isFirstEndGame = true;
 
         public void GameOver()
         {
@@ -173,15 +173,14 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             DestroyAllEnemies();
             inputController.isEnable = false;
 
+            cameraFallowToCharacter.CameraBackSizeAndToCenterMap();
+
             mapField.FlashGameFiels(() =>
             {
                 inputController.isEnable = true;
                 NextRound();
             });
-
-            // NextRound();
         }
-
 
         public void InitRound(int round)
         {

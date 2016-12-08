@@ -18,7 +18,7 @@ MonoBehaviour:
   - {r: 0, g: 0.13103437, b: 1, a: 1}
   rounds:
   - customColors: []
-    customMap: {fileID: 11400000, guid: 5652dfe3da5534c4d99936f1f658726e, type: 2}
+    customMap: {fileID: 11400000, guid: fa75a73bca9fce04fb0c9d8df374e839, type: 2}
     rulesCreateGamplayObjects: []
-    timeToStartRound: 2.7153184
+    timeToStartRound: 0.0000005979176
     levelController: {fileID: 0}

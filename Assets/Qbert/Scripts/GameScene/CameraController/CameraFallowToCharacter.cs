@@ -56,7 +56,7 @@ namespace Assets.Qbert.Scripts.GameScene
                     cameraMain.orthographicSize = Mathf.Lerp(
                         startCameraSize, zoomCameraSize, value);
 
-                    cameraFallow.transform.position = Vector3.Lerp(startCameraPositino,
+                    cameraFallow.transform.position = Vector3.Slerp(startCameraPositino,
                        characrer.NoOffsetpos, value);
 
                 }));
@@ -93,8 +93,27 @@ namespace Assets.Qbert.Scripts.GameScene
 
         public void ResizeCameraShowAllMap()
         {
+            SetCameraCenter();
             cameraMain.orthographicSize = GetSizeCameraViewAllMap();
             centerToMap = cameraMain.transform.position;
+        }
+
+        public void SetCameraCenter()
+        {
+            float minY = float.MaxValue;
+            float maxY = float.MinValue;
+
+            foreach (var cube in mapGenerator.map)
+            {
+                if (cube.transform.position.y < minY)
+                    minY = cube.transform.position.y;
+
+                if (cube.transform.position.y > maxY)
+                    maxY = cube.transform.position.y;
+            }
+
+            cameraFallow.position = new Vector3(
+                cameraFallow.position.x , (maxY  + minY) / 2, cameraFallow.position.z);
         }
 
 

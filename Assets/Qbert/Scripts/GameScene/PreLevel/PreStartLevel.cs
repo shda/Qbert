@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using Assets.Qbert.Scripts.GameScene;
+using Assets.Qbert.Scripts.Utils;
 
 public class PreStartLevel : MonoBehaviour
 {
@@ -11,38 +12,27 @@ public class PreStartLevel : MonoBehaviour
 
     public void OnStart(Action OnEnd)
     {
-        /*
-        cameraFallowToCharacter.StartResizeCameraSizeToCharacter(() =>
+        //Wait for second
+        StartCoroutine(this.WaitForSecondCallback(1.0f, transform1 =>
         {
-            preStartLevelNormalLevel.StartAnimation(() =>
-            {
-                cameraFallowToCharacter.StareFallow();
-                if (OnEnd != null)
-                {
-                    OnEnd();
-                }
-            });
-
-            
-
-            
-        });
-        */
-
-        
-        preStartLevelNormalLevel.StartAnimation(() =>
-        {
+            //Move camera to character
             cameraFallowToCharacter.StartResizeCameraSizeToCharacter(() =>
             {
-                cameraFallowToCharacter.StareFallow();
-
-                if (OnEnd != null)
+                StartCoroutine(this.WaitForSecondCallback(0.2f, transform2 =>
                 {
-                    OnEnd();
-                }
+                    //Show label round number and show change to
+                    preStartLevelNormalLevel.StartAnimation(() =>
+                    {
+                        cameraFallowToCharacter.StareFallow();
+                        if (OnEnd != null)
+                        {
+                            OnEnd();
+                        }
+                    });
+                }));
             });
-        });
-        
+        }));
+
     }
 
     void Start () 
