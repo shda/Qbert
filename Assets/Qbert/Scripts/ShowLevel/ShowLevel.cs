@@ -21,7 +21,7 @@ namespace Assets.Qbert.Scripts.ShowLevel
 
         public void SetLevel()
         {
-            textLevel.text = "level " + (GlobalValues.currentLevel + 1);
+            textLevel.text = "LEVEL " + (GlobalValues.currentLevel + 1);
         }
 
         public void OnPressSkip()

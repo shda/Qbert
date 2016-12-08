@@ -1609,7 +1609,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 0ba577aeaefcf9d47800051c77141a1d, type: 3}
+    m_Font: {fileID: 12800000, guid: d562c7bfbe236cf49b15647cba108502, type: 3}
     m_FontSize: 44
     m_FontStyle: 0
     m_BestFit: 0
@@ -1621,7 +1621,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Level 1
+  m_Text: LEVEL 1
 --- !u!222 &875278967
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2144,6 +2144,15 @@ Prefab:
       propertyPath: timeDelayToSkip
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11427138, guid: 50df05df30d69ae439b98d3a96da2cdd, type: 2}
+      propertyPath: m_Text
+      value: TAP TO SKIP
+      objectReference: {fileID: 0}
+    - target: {fileID: 11427138, guid: 50df05df30d69ae439b98d3a96da2cdd, type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d562c7bfbe236cf49b15647cba108502,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 50df05df30d69ae439b98d3a96da2cdd, type: 2}
   m_IsPrefabParent: 0
