@@ -14,8 +14,8 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
 
         public void OnShowSecondRails()
         {
-        
-            endGameGuiAnimator.ShowSecondRails();
+            endGameGuiAnimator.liveRoot.gameObject.SetActive(false);
+            endGameGuiAnimator.OnShowSecondRails();
         }
 
         void Start()

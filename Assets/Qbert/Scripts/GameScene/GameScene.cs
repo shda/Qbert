@@ -1,6 +1,7 @@
 ﻿using Assets.Qbert.Scripts.GameScene.InputControl;
 using Assets.Qbert.Scripts.GameScene.Levels;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Qbert.Scripts.GameScene
 {
@@ -11,6 +12,9 @@ namespace Assets.Qbert.Scripts.GameScene
         public PreStartLevel preStartLevel;
 
         public InputController  inputController;
+        public GuiButtonsController guiButtonsController;
+        public Transform imageButtonPause;
+
 
         public LoadScene.SelectSceneLoader sceneLoaderShowLevel;
         public LoadScene.SelectSceneLoader sceneLoaderMainMenu;
@@ -60,7 +64,8 @@ namespace Assets.Qbert.Scripts.GameScene
         {
             StartGame();
             levelController.SetPauseGamplayObjects(true);
-            inputController.isEnable = false;
+            inputController.gameObject.SetActive(false);
+            imageButtonPause.gameObject.SetActive(false);
 
             cameraFallowToCharacter.ResizeCameraShowAllMap();
 
@@ -69,6 +74,10 @@ namespace Assets.Qbert.Scripts.GameScene
                 preStartLevel.OnStart(() =>
                 {
                     levelController.SetPauseGamplayObjects(false);
+                    inputController.gameObject.SetActive(true);
+                    guiButtonsController.EnableButtons();
+
+                    imageButtonPause.gameObject.SetActive(true);
                     inputController.isEnable = true;
                 });
             };

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3748674c9a0420749ae1860dc4881fa7
-timeCreated: 1481158160
+guid: 6c78214761fec7f43b0b73d3b08832ce
+timeCreated: 1481160327
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
@@ -27,15 +27,15 @@ TextureImporter:
   textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 1
+    filterMode: -1
     aniso: -1
     mipBias: -1
-    wrapMode: 0
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -86,7 +86,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: GuiControlConfiguration
+  spritePackingTag: Menu
   userData: 
   assetBundleName: 
   assetBundleVariant: 

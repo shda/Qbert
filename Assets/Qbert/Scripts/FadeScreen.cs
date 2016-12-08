@@ -13,6 +13,8 @@ namespace Assets.Qbert.Scripts
 
         public void StartEnable(float duration)
         {
+            gameObject.SetActive(true);
+
             StopAllCoroutines();
             StartCoroutine(this.ChangeColorGraphic(frontImage, new Color(0, 0, 0, 1), duration , transform1 =>
             {
@@ -26,6 +28,7 @@ namespace Assets.Qbert.Scripts
             StartCoroutine(this.ChangeColorGraphic(frontImage, new Color(0, 0, 0, 0), duration , transform1 =>
             {
                 OnEndAction(false);
+                gameObject.SetActive(false);
             }));
         }
 

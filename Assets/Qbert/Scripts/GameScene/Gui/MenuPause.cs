@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Assets.Qbert.Scripts.ControlConfiguratorScripts;
 using Assets.Qbert.Scripts.GameScene.AnimationToTime;
 using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
@@ -17,6 +18,9 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
         public Transform rootPauseAndButtonComplite;
 
         public AnimationToTimeMassive animationBackground;
+
+        public ControlConfigurator controlsConfigurator;
+        public SetButtonsPositions staButtonsPositions;
 
         public Action OnCompliteGame;
         public Action OnResumeGame;
@@ -100,6 +104,15 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
             HideAll();
         }
 
+        public void OnShowSetControls()
+        {
+            controlsConfigurator.Show();
+            controlsConfigurator.OnEndConfiguration = configurator =>
+            {
+                staButtonsPositions.UpdatePositions();
+                controlsConfigurator.gameObject.SetActive(false);
+            };
+        }
 
         IEnumerator TimerCountdown(Action OnEndTimer)
         {

@@ -19,6 +19,7 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
         public LevelController levelController;
         public Transform inputController;
         public Transform pauseButton;
+        public Transform liveRoot;
 
         [Header("Panels")]
         public FirstMenuPanel firstPanel;
@@ -92,7 +93,7 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
             score.gameObject.SetActive(false);
             level.gameObject.SetActive(false);
 
-            //showSecondMenu.gameObject.SetActive(true);
+            secondPanel.gameObject.SetActive(true);
             yield return secondPanel.StartCoroutine(secondPanel.AnimatedShowPanel());
             gameField.gameObject.SetActive(false);
         }
@@ -118,7 +119,7 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
             secondPanel.gameObject.SetActive(true);
         }
 
-        private IEnumerator HideFirtRailsAndShowSecond()
+        public IEnumerator HideFirtRailsAndShowSecond()
         {
             ShowSecondPanel();
 
