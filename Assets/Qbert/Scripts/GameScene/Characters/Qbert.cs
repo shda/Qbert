@@ -70,7 +70,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
                     {
                         MoveToPointAndDropDown(findObject.transform.position);
                     }
-                    else
+                    else if(levelController.levelLogic.isPlayerCanFallOffCube)
                     {
                         Vector3 newPos = root.position + levelController.mapField.GetOffsetDirection(buttonType);
                         MoveToPointAndDropDown(newPos, OnDownEnd);

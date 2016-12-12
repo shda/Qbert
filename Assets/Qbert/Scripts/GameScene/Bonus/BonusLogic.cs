@@ -12,6 +12,20 @@ public class BonusLogic : MonoBehaviour
     public LevelController levelController;
     public Transform[] disableBonusObjects;
 
+    public FadeScreen fadeScreen;
+    public PreStartLevel preStartLevel;
+
+    public InputController inputController;
+    public GuiButtonsController guiButtonsController;
+    public Transform imageButtonPause;
+
+    public BonusTimer timerCountdown;
+    public BonusInfoWindow bonusInfoWindow;
+
+    public Assets.Qbert.Scripts.LoadScene.SelectSceneLoader sceneLoaderShowLevel;
+
+    public CameraFallowToCharacter cameraFallowToCharacter;
+
     public void Init()
     {
         if (disableBonusObjects != null)
@@ -22,43 +36,43 @@ public class BonusLogic : MonoBehaviour
             }
         }
     }
-    /*
-    public void StartLevel(GameScene gameScene)
+
+    public void StartLevel()
     {
-        gameScene.inputController.gameObject.SetActive(false);
-        gameScene.imageButtonPause.gameObject.SetActive(false);
+        inputController.gameObject.SetActive(false);
+        imageButtonPause.gameObject.SetActive(false);
 
-        gameScene.timerCountdown.SetTimer(5);
+        timerCountdown.SetTimer(5);
 
-        gameScene.StartBonus();
+        levelController.InitBonusLevel();
+        levelController.StartLevel();
 
-        gameScene.timerCountdown.iTimeScaler = levelController.gameplayObjects;
-        // levelController.SetPauseGamplayObjects(true);
-        gameScene.cameraFallowToCharacter.ResizeCameraShowAllMap();
+        timerCountdown.iTimeScaler = levelController.gameplayObjects;
+        cameraFallowToCharacter.ResizeCameraShowAllMap();
 
-        gameScene.fadeScreen.OnEnd = transform1 =>
+        fadeScreen.OnEnd = transform1 =>
         {
             if (GlobalValues.isShowInfoWindowToBonusLevel)
             {
                 GlobalValues.isShowInfoWindowToBonusLevel = false;
 
-                gameScene.bonusInfoWindow.OnClose = () =>
+                bonusInfoWindow.OnClose = () =>
                 {
                     PlayBonusLevel();
                 };
 
-                gameScene.bonusInfoWindow.ShowInfo();
+                bonusInfoWindow.ShowInfo();
             }
             else
             {
-                gameScene.PlayBonusLevel();
+                PlayBonusLevel();
             }
         };
 
-        gameScene.fadeScreen.StartDisable(0.5f);
+        fadeScreen.StartDisable(0.5f);
     }
 
-    private void PlayBonusLevel(GameScene gameScene)
+    private void PlayBonusLevel()
     {
         preStartLevel.OnStart(() =>
         {
@@ -67,10 +81,7 @@ public class BonusLogic : MonoBehaviour
             imageButtonPause.gameObject.SetActive(true);
             guiButtonsController.EnableButtons();
 
-
             inputController.isEnable = true;
-
-            bonusLogic.StartLevel(this);
 
             timerCountdown.OnEndTimer = () =>
             {
@@ -83,8 +94,18 @@ public class BonusLogic : MonoBehaviour
                 LoadSceneShowLevel();
             };
 
-            //timerCountdown.StartTimer();
+            timerCountdown.StartTimer();
         });
     }
-    */
+
+    public void LoadSceneShowLevel()
+    {
+        inputController.isEnable = false;
+        fadeScreen.OnEnd = transform1 =>
+        {
+            sceneLoaderShowLevel.OnLoadScene();
+        };
+
+        fadeScreen.StartEnable(0.5f);
+    }
 }

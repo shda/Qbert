@@ -16,6 +16,11 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             return false;
         }
 
+        public override bool isPlayerCanFallOffCube
+        {
+            get { return false; }
+        }
+
         public override MapAsset GetMapAssetFromCurrentRound()
         {
             var randomRound = rounds[UnityEngine.Random.Range(0, rounds.Length)];

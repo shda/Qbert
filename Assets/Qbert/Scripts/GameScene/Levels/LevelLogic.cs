@@ -33,6 +33,12 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             get { return rounds[roundCurrent]; }
         }
 
+        
+        public virtual bool isPlayerCanFallOffCube
+        {
+            get { return true; }
+        }
+
         [Header("Цвета по умолчанию")]
         public Color[] globalLevelColors;
 

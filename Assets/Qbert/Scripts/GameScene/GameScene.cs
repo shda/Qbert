@@ -22,9 +22,6 @@ namespace Assets.Qbert.Scripts.GameScene
         public LoadScene.SelectSceneLoader sceneLoaderMainMenu;
         public LoadScene.SelectSceneLoader sceneLoaderLevel;
 
-        public BonusTimer timerCountdown;
-        public BonusInfoWindow bonusInfoWindow;
-
         public CameraFallowToCharacter cameraFallowToCharacter;
 
         public void RestartLevel()
@@ -118,78 +115,7 @@ namespace Assets.Qbert.Scripts.GameScene
         void StartBonusLevel()
         {
             bonusLogic.Init();
-
-            inputController.gameObject.SetActive(false);
-            imageButtonPause.gameObject.SetActive(false);
-
-            timerCountdown.SetTimer(5);
-
-            StartBonus();
-
-            timerCountdown.iTimeScaler = levelController.gameplayObjects;
-           // levelController.SetPauseGamplayObjects(true);
-            cameraFallowToCharacter.ResizeCameraShowAllMap();
-
-            fadeScreen.OnEnd = transform1 =>
-            {
-                if (GlobalValues.isShowInfoWindowToBonusLevel)
-                {
-                    GlobalValues.isShowInfoWindowToBonusLevel = false;
-
-                    bonusInfoWindow.OnClose = () =>
-                    {
-                        PlayBonusLevel();
-                    };
-
-                    bonusInfoWindow.ShowInfo();
-                }
-                else
-                {
-                    PlayBonusLevel();
-                }
-            };
-
-            fadeScreen.StartDisable(0.5f);
-        }
-
-        private void PlayBonusLevel()
-        {
-            preStartLevel.OnStart(() =>
-            {
-                levelController.SetPauseGamplayObjects(false);
-                inputController.gameObject.SetActive(true);
-                imageButtonPause.gameObject.SetActive(true);
-                guiButtonsController.EnableButtons();
-
-
-                inputController.isEnable = true;
-
-               // bonusLogic.StartLevel(this);
-
-                timerCountdown.OnEndTimer = () =>
-                {
-                    levelController.SetPauseGamplayObjects(true);
-                    inputController.gameObject.SetActive(false);
-                    imageButtonPause.gameObject.SetActive(false);
-
-                    GlobalValues.isBonusLevel = false;
-
-                    LoadSceneShowLevel();
-                };
-
-                //timerCountdown.StartTimer();
-            });
-        }
-
-        public void StartBonus()
-        {
-            levelController.InitBonusLevel();
-            levelController.StartLevel();
-        }
-
-        void Update()
-        {
-
+            bonusLogic.StartLevel();
         }
     }
 }
