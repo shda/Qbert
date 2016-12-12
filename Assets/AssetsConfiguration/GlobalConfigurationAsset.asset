@@ -31,6 +31,5 @@ MonoBehaviour:
   debugQuickStart: 0
   assetLoadLevel: {fileID: 11400000, guid: e83d963050f53b5409638bd78b679a00, type: 2}
   assetInstruction: {fileID: 11400000, guid: 70afaa749854a7b4e853ce9f0a8d4223, type: 2}
-  levelsAssets:
-  - {fileID: 11400000, guid: e6748a93b1b0097408f017bfee7a75f6, type: 2}
-  - {fileID: 11400000, guid: 83560f1fb3907d547b2f01055fe33a2b, type: 2}
+  assetBonusLevels: {fileID: 11400000, guid: 3bba06b1c54dffa4abb8d16156986713, type: 2}
+  cyclicLevelsAsset: {fileID: 11400000, guid: cbf8db10faae95c44b6d1e353b0e6395, type: 2}

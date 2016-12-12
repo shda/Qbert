@@ -18,7 +18,6 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         public GameGui gameGui;
         public LevelLogicSwitcher levelLogicSwitcher;
         public GameScene gameScene;
-
         public CameraFallowToCharacter cameraFallowToCharacter;
 
         [HideInInspector]
@@ -125,7 +124,6 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         public void SetPauseQbert(bool isPause)
         {
             isPlay = !isPause;
-            // float timeScale = isPause ? 0.0000001f : 1.0f;
             qbert.SetTimeScaler(isPause?  gameplayObjects  : null);
         }
 
@@ -211,6 +209,16 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             
         }
 
+        public void InitBonusLevel()
+        {
+            levelLogic = levelLogicSwitcher.GetBonusLogic();
+            levelLogic.InitLevel();
+
+            mapField.mapGenerator.mapAsset = GetMapAssetFromLevel();
+            mapField.mapGenerator.CreateMap();
+            mapField.Init();
+        }
+
         public void InitLevel(int level, int round)
         {
             this.level = level;
@@ -252,12 +260,21 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
                 GlobalValues.currentLevel++;
                 GlobalValues.currentRound = 0;
 
-                gameScene.LoadSceneShowLevel();
+                PlayBonusLevel(GlobalValues.currentLevel);
+
+                //
             }
             else
             {
                 gameScene.LoadMainScene();
             }
+        }
+
+
+        public void PlayBonusLevel(int level)
+        {
+            GlobalValues.isBonusLevel = true;
+            gameScene.RestartLevel();
         }
 
         public void NextRound()

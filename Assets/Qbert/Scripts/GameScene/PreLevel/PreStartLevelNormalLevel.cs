@@ -11,8 +11,12 @@ public class PreStartLevelNormalLevel : MonoBehaviour
         preLevelAnimationGui.StartShowRound(1 , OnEnd);
     }
 
+    public void StartBonusAnimation(Action OnEnd)
+    {
+        preLevelAnimationGui.StartShowBonus(OnEnd);
+    }
 
-	void Start () 
+    void Start () 
 	{
 	
 	}

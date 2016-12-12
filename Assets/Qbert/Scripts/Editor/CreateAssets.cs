@@ -7,6 +7,12 @@ using UnityEditor;
 
 public class CreateAssets : MonoBehaviour 
 {
+    [MenuItem("Assets/Create asset/Cyclic levels asset")]
+    static void CreateCyclicLevels()
+    {
+        CreateAsset<CyclicLevelsAsset>("CyclicLevels");
+    }
+
     [MenuItem("Assets/Create asset/Create map asset")]
     static void CreateMapAsset()
     {

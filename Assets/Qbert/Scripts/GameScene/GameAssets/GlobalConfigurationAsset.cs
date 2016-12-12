@@ -12,7 +12,15 @@ namespace Assets.Qbert.Scripts.GameScene.GameAssets
         public bool debugQuickStart = false;
         public LevelConfigAsset assetLoadLevel;
         public LevelConfigAsset assetInstruction;
-        public LevelConfigAsset[] levelsAssets;
+
+        //[SerializeField]
+       // public LevelConfigAsset[] levelsAssets;
+
+        public LevelConfigAsset assetBonusLevels;
+
+        public CyclicLevelsAsset cyclicLevelsAsset;
+
+
 
         public QbertModel GetFirstCloseModel()
         {

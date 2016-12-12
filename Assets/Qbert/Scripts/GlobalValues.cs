@@ -10,6 +10,7 @@ namespace Assets.Qbert.Scripts
     {
         public static int currentLevel = 0;
         public static int currentRound = 0;
+        public static bool isBonusLevel = true;
         public static float score = 0;
         public static int countLive = 1;
 
@@ -22,6 +23,9 @@ namespace Assets.Qbert.Scripts
 
         [SaveFieldAttribute]
         public static string codeNamesModelsOpens = "";
+
+       // [SaveFieldAttribute]
+        public static bool isShowInfoWindowToBonusLevel = true;
 
         //Show or hide button double gift by watch video
         [SaveFieldAttribute]

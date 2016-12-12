@@ -7,7 +7,22 @@ using UnityEngine.UI;
 public class PreLevelAnimationGui : MonoBehaviour
 {
     public AnimationToTimeOneByOne animationToTimeOneByOne;
+    public AnimationToTimeOneByOne animationShowBonusLevel;
+    public AnimationToTimeOneByOne animationTimerOneByOne;
+
     public Text textRoundNumber;
+
+    public void StartShowBonus(Action OnEndAnimation)
+    {
+        textRoundNumber.text = "BONUS LEVEL";
+
+        animationShowBonusLevel.StartOneByOne();
+        animationShowBonusLevel.OnEndAnimation = () =>
+        {
+            animationTimerOneByOne.OnEndAnimation = OnEndAnimation;
+            animationTimerOneByOne.StartOneByOne();
+        };
+    }
 
     public void StartShowRound(int round , Action OnEndAnimation)
     {

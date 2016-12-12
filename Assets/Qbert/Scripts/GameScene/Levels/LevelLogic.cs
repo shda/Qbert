@@ -14,6 +14,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             LevelType3,
             LevelType4,
             LevelType5,
+            LevelBonus,
         }
 
         public virtual Type type
@@ -40,7 +41,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
         protected LevelController levelController;
 
-        public MapAsset GetMapAssetFromCurrentRound()
+        public virtual MapAsset GetMapAssetFromCurrentRound()
         {
             if (currentRoundConfig.customMap != null)
             {
