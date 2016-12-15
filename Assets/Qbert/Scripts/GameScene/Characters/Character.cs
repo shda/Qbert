@@ -36,7 +36,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             Qbert,
         }
 
-        public Vector3 NoOffsetpos { get; private set; }
+        public Vector3 NoOffsetpos { get; set; }
 
         public virtual Type typeObject
         {
@@ -151,7 +151,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             return MoveToCube(cube.currentPosition);
         }
 
-        public bool MoveToCube( PositionCube point )
+        public bool MoveToCube( PositionCube point , Action OnEndMove = null )
         {
             var cube = levelController.mapField.GetCube(point);
 
@@ -159,7 +159,12 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             {
                 GameSound.PlayJump(this);
 
-                moveCoroutine = StartCoroutine(MoveToCubeAnimation(cube));
+                moveCoroutine = StartCoroutine(this.WaitCoroutine(
+                    MoveToCubeAnimation(cube) , transform1 =>
+                    {
+                        if (OnEndMove != null)
+                            OnEndMove();
+                    }));
                 return true;
             }
 

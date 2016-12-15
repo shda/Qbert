@@ -21,7 +21,14 @@ namespace Assets.Qbert.Scripts.GameScene
         public float cameraSizeCorrector;
         public float speedMoveCamera;
 
+        private Transform fallowTarget;
+
         private Vector3 centerToMap;
+
+        public void SetTarget(Transform target)
+        {
+            fallowTarget = target;
+        }
 
         private void ConnectEvens()
         {
@@ -166,8 +173,10 @@ namespace Assets.Qbert.Scripts.GameScene
             {
                 if (characrer)
                 {
+                    Vector3 target = fallowTarget != null ? fallowTarget.position : characrer.NoOffsetpos;
+
                     cameraFallow.transform.position = Vector3.Lerp(cameraFallow.transform.position,
-                       characrer.NoOffsetpos, Time.deltaTime * speedMoveCamera);
+                       target, Time.deltaTime * speedMoveCamera);
                 }
                 yield return null;
             }

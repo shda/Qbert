@@ -118,20 +118,23 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
         public IEnumerator MoveTransport(Qbert qbert)
         {
             var offset = Mathf.Abs(qbert.positionMove.y - cubeJumpAfterMove.currentPosition.y);
-
             var offsetF = offset*0.5f;
-
             var move = qbert.root.position + new Vector3(0, offsetF, -offsetF);
 
+            levelController.cameraFallowToCharacter.SetTarget(qbert.root);
+
             yield return StartCoroutine(MoveTwo(qbert.root, transform, move, 1.0f));
-            yield return StartCoroutine(MoveTwo(qbert.root , transform , transportMoveToPoint , durationMoveToEndPoint) );
+            yield return StartCoroutine(MoveTwo(qbert.root, transform , transportMoveToPoint , durationMoveToEndPoint) );
 
             yield return new WaitForSeconds(0.5f);
 
             gameObject.SetActive(false);
             qbert.isFrize = false;
             qbert.isCheckColision = true;
-            qbert.MoveToCube(cubeJumpAfterMove.currentPosition);
+            qbert.MoveToCube(cubeJumpAfterMove.currentPosition , () =>
+            {
+                levelController.cameraFallowToCharacter.SetTarget(null);
+            });
 
             OnStartDestroy();
         }

@@ -105,20 +105,30 @@ namespace Assets.Qbert.Scripts.GameScene
 
             cameraFallowToCharacter.ResizeCameraShowAllMap();
 
+            
             fadeScreen.OnEnd = transform1 =>
             {
+                //StartLevelIn();
+                
                 preStartLevel.OnStart(() =>
                 {
-                    levelController.SetPauseGamplayObjects(false);
-                    inputController.gameObject.SetActive(true);
-                    guiButtonsController.EnableButtons();
-
-                    imageButtonPause.gameObject.SetActive(true);
-                    inputController.isEnable = true;
+                    StartLevelIn();
                 });
+                
             };
 
             fadeScreen.StartDisable(0.5f);
+        }
+
+
+        void StartLevelIn()
+        {
+            levelController.SetPauseGamplayObjects(false);
+            inputController.gameObject.SetActive(true);
+            guiButtonsController.EnableButtons();
+
+            imageButtonPause.gameObject.SetActive(true);
+            inputController.isEnable = true;
         }
 
         void StartBonusLevel()

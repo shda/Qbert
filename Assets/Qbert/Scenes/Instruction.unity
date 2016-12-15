@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4490307, g: 0.49910676, b: 0.5759804, a: 1}
+  m_IndirectSpecularColor: {r: 0.44862837, g: 0.49867892, b: 0.5756692, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -918,7 +918,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configurationAsset: {fileID: 11400000, guid: e6748a93b1b0097408f017bfee7a75f6, type: 2}
-  roundCurrent: 0
   globalLevelColors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
@@ -1474,7 +1473,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configurationAsset: {fileID: 11400000, guid: 4606db13a1f38b54699f433ead2cf876, type: 2}
-  roundCurrent: 0
   globalLevelColors:
   - {r: 0, g: 0.048275948, b: 1, a: 1}
   - {r: 1, g: 0, b: 0.05109501, a: 1}
@@ -1744,7 +1742,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configurationAsset: {fileID: 11400000, guid: 90676d29afac4b64a9b482e5799052ee, type: 2}
-  roundCurrent: 0
   globalLevelColors:
   - {r: 0, g: 0.33793116, b: 1, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
@@ -2803,7 +2800,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configurationAsset: {fileID: 11400000, guid: 83560f1fb3907d547b2f01055fe33a2b, type: 2}
-  roundCurrent: 0
   globalLevelColors:
   - {r: 0, g: 0.13103437, b: 1, a: 1}
   - {r: 0.034482718, g: 1, b: 0, a: 1}
@@ -3018,15 +3014,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11419272, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: version
-      value: 0.1.6 build 5
+      value: 0.1.6 build 7
       objectReference: {fileID: 0}
     - target: {fileID: 11419272, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: buildCounter
-      value: 57
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 11419272, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: date
-      value: 161208 13:37
+      value: 161216 01:20
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8100312, guid: d920972237c35e74a88919299e0de2b7, type: 2}
@@ -3200,6 +3196,7 @@ MonoBehaviour:
   - {fileID: 1895594132}
   levelController: {fileID: 879627223}
   currentLevel: 0
+  level: 0
 --- !u!1 &1405970417
 GameObject:
   m_ObjectHideFlags: 0
@@ -3960,7 +3957,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configurationAsset: {fileID: 0}
-  roundCurrent: 0
   globalLevelColors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: 0.08965492, b: 1, a: 1}
@@ -4006,7 +4002,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configurationAsset: {fileID: 11400000, guid: 04c4df794d546734da4b17238a7ca3ea, type: 2}
-  roundCurrent: 0
   globalLevelColors:
   - {r: 0, g: 0.048275948, b: 1, a: 1}
   - {r: 0.56120694, g: 0, b: 0.6838235, a: 1}

@@ -676,7 +676,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configurationAsset: {fileID: 11400000, guid: e6748a93b1b0097408f017bfee7a75f6, type: 2}
-  roundCurrent: 0
   globalLevelColors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
@@ -1158,7 +1157,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configurationAsset: {fileID: 11400000, guid: 4606db13a1f38b54699f433ead2cf876, type: 2}
-  roundCurrent: 0
   globalLevelColors:
   - {r: 0, g: 0.048275948, b: 1, a: 1}
   - {r: 1, g: 0, b: 0.05109501, a: 1}
@@ -1326,7 +1324,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configurationAsset: {fileID: 11400000, guid: 90676d29afac4b64a9b482e5799052ee, type: 2}
-  roundCurrent: 0
   globalLevelColors:
   - {r: 0, g: 0.33793116, b: 1, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
@@ -2474,7 +2471,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configurationAsset: {fileID: 11400000, guid: 83560f1fb3907d547b2f01055fe33a2b, type: 2}
-  roundCurrent: 0
   globalLevelColors:
   - {r: 0, g: 0.13103437, b: 1, a: 1}
   - {r: 0.034482718, g: 1, b: 0, a: 1}
@@ -3438,7 +3434,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configurationAsset: {fileID: 0}
-  roundCurrent: 0
   globalLevelColors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: 0.08965492, b: 1, a: 1}
@@ -3484,7 +3479,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configurationAsset: {fileID: 11400000, guid: 04c4df794d546734da4b17238a7ca3ea, type: 2}
-  roundCurrent: 0
   globalLevelColors:
   - {r: 0, g: 0.048275948, b: 1, a: 1}
   - {r: 0.56120694, g: 0, b: 0.6838235, a: 1}

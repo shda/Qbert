@@ -12,11 +12,6 @@ MonoBehaviour:
   m_Name: RuleCreateObjectsAsset
   m_EditorClassIdentifier: 
   rules:
-  - createType: 0
-    maxToRound: 2
-    maxOneTime: 2
-    delayToStart: 1
-    delayBetweenCreate: 2
   - createType: 2
     maxToRound: 2
     maxOneTime: 2
