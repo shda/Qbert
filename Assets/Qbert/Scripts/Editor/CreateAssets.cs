@@ -7,6 +7,24 @@ using UnityEditor;
 
 public class CreateAssets : MonoBehaviour 
 {
+    [MenuItem("Assets/Create asset/Rules create objects")]
+    static void CreateRule()
+    {
+        CreateAsset<RuleCreateObjectsAsset>("RuleCreateObjectsAsset");
+    }
+
+    [MenuItem("Assets/Create asset/Maps asset")]
+    static void CreateMapsAsset()
+    {
+        CreateAsset<MapsAsset>("MapsAsset");
+    }
+
+    [MenuItem("Assets/Create asset/Colors asset")]
+    static void CreateColorAsset()
+    {
+        CreateAsset<ColorsAsset>("ColorAsset");
+    }
+
     [MenuItem("Assets/Create asset/Cyclic levels asset")]
     static void CreateCyclicLevels()
     {

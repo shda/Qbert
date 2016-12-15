@@ -191,7 +191,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
             if (gameGui != null)
             {
-                gameGui.SetLevelNumber(levelLogicSwitcher.currentLevel, levelLogic.roundCurrent);
+                gameGui.SetLevelNumber(levelLogicSwitcher.currentLevel, GlobalValues.currentRound);
                 gameGui.UpdateLiveCount();
             }
 
@@ -199,7 +199,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             SetPauseGamplayObjects(false);
 
             levelLogic.ResetLevel();
-            levelLogic.StartLevel(levelLogic.roundCurrent);
+            levelLogic.StartLevel(GlobalValues.currentRound);
 
             UpdateColorGuiCubeChangeTo();
 
@@ -225,7 +225,11 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             this.round = round;
 
             if (gameGui)
+            {
                 gameGui.SetLevelNumber(level, round);
+                gameGui.UpdateScore();
+            }
+                
 
             levelLogic = levelLogicSwitcher.GetLevelLogic(level, round);
             levelLogic.InitLevel();
@@ -274,7 +278,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         public void PlayBonusLevel(int level)
         {
             GlobalValues.isBonusLevel = true;
-            gameScene.RestartLevel();
+            ReloadScene();
         }
 
         public void NextRound()
@@ -349,6 +353,11 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
                     Debug.Log("Save");
                 }
             }
+        }
+
+        public void ReloadScene()
+        {
+            gameScene.ReloadScene();
         }
     }
 }

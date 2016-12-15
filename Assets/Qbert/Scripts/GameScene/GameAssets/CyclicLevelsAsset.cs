@@ -1,82 +1,82 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Assets.Qbert.Scripts.GameScene.GameAssets;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CyclicLevelsAsset : ScriptableObject
+namespace Assets.Qbert.Scripts.GameScene.GameAssets
 {
-    [System.Serializable]
-    public class StepCyclic
+    public class CyclicLevelsAsset : ScriptableObject
     {
-        public bool isCyclic;
-        public float startSpeed;
-        public float upSpeedAfterCyclic;
-
-        public LevelConfigAsset[] levelsAssets;
-    }
-
-    [Header("Bonus")]
-    public float timeStart;
-    public float timeStepAllLevels;
-    public MapAsset[] mapAssets;
-
-    [Header("Cyclic levels")]
-    public StepCyclic[] steps;
-
-    public bool GetStepCyclicByLevel(int level ,
-        ref float timeScale, 
-        out StepCyclic findStepCyclic ,
-        out LevelConfigAsset levelConfigAsset)
-    {
-        if (steps != null && steps.Length > 0)
+        [System.Serializable]
+        public class StepCyclic
         {
-            int offset = 0;
+            public bool isCyclic;
+            public float startSpeed;
+            public float upSpeedAfterCyclic;
 
-            foreach (var stepCyclic in steps)
-            {
-                int count = stepCyclic.levelsAssets.Length;
-
-                int index = level - offset;
-
-                if (count > level - offset)
-                {
-                    findStepCyclic = stepCyclic;
-                    levelConfigAsset = stepCyclic.levelsAssets[level - offset];
-                    timeScale = findStepCyclic.startSpeed;
-
-                    return true;
-                }
-                else if(stepCyclic.isCyclic)
-                {
-                    int timeMultiplier = index / count;
-                    int offsetIndex = index - (count*timeMultiplier);
-
-                    findStepCyclic = stepCyclic;
-                    levelConfigAsset = stepCyclic.levelsAssets[offsetIndex];
-
-                    timeScale = findStepCyclic.startSpeed + 
-                        findStepCyclic.upSpeedAfterCyclic * timeMultiplier;
-
-                    return true;
-                }
-
-                offset += count;
-            }
+            public LevelConfigAsset[] levelsAssets;
         }
 
-        findStepCyclic = null;
-        levelConfigAsset = null;
+        [Header("Bonus")]
+        public float timeStart;
+        public float timeStepAllLevels;
+        public MapsAsset bonusMapsAsset;
 
-        return false;
-    }
+        [Header("Cyclic levels")]
+        public StepCyclic[] steps;
 
-    public MapAsset GetBonusMapByLevel(int level)
-    {
-        return mapAssets[Random.Range(0, mapAssets.Length)];
-    }
+        public bool GetStepCyclicByLevel(int level ,
+            ref float timeScale, 
+            out StepCyclic findStepCyclic ,
+            out LevelConfigAsset levelConfigAsset)
+        {
+            if (steps != null && steps.Length > 0)
+            {
+                int offset = 0;
 
-    public float GetTimeScaleToBonusMapByLevel(int level)
-    {
-        return timeStart + level*timeStepAllLevels;
+                foreach (var stepCyclic in steps)
+                {
+                    int count = stepCyclic.levelsAssets.Length;
+
+                    int index = level - offset;
+
+                    if (count > level - offset)
+                    {
+                        findStepCyclic = stepCyclic;
+                        levelConfigAsset = stepCyclic.levelsAssets[level - offset];
+                        timeScale = findStepCyclic.startSpeed;
+
+                        return true;
+                    }
+                    else if(stepCyclic.isCyclic)
+                    {
+                        int timeMultiplier = index / count;
+                        int offsetIndex = index - (count*timeMultiplier);
+
+                        findStepCyclic = stepCyclic;
+                        levelConfigAsset = stepCyclic.levelsAssets[offsetIndex];
+
+                        timeScale = findStepCyclic.startSpeed + 
+                                    findStepCyclic.upSpeedAfterCyclic * timeMultiplier;
+
+                        return true;
+                    }
+
+                    offset += count;
+                }
+            }
+
+            findStepCyclic = null;
+            levelConfigAsset = null;
+
+            return false;
+        }
+
+        public MapAsset GetBonusMapByLevel(int level)
+        {
+            return bonusMapsAsset.GetValue();
+        }
+
+        public float GetTimeScaleToBonusMapByLevel(int level)
+        {
+            return timeStart + level*timeStepAllLevels;
+        }
     }
 }

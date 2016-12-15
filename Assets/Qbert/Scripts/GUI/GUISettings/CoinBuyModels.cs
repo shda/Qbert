@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class CoinBuyModels : MonoBehaviour 
+namespace Assets.Qbert.Scripts.GUI.GUISettings
 {
-    public float price;
-    public int  coinsAdd;
-    public bool isWatchAd;
+    public class CoinBuyModels : MonoBehaviour 
+    {
+        public float price;
+        public int  coinsAdd;
+        public bool isWatchAd;
 
-    [Multiline]
-    public string description;
+        [Multiline]
+        public string description;
+    }
 }

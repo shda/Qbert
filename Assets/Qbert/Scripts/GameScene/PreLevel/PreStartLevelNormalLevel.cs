@@ -1,28 +1,30 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections;
 
-public class PreStartLevelNormalLevel : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene.PreLevel
 {
-    public PreLevelAnimationGui preLevelAnimationGui;
-
-    public void StartAnimation(Action OnEnd)
+    public class PreStartLevelNormalLevel : MonoBehaviour
     {
-        preLevelAnimationGui.StartShowRound(1 , OnEnd);
-    }
+        public PreLevelAnimationGui preLevelAnimationGui;
 
-    public void StartBonusAnimation(Action OnEnd)
-    {
-        preLevelAnimationGui.StartShowBonus(OnEnd);
-    }
+        public void StartAnimation(Action OnEnd)
+        {
+            preLevelAnimationGui.StartShowRound(GlobalValues.currentRound + 1, OnEnd);
+        }
 
-    void Start () 
-	{
+        public void StartBonusAnimation(Action OnEnd)
+        {
+            preLevelAnimationGui.StartShowBonus(OnEnd);
+        }
+
+        void Start () 
+        {
 	
-	}
+        }
 
-	void Update () 
-	{
+        void Update () 
+        {
 	
-	}
+        }
+    }
 }

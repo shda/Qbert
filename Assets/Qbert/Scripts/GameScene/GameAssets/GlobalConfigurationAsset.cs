@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Assets.Qbert.Scripts.GameScene.Characters;
+using Assets.Qbert.Scripts.GUI.GUISettings;
 using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GameScene.GameAssets
@@ -13,13 +14,8 @@ namespace Assets.Qbert.Scripts.GameScene.GameAssets
         public LevelConfigAsset assetLoadLevel;
         public LevelConfigAsset assetInstruction;
 
-        //[SerializeField]
-       // public LevelConfigAsset[] levelsAssets;
-
         public LevelConfigAsset assetBonusLevels;
-
         public CyclicLevelsAsset cyclicLevelsAsset;
-
 
 
         public QbertModel GetFirstCloseModel()

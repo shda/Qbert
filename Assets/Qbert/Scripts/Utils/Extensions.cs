@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Assets.CommonB {
+namespace Assets.Qbert.Scripts.Utils {
 	public static class Extensions {
 
 		public static bool UnityAny<T>(this IEnumerable<T> array, Func<T, bool> predicate) {

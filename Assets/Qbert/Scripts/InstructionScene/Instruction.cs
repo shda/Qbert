@@ -73,14 +73,15 @@ namespace Assets.Qbert.Scripts.InstructionScene
 
             foreach (var cube in mapField.field)
             {
-                cube.SetColors(colors);
+                cube.SetColors(colors.GetValue().colors);
                 cube.Reset();
             }
         }
 
         public void CreateMap()
         {
-            mapField.mapGenerator.mapAsset = globalSettingAsset.assetInstruction.globalMap;
+            mapField.mapGenerator.mapAsset = 
+                globalSettingAsset.assetInstruction.globalMap.GetValue();
             mapField.mapGenerator.CreateMap();
             mapField.Init();
 

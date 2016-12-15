@@ -25,12 +25,14 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             var configCurrentLevel = GetLevelAssetByLevel(level);
             configLevel.typeLevel = configCurrentLevel.typeLevel;
 
-            Color[] colorsLevel = GetInitColors(level);
+            //Color[] colorsLevel = GetInitColors(level);
 
+            /*
             if (colorsLevel != null)
             {
                 configLevel.globalLevelColors = colorsLevel;
             }
+            */
 
             var levelBehaviour = levelBehaviours.First(x => x.type == configLevel.typeLevel);
             levelBehaviour.SetController(levelController);
@@ -43,7 +45,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         {
             var configLevel = GetLevelAssetByLevel(level);
             if (configLevel.globalLevelColors != null)
-                return configLevel.globalLevelColors;
+                return configLevel.globalLevelColors.GetValue().colors;
 
             if(configLevel.rounds != null && configLevel.rounds.Length > 0)
                 return configLevel.rounds[0].customColors;
@@ -60,7 +62,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             var levelBehaviour = levelBehaviours.First(x => x.type == configLevel.typeLevel);
             levelBehaviour.SetController(levelController);
             levelBehaviour.configurationAsset = configLevel;
-            levelBehaviour.SetRound(round);
+            //levelBehaviour.SetRound(round);
 
             return levelBehaviour;
         }

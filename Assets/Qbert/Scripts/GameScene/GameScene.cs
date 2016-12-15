@@ -1,5 +1,7 @@
-﻿using Assets.Qbert.Scripts.GameScene.InputControl;
+﻿using Assets.Qbert.Scripts.GameScene.Bonus;
+using Assets.Qbert.Scripts.GameScene.InputControl;
 using Assets.Qbert.Scripts.GameScene.Levels;
+using Assets.Qbert.Scripts.GameScene.PreLevel;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,7 +28,14 @@ namespace Assets.Qbert.Scripts.GameScene
 
         public void RestartLevel()
         {
-            levelController.RestartLevel();
+            fadeScreen.OnEnd = transform1 =>
+            {
+                sceneLoaderLevel.OnLoadScene();
+            };
+
+            fadeScreen.StartEnable(0.5f);
+
+           // levelController.RestartLevel();
         }
 
         public void StartGame()

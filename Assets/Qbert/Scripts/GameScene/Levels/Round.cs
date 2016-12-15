@@ -22,8 +22,24 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         [Header("Карта раунда(можно не ставить)")]
         public MapAsset customMap;
 
+        [Header("Правила поведения (можно не ставить)")]
+        public RuleCreateObjectsAsset rulesCustom;
+
         public RuleCreateGameplayObject[] rulesCreateGamplayObjects;
-    
+
+        public RuleCreateGameplayObject[] RulesCreateGamplayObjects
+        {
+            get
+            {
+                if (rulesCustom != null)
+                {
+                    return rulesCustom.rules;
+                }
+
+                return rulesCreateGamplayObjects;
+            }
+        }
+
         [HideInInspector]
         public float timeToStartRound;
         [HideInInspector]
@@ -38,7 +54,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
         public void ResetRound()
         {
-            foreach (var gemeplayObjectConfig in rulesCreateGamplayObjects)
+            foreach (var gemeplayObjectConfig in RulesCreateGamplayObjects)
             {
                 gemeplayObjectConfig.SetTimeScale(this);
                 gemeplayObjectConfig.Reset();
@@ -67,7 +83,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         }
         public void UpdateGameObjects()
         {
-            foreach (var gemeplayObjectConfig in rulesCreateGamplayObjects)
+            foreach (var gemeplayObjectConfig in RulesCreateGamplayObjects)
             {
                 gemeplayObjectConfig.CheckCreateObject(this);
             }

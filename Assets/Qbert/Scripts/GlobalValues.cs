@@ -10,14 +10,13 @@ namespace Assets.Qbert.Scripts
     {
         public static int currentLevel = 0;
         public static int currentRound = 0;
-        public static bool isBonusLevel = true;
+        public static bool isBonusLevel = false;
         public static float score = 0;
         public static int countLive = 1;
 
         public const int countGoldToGift = 50;
         public const int countCoinsToEarnVideo = 20;
-        //public const int countCoinsToUnlockChar = 100;
-
+  
         public static int[] castCoinsInvest = new[] { 25, 50, 100 };
         public static int[] timeInGameGift = new[] { 6, 40, 360 };
 

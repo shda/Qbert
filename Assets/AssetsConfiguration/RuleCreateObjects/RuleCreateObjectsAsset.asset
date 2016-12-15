@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d75177280d25649a63c9e2177f316e, type: 3}
+  m_Name: RuleCreateObjectsAsset
+  m_EditorClassIdentifier: 
+  rules:
+  - createType: 0
+    maxToRound: 2
+    maxOneTime: 2
+    delayToStart: 1
+    delayBetweenCreate: 2
+  - createType: 2
+    maxToRound: 2
+    maxOneTime: 2
+    delayToStart: 0
+    delayBetweenCreate: 0

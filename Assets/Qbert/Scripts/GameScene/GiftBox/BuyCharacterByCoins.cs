@@ -1,163 +1,162 @@
 ﻿using System;
-using UnityEngine;
-using System.Collections;
 using System.Linq;
-using Assets.CommonB;
-using Assets.Qbert.Scripts;
 using Assets.Qbert.Scripts.GameScene.AnimationToTime;
 using Assets.Qbert.Scripts.GameScene.Characters;
 using Assets.Qbert.Scripts.GameScene.GameAssets;
 using Assets.Qbert.Scripts.GameScene.Gui;
 using Assets.Qbert.Scripts.Utils;
-using UnityEngine.Networking;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class BuyCharacterByCoins : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene.GiftBox
 {
-    public AnimationToTimeOneByOne animationShowCnaracter;
-    public AnimationToTimeMassive  animationHide;
-    public Transform characterRoot;
-    
-    public float localScale = 1.0f;
-
-    public Button buttonNextChar;
-    public Button buttonMenu;
-    public Button buttonShare;
-
-    public Transform buttonBuy;
-    public Text countBuyNext;
-    public Text characterName;
-
-    public ResourceCounter coins;
-
-    public Action OnEnd;
-
-    private Transform oldCharacter;
-    private GlobalConfigurationAsset globalConfigurationAsset;
-
-    void Start ()
-	{
-	    animationShowCnaracter.StartOneByOne();
-	}
-
-	void Update () 
-	{
-	
-	}
-
-    public void ConnectButtons()
+    public class BuyCharacterByCoins : MonoBehaviour
     {
-        DisconnectButtons();
+        public AnimationToTimeOneByOne animationShowCnaracter;
+        public AnimationToTimeMassive  animationHide;
+        public Transform characterRoot;
+    
+        public float localScale = 1.0f;
 
-        buttonNextChar.onClick.AddListener(() =>
+        public Button buttonNextChar;
+        public Button buttonMenu;
+        public Button buttonShare;
+
+        public Transform buttonBuy;
+        public Text countBuyNext;
+        public Text characterName;
+
+        public ResourceCounter coins;
+
+        public Action OnEnd;
+
+        private Transform oldCharacter;
+        private GlobalConfigurationAsset globalConfigurationAsset;
+
+        void Start ()
+        {
+            animationShowCnaracter.StartOneByOne();
+        }
+
+        void Update () 
+        {
+	
+        }
+
+        public void ConnectButtons()
         {
             DisconnectButtons();
 
-            StartCoroutine(this.WaitCoroutine(animationHide.PlayToTime(0.5f, null, true) , transform1 =>
+            buttonNextChar.onClick.AddListener(() =>
             {
-                OnGift(globalConfigurationAsset);
-            }));
-        });
+                DisconnectButtons();
 
-        buttonMenu.onClick.AddListener(() =>
-        {
-            DisconnectButtons();
-            StartCoroutine(this.WaitCoroutine(animationHide.PlayToTime(0.5f, null, true), transform1 =>
-            {
-                animationShowCnaracter.ResetAnimations();
-                gameObject.SetActive(false);
-                if (OnEnd != null)
+                StartCoroutine(this.WaitCoroutine(animationHide.PlayToTime(0.5f, null, true) , transform1 =>
                 {
-                    OnEnd();
-                }
-            }));
-        });
+                    OnGift(globalConfigurationAsset);
+                }));
+            });
 
-        /*
+            buttonMenu.onClick.AddListener(() =>
+            {
+                DisconnectButtons();
+                StartCoroutine(this.WaitCoroutine(animationHide.PlayToTime(0.5f, null, true), transform1 =>
+                {
+                    animationShowCnaracter.ResetAnimations();
+                    gameObject.SetActive(false);
+                    if (OnEnd != null)
+                    {
+                        OnEnd();
+                    }
+                }));
+            });
+
+            /*
         buttonShare.onClick.AddListener(() =>
         {
 
         });
         */
-    }
+        }
 
-    public void DisconnectButtons()
-    {
-        buttonNextChar.onClick.RemoveAllListeners();
-        buttonMenu.onClick.RemoveAllListeners();
-        // buttonShare.onClick.RemoveAllListeners();
-    }
-
-    public void OnGift(GlobalConfigurationAsset config)
-    {
-        gameObject.SetActive(true);
-
-        globalConfigurationAsset = config;
-        var closeModel = globalConfigurationAsset.GetFirstCloseModel();
-
-        if (closeModel != null)
+        public void DisconnectButtons()
         {
-            SetCharacter(closeModel);
+            buttonNextChar.onClick.RemoveAllListeners();
+            buttonMenu.onClick.RemoveAllListeners();
+            // buttonShare.onClick.RemoveAllListeners();
+        }
 
-            coins.SetValueForce(GlobalValues.coins);
+        public void OnGift(GlobalConfigurationAsset config)
+        {
+            gameObject.SetActive(true);
 
-            GlobalValues.AddBuyModel(closeModel.codeName);
-            GlobalValues.RemoveCoins(closeModel.priceCoins);
-            GlobalValues.Save();
+            globalConfigurationAsset = config;
+            var closeModel = globalConfigurationAsset.GetFirstCloseModel();
 
-            coins.SetValue(GlobalValues.coins);
-
-            UpdateBuyButton();
-
-            animationShowCnaracter.StartOneByOne();
-            animationShowCnaracter.OnEndAnimation = () =>
+            if (closeModel != null)
             {
-                ConnectButtons();
-            };
-        }
-    }
+                SetCharacter(closeModel);
 
-    public void UpdateBuyButton()
-    {
-        var closeModel = globalConfigurationAsset.GetFirstCloseModel();
+                coins.SetValueForce(GlobalValues.coins);
 
-        if (closeModel != null && closeModel.priceCoins <= GlobalValues.coins)
-        {
-            buttonBuy.gameObject.SetActive(true);
-            countBuyNext.text = closeModel.priceCoins.ToString();
-        }
-        else
-        {
-            buttonBuy.gameObject.SetActive(false);
-        }
-    }
+                GlobalValues.AddBuyModel(closeModel.codeName);
+                GlobalValues.RemoveCoins(closeModel.priceCoins);
+                GlobalValues.Save();
 
-    public void SetCharacter(QbertModel qModel)
-    {
-        if (oldCharacter != null)
-        {
-            oldCharacter.gameObject.SetActive(false);
-            Destroy(oldCharacter.gameObject);
+                coins.SetValue(GlobalValues.coins);
+
+                UpdateBuyButton();
+
+                animationShowCnaracter.StartOneByOne();
+                animationShowCnaracter.OnEndAnimation = () =>
+                {
+                    ConnectButtons();
+                };
+            }
         }
 
-        oldCharacter = Instantiate(qModel.transform);
-        SetLayer(oldCharacter , gameObject.layer);
-        oldCharacter.SetParent(characterRoot);
-        oldCharacter.localPosition = Vector3.zero;
-        oldCharacter.localRotation = Quaternion.Euler(0, 0, 0);
-        oldCharacter.localScale = new Vector3(localScale, localScale, localScale);
-
-        var model = oldCharacter.GetComponent<QbertModel>();
-        characterName.text = model.nameCharacter;
-        model.booldeDead.gameObject.SetActive(false);
-    }
-
-    public void SetLayer(Transform tr , int layer)
-    {
-        tr.Cast<Transform>().ForAll(transform1 =>
+        public void UpdateBuyButton()
         {
-            transform1.gameObject.layer = layer;
-            SetLayer(transform1 , layer);
-        });
+            var closeModel = globalConfigurationAsset.GetFirstCloseModel();
+
+            if (closeModel != null && closeModel.priceCoins <= GlobalValues.coins)
+            {
+                buttonBuy.gameObject.SetActive(true);
+                countBuyNext.text = closeModel.priceCoins.ToString();
+            }
+            else
+            {
+                buttonBuy.gameObject.SetActive(false);
+            }
+        }
+
+        public void SetCharacter(QbertModel qModel)
+        {
+            if (oldCharacter != null)
+            {
+                oldCharacter.gameObject.SetActive(false);
+                Destroy(oldCharacter.gameObject);
+            }
+
+            oldCharacter = Instantiate(qModel.transform);
+            SetLayer(oldCharacter , gameObject.layer);
+            oldCharacter.SetParent(characterRoot);
+            oldCharacter.localPosition = Vector3.zero;
+            oldCharacter.localRotation = Quaternion.Euler(0, 0, 0);
+            oldCharacter.localScale = new Vector3(localScale, localScale, localScale);
+
+            var model = oldCharacter.GetComponent<QbertModel>();
+            characterName.text = model.nameCharacter;
+            model.booldeDead.gameObject.SetActive(false);
+        }
+
+        public void SetLayer(Transform tr , int layer)
+        {
+            tr.Cast<Transform>().ForAll(transform1 =>
+            {
+                transform1.gameObject.layer = layer;
+                SetLayer(transform1 , layer);
+            });
+        }
     }
 }

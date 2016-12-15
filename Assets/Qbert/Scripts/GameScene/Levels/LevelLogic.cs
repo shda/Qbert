@@ -23,14 +23,14 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         }
 
         public LevelConfigAsset configurationAsset;
-        public int roundCurrent;
+        //public int roundCurrent;
         public Round[] rounds
         {
             get { return configurationAsset.rounds; }
         }
         public Round currentRoundConfig
         {
-            get { return rounds[roundCurrent]; }
+            get { return rounds[GlobalValues.currentRound]; }
         }
 
         
@@ -54,7 +54,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
                 return currentRoundConfig.customMap;
             }
 
-            return configurationAsset.globalMap;
+            return configurationAsset.globalMap.GetValue();
         }
 
         public virtual void InitLevel()
@@ -63,11 +63,19 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         }
         public virtual void NextRound()
         {
-            if (roundCurrent < rounds.Length - 1)
+            if (GlobalValues.isBonusLevel)
             {
-                roundCurrent++;
-                levelController.InitRound(roundCurrent);
-                levelController.RestartLevel();
+                GlobalValues.isBonusLevel = false;
+                levelController.ReloadScene();
+                return;
+            }
+
+            if (GlobalValues.currentRound < rounds.Length - 1)
+            {
+                GlobalValues.currentRound++;// roundCurrent++;
+                levelController.ReloadScene();
+                // levelController.InitRound(roundCurrent);
+                // levelController.RestartLevel();
             }
             else
             {
@@ -116,7 +124,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
                 }
                 else if (configurationAsset.globalLevelColors != null)
                 {
-                    cube.SetColors(configurationAsset.globalLevelColors);
+                    cube.SetColors(configurationAsset.globalLevelColors.GetOldValue().colors);
                 }
                 else
                 {
@@ -154,7 +162,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         }
         public void StartRound(int round)
         {
-            roundCurrent = round;
+            //roundCurrent = round;
             currentRoundConfig.Init(levelController);
             currentRoundConfig.Run();
         }
@@ -188,11 +196,12 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         {
             levelController = controller;
         }
+        /*
         public void SetRound(int round)
         {
             roundCurrent = round;
         }
-
+        */
         public void OnDeadQbert()
         {
             levelController.inputController.isEnable = false;

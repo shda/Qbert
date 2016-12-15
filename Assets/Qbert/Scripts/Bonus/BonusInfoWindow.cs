@@ -1,55 +1,56 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using Assets.Qbert.Scripts.GameScene.AnimationToTime;
 using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
 
-public class BonusInfoWindow : MonoBehaviour
+namespace Assets.Qbert.Scripts.Bonus
 {
-    public AnimationToTimeMassive animationToTime;
-    public float duration = 0.5f;
-    public Action OnClose;
-
-    public void ShowInfo()
+    public class BonusInfoWindow : MonoBehaviour
     {
-        gameObject.SetActive(true);
-        StartCoroutine(animationToTime.PlayToTime(duration));
-    }
+        public AnimationToTimeMassive animationToTime;
+        public float duration = 0.5f;
+        public Action OnClose;
 
-    public void Hide()
-    {
-        Debug.Log("Hide");
-
-        StartCoroutine(this.WaitCoroutine(animationToTime.PlayToTime(duration, null, true),
-            transform1 =>
+        public void ShowInfo()
         {
-            if (OnClose != null)
-            {
-                OnClose();
-            }
-            gameObject.SetActive(false);
-        }));
-    }
+            gameObject.SetActive(true);
+            StartCoroutine(animationToTime.PlayToTime(duration));
+        }
 
-    void Show()
-    {
-        ShowInfo();
-    }
+        public void Hide()
+        {
+            Debug.Log("Hide");
 
-    void OnEnable()
-    {
+            StartCoroutine(this.WaitCoroutine(animationToTime.PlayToTime(duration, null, true),
+                transform1 =>
+                {
+                    if (OnClose != null)
+                    {
+                        OnClose();
+                    }
+                    gameObject.SetActive(false);
+                }));
+        }
+
+        void Show()
+        {
+            ShowInfo();
+        }
+
+        void OnEnable()
+        {
         
-    }
+        }
 
-	void Start ()
-    {
-        gameObject.SetActive(false);
-        //Invoke("Show" , 1.0f);
-    }
+        void Start ()
+        {
+            gameObject.SetActive(false);
+            //Invoke("Show" , 1.0f);
+        }
 	
-	void Update ()
-    {
+        void Update ()
+        {
 		
-	}
+        }
+    }
 }

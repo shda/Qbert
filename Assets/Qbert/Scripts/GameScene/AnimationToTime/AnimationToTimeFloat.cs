@@ -1,37 +1,37 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Assets.Qbert.Scripts.GameScene.AnimationToTime;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
-public class AnimationToTimeFloat : ChangeValueToTime
+namespace Assets.Qbert.Scripts.GameScene.AnimationToTime
 {
-    [System.Serializable]
-    public class FloatTweenCallback : UnityEvent<float>
+    public class AnimationToTimeFloat : ChangeValueToTime
     {
-    }
-
-    public float start;
-    public float end;
-
-    public FloatTweenCallback floatTweenCallback;
-
-    public override void ChangeValue(float value)
-    {
-        if (floatTweenCallback != null)
+        [System.Serializable]
+        public class FloatTweenCallback : UnityEvent<float>
         {
-            float val = Mathf.Lerp(start, end, value);
-            floatTweenCallback.Invoke(val);
         }
-    }
 
-    void Start()
-    {
+        public float start;
+        public float end;
 
-    }
+        public FloatTweenCallback floatTweenCallback;
 
-    void Update()
-    {
+        public override void ChangeValue(float value)
+        {
+            if (floatTweenCallback != null)
+            {
+                float val = Mathf.Lerp(start, end, value);
+                floatTweenCallback.Invoke(val);
+            }
+        }
 
+        void Start()
+        {
+
+        }
+
+        void Update()
+        {
+
+        }
     }
 }

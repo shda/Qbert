@@ -1,44 +1,46 @@
 ﻿using System;
-using UnityEngine;
-using System.Collections;
 using Assets.Qbert.Scripts.GameScene.AnimationToTime;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class PreLevelAnimationGui : MonoBehaviour
+namespace Assets.Qbert.Scripts.GameScene.PreLevel
 {
-    public AnimationToTimeOneByOne animationToTimeOneByOne;
-    public AnimationToTimeOneByOne animationShowBonusLevel;
-    public AnimationToTimeOneByOne animationTimerOneByOne;
-
-    public Text textRoundNumber;
-
-    public void StartShowBonus(Action OnEndAnimation)
+    public class PreLevelAnimationGui : MonoBehaviour
     {
-        textRoundNumber.text = "BONUS LEVEL";
+        public AnimationToTimeOneByOne animationToTimeOneByOne;
+        public AnimationToTimeOneByOne animationShowBonusLevel;
+        public AnimationToTimeOneByOne animationTimerOneByOne;
 
-        animationShowBonusLevel.StartOneByOne();
-        animationShowBonusLevel.OnEndAnimation = () =>
+        public Text textRoundNumber;
+
+        public void StartShowBonus(Action OnEndAnimation)
         {
-            animationTimerOneByOne.OnEndAnimation = OnEndAnimation;
-            animationTimerOneByOne.StartOneByOne();
-        };
-    }
+            textRoundNumber.text = "BONUS LEVEL";
 
-    public void StartShowRound(int round , Action OnEndAnimation)
-    {
-        textRoundNumber.text = "ROUND " + round;
+            animationShowBonusLevel.StartOneByOne();
+            animationShowBonusLevel.OnEndAnimation = () =>
+            {
+                animationTimerOneByOne.OnEndAnimation = OnEndAnimation;
+                animationTimerOneByOne.StartOneByOne();
+            };
+        }
 
-        animationToTimeOneByOne.StartOneByOne();
-        animationToTimeOneByOne.OnEndAnimation = OnEndAnimation;
-    }
+        public void StartShowRound(int round , Action OnEndAnimation)
+        {
+            textRoundNumber.text = "ROUND " + round;
 
-	void Start () 
-	{
+            animationToTimeOneByOne.StartOneByOne();
+            animationToTimeOneByOne.OnEndAnimation = OnEndAnimation;
+        }
+
+        void Start () 
+        {
 	
-	}
+        }
 
-	void Update () 
-	{
+        void Update () 
+        {
 	
-	}
+        }
+    }
 }

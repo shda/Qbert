@@ -13,17 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeStart: 5
   timeStepAllLevels: 1
-  mapAssets:
-  - {fileID: 11400000, guid: fa75a73bca9fce04fb0c9d8df374e839, type: 2}
-  - {fileID: 11400000, guid: 909267713c0f0b248bef74e2c7759759, type: 2}
-  - {fileID: 11400000, guid: 7fefbb920cc417141934fb0ec085f6bc, type: 2}
-  - {fileID: 11400000, guid: 78511d5b76fc4db4da28d3dff65b885a, type: 2}
-  - {fileID: 11400000, guid: 2c349a2410e2e20489fa909a033c802e, type: 2}
-  - {fileID: 11400000, guid: 864015176caffc448b00bfe1171c6e4a, type: 2}
-  - {fileID: 11400000, guid: c754f2d56a3ef0747af3a35d47defb44, type: 2}
-  - {fileID: 11400000, guid: ad0dce7c87652ed4aa1aff77b3ac67aa, type: 2}
-  - {fileID: 11400000, guid: d58cf10d6a0d42c4fbfd8d173738c0b1, type: 2}
-  - {fileID: 11400000, guid: 342f9df4e9557224985f13fb94ff30e0, type: 2}
+  bonusMapsAsset: {fileID: 11400000, guid: f8097d97257d9064193d8bb3e5be7f7f, type: 2}
   steps:
   - isCyclic: 0
     startSpeed: 1
