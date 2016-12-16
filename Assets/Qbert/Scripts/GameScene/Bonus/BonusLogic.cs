@@ -41,7 +41,8 @@ namespace Assets.Qbert.Scripts.GameScene.Bonus
             inputController.gameObject.SetActive(false);
             imageButtonPause.gameObject.SetActive(false);
 
-            timerCountdown.SetTimer(5);
+            timerCountdown.SetTimer(
+                (int)levelController.levelLogicSwitcher.GetTimeScaleBonusByLevel(GlobalValues.currentLevel));
 
             levelController.InitBonusLevel();
             levelController.StartLevel();

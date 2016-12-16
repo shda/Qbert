@@ -10,9 +10,17 @@ namespace Assets.Qbert.Scripts
     {
         public static int currentLevel = 0;
         public static int currentRound = 0;
-        public static bool isBonusLevel = true;
+        public static bool isBonusLevel = false;
         public static float score = 0;
         public static int countLive = 1;
+
+        /*
+        public static float qbertTimeJump = 1.0f;
+        public static float qbertTimeRotate = 0.2f;
+        public static float qbertJumpAmplitude = 0.5f;
+        public static float qbertTimeDropDown = 0.4f;
+        public static float qbertDropDownHeight = 4.0f;
+        */
 
         //to respond to the button pressed
         public static bool isRespondButtonPressed = true;

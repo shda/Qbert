@@ -28,6 +28,7 @@ namespace Assets.Qbert.Scripts.GameScene
         public void SetTimer(int countTime)
         {
             time = countTime;
+            UpdateLabel();
         }
 
         public void StartTimer()

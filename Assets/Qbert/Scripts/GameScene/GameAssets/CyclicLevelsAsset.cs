@@ -76,7 +76,7 @@ namespace Assets.Qbert.Scripts.GameScene.GameAssets
 
         public float GetTimeScaleToBonusMapByLevel(int level)
         {
-            return timeStart + level*timeStepAllLevels;
+            return timeStart + (level - 1)*timeStepAllLevels;
         }
     }
 }
