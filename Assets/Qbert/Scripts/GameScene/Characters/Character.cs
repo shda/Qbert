@@ -219,23 +219,22 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             var rotateTo = GetRotationToPoint(point);
             yield return StartCoroutine(RotateTo(rotateTo));
         }
-
+ 
         protected virtual IEnumerator RotateTo(Vector3 rotateTo)
         {
-            var rotateStart = root.rotation.eulerAngles;
-
-            float distance = Vector3.Distance(rotateStart, rotateTo);
-            float speedMoving = distance / timeRotate;
-
-            while (distance > 0.01f)
+            float t = 0;
+            while (t < 1)
             {
-                Vector3 move = Vector3.MoveTowards(root.rotation.eulerAngles,
-                    rotateTo, speedMoving * CoroutinesHalpers.GetTimeDeltatimeScale(iTimeScaler));
-                root.rotation = Quaternion.Euler(move);
-                distance = Vector3.Distance(root.rotation.eulerAngles, rotateTo);
+                t += CoroutinesHalpers.GetTimeDeltatimeScale(iTimeScaler) / timeRotate;
+                root.rotation = Quaternion.Lerp(
+                    root.rotation,
+                    Quaternion.Euler(rotateTo),
+                    t);
                 yield return null;
             }
         }
+
+
 
         protected virtual IEnumerator DropDownAnimation(Vector3 point, Action<Character> OnEnd = null)
         {
@@ -283,10 +282,12 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
                 positionMove = cube.currentPosition;
                 yield return StartCoroutine(RotateToCube(cube));
                 yield return StartCoroutine(JumpAndMove(cube));
+                
                 currentPosition = cube.currentPosition;
                 positionMove = currentPosition;
-
+                
                 cube.OnPressMy(this);
+                
             }
 
             moveCoroutine = null;
