@@ -25,7 +25,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             var configCurrentLevel = GetLevelAssetByLevel(level);
             configLevel.typeLevel = configCurrentLevel.typeLevel;
 
-            //Color[] colorsLevel = GetInitColors(level);
+            Color[] colorsLevel = GetInitColors(level);
 
             /*
             if (colorsLevel != null)

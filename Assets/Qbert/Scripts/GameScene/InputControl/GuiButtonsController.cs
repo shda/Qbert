@@ -30,7 +30,6 @@ namespace Assets.Qbert.Scripts.GameScene.InputControl
 
         }
 
-
         public void EnableButtons()
         {
 
@@ -60,18 +59,17 @@ namespace Assets.Qbert.Scripts.GameScene.InputControl
             }
         }
 
-        public bool GetIsButtonDown(DirectionMove.Direction buttonType)
+        public bool GetIsButtonPress(DirectionMove.Direction buttonType)
         {
             return GetButtonByType(buttonType).button.GetInDown();
         }
 
         public float GetButtonValue(DirectionMove.Direction buttonType)
         {
-
             return GetButtonByType(buttonType).button.GetValue();
         }
 
-        public bool GetButtonIsPressed(DirectionMove.Direction buttonType)
+        public bool GetButtonIsDown(DirectionMove.Direction buttonType)
         {
             return GetButtonByType(buttonType).button.isPressed;
         }

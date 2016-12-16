@@ -108,13 +108,13 @@ namespace Assets.Qbert.Scripts.GameScene
             
             fadeScreen.OnEnd = transform1 =>
             {
-                //StartLevelIn();
-                
+                StartLevelIn();
+                /*
                 preStartLevel.OnStart(() =>
                 {
                     StartLevelIn();
                 });
-                
+                */
             };
 
             fadeScreen.StartDisable(0.5f);

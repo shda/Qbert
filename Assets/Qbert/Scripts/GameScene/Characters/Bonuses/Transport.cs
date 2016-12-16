@@ -121,7 +121,8 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
             var offsetF = offset*0.5f;
             var move = qbert.root.position + new Vector3(0, offsetF, -offsetF);
 
-            levelController.cameraFallowToCharacter.SetTarget(qbert.root);
+            if(levelController.cameraFallowToCharacter != null)
+                levelController.cameraFallowToCharacter.SetTarget(qbert.root);
 
             yield return StartCoroutine(MoveTwo(qbert.root, transform, move, 1.0f));
             yield return StartCoroutine(MoveTwo(qbert.root, transform , transportMoveToPoint , durationMoveToEndPoint) );
@@ -133,7 +134,8 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
             qbert.isCheckColision = true;
             qbert.MoveToCube(cubeJumpAfterMove.currentPosition , () =>
             {
-                levelController.cameraFallowToCharacter.SetTarget(null);
+                if(levelController.cameraFallowToCharacter != null)
+                    levelController.cameraFallowToCharacter.SetTarget(null);
             });
 
             OnStartDestroy();

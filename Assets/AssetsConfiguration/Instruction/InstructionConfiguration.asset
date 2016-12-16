@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalMap: {fileID: 11400000, guid: 596a5ae767faf5a4494c04094134c856, type: 2}
   typeLevel: 0
-  globalLevelColors: {fileID: 11400000, guid: af5c1402c163201409b90dc692369fe8, type: 2}
+  globalLevelColors: {fileID: 11400000, guid: 029beab44520dd841849889cffbbb715, type: 2}
   rounds: []

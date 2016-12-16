@@ -3014,15 +3014,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11419272, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: version
-      value: 0.1.6 build 7
+      value: 0.1.6 build 8
       objectReference: {fileID: 0}
     - target: {fileID: 11419272, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: buildCounter
-      value: 59
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 11419272, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: date
-      value: 161216 01:20
+      value: 161216 03:43
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8100312, guid: d920972237c35e74a88919299e0de2b7, type: 2}

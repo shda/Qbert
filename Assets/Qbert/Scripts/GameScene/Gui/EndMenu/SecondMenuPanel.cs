@@ -273,8 +273,8 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
             float bestScore = GlobalValues.bestScore;
             float currentScore = GlobalValues.score;
 
-            lastScoreText.text = currentScore.ToString();
-            bestScoreText.text = bestScore.ToString();
+            lastScoreText.text = ((int)currentScore).ToString();
+            bestScoreText.text = ((int)bestScore).ToString();
         }
 
         void Start ()

@@ -40,8 +40,11 @@ namespace Assets.Qbert.Scripts.GameScene.InputControl
                 foreach (var value in Enum.GetValues(typeof(DirectionMove.Direction)))
                 {
                     var eValue = (DirectionMove.Direction)value;
-                    if (guiButtonsController.GetIsButtonDown(eValue))
+                    if (guiButtonsController.GetButtonIsDown(eValue))
+                    //if (guiButtonsController.GetIsButtonPress(eValue))
                     {
+                        Debug.Log("IsDown");
+
                         if (OnPress != null)
                         {
                             OnPress(eValue);
