@@ -12,9 +12,22 @@ namespace Assets.Qbert.Scripts.ControlConfiguratorScripts
         public Transform textDetectIntersectionButtons;
         public AnimationToTimeChangeCanvasGroup animationShowHide;
 
+        public Transform[] objectsDisable;
+
         public Action<ControlConfigurator> OnEndConfiguration;
 
         public bool isLock = false;
+
+        private void SwitchObjects(bool isEnable)
+        {
+            if (objectsDisable != null)
+            {
+                foreach (var transform1 in objectsDisable)
+                {
+                    transform1.gameObject.SetActive(isEnable);
+                }
+            }
+        }
 
         public void Show()
         {
@@ -25,6 +38,7 @@ namespace Assets.Qbert.Scripts.ControlConfiguratorScripts
                 isLock = true;
                 StartCoroutine(ActionShow(() =>
                 {
+                    SwitchObjects(false);
                     isLock = false;
                 }));
             }
@@ -75,6 +89,8 @@ namespace Assets.Qbert.Scripts.ControlConfiguratorScripts
         {
             if (!isLock)
             {
+                SwitchObjects(true);
+
                 isLock = true;
                 StartCoroutine(ActionHide(() =>
                 {

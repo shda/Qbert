@@ -16,10 +16,10 @@ MonoBehaviour:
   globalLevelColors: {fileID: 11400000, guid: af5c1402c163201409b90dc692369fe8, type: 2}
   rounds:
   - customColors: []
-    customMap: {fileID: 11400000, guid: 7cf3abf055a119b4a8d6e419796c60f7, type: 2}
+    customMap: {fileID: 11400000, guid: a4cf24cbbebfca847bbaba2485e2ed78, type: 2}
     rulesCustom: {fileID: 11400000, guid: a679ad5499b3ac042b22dbb324967551, type: 2}
     rulesCreateGamplayObjects: []
-    timeToStartRound: 6.927275
+    timeToStartRound: 10.635813
     levelController: {fileID: 0}
   - customColors: []
     customMap: {fileID: 11400000, guid: a4cf24cbbebfca847bbaba2485e2ed78, type: 2}
