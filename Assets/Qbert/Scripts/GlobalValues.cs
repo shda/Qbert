@@ -10,9 +10,12 @@ namespace Assets.Qbert.Scripts
     {
         public static int currentLevel = 0;
         public static int currentRound = 0;
-        public static bool isBonusLevel = false;
+        public static bool isBonusLevel = true;
         public static float score = 0;
         public static int countLive = 1;
+
+        //to respond to the button pressed
+        public static bool isRespondButtonPressed = true;
 
         public const int countGoldToGift = 50;
         public const int countCoinsToEarnVideo = 20;
