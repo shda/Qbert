@@ -62,7 +62,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
         public override bool OnColisionToQbert(Qbert qbert)
         {
-            if (qbert.isCheckColision)
+            //if (qbert.isCheckColision)
             {
                 AddCoins(ScorePrice.addCoinsToCoin);
 
@@ -70,7 +70,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
                 return true;
             }
 
-            return true;
+           // return true;
         }
     }
 }

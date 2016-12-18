@@ -127,7 +127,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
             yield return StartCoroutine(MoveTwo(qbert.root, transform, move, 1.0f));
             yield return StartCoroutine(MoveTwo(qbert.root, transform , transportMoveToPoint , durationMoveToEndPoint) );
 
-            yield return new WaitForSeconds(0.5f);
+            yield return this.WaitForSecondITime(0.5f, iTimeScaler);
 
             gameObject.SetActive(false);
             

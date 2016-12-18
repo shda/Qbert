@@ -85,8 +85,11 @@ namespace Assets.Qbert.Scripts.GameScene
 
                 StartCoroutine(this.WaitForSecondCallback(timeFlashPlaceDown, transform1 =>
                 {
-                    gameplayObject.gameObject.SetActive(true);
-                    gameplayObject.Run();
+                    if (gameplayObject)
+                    {
+                        gameplayObject.gameObject.SetActive(true);
+                        gameplayObject.Run();
+                    }
                 }));
             }
             else
