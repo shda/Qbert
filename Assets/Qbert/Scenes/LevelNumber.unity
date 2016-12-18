@@ -1686,6 +1686,7 @@ MonoBehaviour:
   levelLogicSwitcher: {fileID: 1354007869}
   gameScene: {fileID: 0}
   cameraFallowToCharacter: {fileID: 0}
+  globalConfiguraion: {fileID: 11400000, guid: 0c14cf109b82c384da9aa51fd81cb6fa, type: 2}
   levelLogic: {fileID: 0}
   level: 0
   round: 0
@@ -2817,7 +2818,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8d6a22057f60d4cb926a69b53fe2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalConfiguraion: {fileID: 11400000, guid: 0c14cf109b82c384da9aa51fd81cb6fa, type: 2}
   levelBehaviours:
   - {fileID: 383761110}
   - {fileID: 1140361522}

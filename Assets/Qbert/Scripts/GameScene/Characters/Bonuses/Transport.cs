@@ -130,11 +130,13 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
             yield return new WaitForSeconds(0.5f);
 
             gameObject.SetActive(false);
-            qbert.isFrize = false;
-            qbert.isCheckColision = true;
+            
             qbert.MoveToCube(cubeJumpAfterMove.currentPosition , () =>
             {
-                if(levelController.cameraFallowToCharacter != null)
+                qbert.isFrize = false;
+                qbert.isCheckColision = true;
+
+                if (levelController.cameraFallowToCharacter != null)
                     levelController.cameraFallowToCharacter.SetTarget(null);
             });
 

@@ -20,10 +20,13 @@ namespace Assets.Qbert.Scripts.GameScene.Bonus
 
         public BonusTimer timerCountdown;
         public BonusInfoWindow bonusInfoWindow;
+        public WindowShowCollectedCoins windowShowCollectedCoins;
 
         public Assets.Qbert.Scripts.LoadScene.SelectSceneLoader sceneLoaderShowLevel;
 
         public CameraFallowToCharacter cameraFallowToCharacter;
+
+        private float startCoints;
 
         public void Init()
         {
@@ -52,6 +55,8 @@ namespace Assets.Qbert.Scripts.GameScene.Bonus
 
             fadeScreen.OnEnd = transform1 =>
             {
+                startCoints = GlobalValues.coins;
+
                 if (GlobalValues.isShowInfoWindowToBonusLevel)
                 {
                     GlobalValues.isShowInfoWindowToBonusLevel = false;
@@ -90,12 +95,21 @@ namespace Assets.Qbert.Scripts.GameScene.Bonus
                     imageButtonPause.gameObject.SetActive(false);
 
                     GlobalValues.isBonusLevel = false;
-
-                    LoadSceneShowLevel();
+                    EndTimer();
                 };
 
                 timerCountdown.StartTimer();
             });
+        }
+
+        public void EndTimer()
+        {
+            windowShowCollectedCoins.OnClose = () =>
+            {
+                LoadSceneShowLevel();
+            };
+
+            windowShowCollectedCoins.ShowInfo((int) (GlobalValues.coins - startCoints));
         }
 
         public void LoadSceneShowLevel()
