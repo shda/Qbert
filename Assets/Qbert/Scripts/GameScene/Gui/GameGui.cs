@@ -16,7 +16,14 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
         public LevelController levelController;
 
         private bool isWatchAd = false;
-        
+        [SerializeField]
+        private Transform buttonaPause;
+
+        public void SetEnableButtonPause(bool isEnable)
+        {
+            buttonaPause.gameObject.SetActive(isEnable);
+        }
+
         public void OnPressButtonPause()
         {
             menuPause.Show();

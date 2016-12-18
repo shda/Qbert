@@ -30,7 +30,8 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         public bool isPlay;
 
         private static float oldTime;
-        
+
+  
         public void AddScore(float score)
         {
             if (gameGui)
@@ -69,6 +70,10 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             inputController.isEnable = true;
             Time.timeScale = 1.0f;
 
+            SetPauseGamplayObjects(false);
+            SetPauseQbert(false);
+            gameGui.SetEnableButtonPause(true);
+
             gameplayObjects.DestroyAllEnemies();
             levelLogic.currentRoundConfig.ResetRound();
             qbert.SetStartPosition(qbert.currentPosition);
@@ -95,7 +100,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         {
             inputController.isEnable = false;
             SetPauseGamplayObjects(true);
-            Time.timeScale = 1.0f;
+            //Time.timeScale = 1.0f;
 
             GlobalValues.UpdateBestScore();
 
@@ -126,6 +131,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         {
             isPlay = !isPause;
             qbert.SetTimeScaler(isPause?  gameplayObjects  : null);
+            qbert.SetPauseAnimation(!isPause);
         }
 
         public MapAsset GetMapAssetFromLevel()

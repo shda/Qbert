@@ -23460,6 +23460,7 @@ MonoBehaviour:
   endGameGui: {fileID: 665671989}
   menuPause: {fileID: 1662843896}
   levelController: {fileID: 879627223}
+  buttonaPause: {fileID: 1984241521}
 --- !u!1 &1431997203
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
         public Transform boobleDead;
         public Transform rootModel;
 
+        private Animator rootModelAnimator;
+
         public override Type typeObject
         {
             get { return Type.Qbert; }
@@ -20,11 +22,15 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 
         public void OnEnemyAttack()
         {
-            //return;;
             boobleDead.gameObject.SetActive(true);
             boobleDead.rotation = Quaternion.Euler(0, 0, 0);
 
             levelController.levelLogic.OnDeadQbert();
+        }
+
+        public void SetPauseAnimation(bool isPause)
+        {
+            rootModelAnimator.enabled = isPause;
         }
 
         public override void SetStartPosition(PositionCube startPositionQbert)
@@ -95,6 +101,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
         public void UpdateModel()
         {
             SetModel(GlobalValues.currentModel);
+            rootModelAnimator = rootModel.GetComponent<Animator>();
         }
 
         public void SetModel(string name = "Default")

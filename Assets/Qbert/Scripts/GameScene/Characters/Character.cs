@@ -270,6 +270,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             {
                 yield return StartCoroutine(RotateToPoint(point));
                 yield return StartCoroutine(JumpAndMoveToPoint(point));
+                yield return this.WaitForSecondITime(pauseAfterMove, iTimeScaler);
             }
 
             moveCoroutine = null;
@@ -337,9 +338,6 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 
                 yield return null;
             }
-
-
-            yield return this.WaitForSecondITime(pauseAfterMove  , iTimeScaler);
 
             root.position = movingTo;
         }
