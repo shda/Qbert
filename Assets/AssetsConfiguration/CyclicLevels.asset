@@ -28,20 +28,20 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 00914f6dc7a9e2847b5d5973ea2fac1a, type: 2}
     - {fileID: 11400000, guid: 9bf25fee40a0c2a43b10adc174fcd233, type: 2}
     - {fileID: 11400000, guid: 036225697dbfd884d98f6dfda207be15, type: 2}
-    - {fileID: 11400000, guid: c1a7a3645fa96ea499f1cb0f8f85d48e, type: 2}
-    - {fileID: 11400000, guid: 1d25f71ebe0822b428f83ad0ee4febab, type: 2}
-    - {fileID: 11400000, guid: 337369d3713164744a80ccd8ba21da84, type: 2}
-    - {fileID: 11400000, guid: 9d0882ded4fe6ee4e8ce83a4538bc272, type: 2}
-    - {fileID: 11400000, guid: 855b49f492e609d45b0cb1a36dc32dce, type: 2}
+    - {fileID: 11400000, guid: c4c75a4625e44fd408e3e34b31d14f09, type: 2}
+    - {fileID: 11400000, guid: 44a48af902c83284b8b69ead20f69d08, type: 2}
+    - {fileID: 11400000, guid: 1fbf5d900f92f9b46aee8ca1ba234b24, type: 2}
+    - {fileID: 11400000, guid: fcfaf288cb619d741bbdd738a4abe484, type: 2}
+    - {fileID: 11400000, guid: 795395ece411e4f4dbab31b4bbffbb39, type: 2}
   - isCyclic: 0
     startSpeed: 1.2
     upSpeedAfterCyclic: 0
     levelsAssets:
-    - {fileID: 11400000, guid: 4908c8f7f998e5141ae6ee864b864043, type: 2}
-    - {fileID: 11400000, guid: 0bdf34941d96e3a4c9cf44c1dc1fe14b, type: 2}
-    - {fileID: 11400000, guid: 70da1533afa5c904fa67f5b517c891f2, type: 2}
-    - {fileID: 11400000, guid: a1579d86f1e9ad247aefdc7008e78599, type: 2}
-    - {fileID: 11400000, guid: 2ffe0ceb3af61c2439d24851217db785, type: 2}
+    - {fileID: 11400000, guid: cf6453d95db8c0f418d85a80b8b07ad9, type: 2}
+    - {fileID: 11400000, guid: fd3423aceb2b79345b0ae68e14ff3d9e, type: 2}
+    - {fileID: 11400000, guid: 078c2e29853e3d741bb395281e9ab740, type: 2}
+    - {fileID: 11400000, guid: 466f6ac0a3a7f874db9a3033a6ee3442, type: 2}
+    - {fileID: 11400000, guid: 69846f724b062d44b8f8fa5113a8e5c4, type: 2}
   - isCyclic: 1
     startSpeed: 1.4
     upSpeedAfterCyclic: 0.2

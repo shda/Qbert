@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Threading;
 using Assets.Qbert.Scripts.GameScene.Levels;
 using Assets.Qbert.Scripts.GameScene.Sound;
 using Assets.Qbert.Scripts.Utils;
@@ -65,6 +66,10 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
         public float jumpAmplitude = 0.5f;
         public float timeDropDown = 0.4f;
         public float dropDownHeight = 4.0f;
+        public float pauseAfterMove = 0f;
+
+        public CharacterParams characterParams;
+
         public bool isFrize = false;
         public bool isCheckColision = true;
         public AnimationToTime.AnimationToTime jumpAnimationToTime;
@@ -113,7 +118,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 
         public virtual void Init()
         {
-           
+            
         }
 
         public virtual bool OnPressCube(Cube cube)
@@ -332,6 +337,9 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 
                 yield return null;
             }
+
+
+            yield return this.WaitForSecondITime(pauseAfterMove  , iTimeScaler);
 
             root.position = movingTo;
         }

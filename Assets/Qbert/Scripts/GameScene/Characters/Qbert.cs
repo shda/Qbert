@@ -8,14 +8,12 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 {
     public class Qbert : GameplayObject
     {
-        public Transform fallowFront;
-
         public GlobalConfigurationAsset configuration;
 
         public Transform boobleDead;
         public Transform rootModel;
 
-        public virtual Type typeObject
+        public override Type typeObject
         {
             get { return Type.Qbert; }
         }
@@ -81,6 +79,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 
         public override void Run()
         {
+            InitInter();
             boobleDead.gameObject.SetActive(false);
             isFrize = false;
             isCheckColision = true;
@@ -131,6 +130,17 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             }
         }
 
-        
+        private void InitInter()
+        {
+            var config = levelController.globalConfiguraion.qubertConfiguration;
+
+            timeMove        = config.timeMove;
+            timeRotate      = config.timeRotate;
+            jumpAmplitude   = config.jumpAmplitude;
+            timeDropDown    = config.timeDropDown;
+            dropDownHeight  = config.dropDownHeight;
+            pauseAfterMove  = config.pauseAfterMove;
+        }
+
     }
 }

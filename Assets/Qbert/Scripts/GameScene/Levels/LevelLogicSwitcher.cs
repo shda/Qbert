@@ -7,7 +7,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 {
     public class LevelLogicSwitcher : MonoBehaviour
     {
-        public GlobalConfigurationAsset globalConfiguraion;
+        
         public LevelLogic[] levelBehaviours;
    
         public LevelController levelController;
@@ -21,7 +21,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         */
         public LevelLogic InitLevelLoad(int level)
         {
-            var configLevel = globalConfiguraion.assetLoadLevel;
+            var configLevel = levelController.globalConfiguraion.assetLoadLevel;
             var configCurrentLevel = GetLevelAssetByLevel(level);
             configLevel.typeLevel = configCurrentLevel.typeLevel;
 
@@ -69,7 +69,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
         public LevelLogic GetBonusLogic()
         {
-            var configLevel = globalConfiguraion.assetBonusLevels;
+            var configLevel = levelController.globalConfiguraion.assetBonusLevels;
 
             var levelBehaviour = levelBehaviours.First(x => x.type == configLevel.typeLevel);
             levelBehaviour.SetController(levelController);
@@ -89,7 +89,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             CyclicLevelsAsset.StepCyclic findStepCyclic;
             LevelConfigAsset levelConfigAsset;
 
-            globalConfiguraion.cyclicLevelsAsset.GetStepCyclicByLevel(level,
+            levelController.globalConfiguraion.cyclicLevelsAsset.GetStepCyclicByLevel(level,
                 ref timeScale, out findStepCyclic, out levelConfigAsset);
 
             return levelConfigAsset;
@@ -101,7 +101,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             CyclicLevelsAsset.StepCyclic findStepCyclic;
             LevelConfigAsset levelConfigAsset;
 
-            globalConfiguraion.cyclicLevelsAsset.GetStepCyclicByLevel(level,
+            levelController.globalConfiguraion.cyclicLevelsAsset.GetStepCyclicByLevel(level,
                 ref timeScale, out findStepCyclic, out levelConfigAsset);
 
             return timeScale;
@@ -109,12 +109,12 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
         public MapAsset GetBonusMapByLevel(int level)
         {
-            return globalConfiguraion.cyclicLevelsAsset.GetBonusMapByLevel(level);
+            return levelController.globalConfiguraion.cyclicLevelsAsset.GetBonusMapByLevel(level);
         }
 
         public float GetTimeScaleBonusByLevel(int level)
         {
-            return globalConfiguraion.cyclicLevelsAsset.GetTimeScaleToBonusMapByLevel(level);
+            return levelController.globalConfiguraion.cyclicLevelsAsset.GetTimeScaleToBonusMapByLevel(level);
         }
 
         void Start ()
@@ -132,7 +132,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
                 CyclicLevelsAsset.StepCyclic findStepCyclic;
                 LevelConfigAsset levelConfigAsset;
 
-                globalConfiguraion.cyclicLevelsAsset.GetStepCyclicByLevel(level,
+                levelController.globalConfiguraion.cyclicLevelsAsset.GetStepCyclicByLevel(level,
                     ref timeScale, out findStepCyclic, out levelConfigAsset);
 
                 Debug.Log(levelConfigAsset.typeLevel + " ___ " + timeScale);

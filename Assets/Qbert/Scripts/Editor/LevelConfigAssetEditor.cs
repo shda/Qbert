@@ -5,7 +5,7 @@ using Assets.Qbert.Scripts.GameScene.AnimationToTime;
 using Assets.Qbert.Scripts.GameScene.GameAssets;
 using UnityEditor;
 
-[CustomEditor(typeof(LevelConfigAsset))]
+[CustomEditor(typeof(LevelConfigAsset)), CanEditMultipleObjects]
 public class LevelConfigAssetEditor : Editor
 {
     private Editor _editor;

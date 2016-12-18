@@ -13,10 +13,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalMap: {fileID: 11400000, guid: ee7b43829c2ef11498c2470ccdc170c7, type: 2}
   typeLevel: 2
-  globalLevelColors: {fileID: 0}
+  globalLevelColors: {fileID: 11400000, guid: af5c1402c163201409b90dc692369fe8, type: 2}
   rounds:
   - customColors: []
     customMap: {fileID: 0}
+    rulesCustom: {fileID: 0}
+    rulesCreateGamplayObjects: []
+    timeToStartRound: 0
+    levelController: {fileID: 0}
+  - customColors: []
+    customMap: {fileID: 0}
+    rulesCustom: {fileID: 0}
+    rulesCreateGamplayObjects: []
+    timeToStartRound: 0
+    levelController: {fileID: 0}
+  - customColors: []
+    customMap: {fileID: 0}
+    rulesCustom: {fileID: 0}
     rulesCreateGamplayObjects: []
     timeToStartRound: 0
     levelController: {fileID: 0}

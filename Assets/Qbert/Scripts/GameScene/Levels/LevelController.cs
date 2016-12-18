@@ -19,6 +19,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         public LevelLogicSwitcher levelLogicSwitcher;
         public GameScene gameScene;
         public CameraFallowToCharacter cameraFallowToCharacter;
+        public GlobalConfigurationAsset globalConfiguraion;
 
         [HideInInspector]
         public LevelLogic levelLogic;

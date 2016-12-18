@@ -14927,6 +14927,7 @@ MonoBehaviour:
   levelLogicSwitcher: {fileID: 1354007869}
   gameScene: {fileID: 1796972886}
   cameraFallowToCharacter: {fileID: 48144431}
+  globalConfiguraion: {fileID: 11400000, guid: 0c14cf109b82c384da9aa51fd81cb6fa, type: 2}
   levelLogic: {fileID: 0}
   level: 0
   round: 0
@@ -18147,6 +18148,14 @@ Prefab:
       propertyPath: dropDownHeight
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 11497194, guid: d50f0b5ca6a17f444bad792f4bbe1f2c, type: 2}
+      propertyPath: timeMove
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497194, guid: d50f0b5ca6a17f444bad792f4bbe1f2c, type: 2}
+      propertyPath: pauseAfterMove
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d50f0b5ca6a17f444bad792f4bbe1f2c, type: 2}
   m_IsPrefabParent: 0
@@ -21224,15 +21233,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11419272, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: version
-      value: 0.1.6 build 10
+      value: 0.1.6 build 11
       objectReference: {fileID: 0}
     - target: {fileID: 11419272, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: buildCounter
-      value: 62
+      value: 63
       objectReference: {fileID: 0}
     - target: {fileID: 11419272, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: date
-      value: 161216 04:23
+      value: 161216 04:42
       objectReference: {fileID: 0}
     - target: {fileID: 148776, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: m_IsActive
@@ -21848,7 +21857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8d6a22057f60d4cb926a69b53fe2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalConfiguraion: {fileID: 11400000, guid: 0c14cf109b82c384da9aa51fd81cb6fa, type: 2}
   levelBehaviours:
   - {fileID: 383761110}
   - {fileID: 1140361522}

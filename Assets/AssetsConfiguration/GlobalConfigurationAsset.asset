@@ -11,6 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36947aeb0fb354842b6335a974fafc4b, type: 3}
   m_Name: GlobalConfigurationAsset
   m_EditorClassIdentifier: 
+  qubertConfiguration:
+    timeMove: 0.3
+    timeRotate: 0.1
+    jumpAmplitude: 1.5
+    timeDropDown: 0.3
+    dropDownHeight: 7
+    pauseAfterMove: 0.1
   characters:
   - {fileID: 11434804, guid: 97ce3723bfccf524c9cde7dce8ad7410, type: 2}
   - {fileID: 114000012715688472, guid: c27a83272f973c04aa3080214d345a7a, type: 2}
@@ -28,7 +35,6 @@ MonoBehaviour:
   - {fileID: 114000013314257888, guid: 3f1ba401a08e7bd4aa2c7325e0fee637, type: 2}
   - {fileID: 114000012656154532, guid: dac93be61f5029045895c859eddb4647, type: 2}
   - {fileID: 114000013752991108, guid: 609752ecd49813e4da6ffd3164b0c789, type: 2}
-  debugQuickStart: 0
   assetLoadLevel: {fileID: 11400000, guid: e83d963050f53b5409638bd78b679a00, type: 2}
   assetInstruction: {fileID: 11400000, guid: 70afaa749854a7b4e853ce9f0a8d4223, type: 2}
   assetBonusLevels: {fileID: 11400000, guid: 3bba06b1c54dffa4abb8d16156986713, type: 2}
