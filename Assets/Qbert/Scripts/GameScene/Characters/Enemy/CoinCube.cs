@@ -10,7 +10,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
     {
         public override Type typeObject
         {
-            get { return Type.CoinCube; }
+            get { return Type.CoinGold; }
         }
 
         public override bool CanJumpToMy

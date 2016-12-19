@@ -33,8 +33,10 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             BlueCube,
             ColoredCube,
             PinkCube,
-            CoinCube,
+            CoinGold,
             Qbert,
+            CoinRed,
+            CoinWhite,
         }
 
         public Vector3 NoOffsetpos { get; set; }
@@ -288,7 +290,8 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
                 positionMove = cube.currentPosition;
                 yield return StartCoroutine(RotateToCube(cube));
                 yield return StartCoroutine(JumpAndMove(cube));
-                
+                yield return this.WaitForSecondITime(pauseAfterMove, iTimeScaler);
+
                 currentPosition = cube.currentPosition;
                 positionMove = currentPosition;
                 

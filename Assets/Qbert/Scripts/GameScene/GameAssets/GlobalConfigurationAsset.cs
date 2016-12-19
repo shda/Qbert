@@ -7,13 +7,6 @@ namespace Assets.Qbert.Scripts.GameScene.GameAssets
 {
     public class GlobalConfigurationAsset : ScriptableObject
     {
-        [System.Serializable]
-        public class UnitConfiguration
-        {
-            public Character.Type type;
-            public CharacterParams qbertParams;
-        }
-
         public CharacterParams qubertConfiguration;
 
         public QbertModel[] characters;

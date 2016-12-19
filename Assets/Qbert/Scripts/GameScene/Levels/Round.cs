@@ -91,6 +91,11 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
         public int GetCountObjectToScene(GameplayObject.Type type)
         {
+            if (levelController == null)
+            {
+                return int.MaxValue;
+            }
+
             return levelController.gameplayObjects.GetCountObjectToScene(type);
         }
     }

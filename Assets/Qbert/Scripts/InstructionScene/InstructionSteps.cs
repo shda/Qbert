@@ -155,7 +155,7 @@ namespace Assets.Qbert.Scripts.InstructionScene
             yield return null;
 
             CreateObjectToPoint(Character.Type.BlueCube, 3, 1);
-            CreateObjectToPoint(Character.Type.CoinCube, 4, 1);
+            CreateObjectToPoint(Character.Type.CoinGold, 4, 1);
             CreateObjectToPoint(Character.Type.ColoredCube, 4, 2);
 
             yield return new WaitForSeconds(3.0f);

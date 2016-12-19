@@ -36,7 +36,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             base.StartLevel(round);
             for (int i = 0; i < 10; i++)
             {
-                levelController.gameplayObjects.AddGameplayObjectToGame(Character.Type.CoinCube);
+                levelController.gameplayObjects.AddGameplayObjectToGame(Character.Type.CoinGold);
             }
         }
     }
