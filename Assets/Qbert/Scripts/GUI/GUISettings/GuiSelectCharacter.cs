@@ -8,14 +8,15 @@ using Assets.Qbert.Scripts.GameScene.GameAssets;
 using Assets.Qbert.Scripts.GestureRecognizerScripts;
 using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Qbert.Scripts.GUI.GUISettings
 {
     public class GuiSelectCharacter : SwipeModel<QbertModel>
     {
         public GlobalConfigurationAsset globalConfigurationAsset;
-        public TextMesh nameCurrentCharacter;
-        public TextMesh descriptionCurrentCharacter;
+        public Text nameCurrentCharacter;
+        public Text descriptionCurrentCharacter;
         public CameraMenuController cameraMenuController;
         public GuiMainMenu rootMenu;
         public Transform playImage;
@@ -143,7 +144,19 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
         public void UpdateInfoFromModel(QbertModel model)
         {
             nameCurrentCharacter.text = model.nameCharacter.ToUpper();
-            descriptionCurrentCharacter.text = model.description.ToUpper();
+            if (model.coinsMultiplier > 1)
+            {
+                descriptionCurrentCharacter.text =
+                    string.Format("{0} <color=yellow>X{1}</color>", 
+                    "MULTIPLY COINS BY", model.coinsMultiplier);
+            }
+            else
+            {
+                descriptionCurrentCharacter.text = "";
+            }
+            
+
+
 
             if (model.isFree || model.isBuyed())
             {
