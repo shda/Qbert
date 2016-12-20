@@ -15,7 +15,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
         {
             if (qbert.isCheckColision)
             {
-                AddScore(ScorePrice.getClueCube);
+                AddScore(levelController.globalConfiguraion.scoprePrice.getClueCube);
 
                 levelController.StartPauseGameObjectsToSecond(timeStopDuration);
                 OnStartDestroy();

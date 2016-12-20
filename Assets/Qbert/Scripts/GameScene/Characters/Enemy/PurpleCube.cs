@@ -130,7 +130,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
         {
             var jumpTo = levelController.mapField.mapGenerator.GetPointOutsideFieldToPosition(end);
 
-            AddScore(ScorePrice.dropPurpeCube);
+            AddScore(levelController.globalConfiguraion.scoprePrice.dropPurpeCube);
 
             Vector3 newPos = jumpTo.transform.position;
             MoveToPointAndDropDown(newPos, character =>

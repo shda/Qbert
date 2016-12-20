@@ -13,7 +13,22 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
         public Transform boobleDead;
         public Transform rootModel;
 
+        private QbertModel model;
+
         private Animator rootModelAnimator;
+
+        public int cointMultiplier
+        {
+            get
+            {
+                if (model != null)
+                {
+                    return model.coinsMultiplier;
+                }
+
+                return 1;
+            }
+        }
 
         public override Type typeObject
         {
@@ -43,15 +58,15 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
         {
             if (cube.lastState < cube.stateColor && !cube.isSet)
             {
-                AddScore(ScorePrice.pressCubeMediumColor);
+                AddScore(levelController.globalConfiguraion.scoprePrice.pressCubeMediumColor);
             }
             else if (cube.lastState < cube.stateColor && cube.isSet)
             {
-                AddScore(ScorePrice.pressCubeNeedColor);
+                AddScore(levelController.globalConfiguraion.scoprePrice.pressCubeNeedColor);
             }
             else if (cube.lastState > cube.stateColor && !cube.isSet)
             {
-                AddScore(ScorePrice.pressCubeMediumColor);
+                AddScore(levelController.globalConfiguraion.scoprePrice.pressCubeMediumColor);
             }
         
             return base.OnPressCube(cube);
@@ -124,7 +139,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
                 tr.localRotation = Quaternion.Euler(0,0,0);
                 tr.localScale = new Vector3(1,1,1);
 
-                var model = tr.GetComponent<QbertModel>();
+                model = tr.GetComponent<QbertModel>();
                 boobleDead = model.booldeDead;
                 collisionProxy = model.collisionProxy;
                 collisionProxy.proxyObject = transform;

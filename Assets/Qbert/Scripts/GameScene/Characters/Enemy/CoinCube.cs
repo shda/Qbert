@@ -31,20 +31,24 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
                 x => x.cubeInMap.listTypeObjectsStartPoint != null &&
                      x.cubeInMap.listTypeObjectsStartPoint.Contains(typeObject));
 
+            var ieList = points;
+
             if (points.Any())
             {
-                cubeSet = points.Mix().First();
+                ieList = points.Mix();
             }
             else
             {
-                var map = levelController.mapField.mapGenerator.map.ToArray();
-                cubeSet = map.Mix().First();
+                ieList = levelController.mapField.mapGenerator.map;
             }
 
-            var gaToPoint = levelController.gameplayObjects.GetGameplayObjectInPoint(cubeSet.currentPosition);
-            if (gaToPoint == null)
+            foreach (var value in ieList)
             {
-                return SetObject(root, levelController, cubeSet.currentPosition);
+                var gaToPoint = levelController.gameplayObjects.GetGameplayObjectInPoint(value.currentPosition);
+                if (gaToPoint == null)
+                {
+                    return SetObject(root, levelController, value.currentPosition);
+                }
             }
 
             return null;
@@ -62,15 +66,9 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
         public override bool OnColisionToQbert(Qbert qbert)
         {
-            //if (qbert.isCheckColision)
-            {
-                AddCoins(ScorePrice.addCoinsToCoin);
-
-                OnStartDestroy();
-                return true;
-            }
-
-           // return true;
+            AddCoins(levelController.globalConfiguraion.scoprePrice.addCoinsGoldToCoin * qbert.cointMultiplier);
+            OnStartDestroy();
+            return true;
         }
     }
 }

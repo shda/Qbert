@@ -12,6 +12,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
         public TextMesh booleTextMesh;
         public CollisionProxy collisionProxy;
 
+        public int coinsMultiplier;
         public int priceCoins;
         public float price;
 

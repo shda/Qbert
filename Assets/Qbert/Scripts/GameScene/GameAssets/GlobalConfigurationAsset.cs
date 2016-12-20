@@ -8,6 +8,7 @@ namespace Assets.Qbert.Scripts.GameScene.GameAssets
     public class GlobalConfigurationAsset : ScriptableObject
     {
         public CharacterParams qubertConfiguration;
+        public ScorePrice scoprePrice;
 
         public QbertModel[] characters;
         public CoinBuyModels[] coinsModels;

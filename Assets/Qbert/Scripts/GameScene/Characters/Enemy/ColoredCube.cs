@@ -30,7 +30,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
         {
             if (qbert.isCheckColision)
             {
-                AddScore(ScorePrice.getColorCube);
+                AddScore(levelController.globalConfiguraion.scoprePrice.getColorCube);
                 OnStartDestroy();
                 return true;
             }

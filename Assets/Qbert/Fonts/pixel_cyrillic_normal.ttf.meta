@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 54896d37cd31840488b71968c2239107
+timeCreated: 1482191724
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Pixel Cyrillic
+  fontNames:
+  - Pixel Cyrillic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -15,15 +15,9 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
         public override bool OnColisionToQbert(Qbert qbert)
         {
-            //if (qbert.isCheckColision)
-            {
-                AddCoins(ScorePrice.addCoinsToCoin);
-
-                OnStartDestroy();
-                return true;
-            }
-
-            // return true;
+            AddCoins(levelController.globalConfiguraion.scoprePrice.addCoinsWhiteToCoin * qbert.cointMultiplier);
+            OnStartDestroy();
+            return true;
         }
     }
 }

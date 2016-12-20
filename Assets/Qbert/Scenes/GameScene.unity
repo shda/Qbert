@@ -575,6 +575,10 @@ MonoBehaviour:
   - {r: 0, g: 0.048275948, b: 1, a: 1}
   - {r: 0.56120694, g: 0, b: 0.6838235, a: 1}
   - {r: 0.1586206, g: 1, b: 0, a: 1}
+  startRedCoinChancePercent: 20
+  startWhiteCoinChancePercent: 10
+  incrementByLevelRed: 2
+  incrementByLevelWhite: 1
 --- !u!1 &28383682
 GameObject:
   m_ObjectHideFlags: 0

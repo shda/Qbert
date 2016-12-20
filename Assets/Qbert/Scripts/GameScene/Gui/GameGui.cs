@@ -93,7 +93,7 @@ namespace Assets.Qbert.Scripts.GameScene.Gui
             GlobalValues.coins += addCoins;
             GlobalValues.Save();
 
-            SetCoins(GlobalValues.coins);
+            coinsLabel.SetValue(GlobalValues.coins);
         }
 
         public void AddScore(float addScore)

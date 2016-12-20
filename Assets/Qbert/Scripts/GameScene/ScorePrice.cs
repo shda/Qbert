@@ -2,15 +2,20 @@
 
 namespace Assets.Qbert.Scripts.GameScene
 {
-    public class ScorePrice : MonoBehaviour 
+    [System.Serializable]
+    public class ScorePrice 
     {
-        public const float pressCubeNeedColor = 1;
-        public const float pressCubeMediumColor = 0.5f;
-        public const float getClueCube = 4;
-        public const float getColorCube = 10;
-        public const float dropPurpeCube = 20;
-        public const float dontUsingTransport = 2;
+        [Header("Add score if:")]
+        public float pressCubeNeedColor = 1;
+        public float pressCubeMediumColor = 0.5f;
+        public float getClueCube = 4;
+        public float getColorCube = 10;
+        public float dropPurpeCube = 20;
+        public float dontUsingTransport = 2;
 
-        public const int addCoinsToCoin = 1;
+        [Header("Add gold if:")]
+        public int addCoinsGoldToCoin = 1;
+        public int addCoinsRedToCoin = 5;
+        public int addCoinsWhiteToCoin = 10;
     }
 }
