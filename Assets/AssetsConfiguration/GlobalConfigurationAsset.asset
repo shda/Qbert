@@ -17,7 +17,17 @@ MonoBehaviour:
     jumpAmplitude: 1.5
     timeDropDown: 0.3
     dropDownHeight: 7
-    pauseAfterMove: 0.1
+    pauseAfterMove: 0
+  scoprePrice:
+    pressCubeNeedColor: 1
+    pressCubeMediumColor: 0.5
+    getClueCube: 4
+    getColorCube: 10
+    dropPurpeCube: 20
+    dontUsingTransport: 2
+    addCoinsGoldToCoin: 1
+    addCoinsRedToCoin: 5
+    addCoinsWhiteToCoin: 10
   characters:
   - {fileID: 11434804, guid: 97ce3723bfccf524c9cde7dce8ad7410, type: 2}
   - {fileID: 114000012715688472, guid: c27a83272f973c04aa3080214d345a7a, type: 2}

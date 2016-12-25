@@ -453,7 +453,7 @@ MonoBehaviour:
   booldeDead: {fileID: 4000011300129630}
   booleTextMesh: {fileID: 102000013196109018}
   collisionProxy: {fileID: 114000013551976446}
-  coinsMultiplier: 8
+  coinsMultiplier: 9
   priceCoins: 400
   price: 0.99
   description: Hero description.
