@@ -143,7 +143,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
                 if (!isMoving)
                 {
-                    Cube cubeTarget = null;// GetNextCube();
+                    Cube cubeTarget = null;
 
                     if (GetMoveCube(ref cubeTarget))
                     {
@@ -202,7 +202,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             return cube.rightSide.rotation.eulerAngles;
         }
 
-        protected override IEnumerator RotateToCube(Cube cube)
+        public override IEnumerator RotateToCube(Cube cube)
         {
             var rotateTo = GetRotationToCube(cube);
             yield return StartCoroutine(RotateTo(rotateTo));

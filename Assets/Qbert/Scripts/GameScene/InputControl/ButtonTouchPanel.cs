@@ -20,6 +20,12 @@ namespace Assets.Qbert.Scripts.GameScene.InputControl
         {
             defaultScele = transform.localScale;
         }
+
+        void OnEnable()
+        {
+            isPressed = false;
+        }
+
         void Update ()
         {
             if (isPressed)

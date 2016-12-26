@@ -64,10 +64,15 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             yield return StartCoroutine(DropToCube());
         }
 
-        public override bool OnColisionToQbert(Qbert qbert)
+        public override bool OnProcessingQbertCollision(Qbert qbert)
         {
-            AddCoins(levelController.globalConfiguraion.scoprePrice.addCoinsGoldToCoin * qbert.cointMultiplier);
-            OnStartDestroy();
+            if (qbert.checkCollision == CollisionCheck.All ||
+                qbert.checkCollision == CollisionCheck.OnlyBonus)
+            {
+                AddCoins(levelController.globalConfiguraion.scoprePrice.addCoinsGoldToCoin * qbert.cointMultiplier);
+                OnStartDestroy();
+            }
+
             return true;
         }
     }

@@ -12,6 +12,8 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
         [Header("RedCube")]
         public float heightDrop = 3.0f;
 
+        public float pauseTimeAfterJump = 1.0f;
+
         [SerializeField]
         protected float maxStuckTime = 4.0f;
         protected bool  isStuck = false;
@@ -84,7 +86,8 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
                         if (cubeTarget)
                         {
                             MoveToCube(cubeTarget);
-                            yield return StartCoroutine(this.WaitForSecondITime(1.0f, iTimeScaler));
+                            yield return StartCoroutine(
+                                this.WaitForSecondITime(pauseTimeAfterJump, iTimeScaler));
                         }
                         else if (!IsEndLine())
                         {
@@ -104,7 +107,6 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             var cube = levelController.mapField.GetCube(currentPosition);
             return cube.nodes.Any(x => x.currentPosition.y > currentPosition.y);
         }
-
 
         protected virtual IEnumerator ReachedLowerLevel(DirectionMove.Direction direction)
         {
@@ -166,6 +168,16 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             {
                 currentStuckTimer = 0;
             }
+        }
+
+        public override bool OnProcessingQbertCollision(Qbert qbert)
+        {
+            if (qbert.checkCollision == CollisionCheck.All)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

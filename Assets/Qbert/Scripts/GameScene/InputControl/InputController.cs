@@ -61,7 +61,6 @@ namespace Assets.Qbert.Scripts.GameScene.InputControl
                             }
                         }
                     }
-
                 }
             }
         }

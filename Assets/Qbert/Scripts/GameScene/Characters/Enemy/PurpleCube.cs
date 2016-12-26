@@ -110,7 +110,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 
                 if (myCubePath == qbertCubePath)
                 {
-                    Drop(myPoint, qbertPoint);
+                    Drop(myPoint, qbertPoint , true);
                     return qbertPoint;
                 }
             }
@@ -126,7 +126,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             return qbertPoint;
         }
 
-        public void Drop(PositionCube start , PositionCube end)
+        public void Drop(PositionCube start , PositionCube end , bool removeAllObjectWitchoutCoins = false)
         {
             var jumpTo = levelController.mapField.mapGenerator.GetPointOutsideFieldToPosition(end);
 
@@ -135,8 +135,19 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             Vector3 newPos = jumpTo.transform.position;
             MoveToPointAndDropDown(newPos, character =>
             {
+                if (removeAllObjectWitchoutCoins)
+                {
+                    RemoveAllObjectWitchoutCoins();
+                }
+
                 OnStartDestroy();
             });
+        }
+
+        private void RemoveAllObjectWitchoutCoins()
+        {
+            levelController.gameplayObjects.RemoveObjects(
+                new []{Type.CoinGold, Type.CoinRed, Type.CoinWhite, Type.Transport, });
         }
 
         public int GetDistance(PositionCube start, PositionCube end)
@@ -144,9 +155,14 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             return Mathf.Abs(start.y - end.y) + Mathf.Abs(start.x - end.x);
         }
 
-        public override bool OnColisionToQbert(Qbert qbert)
+        public override bool OnProcessingQbertCollision(Qbert qbert)
         {
-            return false;
+            if (qbert.checkCollision == CollisionCheck.All)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

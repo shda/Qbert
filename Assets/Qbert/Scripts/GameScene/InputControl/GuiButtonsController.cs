@@ -27,7 +27,6 @@ namespace Assets.Qbert.Scripts.GameScene.InputControl
             {
 
             }));
-
         }
 
         public void EnableButtons()

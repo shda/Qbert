@@ -20,9 +20,9 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             get { return true; }
         }
 
-        public virtual bool OnColisionToQbert(Qbert qbert)
+        public virtual bool OnProcessingQbertCollision(Qbert qbert)
         {
-            if (!qbert.isCheckColision)
+            if (qbert.checkCollision == CollisionCheck.All)
             {
                 return true;
             }

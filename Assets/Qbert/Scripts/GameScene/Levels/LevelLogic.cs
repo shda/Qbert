@@ -164,11 +164,11 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         {
             //roundCurrent = round;
             currentRoundConfig.Init(levelController);
-            currentRoundConfig.Run();
+            currentRoundConfig.ResetTimerRun();
         }
         public virtual void OnCollisionQbertToGameplayObject(GameplayObject gameplayObject , Characters.Qbert qbert)
         {
-            if (!gameplayObject.OnColisionToQbert(qbert))
+            if (!gameplayObject.OnProcessingQbertCollision(qbert))
             {
                 qbert.OnEnemyAttack();
             }

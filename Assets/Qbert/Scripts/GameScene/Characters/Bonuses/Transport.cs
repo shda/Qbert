@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using Assets.Qbert.Scripts.GameScene.Levels;
 using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
@@ -97,12 +98,12 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
             transform.rotation = setPosition.transform.rotation * Quaternion.Euler(new Vector3(0, -90, 0));
         }
 
-        public override bool OnColisionToQbert(Qbert qbert)
+        public override bool OnProcessingQbertCollision(Qbert qbert)
         {
             if (!isMoving)
             {
                 qbert.isFrize = true;
-                qbert.isCheckColision = false;
+                qbert.checkCollision = CollisionCheck.No;
                 qbert.currentPosition = currentPosition;
                 qbert.StopAllCoroutines();
                 qbert.root.position = root.position;
@@ -127,14 +128,23 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Bonuses
             yield return StartCoroutine(MoveTwo(qbert.root, transform, move, 1.0f));
             yield return StartCoroutine(MoveTwo(qbert.root, transform , transportMoveToPoint , durationMoveToEndPoint) );
 
-            yield return this.WaitForSecondITime(0.5f, iTimeScaler);
+            yield return new WaitForSeconds(0.5f);
 
             gameObject.SetActive(false);
             
             qbert.MoveToCube(cubeJumpAfterMove.currentPosition , () =>
             {
                 qbert.isFrize = false;
-                qbert.isCheckColision = true;
+                qbert.checkCollision = CollisionCheck.All;
+
+
+                if (cubeJumpAfterMove.nodes != null && cubeJumpAfterMove.nodes.Count > 0)
+                {
+                    var first = cubeJumpAfterMove.nodes.First();
+                    qbert.StartCoroutine(qbert.RotateToCube(first));
+                }
+                
+
 
                 if (levelController.cameraFallowToCharacter != null)
                     levelController.cameraFallowToCharacter.SetTarget(null);

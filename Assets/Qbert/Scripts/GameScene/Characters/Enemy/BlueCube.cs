@@ -4,22 +4,21 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 {
     public class BlueCube : RedCube
     {
-        [Header("BlueCube")] public float timeStopDuration = 2.0f;
+        [Header("BlueCube")] public float durationFreezingTime = 2.0f;
 
         public override Type typeObject
         {
             get { return Type.BlueCube; }
         }
 
-        public override bool OnColisionToQbert(Qbert qbert)
+        public override bool OnProcessingQbertCollision(Qbert qbert)
         {
-            if (qbert.isCheckColision)
+            if (qbert.checkCollision == CollisionCheck.All ||
+                qbert.checkCollision == CollisionCheck.OnlyBonus)
             {
                 AddScore(levelController.globalConfiguraion.scoprePrice.getClueCube);
-
-                levelController.StartPauseGameObjectsToSecond(timeStopDuration);
+                levelController.StartPauseGameObjectsToSecond(durationFreezingTime);
                 OnStartDestroy();
-                return true;
             }
 
             return true;

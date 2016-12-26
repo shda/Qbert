@@ -59,19 +59,21 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
                 gemeplayObjectConfig.SetTimeScale(this);
                 gemeplayObjectConfig.Reset();
             }
-
-            Run();
-        }
-
-        public void Stop()
-        {
-            isRun = false;
         }
 
         public void Run()
         {
-            timeToStartRound = 0;
+            if (!isRun)
+            {
+                ResetTimerRun();
+            }
+
             isRun = true;
+        }
+
+        public void ResetTimerRun()
+        {
+            timeToStartRound = 0;
         }
         public void Update()
         {

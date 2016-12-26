@@ -154,10 +154,10 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
 
         private void OnPressControl(DirectionMove.Direction buttonType)
         {
+            levelLogic.currentRoundConfig.Run();
             qbert.OnCommandMove(buttonType , character =>
             {
                 OnQbertDropDown();
-           //     UnityEngine.Debug.Log("OnDead");
             });
         }
 
@@ -337,12 +337,12 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         private IEnumerator TimerPauseGameObjectsToSecond(float time)
         {
             SetPauseGamplayObjects(true);
-            qbert.isCheckColision = false;
+            qbert.checkCollision = Character.CollisionCheck.OnlyBonus;
 
             yield return new WaitForSeconds(time);
 
             SetPauseGamplayObjects(false);
-            qbert.isCheckColision = true;
+            qbert.checkCollision = Character.CollisionCheck.All;
         }
 
         void Update()

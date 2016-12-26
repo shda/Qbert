@@ -26,9 +26,10 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             return false;
         }
 
-        public override bool OnColisionToQbert(Qbert qbert)
+        public override bool OnProcessingQbertCollision(Qbert qbert)
         {
-            if (qbert.isCheckColision)
+            if (qbert.checkCollision == CollisionCheck.All ||
+                qbert.checkCollision == CollisionCheck.OnlyBonus)
             {
                 AddScore(levelController.globalConfiguraion.scoprePrice.getColorCube);
                 OnStartDestroy();

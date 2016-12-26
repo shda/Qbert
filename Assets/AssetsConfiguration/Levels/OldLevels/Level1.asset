@@ -16,7 +16,13 @@ MonoBehaviour:
   globalLevelColors: {fileID: 0}
   rounds:
   - customColors: []
-    customMap: {fileID: 11400000, guid: fa75a73bca9fce04fb0c9d8df374e839, type: 2}
-    rulesCreateGamplayObjects: []
-    timeToStartRound: 0.0000005979176
+    customMap: {fileID: 11400000, guid: a4cf24cbbebfca847bbaba2485e2ed78, type: 2}
+    rulesCustom: {fileID: 0}
+    rulesCreateGamplayObjects:
+    - createType: 5
+      maxToRound: -1
+      maxOneTime: 3
+      delayToStart: 0
+      delayBetweenCreate: 1
+    timeToStartRound: 9.711141
     levelController: {fileID: 0}

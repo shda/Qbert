@@ -103,7 +103,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             InitInter();
             boobleDead.gameObject.SetActive(false);
             isFrize = false;
-            isCheckColision = true;
+            checkCollision = CollisionCheck.All;
             base.Run();
         }
 

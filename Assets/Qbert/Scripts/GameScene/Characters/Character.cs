@@ -55,6 +55,13 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             public bool isNecessaryEndPoint = true;
         }
 
+        public enum CollisionCheck
+        {
+            All,
+            OnlyBonus,
+            No,
+        }
+
         [Header("EditorInfo")]
         public EditorRules editorRules;
 
@@ -73,7 +80,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
         public CharacterParams characterParams;
 
         public bool isFrize = false;
-        public bool isCheckColision = true;
+        public CollisionCheck checkCollision = CollisionCheck.All;
         public AnimationToTime.AnimationToTime jumpAnimationToTime;
 
         public PositionCube currentPosition;
@@ -216,7 +223,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             return new Vector3(0, rotateTo.y, rotateTo.z);
         }
 
-        protected virtual IEnumerator RotateToCube(Cube cube)
+        public virtual IEnumerator RotateToCube(Cube cube)
         {
             var rotateTo = GetRotationToCube(cube);
             yield return StartCoroutine(RotateTo(rotateTo));
@@ -240,7 +247,6 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
                 yield return null;
             }
         }
-
 
 
         protected virtual IEnumerator DropDownAnimation(Vector3 point, Action<Character> OnEnd = null)

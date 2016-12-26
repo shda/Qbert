@@ -56,6 +56,28 @@ namespace Assets.Qbert.Scripts.GameScene
             return null;
         }
 
+        public void RemoveObjects(GameplayObject.Type[] witchoutTypes)
+        {
+            if (gameplayObjectsList != null)
+            {
+                foreach (var enemy in gameplayObjectsList)
+                {
+                    if (witchoutTypes != null)
+                    {
+                        if (witchoutTypes.Contains(enemy.typeObject))
+                        {
+                          continue;   
+                        }
+                    }
+
+                    enemy.gameObject.SetActive(false);
+                    Destroy(enemy.gameObject);
+                }
+            }
+
+            gameplayObjectsList = new List<GameplayObject>();
+        }
+
         public GameplayObject AddGameplayObjectToGame(GameplayObject.Type type)
         {
             var gameplayObject = CreateGameplayObject(type);

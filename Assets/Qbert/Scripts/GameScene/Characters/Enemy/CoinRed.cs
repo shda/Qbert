@@ -13,7 +13,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             get { return Type.CoinRed; }
         }
 
-        public override bool OnColisionToQbert(Qbert qbert)
+        public override bool OnProcessingQbertCollision(Qbert qbert)
         {
             AddCoins(levelController.globalConfiguraion.scoprePrice.addCoinsRedToCoin * qbert.cointMultiplier);
             OnStartDestroy();

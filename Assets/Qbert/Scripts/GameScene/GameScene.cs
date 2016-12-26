@@ -77,11 +77,6 @@ namespace Assets.Qbert.Scripts.GameScene
             fadeScreen.StartEnable(0.5f);
         }
 
-        void Awake()
-        {
-
-        }
-
         void Start()
         {
             if (GlobalValues.isBonusLevel)
@@ -99,16 +94,15 @@ namespace Assets.Qbert.Scripts.GameScene
             StartGame();
 
             bonusTimerTransform.gameObject.SetActive(false);
-            levelController.SetPauseGamplayObjects(true);
             inputController.gameObject.SetActive(false);
             imageButtonPause.gameObject.SetActive(false);
+
+            levelController.SetPauseGamplayObjects(true);
 
             cameraFallowToCharacter.ResizeCameraShowAllMap();
 
             fadeScreen.OnEnd = transform1 =>
             {
-                //StartLevelIn();
-                
                 preStartLevel.OnStart(() =>
                 {
                     StartLevelIn();
