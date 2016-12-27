@@ -37,13 +37,15 @@ namespace Assets.Qbert.Scripts
         public static int giftTimeIndex = 0;
 
         [SaveFieldAttribute]
-        public static float timeInGameSecond = 10;
+        public static float timeInGameSecond = 0;
 
         [SaveFieldAttribute]
         public static string currentModel = "";
 
         [SaveFieldAttribute]
         public static float bestScore = 0;
+
+        public static bool isBestScoreUpdate = false;
 
         [SaveFieldAttribute]
         public static int coins = 150;
@@ -139,7 +141,12 @@ namespace Assets.Qbert.Scripts
             if (score > bestScore)
             {
                 bestScore = score;
+                isBestScoreUpdate = true;
                 Save();
+            }
+            else
+            {
+                isBestScoreUpdate = false;
             }
         }
 

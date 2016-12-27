@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SpriteGradient
-  m_Shader: {fileID: 4800000, guid: 6934e9f3a22749d46bb1310dd0d6b0cc, type: 3}
+  m_Name: SpriteGradientNoTexture
+  m_Shader: {fileID: 4800000, guid: ecce9f9ff1cfeca49982f9fad433b943, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1

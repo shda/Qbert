@@ -1,8 +1,8 @@
-﻿Shader "Unlit/Test4"
+﻿Shader "Unlit/GradientAndTexture"
 {
 	Properties
     {
-        //[NoScaleOffset] _MainTex ("Texture", 2D) = "white" {}
+        [NoScaleOffset] _MainTex ("Texture", 2D) = "white" {}
 		
 		_ColorIn ("ColorIn", Color) = (1,1,1,1)
 		_ColorOut ("ColorOut", Color) = (1,1,1,1)
@@ -76,9 +76,21 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col =  getColor(i); //tex2D(_MainTex, i.uv);
 
-                return col;
+                fixed4 colorA =  getColor(i); //tex2D(_MainTex, i.uv);
+				
+				fixed4 colorB = tex2D(_MainTex, i.uv);
+				
+				/*
+				if(colorA.a > 0)
+				{
+					return colorA;
+				}
+				
+                return colorB;
+				*/
+				
+				return half4((colorA.rgb*colorA.a+colorB.rgb*colorB.a),colorA.a+colorB.a);
             }
             ENDCG
         }

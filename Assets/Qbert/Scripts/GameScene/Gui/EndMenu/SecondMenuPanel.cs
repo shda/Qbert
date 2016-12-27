@@ -30,6 +30,10 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
         public Text lastScoreText;
         public Text bestScoreText;
 
+        public Transform rootScoreAndBestScore;
+        public Transform rootBigBestScore;
+        public Text bigBestScoreText;
+
         public GiftGold giftGold;
 
         public ResourceCounter coinsCounter;
@@ -273,8 +277,21 @@ namespace Assets.Qbert.Scripts.GameScene.Gui.EndMenu
             float bestScore = GlobalValues.bestScore;
             float currentScore = GlobalValues.score;
 
-            lastScoreText.text = ((int)currentScore).ToString();
-            bestScoreText.text = ((int)bestScore).ToString();
+            if (GlobalValues.isBestScoreUpdate)
+            {
+                bigBestScoreText.text = ((int) currentScore).ToString();
+
+                rootBigBestScore.gameObject.SetActive(true);
+                rootScoreAndBestScore.gameObject.SetActive(false);
+            }
+            else
+            {
+                lastScoreText.text = ((int)currentScore).ToString();
+                bestScoreText.text = ((int)bestScore).ToString();
+
+                rootBigBestScore.gameObject.SetActive(false);
+                rootScoreAndBestScore.gameObject.SetActive(true);
+            }
         }
 
         void Start ()
