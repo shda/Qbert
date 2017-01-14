@@ -17,6 +17,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
         {
             AddCoins(levelController.globalConfiguraion.scoprePrice.addCoinsRedToCoin * qbert.cointMultiplier);
             OnStartDestroy();
+            PlaySound();
             return true;
         }
     }

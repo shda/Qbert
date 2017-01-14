@@ -18,6 +18,8 @@ namespace Assets.Qbert.Scripts.GameScene.AnimationToTime
         public TimeOneByOne[] animations;
 
         public Action OnEndAnimation;
+        public Action<TimeOneByOne> OnStartPlayAnimation;
+        public Action<TimeOneByOne> OnEndPlayAnimation;
 
         public void StartOneByOne()
         {
@@ -50,7 +52,13 @@ namespace Assets.Qbert.Scripts.GameScene.AnimationToTime
                 if (animation.delayBefore > 0)
                     yield return new WaitForSeconds(animation.delayBefore);
 
+                if (OnStartPlayAnimation != null)
+                    OnStartPlayAnimation(animation);
+
                 yield return StartCoroutine(PlayToTime(animation.animation, animation.duration));
+
+                if (OnEndPlayAnimation != null)
+                    OnEndPlayAnimation(animation);
             }
 
             if (OnEndAnimation != null)

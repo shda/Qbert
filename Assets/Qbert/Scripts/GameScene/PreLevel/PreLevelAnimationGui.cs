@@ -1,5 +1,6 @@
 ﻿using System;
 using Assets.Qbert.Scripts.GameScene.AnimationToTime;
+using Assets.Qbert.Scripts.GameScene.Sound;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ namespace Assets.Qbert.Scripts.GameScene.PreLevel
         public AnimationToTimeOneByOne animationToTimeOneByOne;
         public AnimationToTimeOneByOne animationShowBonusLevel;
         public AnimationToTimeOneByOne animationTimerOneByOne;
+        public AnimationToTimeOneByOne animationStartLabel;
 
         public Text textRoundNumber;
 
@@ -20,7 +22,21 @@ namespace Assets.Qbert.Scripts.GameScene.PreLevel
             animationShowBonusLevel.StartOneByOne();
             animationShowBonusLevel.OnEndAnimation = () =>
             {
-                animationTimerOneByOne.OnEndAnimation = OnEndAnimation;
+                animationTimerOneByOne.OnEndAnimation = () =>
+                {
+                    animationStartLabel.OnEndAnimation = OnEndAnimation;
+                    animationStartLabel.OnStartPlayAnimation = one =>
+                    {
+                        GameSound.PlayLevelStartLabel();
+                        OnEndAnimation();
+                    };
+                    animationStartLabel.StartOneByOne();
+                };
+
+                animationTimerOneByOne.OnStartPlayAnimation = one =>
+                {
+                    GameSound.PlayLevelTimer();
+                };
                 animationTimerOneByOne.StartOneByOne();
             };
         }
@@ -31,6 +47,8 @@ namespace Assets.Qbert.Scripts.GameScene.PreLevel
 
             animationToTimeOneByOne.StartOneByOne();
             animationToTimeOneByOne.OnEndAnimation = OnEndAnimation;
+
+            
         }
 
         void Start () 

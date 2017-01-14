@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Qbert.Scripts.GameScene.Sound;
+using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 {
@@ -18,6 +19,8 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
             {
                 AddScore(levelController.globalConfiguraion.scoprePrice.getClueCube);
                 levelController.StartPauseGameObjectsToSecond(durationFreezingTime);
+                levelController.flashBackground.Flash(durationFreezingTime);
+                GameSound.PlayBlueCube();
                 OnStartDestroy();
             }
 

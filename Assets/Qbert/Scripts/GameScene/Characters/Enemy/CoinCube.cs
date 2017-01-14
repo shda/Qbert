@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Linq;
 using Assets.Qbert.Scripts.GameScene.Levels;
+using Assets.Qbert.Scripts.GameScene.Sound;
 using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
 
@@ -70,10 +71,16 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
                 qbert.checkCollision == CollisionCheck.OnlyBonus)
             {
                 AddCoins(levelController.globalConfiguraion.scoprePrice.addCoinsGoldToCoin * qbert.cointMultiplier);
+                PlaySound();
                 OnStartDestroy();
             }
 
             return true;
+        }
+
+        protected void PlaySound()
+        {
+            GameSound.PlayCoinUp();
         }
     }
 }

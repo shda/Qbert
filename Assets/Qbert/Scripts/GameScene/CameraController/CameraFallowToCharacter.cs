@@ -57,7 +57,7 @@ namespace Assets.Qbert.Scripts.GameScene
             var startCameraPositino = cameraFallow.transform.position;
             float startCameraSize = cameraMain.orthographicSize;
 
-            yield return StartCoroutine(this.ChageFloatToTime(
+            yield return new ChangeFloatToTime(
                 durationSetSizeCameraToCharacter, false, value =>
                 {
                     cameraMain.orthographicSize = Mathf.Lerp(
@@ -66,7 +66,7 @@ namespace Assets.Qbert.Scripts.GameScene
                     cameraFallow.transform.position = Vector3.Slerp(startCameraPositino,
                        characrer.NoOffsetpos, value);
 
-                }));
+                });
 
             if (OnEnd != null)
             {
@@ -86,7 +86,7 @@ namespace Assets.Qbert.Scripts.GameScene
             var cameraSizeStart = cameraMain.orthographicSize;
             var startCameraPositino = cameraMain.transform.position;
 
-            yield return StartCoroutine(this.ChageFloatToTime(
+            yield return new ChangeFloatToTime(
                 durationSetSizeCameraToCharacter, false, value =>
                 {
                     cameraMain.orthographicSize = Mathf.Lerp(
@@ -95,7 +95,7 @@ namespace Assets.Qbert.Scripts.GameScene
                     cameraFallow.transform.position = Vector3.Lerp(startCameraPositino,
                        centerToMap, value);
 
-                }));
+                });
         }
 
         public void ResizeCameraShowAllMap()

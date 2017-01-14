@@ -131,7 +131,7 @@ namespace Assets.Qbert.Scripts.Utils
             LanchAction(OnEnd, mono.transform);
         }
 
-        public static IEnumerator ChageFloatToTime(this MonoBehaviour mono, 
+        public static IEnumerator ChageFloatToTime2(this MonoBehaviour mono, 
             float duration , bool isReverce , Action<float> OnChangeValue = null)
         {
             float t = 0;

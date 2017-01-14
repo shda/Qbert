@@ -5,6 +5,7 @@ using Assets.Qbert.Scripts.GameScene.Characters;
 using Assets.Qbert.Scripts.GameScene.GameAssets;
 using Assets.Qbert.Scripts.GameScene.Gui;
 using Assets.Qbert.Scripts.GameScene.InputControl;
+using Assets.Qbert.Scripts.GameScene.Sound;
 using UnityEngine;
 
 namespace Assets.Qbert.Scripts.GameScene.Levels
@@ -20,6 +21,7 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         public GameScene gameScene;
         public CameraFallowToCharacter cameraFallowToCharacter;
         public GlobalConfigurationAsset globalConfiguraion;
+        public FlashBackground flashBackground;
 
         [HideInInspector]
         public LevelLogic levelLogic;
@@ -100,6 +102,8 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         {
             inputController.isEnable = false;
             SetPauseGamplayObjects(true);
+
+            GameSound.PlayLevelLose();
             //Time.timeScale = 1.0f;
 
             GlobalValues.UpdateBestScore();
@@ -179,6 +183,8 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             inputController.isEnable = false;
 
             cameraFallowToCharacter.CameraBackSizeAndToCenterMap();
+
+            GameSound.PlayWin();
 
             mapField.FlashGameFiels(() =>
             {

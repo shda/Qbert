@@ -7,10 +7,25 @@ namespace Assets.Qbert.Scripts.GameScene.Sound
     {
         public AudioSource audioSource;
 
+        [Header("Character sounds")]
         public AudioClip jumpEnemy;
         public AudioClip jumpQbert;
-        public AudioClip coinUp;
         public AudioClip qbertDown;
+
+       
+        [Header("Start timer sounds")]
+        public AudioClip levelTimer;
+        public AudioClip levelStartLabel;
+
+        [Header("Level sounds")]
+        public AudioClip coinUp;
+        public AudioClip winLevel;
+        public AudioClip levelLose;
+
+        public AudioClip getColoredCube;
+        public AudioClip getBlueCube;
+
+        
 
 
         public static void PlayJump(Character character)
@@ -25,6 +40,11 @@ namespace Assets.Qbert.Scripts.GameScene.Sound
             }
         }
 
+        public void PlaySoundShot(AudioClip clip)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+
         public static void PlayQbertDown()
         {
             instance.PlaySoundShot(instance.qbertDown);
@@ -32,24 +52,39 @@ namespace Assets.Qbert.Scripts.GameScene.Sound
 
         public static void PlayCoinUp()
         {
-            instance.PlaySoundShot(instance.qbertDown);
+            instance.PlaySoundShot(instance.coinUp);
         }
 
-        public void PlaySoundShot(AudioClip clip)
+        public static void PlayWin()
         {
-            audioSource.PlayOneShot(clip);
+            instance.PlaySoundShot(instance.winLevel);
         }
 
+        public static void PlayLevelTimer()
+        {
+            instance.PlaySoundShot(instance.levelTimer);
+        }
 
-        void Start () 
+        public static void PlayColoredCube()
         {
-	
+            instance.PlaySoundShot(instance.getColoredCube);
         }
-	
-        void Update () 
+
+        public static void PlayBlueCube()
         {
-	
+            instance.PlaySoundShot(instance.getBlueCube);
         }
+
+        public static void PlayLevelStartLabel()
+        {
+            instance.PlaySoundShot(instance.levelStartLabel);
+        }
+
+        public static void PlayLevelLose()
+        {
+          //  instance.PlaySoundShot(instance.levelLose);
+        }
+
 
         private static GameSound _instance;
         public static GameSound instance
