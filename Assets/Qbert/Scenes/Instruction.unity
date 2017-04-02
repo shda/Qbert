@@ -2120,6 +2120,7 @@ MonoBehaviour:
   gameScene: {fileID: 0}
   cameraFallowToCharacter: {fileID: 0}
   globalConfiguraion: {fileID: 11400000, guid: 0c14cf109b82c384da9aa51fd81cb6fa, type: 2}
+  flashBackground: {fileID: 0}
   levelLogic: {fileID: 0}
   level: 0
   round: 0
@@ -3024,6 +3025,10 @@ Prefab:
     - target: {fileID: 11419272, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: date
       value: 161216 04:42
+      objectReference: {fileID: 0}
+    - target: {fileID: 22459354, guid: d920972237c35e74a88919299e0de2b7, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.2000122
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8100312, guid: d920972237c35e74a88919299e0de2b7, type: 2}

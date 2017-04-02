@@ -14931,11 +14931,11 @@ Prefab:
     - target: {fileID: 11450224, guid: 2d127fe47ec0a614596ad026673266cb, type: 2}
       propertyPath: jumpQbert
       value: 
-      objectReference: {fileID: 8300000, guid: 6a1da015037779b48bf03163944c5a0c, type: 3}
+      objectReference: {fileID: 8300000, guid: 13d9a2a9283b8564aa44ce4490ae0a84, type: 3}
     - target: {fileID: 11450224, guid: 2d127fe47ec0a614596ad026673266cb, type: 2}
       propertyPath: jumpEnemy
       value: 
-      objectReference: {fileID: 8300000, guid: 061e4e5e3ca03524a98900ccb2dddcb8, type: 3}
+      objectReference: {fileID: 8300000, guid: 051f28d5d5bf9984ea79fdd17bde6e44, type: 3}
     - target: {fileID: 11450224, guid: 2d127fe47ec0a614596ad026673266cb, type: 2}
       propertyPath: coinUp
       value: 

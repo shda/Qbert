@@ -39,7 +39,7 @@ MonoBehaviour:
       maxOneTime: 2
       delayToStart: 0
       delayBetweenCreate: 0
-    timeToStartRound: 7.217784
+    timeToStartRound: 0
     levelController: {fileID: 0}
   - customColors: []
     customMap: {fileID: 11400000, guid: 62ed7f47da683464cbc2ac6eb646093b, type: 2}
