@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: AssetRandom2ColorsArray
   m_EditorClassIdentifier: 
   isRandom: 1
+  isUniqueRandom: 1
   values:
   - colors:
     - {r: 1, g: 0, b: 0, a: 1}

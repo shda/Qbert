@@ -46,7 +46,7 @@ MonoBehaviour:
     - x: 2
       y: 2
       cubePattern: {fileID: 407988, guid: 1fffe0d34e512084f9486568faa35cfd, type: 2}
-      isEnable: 1
+      isEnable: 0
       listTypeObjectsStartPoint: 
       listTypeObjectsEndPoint: 
     - x: 3

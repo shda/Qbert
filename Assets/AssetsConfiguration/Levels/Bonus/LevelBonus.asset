@@ -13,17 +13,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalMap: {fileID: 0}
   typeLevel: 5
-  globalLevelColors:
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 0, g: 0.13103437, b: 1, a: 1}
+  globalLevelColors: {fileID: 0}
   rounds:
   - customColors: []
     customMap: {fileID: 11400000, guid: fa75a73bca9fce04fb0c9d8df374e839, type: 2}
+    rulesCustom: {fileID: 0}
     rulesCreateGamplayObjects: []
-    timeToStartRound: 0.0000007564848
+    timeToStartRound: 1.5198008
     levelController: {fileID: 0}
   - customColors: []
     customMap: {fileID: 11400000, guid: 909267713c0f0b248bef74e2c7759759, type: 2}
+    rulesCustom: {fileID: 0}
     rulesCreateGamplayObjects:
     - createType: 6
       maxToRound: 0
@@ -34,6 +34,49 @@ MonoBehaviour:
     levelController: {fileID: 0}
   - customColors: []
     customMap: {fileID: 11400000, guid: 7fefbb920cc417141934fb0ec085f6bc, type: 2}
+    rulesCustom: {fileID: 0}
+    rulesCreateGamplayObjects: []
+    timeToStartRound: 10.164351
+    levelController: {fileID: 0}
+  - customColors: []
+    customMap: {fileID: 11400000, guid: 78511d5b76fc4db4da28d3dff65b885a, type: 2}
+    rulesCustom: {fileID: 0}
+    rulesCreateGamplayObjects: []
+    timeToStartRound: 10.164351
+    levelController: {fileID: 0}
+  - customColors: []
+    customMap: {fileID: 11400000, guid: 2c349a2410e2e20489fa909a033c802e, type: 2}
+    rulesCustom: {fileID: 0}
+    rulesCreateGamplayObjects: []
+    timeToStartRound: 10.164351
+    levelController: {fileID: 0}
+  - customColors: []
+    customMap: {fileID: 11400000, guid: 864015176caffc448b00bfe1171c6e4a, type: 2}
+    rulesCustom: {fileID: 0}
+    rulesCreateGamplayObjects: []
+    timeToStartRound: 10.164351
+    levelController: {fileID: 0}
+  - customColors: []
+    customMap: {fileID: 11400000, guid: c754f2d56a3ef0747af3a35d47defb44, type: 2}
+    rulesCustom: {fileID: 0}
+    rulesCreateGamplayObjects: []
+    timeToStartRound: 10.164351
+    levelController: {fileID: 0}
+  - customColors: []
+    customMap: {fileID: 11400000, guid: ad0dce7c87652ed4aa1aff77b3ac67aa, type: 2}
+    rulesCustom: {fileID: 0}
+    rulesCreateGamplayObjects: []
+    timeToStartRound: 10.164351
+    levelController: {fileID: 0}
+  - customColors: []
+    customMap: {fileID: 11400000, guid: d58cf10d6a0d42c4fbfd8d173738c0b1, type: 2}
+    rulesCustom: {fileID: 0}
+    rulesCreateGamplayObjects: []
+    timeToStartRound: 10.164351
+    levelController: {fileID: 0}
+  - customColors: []
+    customMap: {fileID: 11400000, guid: 342f9df4e9557224985f13fb94ff30e0, type: 2}
+    rulesCustom: {fileID: 0}
     rulesCreateGamplayObjects: []
     timeToStartRound: 10.164351
     levelController: {fileID: 0}

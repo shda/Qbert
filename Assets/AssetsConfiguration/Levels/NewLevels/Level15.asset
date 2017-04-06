@@ -13,9 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalMap: {fileID: 11400000, guid: ee7b43829c2ef11498c2470ccdc170c7, type: 2}
   typeLevel: 4
-  globalLevelColors: {fileID: 11400000, guid: af5c1402c163201409b90dc692369fe8, type: 2}
+  globalLevelColors: {fileID: 11400000, guid: 30dee8f7c1efdfd4f970a7538e106fd0, type: 2}
   rounds:
-  - customColors: []
+  - customColors:
+    - {r: 0.15224913, g: 0.21516903, b: 0.23529412, a: 0}
+    - {r: 0.8235294, g: 0.80877614, b: 0.69434834, a: 0}
+    - {r: 0.6465319, g: 0.4237601, b: 0.654902, a: 0}
     customMap: {fileID: 11400000, guid: f55f2eaa60265e3499fe91ee25df54cc, type: 2}
     rulesCustom: {fileID: 0}
     rulesCreateGamplayObjects:
@@ -54,9 +57,12 @@ MonoBehaviour:
       maxOneTime: 20
       delayToStart: 2
       delayBetweenCreate: 2
-    timeToStartRound: 7.414337
+    timeToStartRound: 0
     levelController: {fileID: 0}
-  - customColors: []
+  - customColors:
+    - {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 0}
+    - {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 0}
+    - {r: 0.7161506, g: 0.8627451, b: 0, a: 0}
     customMap: {fileID: 11400000, guid: 0a085f77e576d194097239609307a844, type: 2}
     rulesCustom: {fileID: 0}
     rulesCreateGamplayObjects:
@@ -95,9 +101,12 @@ MonoBehaviour:
       maxOneTime: 20
       delayToStart: 2
       delayBetweenCreate: 2
-    timeToStartRound: 7.414337
+    timeToStartRound: 0
     levelController: {fileID: 0}
-  - customColors: []
+  - customColors:
+    - {r: 0.74509805, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0.32311988, b: 1, a: 0}
+    - {r: 0.8235294, g: 0.6881861, b: 0, a: 0}
     customMap: {fileID: 11400000, guid: 3d24d3048cd342546a087381d58aa9f1, type: 2}
     rulesCustom: {fileID: 0}
     rulesCreateGamplayObjects:
@@ -136,5 +145,5 @@ MonoBehaviour:
       maxOneTime: 20
       delayToStart: 2
       delayBetweenCreate: 2
-    timeToStartRound: 7.414337
+    timeToStartRound: 0
     levelController: {fileID: 0}

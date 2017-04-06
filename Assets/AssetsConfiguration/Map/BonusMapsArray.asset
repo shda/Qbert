@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: BonusMapsArray
   m_EditorClassIdentifier: 
   isRandom: 1
+  isUniqueRandom: 1
   values:
   - {fileID: 11400000, guid: fa75a73bca9fce04fb0c9d8df374e839, type: 2}
   - {fileID: 11400000, guid: 909267713c0f0b248bef74e2c7759759, type: 2}

@@ -12,18 +12,14 @@ MonoBehaviour:
   m_Name: CyclicLevels
   m_EditorClassIdentifier: 
   timeStart: 5
-  timeStepAllLevels: 1
+  timeStepAllLevels: 0
   bonusMapsAsset: {fileID: 11400000, guid: f8097d97257d9064193d8bb3e5be7f7f, type: 2}
   steps:
   - isCyclic: 0
     startSpeed: 1
-    upSpeedAfterCyclic: 0
+    upSpeedAfterCyclic: 1
     levelsAssets:
     - {fileID: 11400000, guid: a98b450f176ac6440b843ae046232882, type: 2}
-  - isCyclic: 0
-    startSpeed: 1
-    upSpeedAfterCyclic: 0
-    levelsAssets:
     - {fileID: 11400000, guid: 9bf2e0b39b1f0664bb12e31b2a746d39, type: 2}
     - {fileID: 11400000, guid: 00914f6dc7a9e2847b5d5973ea2fac1a, type: 2}
     - {fileID: 11400000, guid: 9bf25fee40a0c2a43b10adc174fcd233, type: 2}
@@ -33,9 +29,14 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 1fbf5d900f92f9b46aee8ca1ba234b24, type: 2}
     - {fileID: 11400000, guid: fcfaf288cb619d741bbdd738a4abe484, type: 2}
     - {fileID: 11400000, guid: 795395ece411e4f4dbab31b4bbffbb39, type: 2}
+    - {fileID: 11400000, guid: cf6453d95db8c0f418d85a80b8b07ad9, type: 2}
+    - {fileID: 11400000, guid: fd3423aceb2b79345b0ae68e14ff3d9e, type: 2}
+    - {fileID: 11400000, guid: 078c2e29853e3d741bb395281e9ab740, type: 2}
+    - {fileID: 11400000, guid: 466f6ac0a3a7f874db9a3033a6ee3442, type: 2}
+    - {fileID: 11400000, guid: 69846f724b062d44b8f8fa5113a8e5c4, type: 2}
   - isCyclic: 0
-    startSpeed: 1.2
-    upSpeedAfterCyclic: 0
+    startSpeed: 2
+    upSpeedAfterCyclic: 4
     levelsAssets:
     - {fileID: 11400000, guid: cf6453d95db8c0f418d85a80b8b07ad9, type: 2}
     - {fileID: 11400000, guid: fd3423aceb2b79345b0ae68e14ff3d9e, type: 2}
@@ -43,11 +44,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 466f6ac0a3a7f874db9a3033a6ee3442, type: 2}
     - {fileID: 11400000, guid: 69846f724b062d44b8f8fa5113a8e5c4, type: 2}
   - isCyclic: 1
-    startSpeed: 1.4
-    upSpeedAfterCyclic: 0.2
+    startSpeed: 4
+    upSpeedAfterCyclic: 8
     levelsAssets:
-    - {fileID: 11400000, guid: 4e97c8b73fc4b3848b220549475363b9, type: 2}
-    - {fileID: 11400000, guid: 03b292ed81966d1458d4d68ec52138fa, type: 2}
-    - {fileID: 11400000, guid: af7f6cf511287d74facc4e5f223ffe5b, type: 2}
-    - {fileID: 11400000, guid: c68f63ad4156d524497224e9c6655ed9, type: 2}
-    - {fileID: 11400000, guid: fd2a2838a0aaf5e48ac0d747784cde71, type: 2}
+    - {fileID: 11400000, guid: cf6453d95db8c0f418d85a80b8b07ad9, type: 2}
+    - {fileID: 11400000, guid: fd3423aceb2b79345b0ae68e14ff3d9e, type: 2}
+    - {fileID: 11400000, guid: 078c2e29853e3d741bb395281e9ab740, type: 2}
+    - {fileID: 11400000, guid: 466f6ac0a3a7f874db9a3033a6ee3442, type: 2}
+    - {fileID: 11400000, guid: 69846f724b062d44b8f8fa5113a8e5c4, type: 2}

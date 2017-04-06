@@ -20,11 +20,11 @@ MonoBehaviour:
     pauseAfterMove: 0
   scoprePrice:
     pressCubeNeedColor: 1
-    pressCubeMediumColor: 0.5
-    getClueCube: 4
-    getColorCube: 10
-    dropPurpeCube: 20
-    dontUsingTransport: 2
+    pressCubeMediumColor: 0
+    getClueCube: 0
+    getColorCube: 0
+    dropPurpeCube: 0
+    dontUsingTransport: 0
     addCoinsGoldToCoin: 1
     addCoinsRedToCoin: 5
     addCoinsWhiteToCoin: 10

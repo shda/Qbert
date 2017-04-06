@@ -160,13 +160,13 @@ Material:
       second: {r: 0.57837844, g: 0.29238755, b: 0.7647059, a: 1}
     - first:
         name: _ColorIn
-      second: {r: 0.102941185, g: 0.37132347, b: 0.5, a: 1}
+      second: {r: 0.1605882, g: 0.54411644, b: 0.728, a: 1}
     - first:
         name: _ColorLeft
       second: {r: 0.5442953, g: 0.52184254, b: 0.5588235, a: 1}
     - first:
         name: _ColorOut
-      second: {r: 0, g: 0.13419114, b: 0.19852942, a: 1}
+      second: {r: 0.0019485311, g: 0.17975178, b: 0.265, a: 1}
     - first:
         name: _ColorRight
       second: {r: 0.23842995, g: 0.2746316, b: 0.5147059, a: 1}

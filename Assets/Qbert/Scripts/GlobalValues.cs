@@ -21,7 +21,7 @@ namespace Assets.Qbert.Scripts
         public const int countCoinsToEarnVideo = 20;
   
         public static int[] castCoinsInvest = new[] { 25, 50, 100 };
-        public static int[] timeInGameGift = new[] { 6, 40, 360 };
+        public static int[] timeInGameGift = new[] { 6, 40, 0 };
 
         [SaveFieldAttribute]
         public static string codeNamesModelsOpens = "";
@@ -45,10 +45,10 @@ namespace Assets.Qbert.Scripts
         [SaveFieldAttribute]
         public static float bestScore = 0;
 
-        public static bool isBestScoreUpdate = false;
+        public static bool isBestScoreUpdate = true;
 
         [SaveFieldAttribute]
-        public static int coins = 150;
+        public static int coins = 0;
 
         [SaveFieldAttribute]
         public static bool appIsRate = false;

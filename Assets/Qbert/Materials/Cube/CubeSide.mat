@@ -175,7 +175,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.0324541, g: 0, b: 0.9411765, a: 1}
+      second: {r: 0.1544118, g: 0.33519268, b: 1, a: 1}
     - first:
         name: _ColorDown
       second: {r: 0, g: 0.048275948, b: 1, a: 1}

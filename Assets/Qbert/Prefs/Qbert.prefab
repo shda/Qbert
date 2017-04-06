@@ -466,8 +466,16 @@ MonoBehaviour:
   jumpAmplitude: 1.5
   timeDropDown: 0.3
   dropDownHeight: 4
+  pauseAfterMove: 0
+  characterParams:
+    timeMove: 1
+    timeRotate: 0.2
+    jumpAmplitude: 0.5
+    timeDropDown: 0.4
+    dropDownHeight: 4
+    pauseAfterMove: 0
   isFrize: 0
-  isCheckColision: 1
+  checkCollision: 0
   jumpAnimationToTime: {fileID: 0}
   currentPosition:
     y: 0
@@ -475,7 +483,6 @@ MonoBehaviour:
   positionMove:
     y: 0
     x: 0
-  fallowFront: {fileID: 0}
   configuration: {fileID: 11400000, guid: 0c14cf109b82c384da9aa51fd81cb6fa, type: 2}
   boobleDead: {fileID: 488408}
   rootModel: {fileID: 450638}

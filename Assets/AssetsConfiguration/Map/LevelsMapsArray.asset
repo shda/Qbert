@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e417cafc161bc4d83f14c70c233cb4, type: 3}
   m_Name: LevelsMapsArray
   m_EditorClassIdentifier: 
-  isRandom: 1
-  isUniqueRandom: 1
+  isRandom: 0
+  isUniqueRandom: 0
   values:
   - {fileID: 11400000, guid: a4cf24cbbebfca847bbaba2485e2ed78, type: 2}
   - {fileID: 11400000, guid: 62ed7f47da683464cbc2ac6eb646093b, type: 2}

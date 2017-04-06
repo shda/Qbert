@@ -96,7 +96,7 @@ Material:
       second: 0.076
     - first:
         name: _Middle
-      second: 0.5
+      second: 0.38
     - first:
         name: _MixColorLerp
       second: 1
@@ -160,7 +160,7 @@ Material:
       second: {r: 0.4784314, g: 0.20392159, b: 0.6509804, a: 1}
     - first:
         name: _ColorBot
-      second: {r: 0, g: 0.047058824, b: 1, a: 1}
+      second: {r: 0, g: 0.653, b: 0.61773807, a: 1}
     - first:
         name: _ColorDown
       second: {r: 0.57837844, g: 0.29238755, b: 0.7647059, a: 1}
@@ -172,7 +172,7 @@ Material:
       second: {r: 0.5442953, g: 0.52184254, b: 0.5588235, a: 1}
     - first:
         name: _ColorMid
-      second: {r: 0.6838235, g: 0.69870234, b: 1, a: 1}
+      second: {r: 1, g: 0.809, b: 0.809, a: 1}
     - first:
         name: _ColorOut
       second: {r: 0, g: 0.13419114, b: 0.19852942, a: 1}
@@ -181,7 +181,7 @@ Material:
       second: {r: 0.23842995, g: 0.2746316, b: 0.5147059, a: 1}
     - first:
         name: _ColorTop
-      second: {r: 0, g: 0.04827571, b: 1, a: 1}
+      second: {r: 0.572, g: 0.37408805, b: 0, a: 1}
     - first:
         name: _ColorUp
       second: {r: 0.12608132, g: 0.18244243, b: 0.3897059, a: 1}

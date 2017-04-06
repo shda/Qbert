@@ -13,9 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalMap: {fileID: 11400000, guid: ee7b43829c2ef11498c2470ccdc170c7, type: 2}
   typeLevel: 1
-  globalLevelColors: {fileID: 11400000, guid: af5c1402c163201409b90dc692369fe8, type: 2}
+  globalLevelColors: {fileID: 11400000, guid: 30dee8f7c1efdfd4f970a7538e106fd0, type: 2}
   rounds:
-  - customColors: []
+  - customColors:
+    - {r: 0.597, g: 0.597, b: 0.597, a: 1}
+    - {r: 0.125, g: 0.125, b: 0.125, a: 1}
+    - {r: 0.7161506, g: 0.8627451, b: 0, a: 1}
     customMap: {fileID: 11400000, guid: 0a085f77e576d194097239609307a844, type: 2}
     rulesCustom: {fileID: 0}
     rulesCreateGamplayObjects:
@@ -23,14 +26,14 @@ MonoBehaviour:
       maxToRound: -1
       maxOneTime: 2
       delayToStart: 2
-      delayBetweenCreate: 3
+      delayBetweenCreate: 4
     - createType: 1
       maxToRound: 2
       maxOneTime: 1
       delayToStart: 6
       delayBetweenCreate: 5
     - createType: 3
-      maxToRound: -1
+      maxToRound: 2
       maxOneTime: 1
       delayToStart: 15
       delayBetweenCreate: 15
@@ -49,9 +52,12 @@ MonoBehaviour:
       maxOneTime: 2
       delayToStart: 0
       delayBetweenCreate: 0
-    timeToStartRound: 2.9423788
+    timeToStartRound: 0.00000012400201
     levelController: {fileID: 0}
-  - customColors: []
+  - customColors:
+    - {r: 0.74509805, g: 0, b: 0, a: 1}
+    - {r: 0, g: 0.32311988, b: 1, a: 1}
+    - {r: 0.8235294, g: 0.6881861, b: 0, a: 1}
     customMap: {fileID: 11400000, guid: 3d24d3048cd342546a087381d58aa9f1, type: 2}
     rulesCustom: {fileID: 0}
     rulesCreateGamplayObjects:
@@ -61,20 +67,10 @@ MonoBehaviour:
       delayToStart: 3
       delayBetweenCreate: 3
     - createType: 1
-      maxToRound: 2
+      maxToRound: 0
       maxOneTime: 1
       delayToStart: 2
       delayBetweenCreate: 5
-    - createType: 3
-      maxToRound: -1
-      maxOneTime: 1
-      delayToStart: 15
-      delayBetweenCreate: 15
-    - createType: 5
-      maxToRound: 0
-      maxOneTime: 2
-      delayToStart: 8
-      delayBetweenCreate: 6
     - createType: 6
       maxToRound: 15
       maxOneTime: 4
@@ -87,12 +83,15 @@ MonoBehaviour:
       delayBetweenCreate: 0
     - createType: 4
       maxToRound: -1
-      maxOneTime: 1
-      delayToStart: 10
-      delayBetweenCreate: 10
-    timeToStartRound: 1168.7627
+      maxOneTime: 2
+      delayToStart: 5
+      delayBetweenCreate: 2
+    timeToStartRound: 57.171898
     levelController: {fileID: 0}
-  - customColors: []
+  - customColors:
+    - {r: 0.123798534, g: 0.22287339, b: 0.27450982, a: 1}
+    - {r: 0.54901963, g: 0.40188238, b: 0, a: 0}
+    - {r: 0.39929155, g: 0.7058824, b: 0.24917647, a: 1}
     customMap: {fileID: 11400000, guid: 9c4a9ebb812ac6a48a33cb52ada8a6f9, type: 2}
     rulesCustom: {fileID: 0}
     rulesCreateGamplayObjects:
@@ -107,15 +106,10 @@ MonoBehaviour:
       delayToStart: 3
       delayBetweenCreate: 5
     - createType: 3
-      maxToRound: 0
+      maxToRound: 2
       maxOneTime: 1
       delayToStart: 15
       delayBetweenCreate: 15
-    - createType: 5
-      maxToRound: 0
-      maxOneTime: 2
-      delayToStart: 8
-      delayBetweenCreate: 6
     - createType: 6
       maxToRound: 15
       maxOneTime: 5
@@ -126,10 +120,5 @@ MonoBehaviour:
       maxOneTime: 2
       delayToStart: 0
       delayBetweenCreate: 0
-    - createType: 4
-      maxToRound: 0
-      maxOneTime: 1
-      delayToStart: 10
-      delayBetweenCreate: 10
-    timeToStartRound: 9.396926
+    timeToStartRound: 30.95752
     levelController: {fileID: 0}
