@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 87e33cce15ea2904ca6806293cd1c05b
+timeCreated: 1487521315
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 60
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Qbic
+  fontNames:
+  - Qbic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
