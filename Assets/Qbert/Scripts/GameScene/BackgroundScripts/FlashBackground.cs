@@ -13,14 +13,4 @@ public class FlashBackground : MonoBehaviour
     {
         flashColor.StopFlash();
     }
-
-    void Start () 
-	{
-	
-	}
-
-	void Update () 
-	{
-	
-	}
 }

@@ -7,6 +7,12 @@ using UnityEditor;
 
 public class CreateAssets : MonoBehaviour 
 {
+    [MenuItem("Assets/Create asset/Backgrounds asset")]
+    static void CreateBackgroundsAsset()
+    {
+        CreateAsset<BackgroundsAsset>("BackgroundsAsset");
+    }
+
     [MenuItem("Assets/Create asset/Rules create objects")]
     static void CreateRule()
     {
