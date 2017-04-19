@@ -11,29 +11,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af7166d068488242a337c35d32baffe, type: 3}
   m_Name: BackgroundsAsset
   m_EditorClassIdentifier: 
-  isRandom: 1
-  isUniqueRandom: 1
-  values:
-  - BA_Clouds
-  - BA_Fog
-  - BA_GrinShining
-  - BA_Lines
-  - BA_Puzyri
-  - BA_RedStars
-  - BA_Snow
-  - BA_Squares
-  - BA_Stars
-  - BA_Stars1
-  - BA_Wave
-  sceneAssets:
-  - {fileID: 102900000, guid: 0552d49855fab7b46a1f2e3774bc33d9, type: 3}
-  - {fileID: 102900000, guid: b8a36416bb0603b43ab123f69b74c0e1, type: 3}
-  - {fileID: 102900000, guid: 5229e79cd4f83ac4095bf93ce0464c02, type: 3}
-  - {fileID: 102900000, guid: 95131b99f7c1a9841ac892332010f8ba, type: 3}
-  - {fileID: 102900000, guid: 6f8a86ef598badf45a881bfc28b9943c, type: 3}
-  - {fileID: 102900000, guid: 3a2629cfe5830ca48a350940d0ad3211, type: 3}
-  - {fileID: 102900000, guid: e292bfa43720adc4f9e12fdf4cad32e7, type: 3}
-  - {fileID: 102900000, guid: 4350e7feb8e0bbb40b34070e296deb8e, type: 3}
-  - {fileID: 102900000, guid: 21ac3924a77267e4b8c0306779c47fb0, type: 3}
-  - {fileID: 102900000, guid: f78181d60eb9d184397ae1c8f2b079d9, type: 3}
-  - {fileID: 102900000, guid: d5b5f9ad6ab9d15478d06f04599b5a90, type: 3}
+  sceneBackgrounds:
+  - image: ImagePattern1
+    animation: Fog
+  - image: ImageGradient
+    animation: Puzyri
+  - image: ImageGradient
+    animation: Fog
+  - image: ImageGradient
+    animation: Fog
+  - image: ImageGradient
+    animation: Fog
+  imageNames:
+  - ImageFlashWhite
+  - ImageGradient
+  - ImageGradient1
+  - ImageGradient2
+  - ImageGradient3
+  - ImageKids
+  - ImageLines
+  - ImageLines1
+  - ImageMoon
+  - ImagePattern
+  - ImagePattern1
+  - ImagePattern2
+  - ImagePiramid
+  - ImageRainbow
+  - ImageSun
+  - ImageThreeGradient
+  - ImageThreeGradient1
+  - ImageThreeGradient2
+  - ImageThreeGradient3
+  - ImageThreeGradient4
+  - NormalImage
+  animationsNames:
+  - Clouds
+  - Fog
+  - GrinShining
+  - Lines
+  - Puzyri
+  - RedStars
+  - Snow
+  - Squares
+  - Stars
+  - Stars1
+  - Wave
+  prefImages:
+  - {fileID: 224240122334064950, guid: b66ed5485afc1ce48bb93db6b62642c8, type: 2}
+  - {fileID: 224797606653033178, guid: 468962f976049774bbcc534d505f556a, type: 2}
+  - {fileID: 224185058100565906, guid: 29a90cae1aa8eb64cb5af35e93f017fa, type: 2}
+  - {fileID: 224574664826843806, guid: 6d551a8f0d71fc0449c6bf78d2b4ffc2, type: 2}
+  - {fileID: 224335353213557618, guid: 0727e5a9287127749a88fc032cc33369, type: 2}
+  - {fileID: 224365988367589688, guid: 14dd3f8355b27454aa9739cf95e7970d, type: 2}
+  - {fileID: 224037051818465406, guid: cc7aea837fceabf4cba15f5986552620, type: 2}
+  - {fileID: 224440681676924130, guid: e84b187253ed8664e92886b70cfe7fed, type: 2}
+  - {fileID: 224910041388379008, guid: 985294b79e6e99b45a40b52f36e4a25c, type: 2}
+  - {fileID: 224099556957869782, guid: 6ce1fb82096e0d14c9a99664403d43e9, type: 2}
+  - {fileID: 224237602021117154, guid: 9d3f7e4698a662f4fb15c943aa9db469, type: 2}
+  - {fileID: 224466237670614418, guid: d775737ec0d24f447b2ce0b68e4b75b9, type: 2}
+  - {fileID: 224259387705462928, guid: 4c142d25195e8214c82ec14c9543031d, type: 2}
+  - {fileID: 224983860617433230, guid: 68530215b1c8b554394f726368e8ddb9, type: 2}
+  - {fileID: 224506053964462770, guid: cde9d8a3ec49db747bb6271f6314b336, type: 2}
+  - {fileID: 224004877699182990, guid: f38ba035cbdeb0844a0ef522afef5746, type: 2}
+  - {fileID: 224614834728384618, guid: 3d6d7417807f8964fac0364b9f183186, type: 2}
+  - {fileID: 224970570567428946, guid: 10c74a3a4f505b54eaaf8de1da4e8108, type: 2}
+  - {fileID: 224587275208352178, guid: d0bb8055665c01946989d686cb57085d, type: 2}
+  - {fileID: 224399510278596208, guid: 89a939734510bd146bfc7ef61f55e52d, type: 2}
+  - {fileID: 224639654211067254, guid: ee671d3baac1b3b4e89555896cc35850, type: 2}
+  prefAnimations:
+  - {fileID: 4503048492905674, guid: 3acd6ecfb60214944ac01bdd62ea0d10, type: 2}
+  - {fileID: 4229618295144376, guid: 34f9f9963c7f3944e945a9124f7bc1c9, type: 2}
+  - {fileID: 4911046327300044, guid: 2d22e336cc468774d8a50915db8291d0, type: 2}
+  - {fileID: 4044104065571782, guid: 5f5a86cf262752e4eb6029df0658ad63, type: 2}
+  - {fileID: 4858945766792670, guid: 46e85e2b07f21844f8a4fdba0be04fba, type: 2}
+  - {fileID: 4155924633289476, guid: e415ed0db83aa5549aba65a13620a0ca, type: 2}
+  - {fileID: 4136645549821806, guid: b5b9270b160eb0d409d6ce71ca388090, type: 2}
+  - {fileID: 4375941207535278, guid: e93c9408cbd752944b4a4e5173e5b759, type: 2}
+  - {fileID: 4614353890090866, guid: dd10253c9a0515c45a2745feac3d823e, type: 2}
+  - {fileID: 4898051453176814, guid: 7524b8335ba1cdb41978fc64ef4fe9bb, type: 2}
+  - {fileID: 4304495538799274, guid: 15dfe1a16f7ed5f49b85477e2f3a69ec, type: 2}

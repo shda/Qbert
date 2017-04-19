@@ -417,7 +417,7 @@ GameObject:
   - component: {fileID: 1329973211}
   - component: {fileID: 1329973210}
   m_Layer: 21
-  m_Name: AnimationScene (3)
+  m_Name: AnimationScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -483,6 +483,7 @@ MonoBehaviour:
   startPoint: {x: 0, y: 0, z: 0}
   startCamera: {x: 0, y: 0, z: 0}
   current: {x: 0, y: 0, z: 0}
+  isFallowToCharacter: 1
 --- !u!4 &1368169808
 Transform:
   m_ObjectHideFlags: 0

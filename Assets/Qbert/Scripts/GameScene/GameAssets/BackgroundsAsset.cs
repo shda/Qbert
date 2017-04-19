@@ -7,20 +7,30 @@ using UnityEditor;
 #endif
 
 [Serializable]
-public class BackgroundsAsset : IGetValueInArray<string>
+public class BackgroundsAsset : ScriptableObject
 {
+    [Serializable]
+    public class SceneBackground
+    {
+        public string image;
+        public string animation;
+    }
+
+    public SceneBackground[] sceneBackgrounds;
+
+    public string[] imageNames;
+    public string[] animationsNames;
+
 #if UNITY_EDITOR
-    public SceneAsset[] sceneAssets;
+    public Transform[] prefImages;
+    public Transform[] prefAnimations;
 #endif
 
 #if UNITY_EDITOR
     void OnValidate()
     {
-        if (sceneAssets != null)
-        {
-            values = sceneAssets.Select(x => x.name).ToArray();
-        }
-        Debug.Log("OnValidate");
+        imageNames = prefImages.Select(x => x.name).ToArray();
+        animationsNames = prefAnimations.Select(x => x.name).ToArray();
     }
 #endif
 }
