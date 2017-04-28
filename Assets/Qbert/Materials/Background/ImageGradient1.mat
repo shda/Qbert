@@ -10,172 +10,84 @@ Material:
   m_Shader: {fileID: 4800000, guid: f129414e2703238489b4351669841066, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
+  disabledShaderPasses: []
   m_SavedProperties:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TexEnvs:
-    - first:
-        name: _BumpMap
-      second:
+    - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailAlbedoMap
-      second:
+    - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailMask
-      second:
+    - _DetailMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailNormalMap
-      second:
+    - _DetailNormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _EmissionMap
-      second:
+    - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _MainTex
-      second:
+    - _MainTex:
         m_Texture: {fileID: 2800000, guid: 196196a976af97a4ebd5a2a70060d440, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _MetallicGlossMap
-      second:
+    - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _OcclusionMap
-      second:
+    - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _ParallaxMap
-      second:
+    - _ParallaxMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - first:
-        name: _BumpScale
-      second: 1
-    - first:
-        name: _ColorMask
-      second: 34.98
-    - first:
-        name: _Cutoff
-      second: 0.5
-    - first:
-        name: _DetailNormalMapScale
-      second: 1
-    - first:
-        name: _DstBlend
-      second: 0
-    - first:
-        name: _Glossiness
-      second: 0.612
-    - first:
-        name: _Lerp
-      second: 1
-    - first:
-        name: _Metallic
-      second: 0.076
-    - first:
-        name: _MixColorLerp
-      second: 1
-    - first:
-        name: _MixColorRadius
-      second: 1
-    - first:
-        name: _Mode
-      second: 0
-    - first:
-        name: _OcclusionStrength
-      second: 1
-    - first:
-        name: _Offset
-      second: 0.08
-    - first:
-        name: _OffsetLeftRight
-      second: 0.15
-    - first:
-        name: _OffsetUpDown
-      second: 0.27
-    - first:
-        name: _Parallax
-      second: 0.02
-    - first:
-        name: _Radius
-      second: 0
-    - first:
-        name: _Scale
-      second: 1
-    - first:
-        name: _SrcBlend
-      second: 1
-    - first:
-        name: _Stencil
-      second: -2.29
-    - first:
-        name: _StencilComp
-      second: 9.2
-    - first:
-        name: _StencilOp
-      second: 1.44
-    - first:
-        name: _StencilReadMask
-      second: 255
-    - first:
-        name: _StencilWriteMask
-      second: 255
-    - first:
-        name: _UVSec
-      second: 0
-    - first:
-        name: _ZWrite
-      second: 1
+    - _BumpScale: 1
+    - _ColorMask: 34.98
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _Glossiness: 0.612
+    - _Lerp: 1
+    - _Metallic: 0.076
+    - _MixColorLerp: 1
+    - _MixColorRadius: 1
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Offset: 0.08
+    - _OffsetLeftRight: 0.15
+    - _OffsetUpDown: 0.27
+    - _Parallax: 0.02
+    - _Radius: 0
+    - _Scale: 1
+    - _SrcBlend: 1
+    - _Stencil: -2.29
+    - _StencilComp: 9.2
+    - _StencilOp: 1.44
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UVSec: 0
+    - _ZWrite: 1
     m_Colors:
-    - first:
-        name: _Color
-      second: {r: 1, g: 0, b: 0, a: 1}
-    - first:
-        name: _Color2
-      second: {r: 0.4784314, g: 0.20392159, b: 0.6509804, a: 1}
-    - first:
-        name: _ColorDown
-      second: {r: 0.57837844, g: 0.29238755, b: 0.7647059, a: 1}
-    - first:
-        name: _ColorIn
-      second: {r: 1, g: 0.88235295, b: 0, a: 1}
-    - first:
-        name: _ColorLeft
-      second: {r: 0.5442953, g: 0.52184254, b: 0.5588235, a: 1}
-    - first:
-        name: _ColorOut
-      second: {r: 1, g: 0.08500004, b: 0.08500004, a: 1}
-    - first:
-        name: _ColorRight
-      second: {r: 0.23842995, g: 0.2746316, b: 0.5147059, a: 1}
-    - first:
-        name: _ColorUp
-      second: {r: 0.12608132, g: 0.18244243, b: 0.3897059, a: 1}
-    - first:
-        name: _Distort
-      second: {r: 0.5, g: 0.5, b: 1, a: 0.9}
-    - first:
-        name: _EmissionColor
-      second: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 0, b: 0, a: 1}
+    - _Color2: {r: 0.4784314, g: 0.20392159, b: 0.6509804, a: 1}
+    - _ColorDown: {r: 0.57837844, g: 0.29238755, b: 0.7647059, a: 1}
+    - _ColorIn: {r: 1, g: 0, b: 0.99000025, a: 1}
+    - _ColorLeft: {r: 0.5442953, g: 0.52184254, b: 0.5588235, a: 1}
+    - _ColorOut: {r: 0.03544121, g: 0, b: 0.241, a: 1}
+    - _ColorRight: {r: 0.23842995, g: 0.2746316, b: 0.5147059, a: 1}
+    - _ColorUp: {r: 0.12608132, g: 0.18244243, b: 0.3897059, a: 1}
+    - _Distort: {r: 0.5, g: 0.5, b: 1, a: 0.9}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

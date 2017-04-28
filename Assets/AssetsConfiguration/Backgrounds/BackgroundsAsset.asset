@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Name: BackgroundsAsset
   m_EditorClassIdentifier: 
   sceneBackgrounds:
-  - image: ImagePattern2New
+  - image: ImageGradient
     animation: WaveNew
   - image: ImageThreeGradient2
-    animation: Fog
+    animation: CloudsNew
   - image: ImageThreeGradient4
     animation: Snow
   - image: ImageGradient
@@ -26,14 +26,8 @@ MonoBehaviour:
   - ImageGradient1
   - ImageGradient2
   - ImageGradient3
-  - ImageKids
-  - ImageLines
-  - ImageLines1
+  - ImageGradient4
   - ImageMoon
-  - ImagePattern
-  - ImagePattern1
-  - ImagePattern2
-  - ImagePiramid
   - ImageRainbow
   - ImageSun
   - ImageThreeGradient
@@ -42,19 +36,18 @@ MonoBehaviour:
   - ImageThreeGradient3
   - ImageThreeGradient4
   - NormalImage
-  - ImagePattern2New
   animationsNames:
-  - Clouds
-  - Fog
-  - GrinShining
-  - Lines
+  - CloudsNew
+  - Firework
+  - FogNew
+  - GrinShiningNew
+  - LinesNew
   - Puzyri
-  - RedStars
+  - RedStarsNew
   - Snow
-  - Squares
+  - SquaresNew
   - Stars
-  - Stars1
-  - Wave
+  - Stars1New
   - WaveNew
   prefImages:
   - {fileID: 224240122334064950, guid: b66ed5485afc1ce48bb93db6b62642c8, type: 2}
@@ -62,14 +55,8 @@ MonoBehaviour:
   - {fileID: 224185058100565906, guid: 29a90cae1aa8eb64cb5af35e93f017fa, type: 2}
   - {fileID: 224574664826843806, guid: 6d551a8f0d71fc0449c6bf78d2b4ffc2, type: 2}
   - {fileID: 224335353213557618, guid: 0727e5a9287127749a88fc032cc33369, type: 2}
-  - {fileID: 224365988367589688, guid: 14dd3f8355b27454aa9739cf95e7970d, type: 2}
-  - {fileID: 224037051818465406, guid: cc7aea837fceabf4cba15f5986552620, type: 2}
-  - {fileID: 224440681676924130, guid: e84b187253ed8664e92886b70cfe7fed, type: 2}
+  - {fileID: 224568175544254004, guid: 27d45648eb2005b4faa33663c1907e0a, type: 2}
   - {fileID: 224910041388379008, guid: 985294b79e6e99b45a40b52f36e4a25c, type: 2}
-  - {fileID: 224099556957869782, guid: 6ce1fb82096e0d14c9a99664403d43e9, type: 2}
-  - {fileID: 224237602021117154, guid: 9d3f7e4698a662f4fb15c943aa9db469, type: 2}
-  - {fileID: 224466237670614418, guid: d775737ec0d24f447b2ce0b68e4b75b9, type: 2}
-  - {fileID: 224259387705462928, guid: 4c142d25195e8214c82ec14c9543031d, type: 2}
   - {fileID: 224983860617433230, guid: 68530215b1c8b554394f726368e8ddb9, type: 2}
   - {fileID: 224506053964462770, guid: cde9d8a3ec49db747bb6271f6314b336, type: 2}
   - {fileID: 224004877699182990, guid: f38ba035cbdeb0844a0ef522afef5746, type: 2}
@@ -78,17 +65,16 @@ MonoBehaviour:
   - {fileID: 224587275208352178, guid: d0bb8055665c01946989d686cb57085d, type: 2}
   - {fileID: 224399510278596208, guid: 89a939734510bd146bfc7ef61f55e52d, type: 2}
   - {fileID: 224639654211067254, guid: ee671d3baac1b3b4e89555896cc35850, type: 2}
-  - {fileID: 224739883529536520, guid: 3c36d591086ccdf4ba150a0beb543c4b, type: 2}
   prefAnimations:
-  - {fileID: 4503048492905674, guid: 3acd6ecfb60214944ac01bdd62ea0d10, type: 2}
-  - {fileID: 4229618295144376, guid: 34f9f9963c7f3944e945a9124f7bc1c9, type: 2}
-  - {fileID: 4911046327300044, guid: 2d22e336cc468774d8a50915db8291d0, type: 2}
-  - {fileID: 4044104065571782, guid: 5f5a86cf262752e4eb6029df0658ad63, type: 2}
+  - {fileID: 4211753388498172, guid: 0d9a23612539f774ea1484968244b01e, type: 2}
+  - {fileID: 4340492711251454, guid: 753379c15ec9e5f4190e68380f100a23, type: 2}
+  - {fileID: 4031026908348634, guid: 0030204e30692f64ea360efc1fd67be0, type: 2}
+  - {fileID: 4463436298481666, guid: 6c085ba1d36cb73499713fdbebe8a494, type: 2}
+  - {fileID: 4874238631370648, guid: 84fef51a3dd111746a079f6257e6ad64, type: 2}
   - {fileID: 4858945766792670, guid: 46e85e2b07f21844f8a4fdba0be04fba, type: 2}
-  - {fileID: 4155924633289476, guid: e415ed0db83aa5549aba65a13620a0ca, type: 2}
+  - {fileID: 4327811187763114, guid: 4a783d5dbbef62246b7779df8e0252fb, type: 2}
   - {fileID: 4136645549821806, guid: b5b9270b160eb0d409d6ce71ca388090, type: 2}
-  - {fileID: 4375941207535278, guid: e93c9408cbd752944b4a4e5173e5b759, type: 2}
+  - {fileID: 4974863248441540, guid: f20079649e1b12846b8cefb38e6e8904, type: 2}
   - {fileID: 4614353890090866, guid: dd10253c9a0515c45a2745feac3d823e, type: 2}
-  - {fileID: 4898051453176814, guid: 7524b8335ba1cdb41978fc64ef4fe9bb, type: 2}
-  - {fileID: 4304495538799274, guid: 15dfe1a16f7ed5f49b85477e2f3a69ec, type: 2}
-  - {fileID: 4473195463349566, guid: 67c9bc9e8fc0eb3488c9ca8555c0fcc7, type: 2}
+  - {fileID: 4707003954295360, guid: 73aea1d83e7a5714693cc5549dc080e0, type: 2}
+  - {fileID: 4301133580646324, guid: 67c9bc9e8fc0eb3488c9ca8555c0fcc7, type: 2}

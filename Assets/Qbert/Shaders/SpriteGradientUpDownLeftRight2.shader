@@ -1,4 +1,6 @@
-﻿Shader "Custom/SpriteGradientUpDownLeftRight2" 
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/SpriteGradientUpDownLeftRight2" 
 {
 	 Properties 
 	 {
@@ -46,7 +48,7 @@
 			 v2f vert (appdata_full v)
 			 {
 				 v2f o;
-				 o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+				 o.pos = UnityObjectToClipPos (v.vertex);
 				 
 				 fixed4 col1 = lerp(_ColorDown ,_ColorUp, v.texcoord.y + _OffsetUpDown );
 				 col1 = lerp(col1 ,_ColorLeft, v.texcoord.x + _OffsetLeftRight );
