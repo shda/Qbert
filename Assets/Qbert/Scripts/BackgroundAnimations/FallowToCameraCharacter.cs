@@ -16,13 +16,16 @@ public class FallowToCameraCharacter : MonoBehaviour
 
 	void Start () 
 	{
-        startPoint = point.position;
-        startCamera = rootCamera.position;
+	    if (point != null)
+	    {
+            startPoint = point.position;
+            startCamera = rootCamera.position;
+        }
     }
 	
 	void Update ()
 	{
-	    if (isFallowToCharacter)
+	    if (isFallowToCharacter && point != null)
 	    {
             current = startCamera + startPoint + point.position;
             rootCamera.position = current;

@@ -12,16 +12,14 @@ MonoBehaviour:
   m_Name: BackgroundsAsset
   m_EditorClassIdentifier: 
   sceneBackgrounds:
-  - image: ImagePattern1
+  - image: ImagePattern2New
+    animation: WaveNew
+  - image: ImageThreeGradient2
     animation: Fog
+  - image: ImageThreeGradient4
+    animation: Snow
   - image: ImageGradient
-    animation: Puzyri
-  - image: ImageGradient
-    animation: Fog
-  - image: ImageGradient
-    animation: Fog
-  - image: ImageGradient
-    animation: Fog
+    animation: Wave
   imageNames:
   - ImageFlashWhite
   - ImageGradient
@@ -44,6 +42,7 @@ MonoBehaviour:
   - ImageThreeGradient3
   - ImageThreeGradient4
   - NormalImage
+  - ImagePattern2New
   animationsNames:
   - Clouds
   - Fog
@@ -56,6 +55,7 @@ MonoBehaviour:
   - Stars
   - Stars1
   - Wave
+  - WaveNew
   prefImages:
   - {fileID: 224240122334064950, guid: b66ed5485afc1ce48bb93db6b62642c8, type: 2}
   - {fileID: 224797606653033178, guid: 468962f976049774bbcc534d505f556a, type: 2}
@@ -78,6 +78,7 @@ MonoBehaviour:
   - {fileID: 224587275208352178, guid: d0bb8055665c01946989d686cb57085d, type: 2}
   - {fileID: 224399510278596208, guid: 89a939734510bd146bfc7ef61f55e52d, type: 2}
   - {fileID: 224639654211067254, guid: ee671d3baac1b3b4e89555896cc35850, type: 2}
+  - {fileID: 224739883529536520, guid: 3c36d591086ccdf4ba150a0beb543c4b, type: 2}
   prefAnimations:
   - {fileID: 4503048492905674, guid: 3acd6ecfb60214944ac01bdd62ea0d10, type: 2}
   - {fileID: 4229618295144376, guid: 34f9f9963c7f3944e945a9124f7bc1c9, type: 2}
@@ -90,3 +91,4 @@ MonoBehaviour:
   - {fileID: 4614353890090866, guid: dd10253c9a0515c45a2745feac3d823e, type: 2}
   - {fileID: 4898051453176814, guid: 7524b8335ba1cdb41978fc64ef4fe9bb, type: 2}
   - {fileID: 4304495538799274, guid: 15dfe1a16f7ed5f49b85477e2f3a69ec, type: 2}
+  - {fileID: 4473195463349566, guid: 67c9bc9e8fc0eb3488c9ca8555c0fcc7, type: 2}

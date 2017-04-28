@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,9 +12,6 @@ public class LoadBackgroundAnimation : MonoBehaviour
 
     public Transform rootImage;
     public Transform roomAnimations;
-
-    public Transform image;
-    public Transform animation;
 
     public BackgroundsAsset asset;
 
@@ -33,16 +32,19 @@ public class LoadBackgroundAnimation : MonoBehaviour
         LoadAnimation(selectBackground);
     }
 
+    private void DestroyAllChildrens(Transform root)
+    {
+        root.Cast<Transform>().ForAll(
+            x => DestroyImmediate(x.gameObject));
+    }
+
     private void LoadAnimation(BackgroundsAsset.SceneBackground selectBackground)
     {
-        if (animation != null)
-        {
-            DestroyImmediate(animation.gameObject);
-        }
+        DestroyAllChildrens(roomAnimations);
 
         Transform animationResource = Resources.Load<Transform>(animationsParefabsPath + selectBackground.animation);
 
-        animation = Instantiate(animationResource);
+        var animation = Instantiate(animationResource);
         animation.SetParent(roomAnimations);
         animation.localScale = new Vector3(1, 1, 1);
     }
@@ -50,14 +52,11 @@ public class LoadBackgroundAnimation : MonoBehaviour
 
     private void LoadImage(BackgroundsAsset.SceneBackground selectBackground)
     {
-        if (image != null)
-        {
-            DestroyImmediate(image.gameObject);
-        }
+        DestroyAllChildrens(rootImage);
 
         Transform imageResource = Resources.Load<Transform>(imagesParefabsPath + selectBackground.image);
 
-        image = Instantiate(imageResource);
+        var image = Instantiate(imageResource);
         RectTransform rt = image.GetComponent<RectTransform>();
         image.SetParent(rootImage);
         image.localScale = new Vector3(1, 1, 1);
