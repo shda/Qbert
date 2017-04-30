@@ -74,6 +74,7 @@ public class EditorAssetSceneBackground : PropertyDrawer
                 }
                 GUI.backgroundColor = saveColor;
 
+
                 drawRect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
             }
             EditorGUILayout.EndVertical();

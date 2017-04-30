@@ -66,7 +66,9 @@ public class LoadBackgroundAnimation : MonoBehaviour
 
     private void StartLoad()
     {
-        var selectBackground = asset.sceneBackgrounds[0];
+        int randomIndes = Random.Range(0, asset.sceneBackgrounds.Length);
+
+        var selectBackground = asset.sceneBackgrounds[randomIndes];
         LoadBackground(selectBackground);
     }
 }
