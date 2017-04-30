@@ -21,20 +21,64 @@ public class EditorAssetSceneBackground : PropertyDrawer
         SerializedProperty image = prop.FindPropertyRelative("image");
         SerializedProperty animation = prop.FindPropertyRelative("animation");
 
-        string selectImage = SetSelect(image, drawRect , backgroundsAsset.prefImages);
-        drawRect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+        string[] variableName = prop.propertyPath.Split('.');
+        SerializedProperty pgSelect = prop.serializedObject.FindProperty(variableName[0]);
 
-        string selectAnimation = SetSelect(animation, drawRect, backgroundsAsset.prefAnimations);
-        drawRect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+        
 
-        if (GUI.Button(drawRect ,  "Select"))
+        /*
+        BackgroundsAsset.SceneBackground sbNew = 
+            (BackgroundsAsset.SceneBackground) pgSelect.serializedObject.targetObject;
+        */
+        BackgroundsAsset.SceneBackground sb = new BackgroundsAsset.SceneBackground();
+
+        EditorGUILayout.BeginHorizontal();
         {
-            BackgroundsAsset.SceneBackground sb = new BackgroundsAsset.SceneBackground();
-            sb.animation = selectAnimation;
-            sb.image = selectImage;
+            EditorGUILayout.BeginVertical();
+            {
+                string selectImage = SetSelect(image, drawRect, backgroundsAsset.prefImages);
+                drawRect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
-            LoadBackgroundAnimation.instance.LoadBackground(sb);
+                string selectAnimation = SetSelect(animation, drawRect, backgroundsAsset.prefAnimations);
+                drawRect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+
+                drawRect.width = drawRect.width - 20;
+
+                float widthSelect = drawRect.width;
+
+                if (GUI.Button(drawRect, "Select"))
+                {
+                    sb.animation = selectAnimation;
+                    sb.image = selectImage;
+
+                    LoadBackgroundAnimation.instance.LoadBackground(sb);
+                }
+
+                drawRect.width = 20;
+                drawRect.x += widthSelect;
+
+                var saveColor = GUI.backgroundColor;
+
+                GUI.backgroundColor = Color.red;
+
+                if (GUI.Button(drawRect, "X"))
+                {
+                    for (int i = 0; i < pgSelect.arraySize; i++)
+                    {
+                        var index = pgSelect.GetArrayElementAtIndex(i);
+                        if (prop.displayName == index.displayName)
+                        {
+                            backgroundsAsset.RemoveOrderBy(i);
+                        }
+                    }
+                }
+                GUI.backgroundColor = saveColor;
+
+                drawRect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+            }
+            EditorGUILayout.EndVertical();
         }
+        EditorGUILayout.EndHorizontal();
     }
 
     private string SetSelect(SerializedProperty image, Rect drawRect , Transform[] transforms)

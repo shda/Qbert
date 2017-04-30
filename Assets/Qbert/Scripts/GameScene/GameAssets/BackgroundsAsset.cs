@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using UnityEngine;
+using System.Collections.Generic;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -10,7 +11,7 @@ using UnityEditor;
 public class BackgroundsAsset : ScriptableObject
 {
     [Serializable]
-    public class SceneBackground
+    public class SceneBackground 
     {
         public string image;
         public string animation;
@@ -32,5 +33,15 @@ public class BackgroundsAsset : ScriptableObject
         imageNames = prefImages.Select(x => x.name).ToArray();
         animationsNames = prefAnimations.Select(x => x.name).ToArray();
     }
+
+    public void RemoveOrderBy(int index)
+    {
+        List<SceneBackground> sb = new List<SceneBackground>(sceneBackgrounds);
+        sb.RemoveAt(index);
+
+        sceneBackgrounds = sb.ToArray();
+    }
 #endif
+
+
 }

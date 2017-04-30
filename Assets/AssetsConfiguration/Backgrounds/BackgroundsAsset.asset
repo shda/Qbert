@@ -14,12 +14,44 @@ MonoBehaviour:
   sceneBackgrounds:
   - image: ImageGradient
     animation: WaveNew
-  - image: ImageThreeGradient2
-    animation: CloudsNew
+  - image: ImageGradient4
+    animation: Firework
   - image: ImageThreeGradient4
     animation: Snow
+  - image: ImageGradient2
+    animation: CloudsNew
+  - image: ImageMoon
+    animation: Stars1New
+  - image: ImageGradient3
+    animation: RedStarsNew
+  - image: ImageThreeGradient
+    animation: LinesNew
+  - image: ImageRainbow
+    animation: Stars1New
+  - image: ImageSun
+    animation: Stars
+  - image: ImageThreeGradient4
+    animation: Puzyri
+  - image: NormalImage
+    animation: Stars
+  - image: ImageThreeGradient4
+    animation: FogNew
+  - image: ImageThreeGradient4
+    animation: GrinShiningNew
+  - image: ImageGradient2
+    animation: SquaresNew
+  - image: ImageThreeGradient2
+    animation: CloudsNew
+  - image: ImageThreeGradient3
+    animation: FogNew
+  - image: NormalImage
+    animation: Snow
+  - image: ImageGradient1
+    animation: Firework
   - image: ImageGradient
-    animation: Wave
+    animation: LinesNew
+  - image: ImageGradient1
+    animation: WaveNew
   imageNames:
   - ImageFlashWhite
   - ImageGradient
