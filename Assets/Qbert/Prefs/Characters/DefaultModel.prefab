@@ -457,7 +457,7 @@ MonoBehaviour:
   coinsMultiplier: 1
   priceCoins: 0
   price: 0.99
-  description: likes the pyramids tours
+  description: Likes the pyramids tours
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

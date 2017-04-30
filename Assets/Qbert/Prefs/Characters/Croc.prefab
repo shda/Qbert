@@ -448,13 +448,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFree: 0
-  nameCharacter: Croc
-  codeName: Croc
+  nameCharacter: CROC
+  codeName: CROC
   booldeDead: {fileID: 4000010515011532}
   booleTextMesh: {fileID: 102000010890862374}
   collisionProxy: {fileID: 114000012613368732}
-  coinsMultiplier: 5
-  priceCoins: 200
+  coinsMultiplier: 8
+  priceCoins: 1200
   price: 0.99
   description: Croc description.
 --- !u!114 &114000012613368732

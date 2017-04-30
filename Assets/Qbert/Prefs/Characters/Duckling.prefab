@@ -448,13 +448,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFree: 0
-  nameCharacter: Duckling
-  codeName: Duckling
+  nameCharacter: DUCKLING
+  codeName: DUCKLING
   booldeDead: {fileID: 4000011929104024}
   booleTextMesh: {fileID: 102000011617619432}
   collisionProxy: {fileID: 114000014028981516}
-  coinsMultiplier: 8
-  priceCoins: 350
+  coinsMultiplier: 6
+  priceCoins: 800
   price: 0.99
   description: Duckling description.
 --- !u!114 &114000014028981516

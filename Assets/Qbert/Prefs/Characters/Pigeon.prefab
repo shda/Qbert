@@ -448,13 +448,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFree: 0
-  nameCharacter: Pigeon
-  codeName: Pigeon
+  nameCharacter: PIGEON
+  codeName: PIGEON
   booldeDead: {fileID: 4000010322055310}
   booleTextMesh: {fileID: 102000012746200730}
   collisionProxy: {fileID: 114000011340700810}
-  coinsMultiplier: 11
-  priceCoins: 500
+  coinsMultiplier: 9
+  priceCoins: 1400
   price: 0.99
   description: Pigeon description.
 --- !u!114 &114000011340700810

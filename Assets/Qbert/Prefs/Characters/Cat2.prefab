@@ -460,12 +460,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFree: 0
-  nameCharacter: Cat
-  codeName: Cat
+  nameCharacter: CAT
+  codeName: CAT
   booldeDead: {fileID: 4000012316566172}
   booleTextMesh: {fileID: 102000013327878052}
   collisionProxy: {fileID: 114000010057516088}
-  coinsMultiplier: 4
-  priceCoins: 150
+  coinsMultiplier: 2
+  priceCoins: 100
   price: 0.99
   description: Cat description.

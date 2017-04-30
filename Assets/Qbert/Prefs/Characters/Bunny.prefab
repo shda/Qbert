@@ -460,12 +460,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFree: 0
-  nameCharacter: Bunny
-  codeName: Bunny
+  nameCharacter: HARE
+  codeName: HARE
   booldeDead: {fileID: 4000012777363258}
   booleTextMesh: {fileID: 102000013905039922}
   collisionProxy: {fileID: 114000010167199756}
   coinsMultiplier: 3
-  priceCoins: 100
+  priceCoins: 200
   price: 0.99
   description: Bunny description.

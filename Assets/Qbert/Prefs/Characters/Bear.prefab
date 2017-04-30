@@ -460,12 +460,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFree: 0
-  nameCharacter: Bear
-  codeName: Bear
+  nameCharacter: GRIZZLY
+  codeName: GRIZZLY
   booldeDead: {fileID: 4000010377153354}
   booleTextMesh: {fileID: 102000011927615966}
   collisionProxy: {fileID: 114000012118418996}
-  coinsMultiplier: 2
-  priceCoins: 50
+  coinsMultiplier: 5
+  priceCoins: 600
   price: 0.99
   description: Bear description.

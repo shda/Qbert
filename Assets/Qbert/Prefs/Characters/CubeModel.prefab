@@ -455,7 +455,7 @@ MonoBehaviour:
   booleTextMesh: {fileID: 10294828}
   collisionProxy: {fileID: 11419106}
   coinsMultiplier: 6
-  priceCoins: 250
+  priceCoins: 800
   price: 0.99
   description: Cube description.
 --- !u!1001 &100100000

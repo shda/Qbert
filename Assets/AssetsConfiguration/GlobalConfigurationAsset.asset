@@ -30,16 +30,15 @@ MonoBehaviour:
     addCoinsWhiteToCoin: 10
   characters:
   - {fileID: 11434804, guid: 97ce3723bfccf524c9cde7dce8ad7410, type: 2}
-  - {fileID: 114000012715688472, guid: c27a83272f973c04aa3080214d345a7a, type: 2}
-  - {fileID: 114000014126727682, guid: eda728695aa7b77478caf38dd57fbb79, type: 2}
   - {fileID: 114000010424888668, guid: 703bc92dc0ccac1488e8e4487790a8fc, type: 2}
-  - {fileID: 114000010804436112, guid: 044b34fa90d49354484fb6e50669268e, type: 2}
-  - {fileID: 11431430, guid: c532f5cc26fbf85439d1cee31c2f68da, type: 2}
-  - {fileID: 114000010289308640, guid: cda2a8c21ccbe63458d3ad9c3684c227, type: 2}
+  - {fileID: 114031162585862322, guid: d34ba0efe0f8edd4dade1a3c0b15403d, type: 2}
+  - {fileID: 114789700755020494, guid: 5ce81889157cdb14e89e362f7e6b5ad1, type: 2}
+  - {fileID: 114000012715688472, guid: c27a83272f973c04aa3080214d345a7a, type: 2}
   - {fileID: 114000013253061216, guid: 36b9385ff311f4a42bb8df744e5e7425, type: 2}
-  - {fileID: 114000011019042930, guid: 6a76e3ce20c15ef4dac172bfa806ca47, type: 2}
-  - {fileID: 114000012656639276, guid: 0e517f5332ef9c24fb03764a8aae5ba1, type: 2}
-  - {fileID: 114000010035839682, guid: 5f1947c4295f5a444ae4e94d5354f9fd, type: 2}
+  - {fileID: 114819444099585134, guid: 5b50f159dcaeb23439b7d49fb228b529, type: 2}
+  - {fileID: 114000010804436112, guid: 044b34fa90d49354484fb6e50669268e, type: 2}
+  - {fileID: 114164310795484342, guid: 7e86ba42e94338b4e81ca050f90a6792, type: 2}
+  - {fileID: 114397433237944396, guid: ddee4dc83e92a9a46bc43eb859424fa0, type: 2}
   coinsModels:
   - {fileID: 114000013992143392, guid: 99f1cd4d77a135349b167de7b2546dc0, type: 2}
   - {fileID: 114000013314257888, guid: 3f1ba401a08e7bd4aa2c7325e0fee637, type: 2}

@@ -460,12 +460,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFree: 0
-  nameCharacter: Own
-  codeName: Own
+  nameCharacter: OWL
+  codeName: OWL
   booldeDead: {fileID: 4000014250384466}
   booleTextMesh: {fileID: 102000012950366692}
   collisionProxy: {fileID: 114000010777738210}
-  coinsMultiplier: 10
-  priceCoins: 450
+  coinsMultiplier: 8
+  priceCoins: 1200
   price: 0.99
   description: Own description.
