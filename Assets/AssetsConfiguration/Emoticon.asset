@@ -11,3 +11,39 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Emoticon
   m_EditorClassIdentifier: Assembly-CSharp::EmoticonsAsset
+  isRandom: 1
+  isUniqueRandom: 1
+  values:
+  - "\u03A3(+\u2313o)\u042D\r"
+  - "(-\u0416- ;)!\r"
+  - "(O\u301CO;)\r"
+  - ">\u2015(\xB4\uFF65\u03C9\uFF65`)\u2192\r"
+  - "\\(x_o)/\r"
+  - "\\(>_<)/\r"
+  - "(\u256C\u0CA0\u76CA\u0CA0)\r"
+  - "(@\u76CA@..)\r"
+  - "(*\uFF40\u3078\xB4*)\r"
+  - "(#\u0CA0\u042FR\u0CA0#)\r"
+  - "(*`\u0434\xB4*)\r"
+  - "\\(\uFF400\xB4)/\r"
+  - "?!\u2514(>o< )\u2518\r"
+  - "\u30FE( \uFF65`\u2313\xB4\uFF65)\uFF89\uFF9E\r"
+  - "(~_~\u30E1)\r"
+  - "((+_+))\r"
+  - " \u2517(\uFF40\u76BF\xB4)\u251B\r"
+  - "\\(\u2267\u0414\u2266)\u30CE\r"
+  - "\u02ED(/*\u02C3\u11BA\u02C2)/\r"
+  - "*(\u0E51\u2022\uFE4F\u2022)\u22C6*\r"
+  - "\xAF\\_(\u30C4)_/\xAF\r"
+  - "#(\u2609\uFE35\u0CA0@)>\r"
+  - "(\uFF3E\u2313\uFF3E)?\r"
+  - "\u256E(-_\u2299;)\u309E\r"
+  - " (*\u30FB\uFF5E\u30FB*)\r"
+  - "(((\u2579\u0434\u2579;)))\r"
+  - "(\u273D\uFF9F\u0434\uFF9F\u273D)\r"
+  - "\u03A3(\u2018\u25C9\u2313\u25C9\u2019)\r"
+  - "\u2510('\uFF5E`\uFF1B)\u250C\r"
+  - "\u2514[ \u25D5 \u301C \u25D5 ]\u2518\r"
+  - "\uFF08\u3000\xB4_\u309D`\uFF09\r"
+  - "(\u30FC_\u30FC)Zz"
+  textEmoticons: {fileID: 4900000, guid: e6485dd8b052cd74d979d9c237be5680, type: 3}

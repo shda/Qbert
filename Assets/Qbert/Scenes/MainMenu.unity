@@ -2380,6 +2380,48 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 464988, guid: 64e91c15277f3ac4aa3692788deeb159, type: 2}
   m_PrefabInternal: {fileID: 228896870}
+--- !u!1001 &246322958
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000013368767828, guid: c27a83272f973c04aa3080214d345a7a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 16.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013368767828, guid: c27a83272f973c04aa3080214d345a7a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013368767828, guid: c27a83272f973c04aa3080214d345a7a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013368767828, guid: c27a83272f973c04aa3080214d345a7a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013368767828, guid: c27a83272f973c04aa3080214d345a7a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013368767828, guid: c27a83272f973c04aa3080214d345a7a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013368767828, guid: c27a83272f973c04aa3080214d345a7a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013368767828, guid: c27a83272f973c04aa3080214d345a7a, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c27a83272f973c04aa3080214d345a7a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &264457229
 GameObject:
   m_ObjectHideFlags: 0
@@ -6873,7 +6915,6 @@ MonoBehaviour:
   - BA_GrinShining
   - BA_Lines
   - BA_Puzyri
-  - BA_RedStars
   - BA_Snow
   - BA_Squares
   - BA_Stars

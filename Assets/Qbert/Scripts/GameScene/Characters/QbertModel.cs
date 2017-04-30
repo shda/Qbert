@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Qbert.Scripts.GameScene.Characters
 {
@@ -9,7 +10,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
         public string nameCharacter;
         public string codeName;
         public Transform booldeDead;
-        public TextMesh booleTextMesh;
+        public Text booleTextMesh;
         public CollisionProxy collisionProxy;
 
         public int coinsMultiplier;

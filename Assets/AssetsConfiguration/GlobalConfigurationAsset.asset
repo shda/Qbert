@@ -44,6 +44,7 @@ MonoBehaviour:
   - {fileID: 114000013314257888, guid: 3f1ba401a08e7bd4aa2c7325e0fee637, type: 2}
   - {fileID: 114000012656154532, guid: dac93be61f5029045895c859eddb4647, type: 2}
   - {fileID: 114000013752991108, guid: 609752ecd49813e4da6ffd3164b0c789, type: 2}
+  emoticonsAsset: {fileID: 11400000, guid: bbf1b5dc3d7a7cc489eaa9f9f6e3b526, type: 2}
   assetLoadLevel: {fileID: 11400000, guid: e83d963050f53b5409638bd78b679a00, type: 2}
   assetInstruction: {fileID: 11400000, guid: 70afaa749854a7b4e853ce9f0a8d4223, type: 2}
   assetBonusLevels: {fileID: 11400000, guid: 3bba06b1c54dffa4abb8d16156986713, type: 2}
