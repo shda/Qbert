@@ -13,11 +13,18 @@ namespace Assets.Qbert.Scripts.GameScene.GameAssets
         public QbertModel[] characters;
         public CoinBuyModels[] coinsModels;
 
+        public EmoticonsAsset emoticonsAsset;
+
         public LevelConfigAsset assetLoadLevel;
         public LevelConfigAsset assetInstruction;
 
         public LevelConfigAsset assetBonusLevels;
         public CyclicLevelsAsset cyclicLevelsAsset;
+
+        public string GetEmoticon()
+        {
+            return emoticonsAsset.GetValue();
+        }
 
         public QbertModel GetFirstCloseModel()
         {

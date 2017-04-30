@@ -3,6 +3,7 @@ using Assets.Qbert.Scripts.GameScene.GameAssets;
 using Assets.Qbert.Scripts.GameScene.Gui;
 using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Qbert.Scripts.GUI.GUISettings
 {
@@ -11,8 +12,9 @@ namespace Assets.Qbert.Scripts.GUI.GUISettings
         public GlobalConfigurationAsset globalConfigurationAsset;
         public CameraMenuController cameraMenuController;
 
-        public TextMesh textCoinsAddToWall;
-        public TextMesh textPriceToWall;
+        public Text textCoinsAddToWall;
+        public Text textPriceToWall;
+
         public TextMesh textPriceToButton;
 
         public Transform imageWatchAd;

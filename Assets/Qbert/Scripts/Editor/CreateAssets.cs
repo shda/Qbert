@@ -5,8 +5,14 @@ using System.IO;
 using Assets.Qbert.Scripts.GameScene.GameAssets;
 using UnityEditor;
 
-public class CreateAssets : MonoBehaviour 
+public class CreateAssets : MonoBehaviour
 {
+    [MenuItem("Assets/Create asset/Emoticon asset")]
+    static void CreateEmoticonAsset()
+    {
+        CreateAsset<EmoticonsAsset>("Emoticon");
+    }
+
     [MenuItem("Assets/Create asset/Backgrounds asset")]
     static void CreateBackgroundsAsset()
     {

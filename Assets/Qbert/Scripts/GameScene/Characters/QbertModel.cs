@@ -24,6 +24,11 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
             return GlobalValues.IsModelBuyed(codeName);
         }
 
+        public void SetTextBooble(string text)
+        {
+            booleTextMesh.text = text;
+        }
+
         void Start () 
         {
 	

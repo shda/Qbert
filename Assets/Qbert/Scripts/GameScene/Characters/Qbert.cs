@@ -37,6 +37,7 @@ namespace Assets.Qbert.Scripts.GameScene.Characters
 
         public void OnEnemyAttack()
         {
+            model.SetTextBooble(levelController.globalConfiguraion.GetEmoticon());
             boobleDead.gameObject.SetActive(true);
             boobleDead.rotation = Quaternion.Euler(0, 0, 0);
 
