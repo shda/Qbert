@@ -15,25 +15,3 @@ EditorBuildSettings:
     path: Assets/Qbert/Scenes/LevelNumber.unity
   - enabled: 1
     path: Assets/Qbert/Scenes/Debug/SelectLevel.unity
-  - enabled: 1
-    path: Assets/Qbert/BackAnimations/Scenes/BA_Clouds.unity
-  - enabled: 1
-    path: Assets/Qbert/BackAnimations/Scenes/BA_Fog.unity
-  - enabled: 1
-    path: Assets/Qbert/BackAnimations/Scenes/BA_GrinShining.unity
-  - enabled: 1
-    path: Assets/Qbert/BackAnimations/Scenes/BA_Lines.unity
-  - enabled: 1
-    path: Assets/Qbert/BackAnimations/Scenes/BA_Puzyri.unity
-  - enabled: 0
-    path: Assets/Qbert/BackAnimations/Scenes/BA_RedStars.unity
-  - enabled: 1
-    path: Assets/Qbert/BackAnimations/Scenes/BA_Snow.unity
-  - enabled: 1
-    path: Assets/Qbert/BackAnimations/Scenes/BA_Squares.unity
-  - enabled: 1
-    path: Assets/Qbert/BackAnimations/Scenes/BA_Stars.unity
-  - enabled: 1
-    path: Assets/Qbert/BackAnimations/Scenes/BA_Stars1.unity
-  - enabled: 1
-    path: Assets/Qbert/BackAnimations/Scenes/BA_Wave.unity

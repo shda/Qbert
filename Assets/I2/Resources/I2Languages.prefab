@@ -1,0 +1,916 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &159184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 469642}
+  - component: {fileID: 11498450}
+  m_Layer: 0
+  m_Name: I2Languages
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &469642
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159184}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11498450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488051eaa73ba421e8fe4868f2e0f364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Google_WebServiceURL: https://script.google.com/macros/s/AKfycbwD74MnlwoBdGSjh32QAKhBVtO-hw1q2R7fIupabaVj1VB9_SE/exec
+  Google_SpreadsheetKey: 1fXlv8QkFJNISoDv_3pHARGca1WgNNQG_Ejuc1cpB-pQ
+  Google_SpreadsheetName: I2Loc Qarcade Localization
+  Google_LastUpdatedVersion: 1494760899376
+  GoogleUpdateFrequency: 3
+  mTerms:
+  - Term: PLAY
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0418\u0413\u0420\u0410\u0422\u042C"
+    - PLAY
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: SELECT
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0412\u042B\u0411\u0420\u0410\u0422\u042C"
+    - SELECT
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: SETTINGS
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041D\u0410\u0421\u0422\u0420\u041E\u0419\u041A\u0418"
+    - SETTINGS
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: SOUND
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0417\u0412\u0423\u041A"
+    - SOUND
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: LANGUAGE
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u042F\u0417\u042B\u041A"
+    - LANGUAGE
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: RULES
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041F\u0420\u0410\u0412\u0418\u041B\u0410"
+    - RULES
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: ABOUT
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0422\u0418\u0422\u0420\u042B"
+    - ABOUT
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: SET CONTROLS
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041D\u0410\u0421\u0422\u0420\u041E\u0419\u041A\u0410 \u0423\u041F\u0420\u0410\u0412\u041B\u0415\u041D\u0418\u042F"
+    - SET CONTROLS
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: RANKS
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0420\u0415\u041A\u041E\u0420\u0414\u042B"
+    - RANKS
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: RESTORE PURCHASE
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0412\u0415\u0420\u041D\u0423\u0422\u042C \u041F\u041E\u041A\u0423\u041F\u041A\u0418"
+    - RESTORE PURCHASE
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: RESTORE PURCHASE[TOUCH]
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0412\u0415\u0420\u041D\u0423\u0422\u042C\n\u041F\u041E\u041A\u0423\u041F\u041A\u0418"
+    - 'RESTORE
+
+      PURCHASE'
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: IN DEVELOPING
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0412 \u0420\u0410\u0417\u0420\u0410\u0411\u041E\u0422\u041A\u0415"
+    - IN DEVELOPING
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: DIMA
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0414\u0418\u041C\u0410"
+    - DIMA
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: CODE + DESIGN
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041A\u041E\u0414 + \u0414\u0418\u0417\u0410\u0419\u041D"
+    - CODE + DESIGN
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: MISHA
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041C\u0418\u0428\u0410"
+    - MISHA
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: ART + DESIGN
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0410\u0420\u0422 + \u0414\u0418\u0417\u0410\u0419\u041D"
+    - ART + DESIGN
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: SOUND FX
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0417\u0412\u0423\u041A\u0418"
+    - SOUND FX
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: MAIL US
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041F\u0418\u0428\u0418\u0422\u0415 \u041D\u0410\u041C"
+    - MAIL US
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: AVOID THESE OBJECTS!
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0418\u0417\u0411\u0415\u0413\u0410\u0419 \u042D\u0422\u0418 \u041E\u0411\u042A\u0415\u041A\u0422\u042B!"
+    - AVOID THESE OBJECTS!
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: AVOID THESE OBJECTS![TOUCH]
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0418\u0417\u0411\u0415\u0413\u0410\u0419 \u042D\u0422\u0418\n \u041E\u0411\u042A\u0415\u041A\u0422\u042B!"
+    - "AVOID  THE\nSE\rOBJECTS!"
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: RED CUBE
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041A\u0420\u0410\u0421\u041D\u042B\u0419 \u041A\u0423\u0411"
+    - RED CUBE
+    Languages_Touch:
+    - "\u041A\u0420\u0410\u0421\u041D\u042B\u0419\n\u041A\u0423\u0411"
+    - 'RED
+
+      CUBE'
+    Flags: 0000
+  - Term: RED CUBE[TOUCH]
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041A\u0420\u0410\u0421\u041D\u042B\u0419 \n\u041A\u0423\u0411"
+    - 'RED
+
+      CUBE'
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: "SNAKE\r\nHATCHES FROM CUBE AND CHASES YOU"
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0417\u041C\u0415\u042F\r\n\u0412\u042B\u041B\u0423\u041F\u041B\u042F\u0415\u0422\u0421\u042F
+      \u0418\u0417 \u041A\u0423\u0411\u0410 \u0418 \u041F\u0420\u0415\u0421\u041B\u0415\u0414\u0423\u0415\u0422
+      \u0422\u0415\u0411\u042F"
+    - "SNAKE\r\nHATCHES FROM CUBE AND CHASES YOU"
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: "MONKEY\r\nJUMPS ON THE SIDE FACES OF THE CUBES"
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041E\u0411\u0415\u0417\u042C\u042F\u041D\u0410\r\n\u041F\u0420\u042B\u0413\u0410\u0415\u0422
+      \u041F\u041E \u0411\u041E\u041A\u041E\u0412\u042B\u041C \u0413\u0420\u0410\u041D\u042F\u041C
+      \u041A\u0423\u0411\u0418\u041A\u041E\u0412"
+    - "MONKEY\r\nJUMPS ON THE SIDE FACES OF THE CUBES"
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: GO FOR THESE OBJECTS!
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041B\u041E\u0412\u0418 \u042D\u0422\u0418 \u041E\u0411\u042A\u0415\u041A\u0422\u042B!"
+    - GO FOR THESE OBJECTS!
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: GO FOR THESE OBJECTS![TOUCH]
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041B\u041E\u0412\u0418 \u042D\u0422\u0418\n\u041E\u0411\u042A\u0415\u041A\u0422\u042B!"
+    - 'GO FOR THESE
+
+      OBJECTS!'
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: "BLUE CUBE\r\nFREEZES ALL OBJECTS"
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0421\u0418\u041D\u0418\u0419 \u041A\u0423\u0411\r\n\u0417\u0410\u041C\u041E\u0420\u0410\u0416\u0418\u0412\u0410\u0415\u0422
+      \u0412\u0421\u0415 \u041E\u0411\u042A\u0415\u041A\u0422\u042B"
+    - "BLUE CUBE\r\nFREEZES ALL OBJECTS"
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: "BLUE CUBE\r\nFREEZES ALL OBJECTS[TOUCH]"
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0421\u0418\u041D\u0418\u0419 \u041A\u0423\u0411\r\n\u0417\u0410\u041C\u041E\u0420\u0410\u0416\u0418\u0412\u0410\u0415\u0422\n\u0412\u0421\u0415
+      \u041E\u0411\u042A\u0415\u041A\u0422\u042B"
+    - "BLUE  CUBE\r\nFREEZES \nALL  OBJECTS"
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: "FROG\r\nCHANGES THE COLOR OF THE CUBES"
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041B\u042F\u0413\u0423\u0428\u041A\u0410\r\n\u0418\u0417\u041C\u0415\u041D\u042F\u0415\u0422
+      \u0426\u0412\u0415\u0422 \u041A\u0423\u0411\u0418\u041A\u041E\u0412"
+    - "FROG\r\nCHANGES THE COLOR OF THE CUBES"
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: COINS
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041C\u041E\u041D\u0415\u0422\u042B"
+    - COINS
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: DISCS
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0414\u0418\u0421\u041A\u0418"
+    - DISCS
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: "DISCS TRANSPORTS YOU TO THE OTHER SIDE OF THE PLAYFIELD.\r\nJUMP ON A DISC
+      TO LURE SNAKE TO HIS DEATH."
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0414\u0418\u0421\u041A\u0418 \u041F\u0415\u0420\u0415\u041D\u041E\u0421\u042F\u0422
+      \u0422\u0415\u0411\u042F \u041D\u0410 \u0414\u0420\u0423\u0413\u0423\u042E \u0421\u0422\u041E\u0420\u041E\u041D\u0423
+      \u0418\u0413\u0420\u041E\u0412\u041E\u0413\u041E \u041F\u041E\u041B\u042F.\r\n\u041F\u0420\u0418\u041C\u0410\u041D\u0418\u0412
+      \u0417\u041C\u0415\u042E \u041F\u0420\u042B\u0413\u041D\u0418 \u041D\u0410 \u0414\u0418\u0421\u041A,
+      \u0427\u0422\u041E\u0411\u042B \u0418\u0417\u0411\u0410\u0412\u0418\u0422\u042C\u0421\u042F
+      \u041E\u0422 \u041D\u0415\u0401."
+    - "DISCS TRANSPORTS YOU TO THE OTHER SIDE OF THE PLAYFIELD.\r\nJUMP ON A DISC
+      TO LURE SNAKE TO HIS DEATH."
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: ADJUST D-PAD
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0420\u0415\u0413\u0423\u041B\u0418\u0420\u041E\u0412\u041A\u0410 D-PAD"
+    - ADJUST D-PAD
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: "MOVE THE D-PAD BUTTONS TO WHERE YOU PREFER!\r\nALSO USE SWIPE GESTURES
+      TO CONTROL YOUR CHARACTER!"
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041F\u0415\u0420\u0415\u0414\u0412\u0418\u0413\u0410\u0419 \u041A\u041D\u041E\u041F\u041A\u0418
+      \u041A\u041E\u041D\u0422\u0420\u041E\u041B\u041B\u0415\u0420\u041E\u0412 \u0422\u0423\u0414\u0410
+      \u0413\u0414\u0415 \u0422\u0415\u0411\u0415 \u0423\u0414\u041E\u0411\u041D\u041E!\r\n\u0422\u0410\u041A\u0416\u0415
+      \u0418\u0421\u041F\u041E\u041B\u042C\u0417\u0423\u0419 \u0421\u0412\u0410\u0419\u041F\u042B,
+      \u0427\u0422\u041E\u0411\u042B \u0423\u041F\u0420\u0410\u0412\u041B\u042F\u0422\u042C
+      \u041F\u0415\u0420\u0421\u041E\u041D\u0410\u0416\u0415\u041C!"
+    - "MOVE THE D-PAD BUTTONS TO WHERE YOU PREFER!\r\nALSO USE SWIPE GESTURES TO CONTROL
+      YOUR CHARACTER!"
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: SAVE
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0421\u041E\u0425\u0420\u0410\u041D\u0418\u0422\u042C"
+    - SAVE
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: CANCEL
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041E\u0422\u041C\u0415\u041D\u0418\u0422\u042C"
+    - CANCEL
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: DEFAULTS
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0421\u0422\u0410\u041D\u0414\u0410\u0420\u0422\u041D\u041E"
+    - DEFAULTS
+    Languages_Touch:
+    - "\u0421\u0411\u0420\u041E\u0421\u0418\u0422\u042C"
+    - 
+    Flags: 0000
+  - Term: TOURIST
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0422\u0423\u0420\u0418\u0421\u0422"
+    - TOURIST
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: MULTIPLY COINS BY
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0423\u041C\u041D\u041E\u0416\u0410\u0415\u0422 \u041C\u041E\u041D\u0415\u0422\u042B
+      \u041D\u0410"
+    - MULTIPLY COINS BY
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: 250 COINS
+    TermType: 0
+    Description: 
+    Languages:
+    - "250 \u041C\u041E\u041D\u0415\u0422"
+    - 250 COINS
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: FREE
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0411\u0415\u0421\u041F\u041B\u0410\u0422\u041D\u041E"
+    - FREE
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: INSTRUCTIONS
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0418\u041D\u0421\u0422\u0420\u0423\u041A\u0426\u0418\u0418"
+    - INSTRUCTIONS
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: LEVEL
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0423\u0420\u041E\u0412\u0415\u041D\u042C"
+    - LEVEL
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: ROUND
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0420\u0410\u0423\u041D\u0414"
+    - ROUND
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: CHANGE TO
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0418\u0417\u041C\u0415\u041D\u0418\u0422\u042C \u041D\u0410"
+    - CHANGE TO
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: BONUS LEVEL
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0411\u041E\u041D\u0423\u0421 \u0423\u0420\u041E\u0412\u0415\u041D\u042C"
+    - BONUS LEVEL
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: COLLECT AS MANY COINS IN THE ALLOTTED TIME!
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0421\u041E\u0411\u0415\u0420\u0418 \u041A\u0410\u041A \u041C\u041E\u0416\u041D\u041E
+      \u0411\u041E\u041B\u042C\u0428\u0415 \u041C\u041E\u041D\u0415\u0422 \u0417\u0410
+      \u041E\u0422\u0412\u0415\u0414\u0415\u041D\u041D\u041E\u0415 \u0412\u0420\u0415\u041C\u042F!"
+    - COLLECT AS MANY COINS IN THE ALLOTTED TIME!
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: TAP TO CONTINUE
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041D\u0410\u0416\u041C\u0418 \u0427\u0422\u041E\u0411\u042B \u041F\u0420\u041E\u0414\u041E\u041B\u0416\u0418\u0422\u042C"
+    - TAP TO CONTINUE
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: END GAME
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0417\u0410\u041A\u041E\u041D\u0427\u0418\u0422\u042C \u0418\u0413\u0420\u0423"
+    - END GAME
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: CONTINUE?
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041F\u0420\u041E\u0414\u041E\u041B\u0416\u0418\u0422\u042C?"
+    - CONTINUE?
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: WATCH
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0421\u041C\u041E\u0422\u0420\u0415\u0422\u042C"
+    - WATCH
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: INVEST
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0412\u041B\u041E\u0416\u0418\u0422\u042C"
+    - INVEST
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: BUY COINS
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041A\u0423\u041F\u0418\u0422\u042C \u041C\u041E\u041D\u0415\u0422\u042B"
+    - BUY COINS
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: LAST SCORE
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041D\u041E\u0412\u042B\u0419 \u0421\u0427\u0415\u0422"
+    - LAST SCORE
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: BEST SCORE
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041B\u0423\u0427\u0428\u0418\u0419 \u0421\u0427\u0415\u0422"
+    - BEST SCORE
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: NEW HIGH SCORE!
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041D\u041E\u0412\u042B\u0419 \u0420\u0415\u041A\u041E\u0420\u0414!"
+    - NEW HIGH SCORE!
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: RATE APP
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041E\u0426\u0415\u041D\u0418\u0422\u042C"
+    - RATE APP
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: EARN
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0417\u0410\u0420\u0410\u0411\u041E\u0422\u0410\u0419"
+    - EARN
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: EARNED
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0417\u0410\u0420\u0410\u0411\u041E\u0422\u0410\u041D\u041E"
+    - EARNED
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: GIFT!
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041F\u041E\u0414\u0410\u0420\u041E\u041A!"
+    - GIFT!
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: FREE GIFT (2H)
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041F\u041E\u0414\u0410\u0420\u041E\u041A \u0427\u0415\u0420\u0415\u0417 (2\u0427)"
+    - FREE GIFT (2H)
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: UNLOCK!
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041F\u041E\u041B\u0423\u0427\u0418\u0422\u042C!"
+    - UNLOCK!
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: MENU
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041C\u0415\u041D\u042E"
+    - MENU
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: "YOUR CHARACTER NOW MULTIPLY COINS!\r\nEVERY NEW CHARACTER MULTIPLY COINS
+      BY (X1!)"
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0422\u0415\u041F\u0415\u0420\u042C \u0422\u0412\u041E\u0419 \u0413\u0415\u0420\u041E\u0419
+      \u0423\u041C\u041D\u041E\u0416\u0410\u0415\u0422 \u041C\u041E\u041D\u0415\u0422\u042B!\r\n\u041A\u0410\u0416\u0414\u042B\u0419
+      \u041D\u041E\u0412\u042B\u0419 \u0413\u0415\u0420\u041E\u0419 \u0423\u041C\u041D\u041E\u0416\u0410\u0415\u0422
+      \u041C\u041E\u041D\u0415\u0422\u042B \u041D\u0410 (X1!)"
+    - "YOUR CHARACTER NOW MULTIPLY COINS!\r\nEVERY NEW CHARACTER MULTIPLY COINS BY
+      (X1!)"
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: EXIT
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0412\u042B\u0425\u041E\u0414"
+    - EXIT
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: TAP TO OPEN
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041D\u0410\u0416\u041C\u0418 \u0427\u0422\u041E\u0411\u042B \u041E\u0422\u041A\u0420\u042B\u0422\u042C"
+    - TAP TO OPEN
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: FREE GIFT IN (6M)
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u041F\u041E\u0414\u0410\u0420\u041E\u041A \u0427\u0415\u0420\u0415\u0417 (6\u041C)"
+    - FREE GIFT IN (6M)
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: DOUBLE GIFT
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0414\u0412\u041E\u0419\u041D\u041E\u0419 \u041F\u041E\u0414\u0410\u0420\u041E\u041A"
+    - DOUBLE GIFT
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: PINK  MONKEY JUMPS ON THE SIDE FACES
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0420\u041E\u0417\u041E\u0412\u0410\u042F \u041E\u0411\u0415\u0417\u042C\u042F\u041D\u0410\n\u041F\u0420\u042B\u0413\u0410\u0415\u0422
+      \u041F\u041E \n\u0413\u0420\u0410\u041D\u042F\u041C \u041A\u0423\u0411\u0410"
+    - "PINK  MONKEY\r\nJUMPS ON \nTHE SIDE FACES"
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: PURPLE  SNAKE HATCHES FROM CUBE AND CHASES YOU
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0424\u0418\u041E\u041B\u0415\u0422\u041E\u0412\u0410\u042F \u0417\u041C\u0415\u042F\n
+      \u0413\u041E\u041D\u042F\u0415\u0422\u0421\u042F \u0417\u0410 \u0412\u0410\u041C\u0418"
+    - "PURPLE  SNAKE\n\rHATCHES FROM CUBE \nAND CHASES YOU"
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: EMERALD  FROG CHANGES THE COLOR OF THE CUBES
+    TermType: 0
+    Description: 
+    Languages:
+    - "\u0417\u0415\u041B\u0401\u041D\u0410\u042F \u041B\u042F\u0413\u0423\u0428\u041A\u0410
+      \u041C\u0415\u041D\u042F\u0415\u0422\n\u0426\u0412\u0415\u0422\u0410 \u0423
+      \u0413\u0420\u0410\u041D\u0415\u0419 \u041A\u0423\u0411\u0410"
+    - 'GREEN FROG CHANGES
+
+      COLOR OF THE CUBE FACES'
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: 'JUMP ON SQUARES TO CHANGE THEM TO THE TARGET COLOR.
+
+      STAY ON PLAYFIELD!
+
+      JUMPING OFF RESULTS IN A LOST LIFE, UNLESS A PLATFORM IS THERE.'
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: Qbic
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: platforms  transports you  to  the  other  side of  the  playfield Jump  on  a  PLATFORM  to  lure  SNAKE  to  his  death
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: kenpixel
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: JUMP TO PLATFORM
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - "\u041D\u0410 \u041F\u041B\u0410\u0422\u0424\u041E\u0420\u041C\u0423 \u041C\u041E\u0416\u041D\u041E\n\u041F\u0420\u042B\u0413\u041D\u0423\u0422\u042C
+      \u0421 \u0418\u0413\u0420\u041E\u0412\u041E\u0413\u041E \u041F\u041E\u041B\u042F,\n\u041F\u0420\u042B\u0413\u041D\u0423\u0412
+      \u041D\u0410 \u041F\u041B\u0410\u0422\u0424\u041E\u0420\u041C\u0423 \u0417\u041C\u0415\u042F\n\u0423\u041F\u0410\u0414\u0401\u0422
+      \u0412\u041D\u0418\u0417"
+    - "platforms  transports\n\ryou  to  the  other  side\n\rof  the  playfield.\r\r\n\nJump
+      \ on  a  PLATFORM  to \r\nlure  SNAKE  to  his  death."
+    Flags: 0000
+  - Term: PLATFORMS
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - "\u041F\u041B\u0410\u0422\u0424\u041E\u0420\u041C\u042B"
+    - PLATFORMS
+    Flags: 0000
+  - Term: ALSO USE SWIPE GESTURES TO CONTROL YOUR CHARACTER
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - "\u0421 \u041F\u041E\u041C\u041E\u0429\u042C\u042E \u0416\u0415\u0421\u0422\u041E\u0412
+      \u041D\u0410\u0421\u0422\u0420\u041E\u0419 \u041F\u041E\u041B\u041E\u0416\u0415\u041D\u0418\u0415
+      \u041A\u041D\u041E\u041F\u041E\u041A \u041D\u0410 \u042D\u041A\u0420\u0410\u041D\u0415"
+    - "ALSO USE SWIPE GESTURES TO\r\nCONTROL YOUR CHARACTER!"
+    Flags: 0000
+  - Term: DETECT INTERSECTION BUTTONS
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - "\u041A\u041D\u041E\u041F\u041A\u0418 \u041D\u0410\u0415\u0417\u0416\u0410\u042E\u0422
+      \u0414\u0420\u0423\u0413 \u041D\u0410 \u0414\u0420\u0423\u0413\u0410"
+    - DETECT INTERSECTION BUTTONS
+    Flags: 0000
+  mLanguages:
+  - Name: RUSSIAN
+    Code: ru
+  - Name: ENGLISH
+    Code: en
+  CaseInsensitiveTerms: 0
+  Assets: []
+  NeverDestroy: 1
+  UserAgreesToHaveItOnTheScene: 0
+  UserAgreesToHaveItInsideThePluginsFolder: 0
+  Spreadsheet_LocalFileName: 
+  Spreadsheet_LocalCSVSeparator: ','
+  Spreadsheet_LocalCSVEncoding: utf-8
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 159184}
+  m_IsPrefabParent: 1

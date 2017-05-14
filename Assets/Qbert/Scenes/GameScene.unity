@@ -3593,7 +3593,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010914278100, guid: e5ef6c2a87129094180d0b949187ecbe, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e5ef6c2a87129094180d0b949187ecbe, type: 2}
@@ -4770,7 +4770,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &317643184
 GameObject:
@@ -7516,7 +7516,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 499108, guid: 072afc5907367964ca7abd8c80847200, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 116718, guid: 072afc5907367964ca7abd8c80847200, type: 2}
       propertyPath: m_IsActive
@@ -14915,16 +14915,6 @@ MonoBehaviour:
   - Instruction
   - LevelNumber
   - SelectLevel
-  - BA_Clouds
-  - BA_Fog
-  - BA_GrinShining
-  - BA_Lines
-  - BA_Puzyri
-  - BA_Snow
-  - BA_Squares
-  - BA_Stars
-  - BA_Stars1
-  - BA_Wave
 --- !u!1 &852584931
 GameObject:
   m_ObjectHideFlags: 0
@@ -15772,7 +15762,7 @@ Transform:
   - {fileID: 1971803515}
   - {fileID: 1630806859}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &906343813
 GameObject:
@@ -19543,7 +19533,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 483130, guid: d6a5171e071522a429bc519dfa0b1993, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1000013091206708, guid: d6a5171e071522a429bc519dfa0b1993, type: 2}
       propertyPath: m_IsActive
@@ -21778,7 +21768,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 474054, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11419272, guid: d920972237c35e74a88919299e0de2b7, type: 2}
       propertyPath: version
@@ -23607,7 +23597,7 @@ Transform:
   - {fileID: 1143251971}
   - {fileID: 1886021776}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1423069557
 MonoBehaviour:
@@ -29649,7 +29639,7 @@ Transform:
   - {fileID: 1501470678}
   - {fileID: 413696879}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1788277969
 MonoBehaviour:
@@ -29797,16 +29787,6 @@ MonoBehaviour:
   - Instruction
   - LevelNumber
   - SelectLevel
-  - BA_Clouds
-  - BA_Fog
-  - BA_GrinShining
-  - BA_Lines
-  - BA_Puzyri
-  - BA_Snow
-  - BA_Squares
-  - BA_Stars
-  - BA_Stars1
-  - BA_Wave
 --- !u!114 &1796972886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29868,16 +29848,6 @@ MonoBehaviour:
   - Instruction
   - LevelNumber
   - SelectLevel
-  - BA_Clouds
-  - BA_Fog
-  - BA_GrinShining
-  - BA_Lines
-  - BA_Puzyri
-  - BA_Snow
-  - BA_Squares
-  - BA_Stars
-  - BA_Stars1
-  - BA_Wave
 --- !u!114 &1796972889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29896,16 +29866,6 @@ MonoBehaviour:
   - Instruction
   - LevelNumber
   - SelectLevel
-  - BA_Clouds
-  - BA_Fog
-  - BA_GrinShining
-  - BA_Lines
-  - BA_Puzyri
-  - BA_Snow
-  - BA_Squares
-  - BA_Stars
-  - BA_Stars1
-  - BA_Wave
 --- !u!1001 &1797077112
 Prefab:
   m_ObjectHideFlags: 0
@@ -36244,7 +36204,7 @@ Transform:
   m_Children:
   - {fileID: 1473093132}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2146725905
 MonoBehaviour:
