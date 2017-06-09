@@ -123,7 +123,7 @@ MonoBehaviour:
     - "\u041D\u0410\u0421\u0422\u0420\u041E\u0419\u041A\u0410 \u0423\u041F\u0420\u0410\u0412\u041B\u0415\u041D\u0418\u042F"
     - SET CONTROLS
     Languages_Touch:
-    - 
+    - "\u041D\u0410\u0421\u0422\u0420\u041E\u0419\u041A\u0410\n\u0423\u041F\u0420\u0410\u0412\u041B\u0415\u041D\u0418\u042F"
     - 
     Flags: 0000
   - Term: RANKS
@@ -235,8 +235,8 @@ MonoBehaviour:
     - "\u0418\u0417\u0411\u0415\u0413\u0410\u0419 \u042D\u0422\u0418 \u041E\u0411\u042A\u0415\u041A\u0422\u042B!"
     - AVOID THESE OBJECTS!
     Languages_Touch:
-    - 
-    - 
+    - "\u0418\u0417\u0411\u0415\u0413\u0410\u0419 \u042D\u0422\u0418\n\u041E\u0411\u042A\u0415\u041A\u0422\u042B!"
+    - "AVOID THESE \nOBJECTS!"
     Flags: 0000
   - Term: AVOID THESE OBJECTS![TOUCH]
     TermType: 0
@@ -303,8 +303,8 @@ MonoBehaviour:
     - "\u041B\u041E\u0412\u0418 \u042D\u0422\u0418 \u041E\u0411\u042A\u0415\u041A\u0422\u042B!"
     - GO FOR THESE OBJECTS!
     Languages_Touch:
-    - 
-    - 
+    - "\u041B\u041E\u0412\u0418 \u042D\u0422\u0418\n \u041E\u0411\u042A\u0415\u041A\u0422\u042B!"
+    - "GO FOR THESE\n OBJECTS!"
     Flags: 0000
   - Term: GO FOR THESE OBJECTS![TOUCH]
     TermType: 0

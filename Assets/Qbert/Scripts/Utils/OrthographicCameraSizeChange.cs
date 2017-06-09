@@ -4,10 +4,9 @@ namespace Assets.Qbert.Scripts.Utils
 {
     public class OrthographicCameraSizeChange : MonoBehaviour
     {
-        public float resizeCamera = 2.0f;
+        public float workSize = 2.0f;
         public Camera orthographicCamera;
 
-        public float developSize = 1.0f;
         public float developWidth = 1024;
         public float developHight = 768;
 
@@ -18,16 +17,12 @@ namespace Assets.Qbert.Scripts.Utils
 	
         void Update ()
         {
-            float step = (float) developSize/ Screen.height;
+            float fd = developWidth/developHight;
+            float sd = Screen.width/ (float)Screen.height;
 
+            float step = (float)fd/ sd;
 
-
-
-            //float f = (float)Screen.height/Screen.width;
-
-            orthographicCamera.orthographicSize = resizeCamera + Screen.width * step;
-
-            Debug.Log(step);
+            orthographicCamera.orthographicSize = workSize*step;
         }
     }
 }
