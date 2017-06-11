@@ -890,6 +890,16 @@ MonoBehaviour:
       \u0414\u0420\u0423\u0413 \u041D\u0410 \u0414\u0420\u0423\u0413\u0410"
     - DETECT INTERSECTION BUTTONS
     Flags: 0000
+  - Term: LIDERBOARD
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - "\u041B\u0418\u0414\u0415\u0420\u042B"
+    - LIDERBOARD
+    Flags: 0000
   mLanguages:
   - Name: RUSSIAN
     Code: ru
