@@ -59,6 +59,9 @@ namespace Assets.Qbert.Scripts
         [SaveFieldAttribute]
         public static bool isCointsByWatchAdIsBeenViewed = false;
 
+        [SaveFieldAttribute]
+        public static bool isSoundOn = true;
+
         public static bool isShowSkipButtonLevel = true;
 
         public static string[] GetCodeNamesCharactersOpen()
@@ -150,18 +153,14 @@ namespace Assets.Qbert.Scripts
             }
         }
 
-
         public static void ReturnQbertLives()
         {
             countLive += 3;
         }
 
-
         static GlobalValues()
         {
             Load();
         }
-
-        
     }
 }

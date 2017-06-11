@@ -25,8 +25,6 @@ namespace Assets.Qbert.Scripts.GameScene.Sound
         public AudioClip getColoredCube;
         public AudioClip getBlueCube;
 
-        
-
 
         public static void PlayJump(Character character)
         {
@@ -42,7 +40,10 @@ namespace Assets.Qbert.Scripts.GameScene.Sound
 
         public void PlaySoundShot(AudioClip clip)
         {
-            audioSource.PlayOneShot(clip);
+            if (GlobalValues.isSoundOn)
+            {
+                audioSource.PlayOneShot(clip);
+            }
         }
 
         public static void PlayQbertDown()

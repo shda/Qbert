@@ -165,8 +165,8 @@ MonoBehaviour:
     - "\u0412 \u0420\u0410\u0417\u0420\u0410\u0411\u041E\u0422\u041A\u0415"
     - IN DEVELOPING
     Languages_Touch:
-    - 
-    - 
+    - "\u0412 \u0420\u0410\u0417\u0420\u0410\u0411\u041E\u0422\u041A\u0415..."
+    - IN DEVELOPING...
     Flags: 0000
   - Term: DIMA
     TermType: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
     - "\u041F\u0418\u0428\u0418\u0422\u0415 \u041D\u0410\u041C"
     - MAIL US
     Languages_Touch:
-    - 
+    - "\u041F\u0418\u0428\u0418\u0422\u0415\n \u041D\u0410\u041C"
     - 
     Flags: 0000
   - Term: AVOID THESE OBJECTS!
@@ -810,9 +810,18 @@ MonoBehaviour:
     - 
     - 
     Languages_Touch:
-    - 
-    - 
-    Flags: 0000
+    - "\u041F\u0420\u042B\u0413\u0410\u0419 \u041D\u0410 \u041A\u0423\u0411\u0418\u041A\u0418
+      \u0427\u0422\u041E\u0411\u042B \n\u0418\u0417\u041C\u0415\u041D\u0418\u0422\u042C
+      \u0418\u0425\n\u0426\u0412\u0415\u0422 \u041D\u0410 \u0422\u0420\u0415\u0411\u0423\u0415\u041C\u042B\u0419.\r
+      \n\u041E\u0421\u0422\u0410\u0412\u0410\u0419\u0421\u042F \u041D\u0410 \u0418\u0413\u0420\u041E\u0412\u041E\u041C
+      \u041F\u041E\u041B\u0415!\r\n\u0421\u041F\u0420\u042B\u0413\u0418\u0412\u0410\u042F
+      \u0421 \u041F\u0418\u0420\u0410\u041C\u0418\u0414\u042B \n\u0422\u042B \u0422\u0415\u0420\u042F\u0415\u0428\u042C
+      \u0416\u0418\u0417\u041D\u042C, \n\u041A\u0420\u041E\u041C\u0415 \u041F\u0420\u042B\u0416\u041A\u0410
+      \u041D\u0410 \u041F\u041B\u0410\u0422\u0424\u041E\u0420\u041C\u0423."
+    - "Jump On The Blocks To\nChange Them\nThe Desired Color.\r\_\nStay On The Playing
+      Field!\r\nJumping From Pyramid\nYou Lose A Life,\nExcept For The Jump To The
+      Platform."
+    Flags: 0002
   - Term: Qbic
     TermType: 0
     Description: 
@@ -899,6 +908,26 @@ MonoBehaviour:
     Languages_Touch:
     - "\u041B\u0418\u0414\u0415\u0420\u042B"
     - LIDERBOARD
+    Flags: 0000
+  - Term: CODE_DISIGN
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - "\u041A\u041E\u0414 + \u0414\u0418\u0417\u0410\u0419\u041D"
+    - CODE + DESIGN
+    Flags: 0000
+  - Term: CODE_DESIGN
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - 
+    - 
     Flags: 0000
   mLanguages:
   - Name: RUSSIAN
