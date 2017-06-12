@@ -23,6 +23,8 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
         public GlobalConfigurationAsset globalConfiguraion;
         public FlashBackground flashBackground;
 
+        public bool isCheckToWin = true;
+
         [HideInInspector]
         public LevelLogic levelLogic;
 
@@ -176,8 +178,13 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             qbert.collisionProxy.triggerEnterEvent = OnCollisionCharacters;
         }
 
+        
+
         public void OnRoundCubesInWin()
         {
+            if(!isCheckToWin)
+                return;;
+
             levelLogic.StopLevel();
             DestroyAllEnemies();
             inputController.isEnable = false;
