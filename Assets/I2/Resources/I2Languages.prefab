@@ -124,7 +124,9 @@ MonoBehaviour:
     - SET CONTROLS
     Languages_Touch:
     - "\u041D\u0410\u0421\u0422\u0420\u041E\u0419\u041A\u0410\n\u0423\u041F\u0420\u0410\u0412\u041B\u0415\u041D\u0418\u042F"
-    - 
+    - 'SET
+
+      CONTROLS'
     Flags: 0000
   - Term: RANKS
     TermType: 0
@@ -143,8 +145,10 @@ MonoBehaviour:
     - "\u0412\u0415\u0420\u041D\u0423\u0422\u042C \u041F\u041E\u041A\u0423\u041F\u041A\u0418"
     - RESTORE PURCHASE
     Languages_Touch:
-    - 
-    - 
+    - "\u0412\u0415\u0420\u041D\u0423\u0422\u042C\n\u041F\u041E\u041A\u0423\u041F\u041A\u0418"
+    - 'RESTORE
+
+      PURCHASE'
     Flags: 0000
   - Term: RESTORE PURCHASE[TOUCH]
     TermType: 0
@@ -185,7 +189,7 @@ MonoBehaviour:
     - "\u041A\u041E\u0414 + \u0414\u0418\u0417\u0410\u0419\u041D"
     - CODE + DESIGN
     Languages_Touch:
-    - 
+    - "\u041A\u041E\u0414 + \u0414\u0418\u0417\u0410\u0419\u041D"
     - 
     Flags: 0000
   - Term: MISHA
@@ -225,7 +229,7 @@ MonoBehaviour:
     - "\u041F\u0418\u0428\u0418\u0422\u0415 \u041D\u0410\u041C"
     - MAIL US
     Languages_Touch:
-    - "\u041F\u0418\u0428\u0418\u0422\u0415\n \u041D\u0410\u041C"
+    - "\u041F\u0418\u0428\u0418\u0422\u0415\n\u041D\u0410\u041C"
     - 
     Flags: 0000
   - Term: AVOID THESE OBJECTS!
@@ -236,7 +240,9 @@ MonoBehaviour:
     - AVOID THESE OBJECTS!
     Languages_Touch:
     - "\u0418\u0417\u0411\u0415\u0413\u0410\u0419 \u042D\u0422\u0418\n\u041E\u0411\u042A\u0415\u041A\u0422\u042B!"
-    - "AVOID THESE \nOBJECTS!"
+    - 'AVOID THESE
+
+      OBJECTS!'
     Flags: 0000
   - Term: AVOID THESE OBJECTS![TOUCH]
     TermType: 0
@@ -303,8 +309,10 @@ MonoBehaviour:
     - "\u041B\u041E\u0412\u0418 \u042D\u0422\u0418 \u041E\u0411\u042A\u0415\u041A\u0422\u042B!"
     - GO FOR THESE OBJECTS!
     Languages_Touch:
-    - "\u041B\u041E\u0412\u0418 \u042D\u0422\u0418\n \u041E\u0411\u042A\u0415\u041A\u0422\u042B!"
-    - "GO FOR THESE\n OBJECTS!"
+    - "\u041B\u041E\u0412\u0418 \u042D\u0422\u0418\n\u041E\u0411\u042A\u0415\u041A\u0422\u042B!"
+    - 'GO FOR THESE
+
+      OBJECTS!'
     Flags: 0000
   - Term: GO FOR THESE OBJECTS![TOUCH]
     TermType: 0
@@ -358,7 +366,7 @@ MonoBehaviour:
     - "\u041C\u041E\u041D\u0415\u0422\u042B"
     - COINS
     Languages_Touch:
-    - 
+    - "\u041C\u041E\u041D\u0415\u0422"
     - 
     Flags: 0000
   - Term: DISCS
@@ -493,7 +501,7 @@ MonoBehaviour:
     - "\u0418\u041D\u0421\u0422\u0420\u0423\u041A\u0426\u0418\u0418"
     - INSTRUCTIONS
     Languages_Touch:
-    - 
+    - "\u0418\u041D\u0421\u0422\u0420\u0423\u041A\u0426\u0418\u0418"
     - 
     Flags: 0000
   - Term: LEVEL
@@ -513,8 +521,8 @@ MonoBehaviour:
     - "\u0420\u0410\u0423\u041D\u0414"
     - ROUND
     Languages_Touch:
-    - 
-    - 
+    - "\u0420\u0410\u0423\u041D\u0414 1"
+    - ROUND 1
     Flags: 0000
   - Term: CHANGE TO
     TermType: 0
@@ -545,8 +553,12 @@ MonoBehaviour:
       \u041E\u0422\u0412\u0415\u0414\u0415\u041D\u041D\u041E\u0415 \u0412\u0420\u0415\u041C\u042F!"
     - COLLECT AS MANY COINS IN THE ALLOTTED TIME!
     Languages_Touch:
-    - 
-    - 
+    - "\u0421\u041E\u0411\u0415\u0420\u0418 \u041A\u0410\u041A \u041C\u041E\u0416\u041D\u041E\n\u0411\u041E\u041B\u042C\u0428\u0415
+      \u041C\u041E\u041D\u0415\u0422\n\u0417\u0410 \u041E\u0422\u0412\u0415\u0414\u0415\u041D\u041D\u041E\u0415
+      \u0412\u0420\u0415\u041C\u042F!"
+    - 'COLLECT AS MANY COINS
+
+      IN THE ALLOTTED TIME!'
     Flags: 0000
   - Term: TAP TO CONTINUE
     TermType: 0
@@ -565,7 +577,7 @@ MonoBehaviour:
     - "\u0417\u0410\u041A\u041E\u041D\u0427\u0418\u0422\u042C \u0418\u0413\u0420\u0423"
     - END GAME
     Languages_Touch:
-    - 
+    - "\u0417\u0410\u041A\u041E\u041D\u0427\u0418\u0422\u042C\n\u0418\u0413\u0420\u0423"
     - 
     Flags: 0000
   - Term: CONTINUE?
@@ -625,7 +637,7 @@ MonoBehaviour:
     - "\u041B\u0423\u0427\u0428\u0418\u0419 \u0421\u0427\u0415\u0422"
     - BEST SCORE
     Languages_Touch:
-    - 
+    - "\u0420\u0415\u041A\u041E\u0420\u0414"
     - 
     Flags: 0000
   - Term: NEW HIGH SCORE!
@@ -645,7 +657,7 @@ MonoBehaviour:
     - "\u041E\u0426\u0415\u041D\u0418\u0422\u042C"
     - RATE APP
     Languages_Touch:
-    - 
+    - "\u041E\u0426\u0415\u041D\u0418"
     - 
     Flags: 0000
   - Term: EARN
@@ -685,8 +697,8 @@ MonoBehaviour:
     - "\u041F\u041E\u0414\u0410\u0420\u041E\u041A \u0427\u0415\u0420\u0415\u0417 (2\u0427)"
     - FREE GIFT (2H)
     Languages_Touch:
-    - 
-    - 
+    - "\u041F\u041E\u0414\u0410\u0420\u041E\u041A \u0427\u0415\u0420\u0415\u0417"
+    - FREE GIFT
     Flags: 0000
   - Term: UNLOCK!
     TermType: 0
@@ -750,8 +762,8 @@ MonoBehaviour:
     - "\u041F\u041E\u0414\u0410\u0420\u041E\u041A \u0427\u0415\u0420\u0415\u0417 (6\u041C)"
     - FREE GIFT IN (6M)
     Languages_Touch:
-    - 
-    - 
+    - "\u041F\u041E\u0414\u0410\u0420\u041E\u041A \u0427\u0415\u0420\u0415\u0417"
+    - FREE GIFT IN
     Flags: 0000
   - Term: DOUBLE GIFT
     TermType: 0
@@ -771,8 +783,9 @@ MonoBehaviour:
       \u041F\u041E \n\u0413\u0420\u0410\u041D\u042F\u041C \u041A\u0423\u0411\u0410"
     - "PINK  MONKEY\r\nJUMPS ON \nTHE SIDE FACES"
     Languages_Touch:
-    - 
-    - 
+    - "\u041E\u0411\u0415\u0417\u042C\u042F\u041D\u0410\n\u041F\u0420\u042B\u0413\u0410\u0415\u0422
+      \u041F\u041E \n\u0413\u0420\u0410\u041D\u042F\u041C \u041A\u0423\u0411\u0410"
+    - "MONKEY\r\nJUMPS ON \nTHE SIDE FACES"
     Flags: 0000
   - Term: PURPLE  SNAKE HATCHES FROM CUBE AND CHASES YOU
     TermType: 0
@@ -782,8 +795,10 @@ MonoBehaviour:
       \u0413\u041E\u041D\u042F\u0415\u0422\u0421\u042F \u0417\u0410 \u0412\u0410\u041C\u0418"
     - "PURPLE  SNAKE\n\rHATCHES FROM CUBE \nAND CHASES YOU"
     Languages_Touch:
-    - 
-    - 
+    - "\u0417\u041C\u0415\u042F\n\u0412\u042B\u041B\u0423\u041F\u041B\u042F\u0415\u0422\u0421\u042F
+      \u0418\u0417 \u041A\u0423\u0411\u0410\n\u0418 \u041F\u0420\u0415\u0421\u041B\u0415\u0414\u0423\u0415\u0422
+      \u0422\u0415\u0411\u042F"
+    - "SNAKE\n\rHATCHES FROM CUBE \nAND CHASES YOU"
     Flags: 0000
   - Term: EMERALD  FROG CHANGES THE COLOR OF THE CUBES
     TermType: 0
@@ -796,8 +811,11 @@ MonoBehaviour:
 
       COLOR OF THE CUBE FACES'
     Languages_Touch:
-    - 
-    - 
+    - "\u041B\u042F\u0413\u0423\u0428\u041A\u0410\n\u041C\u0415\u041D\u042F\u0415\u0422
+      \u0426\u0412\u0415\u0422\u0410 \u0423 \u041A\u0423\u0411\u0410"
+    - 'FROG
+
+      CHANGES COLOR OF THE CUBE'
     Flags: 0000
   - Term: 'JUMP ON SQUARES TO CHANGE THEM TO THE TARGET COLOR.
 
@@ -810,18 +828,16 @@ MonoBehaviour:
     - 
     - 
     Languages_Touch:
-    - "\u041F\u0420\u042B\u0413\u0410\u0419 \u041D\u0410 \u041A\u0423\u0411\u0418\u041A\u0418
-      \u0427\u0422\u041E\u0411\u042B \n\u0418\u0417\u041C\u0415\u041D\u0418\u0422\u042C
-      \u0418\u0425\n\u0426\u0412\u0415\u0422 \u041D\u0410 \u0422\u0420\u0415\u0411\u0423\u0415\u041C\u042B\u0419.\r
-      \n\u041E\u0421\u0422\u0410\u0412\u0410\u0419\u0421\u042F \u041D\u0410 \u0418\u0413\u0420\u041E\u0412\u041E\u041C
-      \u041F\u041E\u041B\u0415!\r\n\u0421\u041F\u0420\u042B\u0413\u0418\u0412\u0410\u042F
+    - "\u041F\u0420\u042B\u0413\u0410\u0419 \u041D\u0410 \u041A\u0423\u0411\u0418\u041A\u0418\n\u0427\u0422\u041E\u0411\u042B
+      \u0418\u0417\u041C\u0415\u041D\u0418\u0422\u042C \u0418\u0425 \u0426\u0412\u0415\u0422\n\u041D\u0410
+      \u0422\u0420\u0415\u0411\u0423\u0415\u041C\u042B\u0419.\r \n\n\u041E\u0421\u0422\u0410\u0412\u0410\u0419\u0421\u042F
+      \u041D\u0410 \u0418\u0413\u0420\u041E\u0412\u041E\u041C \u041F\u041E\u041B\u0415!\r\n\n\u0421\u041F\u0420\u042B\u0413\u0418\u0412\u0410\u042F
       \u0421 \u041F\u0418\u0420\u0410\u041C\u0418\u0414\u042B \n\u0422\u042B \u0422\u0415\u0420\u042F\u0415\u0428\u042C
       \u0416\u0418\u0417\u041D\u042C, \n\u041A\u0420\u041E\u041C\u0415 \u041F\u0420\u042B\u0416\u041A\u0410
       \u041D\u0410 \u041F\u041B\u0410\u0422\u0424\u041E\u0420\u041C\u0423."
-    - "Jump On The Blocks To\nChange Them\nThe Desired Color.\r\_\nStay On The Playing
-      Field!\r\nJumping From Pyramid\nYou Lose A Life,\nExcept For The Jump To The
-      Platform."
-    Flags: 0002
+    - "JUMP ON SQUARES\nTO CHANGE THEM\nTO THE TARGET COLOR.\r\n\nSTAY ON PLAYFIELD!\r\n\nJUMPING
+      OFF RESULTS\nIN A LOST LIFE, UNLESS\nA PLATFORM IS THERE."
+    Flags: 0000
   - Term: Qbic
     TermType: 0
     Description: 
@@ -859,12 +875,14 @@ MonoBehaviour:
     - 
     - 
     Languages_Touch:
-    - "\u041D\u0410 \u041F\u041B\u0410\u0422\u0424\u041E\u0420\u041C\u0423 \u041C\u041E\u0416\u041D\u041E\n\u041F\u0420\u042B\u0413\u041D\u0423\u0422\u042C
-      \u0421 \u0418\u0413\u0420\u041E\u0412\u041E\u0413\u041E \u041F\u041E\u041B\u042F,\n\u041F\u0420\u042B\u0413\u041D\u0423\u0412
-      \u041D\u0410 \u041F\u041B\u0410\u0422\u0424\u041E\u0420\u041C\u0423 \u0417\u041C\u0415\u042F\n\u0423\u041F\u0410\u0414\u0401\u0422
-      \u0412\u041D\u0418\u0417"
-    - "platforms  transports\n\ryou  to  the  other  side\n\rof  the  playfield.\r\r\n\nJump
-      \ on  a  PLATFORM  to \r\nlure  SNAKE  to  his  death."
+    - "\u0414\u0418\u0421\u041A\u0418 \u041F\u0415\u0420\u0415\u041D\u041E\u0421\u042F\u0422
+      \u0422\u0415\u0411\u042F\n\u041D\u0410 \u0414\u0420\u0423\u0413\u0423\u042E
+      \u0427\u0410\u0421\u0422\u042C\n\u0418\u0413\u0420\u041E\u0412\u041E\u0413\u041E
+      \u041F\u041E\u041B\u042F.\n\n\u041F\u0420\u042B\u0413\u041D\u0423\u0412 \u0417\u0410
+      \u0422\u041E\u0411\u041E\u0419 \u0417\u041C\u0415\u042F\n\u0423\u041F\u0410\u0414\u0401\u0422
+      \u0412\u041D\u0418\u0417."
+    - "DISCS TRANSPORTS YOU\nTO THE OTHER SIDE\nOF THE PLAYFIELD.\r\n\nJUMP ON A DISC
+      TO LURE SNAKE\nTO HIS DEATH."
     Flags: 0000
   - Term: PLATFORMS
     TermType: 0
@@ -873,8 +891,8 @@ MonoBehaviour:
     - 
     - 
     Languages_Touch:
-    - "\u041F\u041B\u0410\u0422\u0424\u041E\u0420\u041C\u042B"
-    - PLATFORMS
+    - "\u0414\u0418\u0421\u041A\u0418"
+    - DISCS
     Flags: 0000
   - Term: ALSO USE SWIPE GESTURES TO CONTROL YOUR CHARACTER
     TermType: 0
@@ -886,7 +904,7 @@ MonoBehaviour:
     - "\u0421 \u041F\u041E\u041C\u041E\u0429\u042C\u042E \u0416\u0415\u0421\u0422\u041E\u0412
       \u041D\u0410\u0421\u0422\u0420\u041E\u0419 \u041F\u041E\u041B\u041E\u0416\u0415\u041D\u0418\u0415
       \u041A\u041D\u041E\u041F\u041E\u041A \u041D\u0410 \u042D\u041A\u0420\u0410\u041D\u0415"
-    - "ALSO USE SWIPE GESTURES TO\r\nCONTROL YOUR CHARACTER!"
+    - SET THE CONTROLL BUTTONS ON SCREEN WITH GESTURES
     Flags: 0000
   - Term: DETECT INTERSECTION BUTTONS
     TermType: 0
@@ -928,6 +946,122 @@ MonoBehaviour:
     Languages_Touch:
     - 
     - 
+    Flags: 0000
+  - Term: STAY  ON  PLAYFIELD JUMPING  OFF  RESULTS  IN  A LOST  LIFE  UNLESS  A  PLATFORM
+      IS THERE
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - "\u041E\u0421\u0422\u0410\u0412\u0410\u0419\u0421\u042F \u041D\u0410 \u0418\u0413\u0420\u041E\u0412\u041E\u041C
+      \u041F\u041E\u041B\u0415!\r\n\u0421\u041F\u0420\u042B\u0413\u0418\u0412\u0410\u042F
+      \u0421 \u041F\u0418\u0420\u0410\u041C\u0418\u0414\u042B \u0422\u042B \u0422\u0415\u0420\u042F\u0415\u0428\u042C
+      \u0416\u0418\u0417\u041D\u042C, \n\u041A\u0420\u041E\u041C\u0415 \u041F\u0420\u042B\u0416\u041A\u0410
+      \u041D\u0410 \u041F\u041B\u0410\u0422\u0424\u041E\u0420\u041C\u0423."
+    - "STAY ON PLAYFIELD!\r\nJUMPING OFF RESULTS IN A LOST LIFE,\n UNLESS A PLATFORM
+      IS THERE."
+    Flags: 0000
+  - Term: DISCS TRANSPORTS YOU TO THE OTHER SIDE OF THE PLAYFIELD JUMP ON A DISC TO
+      LURE SNAKE TO HIS DEATH
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - "\u0414\u0418\u0421\u041A\u0418 \u041F\u0415\u0420\u0415\u041D\u041E\u0421\u042F\u0422
+      \u0422\u0415\u0411\u042F \u041D\u0410 \u0414\u0420\u0423\u0413\u0423\u042E \u0427\u0410\u0421\u0422\u042C\n\u0418\u0413\u0420\u041E\u0412\u041E\u0413\u041E
+      \u041F\u041E\u041B\u042F.\n\u041F\u0420\u042B\u0413\u041D\u0423\u0412 \u0417\u0410
+      \u0422\u041E\u0411\u041E\u0419 \u0417\u041C\u0415\u042F \u0423\u041F\u0410\u0414\u0401\u0422
+      \u0412\u041D\u0418\u0417!"
+    - "DISCS TRANSPORTS YOU TO THE OTHER SIDE\nOF THE PLAYFIELD.\r\nJUMP ON A DISC
+      TO LURE SNAKE TO HIS DEATH!"
+    Flags: 0000
+  - Term: LEVEL 1
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - "\u0423\u0420\u041E\u0412\u0415\u041D\u042C 1"
+    - LEVEL 1
+    Flags: 0000
+  - Term: TAP TO SKIP
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - "\u041F\u0420\u041E\u041F\u0423\u0421\u0422\u0418\u0422\u042C"
+    - TAP TO SKIP
+    Flags: 0000
+  - Term: 2h
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - "2\u0447"
+    - 2h
+    Flags: 0000
+  - Term: 
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - 
+    - 
+    Flags: 0000
+  - Term: ROUND 1
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - "\u0420\u0410\u0423\u041D\u0414 1"
+    - RAUND 1
+    Flags: 0000
+  - Term: JUMP ON SQUARES TO CHANGE THEM TO THE TARGET COLOR
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - "\u041F\u0420\u042B\u0413\u0410\u0419 \u041D\u0410 \u041A\u0423\u0411\u0418\u041A\u0418
+      \u0427\u0422\u041E\u0411\u042B \u0418\u0417\u041C\u0415\u041D\u0418\u0422\u042C
+      \u0418\u0425 \u0426\u0412\u0415\u0422 \u041D\u0410 \u0422\u0420\u0415\u0411\u0423\u0415\u041C\u042B\u0419"
+    - 'JUMP ON SQUARES TO CHANGE THEM
+
+      TO THE TARGET COLOR'
+    Flags: 0000
+  - Term: AVOID THESE OBJECTS
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - "\u0418\u0417\u0411\u0415\u0413\u0410\u0419 \u042D\u0422\u0418 \u041E\u0411\u042A\u0415\u041A\u0422\u042B!"
+    - AVOID THESE OBJECTS!
+    Flags: 0000
+  - Term: GO FOR THESE OBJECTS
+    TermType: 0
+    Description: 
+    Languages:
+    - 
+    - 
+    Languages_Touch:
+    - "\u041B\u041E\u0412\u0418 \u042D\u0422\u0418 \u041E\u0411\u042A\u0415\u041A\u0422\u042B!"
+    - GO FOR THESE OBJECTS!
     Flags: 0000
   mLanguages:
   - Name: RUSSIAN

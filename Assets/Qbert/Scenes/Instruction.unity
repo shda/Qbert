@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44862837, g: 0.49867892, b: 0.5756692, a: 1}
+  m_IndirectSpecularColor: {r: 0.44862837, g: 0.49867895, b: 0.5756692, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -275,16 +275,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11427138, guid: 50df05df30d69ae439b98d3a96da2cdd, type: 2}
       propertyPath: m_Text
-      value: TAP TO SKIP
+      value: "\u041F\u0420\u041E\u041F\u0423\u0421\u0422\u0418\u0422\u042C"
       objectReference: {fileID: 0}
     - target: {fileID: 11427138, guid: 50df05df30d69ae439b98d3a96da2cdd, type: 2}
       propertyPath: m_FontData.m_Font
       value: 
-      objectReference: {fileID: 12800000, guid: 984fa034ce4b0e24db4e5694b0bc7576,
+      objectReference: {fileID: 12800000, guid: 87e33cce15ea2904ca6806293cd1c05b,
         type: 3}
     - target: {fileID: 22458908, guid: 50df05df30d69ae439b98d3a96da2cdd, type: 2}
       propertyPath: m_AnchoredPosition.x
       value: -51.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11427138, guid: 50df05df30d69ae439b98d3a96da2cdd, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 37
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 50df05df30d69ae439b98d3a96da2cdd, type: 2}
@@ -544,6 +548,37 @@ Transform:
   m_Father: {fileID: 597221900}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &246146843 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 177126, guid: 50df05df30d69ae439b98d3a96da2cdd, type: 2}
+  m_PrefabInternal: {fileID: 38881678}
+--- !u!114 &246146847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 246146843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTerm: TAP TO SKIP
+  mTermSecondary: Qbic
+  PrimaryTermModifier: 0
+  SecondaryTermModifier: 0
+  LocalizeOnAwake: 1
+  Source: {fileID: 11498450, guid: 30b4bdb95bb330045b3300c29172b19e, type: 2}
+  CanUseSecondaryTerm: 1
+  AllowMainTermToBeRTL: 1
+  AllowSecondTermToBeRTL: 0
+  IgnoreRTL: 0
+  MaxCharactersInRTL: 0
+  CorrectAlignmentForRTL: 1
+  TranslatedObjects: []
+  LocalizeCallBack:
+    Target: {fileID: 0}
+    MethodName: 
 --- !u!1 &279747924
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,6 +590,7 @@ GameObject:
   - component: {fileID: 279747927}
   - component: {fileID: 279747926}
   - component: {fileID: 279747928}
+  - component: {fileID: 279747929}
   m_Layer: 5
   m_Name: 1
   m_TagString: Untagged
@@ -577,7 +613,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100.4}
+  m_AnchoredPosition: {x: 0, y: -88}
   m_SizeDelta: {x: -200, y: 134.69}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &279747926
@@ -600,21 +636,21 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 984fa034ce4b0e24db4e5694b0bc7576, type: 3}
-    m_FontSize: 21
+    m_Font: {fileID: 12800000, guid: 87e33cce15ea2904ca6806293cd1c05b, type: 3}
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 5
     m_MaxSize: 96
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 'JUMP ON SQUARES
-
-    TO CHANGE THEM TO THE TARGET COLOR'
+    m_LineSpacing: 0.6
+  m_Text: "\u041F\u0420\u042B\u0413\u0410\u0419 \u041D\u0410 \u041A\u0423\u0411\u0418\u041A\u0418
+    \u0427\u0422\u041E\u0411\u042B \u0418\u0417\u041C\u0415\u041D\u0418\u0422\u042C
+    \u0418\u0425 \u0426\u0412\u0415\u0422 \u041D\u0410 \u0422\u0420\u0415\u0411\u0423\u0415\u041C\u042B\u0419"
 --- !u!222 &279747927
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -635,6 +671,33 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!114 &279747929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 279747924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTerm: JUMP ON SQUARES TO CHANGE THEM TO THE TARGET COLOR
+  mTermSecondary: Qbic
+  PrimaryTermModifier: 0
+  SecondaryTermModifier: 0
+  LocalizeOnAwake: 1
+  Source: {fileID: 11498450, guid: 30b4bdb95bb330045b3300c29172b19e, type: 2}
+  CanUseSecondaryTerm: 1
+  AllowMainTermToBeRTL: 1
+  AllowSecondTermToBeRTL: 0
+  IgnoreRTL: 0
+  MaxCharactersInRTL: 0
+  CorrectAlignmentForRTL: 1
+  TranslatedObjects: []
+  LocalizeCallBack:
+    Target: {fileID: 0}
+    MethodName: 
 --- !u!1 &297460005
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,13 +995,14 @@ GameObject:
   - component: {fileID: 360240783}
   - component: {fileID: 360240782}
   - component: {fileID: 360240784}
+  - component: {fileID: 360240785}
   m_Layer: 5
   m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &360240781
 RectTransform:
   m_ObjectHideFlags: 0
@@ -954,8 +1018,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000027790666, y: -100.4}
-  m_SizeDelta: {x: -200, y: 134.69}
+  m_AnchoredPosition: {x: 1.0499983, y: -88}
+  m_SizeDelta: {x: 84.100006, y: 134.69}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &360240782
 MonoBehaviour:
@@ -977,25 +1041,23 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 984fa034ce4b0e24db4e5694b0bc7576, type: 3}
-    m_FontSize: 21
+    m_Font: {fileID: 12800000, guid: 87e33cce15ea2904ca6806293cd1c05b, type: 3}
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 5
     m_MaxSize: 96
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 'DISCS TRANSPORTS YOU
-
-    TO THE OTHER SIDE OF THE PLAYFIELD.
-
-    JUMP ON A DISC TO LURE SNAKE
-
-    TO HIS DEATH.'
+    m_LineSpacing: 0.6
+  m_Text: "\u0414\u0418\u0421\u041A\u0418 \u041F\u0415\u0420\u0415\u041D\u041E\u0421\u042F\u0422
+    \u0422\u0415\u0411\u042F \u041D\u0410 \u0414\u0420\u0423\u0413\u0423\u042E \u0427\u0410\u0421\u0422\u042C\n\u0418\u0413\u0420\u041E\u0412\u041E\u0413\u041E
+    \u041F\u041E\u041B\u042F.\n\u041F\u0420\u042B\u0413\u041D\u0423\u0412 \u0417\u0410
+    \u0422\u041E\u0411\u041E\u0419 \u0417\u041C\u0415\u042F \u0423\u041F\u0410\u0414\u0401\u0422
+    \u0412\u041D\u0418\u0417!"
 --- !u!222 &360240783
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1016,6 +1078,34 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!114 &360240785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 360240780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTerm: DISCS TRANSPORTS YOU TO THE OTHER SIDE OF THE PLAYFIELD JUMP ON A DISC TO
+    LURE SNAKE TO HIS DEATH
+  mTermSecondary: Qbic
+  PrimaryTermModifier: 0
+  SecondaryTermModifier: 0
+  LocalizeOnAwake: 1
+  Source: {fileID: 11498450, guid: 30b4bdb95bb330045b3300c29172b19e, type: 2}
+  CanUseSecondaryTerm: 1
+  AllowMainTermToBeRTL: 1
+  AllowSecondTermToBeRTL: 0
+  IgnoreRTL: 0
+  MaxCharactersInRTL: 0
+  CorrectAlignmentForRTL: 1
+  TranslatedObjects: []
+  LocalizeCallBack:
+    Target: {fileID: 0}
+    MethodName: 
 --- !u!1 &383761108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1476,6 +1566,7 @@ GameObject:
   - component: {fileID: 532835142}
   - component: {fileID: 532835141}
   - component: {fileID: 532835143}
+  - component: {fileID: 532835144}
   m_Layer: 5
   m_Name: 2
   m_TagString: Untagged
@@ -1498,8 +1589,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000020746142, y: -100.4}
-  m_SizeDelta: {x: -200, y: 134.69}
+  m_AnchoredPosition: {x: 9.869991, y: -88}
+  m_SizeDelta: {x: 81.539986, y: 134.69}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &532835141
 MonoBehaviour:
@@ -1521,20 +1612,23 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 984fa034ce4b0e24db4e5694b0bc7576, type: 3}
-    m_FontSize: 21
+    m_Font: {fileID: 12800000, guid: 87e33cce15ea2904ca6806293cd1c05b, type: 3}
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 5
     m_MaxSize: 96
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: "\rSTAY  ON  PLAYFIELD!\r\nJUMPING  OFF  RESULTS  IN  A LOST  LIFE, UNLESS
-    \ A  PLATFORM IS THERE.\r"
+    m_LineSpacing: 0.6
+  m_Text: "\u041E\u0421\u0422\u0410\u0412\u0410\u0419\u0421\u042F \u041D\u0410 \u0418\u0413\u0420\u041E\u0412\u041E\u041C
+    \u041F\u041E\u041B\u0415!\r\n\u0421\u041F\u0420\u042B\u0413\u0418\u0412\u0410\u042F
+    \u0421 \u041F\u0418\u0420\u0410\u041C\u0418\u0414\u042B \u0422\u042B \u0422\u0415\u0420\u042F\u0415\u0428\u042C
+    \u0416\u0418\u0417\u041D\u042C, \n\u041A\u0420\u041E\u041C\u0415 \u041F\u0420\u042B\u0416\u041A\u0410
+    \u041D\u0410 \u041F\u041B\u0410\u0422\u0424\u041E\u0420\u041C\u0423."
 --- !u!222 &532835142
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1555,6 +1649,34 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!114 &532835144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 532835139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTerm: STAY  ON  PLAYFIELD JUMPING  OFF  RESULTS  IN  A LOST  LIFE  UNLESS  A  PLATFORM
+    IS THERE
+  mTermSecondary: Qbic
+  PrimaryTermModifier: 0
+  SecondaryTermModifier: 0
+  LocalizeOnAwake: 1
+  Source: {fileID: 11498450, guid: 30b4bdb95bb330045b3300c29172b19e, type: 2}
+  CanUseSecondaryTerm: 1
+  AllowMainTermToBeRTL: 1
+  AllowSecondTermToBeRTL: 0
+  IgnoreRTL: 0
+  MaxCharactersInRTL: 0
+  CorrectAlignmentForRTL: 1
+  TranslatedObjects: []
+  LocalizeCallBack:
+    Target: {fileID: 0}
+    MethodName: 
 --- !u!224 &586611819 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22405382, guid: 50df05df30d69ae439b98d3a96da2cdd,
@@ -1801,6 +1923,7 @@ GameObject:
   - component: {fileID: 740811892}
   - component: {fileID: 740811891}
   - component: {fileID: 740811893}
+  - component: {fileID: 740811894}
   m_Layer: 5
   m_Name: 3
   m_TagString: Untagged
@@ -1823,7 +1946,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000020746142, y: -100.4}
+  m_AnchoredPosition: {x: -0.000020746142, y: -88}
   m_SizeDelta: {x: -200, y: 134.69}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &740811891
@@ -1846,11 +1969,11 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 984fa034ce4b0e24db4e5694b0bc7576, type: 3}
-    m_FontSize: 21
+    m_Font: {fileID: 12800000, guid: 87e33cce15ea2904ca6806293cd1c05b, type: 3}
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 5
     m_MaxSize: 96
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -1879,6 +2002,33 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!114 &740811894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 740811889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTerm: AVOID THESE OBJECTS
+  mTermSecondary: Qbic
+  PrimaryTermModifier: 0
+  SecondaryTermModifier: 0
+  LocalizeOnAwake: 1
+  Source: {fileID: 11498450, guid: 30b4bdb95bb330045b3300c29172b19e, type: 2}
+  CanUseSecondaryTerm: 1
+  AllowMainTermToBeRTL: 1
+  AllowSecondTermToBeRTL: 0
+  IgnoreRTL: 0
+  MaxCharactersInRTL: 0
+  CorrectAlignmentForRTL: 1
+  TranslatedObjects: []
+  LocalizeCallBack:
+    Target: {fileID: 0}
+    MethodName: 
 --- !u!1 &798334656
 GameObject:
   m_ObjectHideFlags: 0
@@ -2179,6 +2329,7 @@ GameObject:
   - component: {fileID: 875278967}
   - component: {fileID: 875278966}
   - component: {fileID: 875278968}
+  - component: {fileID: 875278969}
   m_Layer: 5
   m_Name: LevelX
   m_TagString: Untagged
@@ -2236,7 +2387,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: INSTRUCTIONS
+  m_Text: "\u0418\u041D\u0421\u0422\u0420\u0423\u041A\u0426\u0418\u0418"
 --- !u!222 &875278967
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2257,6 +2408,33 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!114 &875278969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 875278964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTerm: INSTRUCTIONS
+  mTermSecondary: Qbic
+  PrimaryTermModifier: 0
+  SecondaryTermModifier: 0
+  LocalizeOnAwake: 1
+  Source: {fileID: 11498450, guid: 30b4bdb95bb330045b3300c29172b19e, type: 2}
+  CanUseSecondaryTerm: 1
+  AllowMainTermToBeRTL: 1
+  AllowSecondTermToBeRTL: 0
+  IgnoreRTL: 0
+  MaxCharactersInRTL: 0
+  CorrectAlignmentForRTL: 1
+  TranslatedObjects: []
+  LocalizeCallBack:
+    Target: {fileID: 0}
+    MethodName: 
 --- !u!1 &879627220
 GameObject:
   m_ObjectHideFlags: 0
@@ -2320,6 +2498,7 @@ MonoBehaviour:
   cameraFallowToCharacter: {fileID: 0}
   globalConfiguraion: {fileID: 11400000, guid: 0c14cf109b82c384da9aa51fd81cb6fa, type: 2}
   flashBackground: {fileID: 0}
+  isCheckToWin: 1
   levelLogic: {fileID: 0}
   level: 0
   round: 0
@@ -3585,6 +3764,7 @@ GameObject:
   - component: {fileID: 1526494495}
   - component: {fileID: 1526494494}
   - component: {fileID: 1526494496}
+  - component: {fileID: 1526494497}
   m_Layer: 5
   m_Name: 4
   m_TagString: Untagged
@@ -3607,7 +3787,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000020746142, y: -100.4}
+  m_AnchoredPosition: {x: -0.000020746142, y: -88}
   m_SizeDelta: {x: -200, y: 134.69}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1526494494
@@ -3630,11 +3810,11 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 984fa034ce4b0e24db4e5694b0bc7576, type: 3}
-    m_FontSize: 21
+    m_Font: {fileID: 12800000, guid: 87e33cce15ea2904ca6806293cd1c05b, type: 3}
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 5
     m_MaxSize: 96
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -3663,6 +3843,33 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!114 &1526494497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1526494492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTerm: GO FOR THESE OBJECTS
+  mTermSecondary: Qbic
+  PrimaryTermModifier: 0
+  SecondaryTermModifier: 0
+  LocalizeOnAwake: 1
+  Source: {fileID: 11498450, guid: 30b4bdb95bb330045b3300c29172b19e, type: 2}
+  CanUseSecondaryTerm: 1
+  AllowMainTermToBeRTL: 1
+  AllowSecondTermToBeRTL: 0
+  IgnoreRTL: 0
+  MaxCharactersInRTL: 0
+  CorrectAlignmentForRTL: 1
+  TranslatedObjects: []
+  LocalizeCallBack:
+    Target: {fileID: 0}
+    MethodName: 
 --- !u!1 &1557394895
 GameObject:
   m_ObjectHideFlags: 0
