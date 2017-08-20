@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488051eaa73ba421e8fe4868f2e0f364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Google_WebServiceURL: https://script.google.com/macros/s/AKfycbwD74MnlwoBdGSjh32QAKhBVtO-hw1q2R7fIupabaVj1VB9_SE/exec
+  Google_WebServiceURL: s/s/AKfycbwD74MnlwoBdGSjh32QAKhBVtO-hw1q2R7fIupabaVj1VB9_SE/exectO-hw1q2R7fIupabaVj1VB9_SE/exec
   Google_SpreadsheetKey: 1fXlv8QkFJNISoDv_3pHARGca1WgNNQG_Ejuc1cpB-pQ
   Google_SpreadsheetName: I2Loc Qarcade Localization
   Google_LastUpdatedVersion: 1494760899376

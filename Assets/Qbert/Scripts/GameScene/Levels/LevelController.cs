@@ -178,8 +178,6 @@ namespace Assets.Qbert.Scripts.GameScene.Levels
             qbert.collisionProxy.triggerEnterEvent = OnCollisionCharacters;
         }
 
-        
-
         public void OnRoundCubesInWin()
         {
             if(!isCheckToWin)

@@ -20,11 +20,12 @@ namespace Assets.Qbert.Scripts.GameScene
         public BonusLogic bonusLogic;
         public Transform bonusTimerTransform;
 
+        public CameraFallowToCharacter cameraFallowToCharacter;
+
+        [Header("Load scene")]
         public LoadScene.SelectSceneLoader sceneLoaderShowLevel;
         public LoadScene.SelectSceneLoader sceneLoaderMainMenu;
         public LoadScene.SelectSceneLoader sceneLoaderLevel;
-
-        public CameraFallowToCharacter cameraFallowToCharacter;
 
         public void RestartLevel()
         {
