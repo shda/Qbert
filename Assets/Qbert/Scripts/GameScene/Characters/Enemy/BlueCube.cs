@@ -5,7 +5,8 @@ namespace Assets.Qbert.Scripts.GameScene.Characters.Enemy
 {
     public class BlueCube : RedCube
     {
-        [Header("BlueCube")] public float durationFreezingTime = 2.0f;
+        [Header("BlueCube")]
+        public float durationFreezingTime = 2.0f;
 
         public override Type typeObject
         {

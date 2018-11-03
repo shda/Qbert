@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800908568b45c5844a31f3f22615ba03, type: 3}
+  m_Name: LevelDebug
+  m_EditorClassIdentifier: 
+  globalMap: {fileID: 11400000, guid: ee7b43829c2ef11498c2470ccdc170c7, type: 2}
+  typeLevel: 0
+  globalLevelColors: {fileID: 0}
+  rounds:
+  - customColors:
+    - {r: 0.7039162, g: 0.7058824, b: 0, a: 1}
+    - {r: 0.78431374, g: 0.1691657, b: 0.1691657, a: 1}
+    customMap: {fileID: 11400000, guid: a4cf24cbbebfca847bbaba2485e2ed78, type: 2}
+    rulesCustom: {fileID: 0}
+    rulesCreateGamplayObjects:
+    - createType: 3
+      maxToRound: -1
+      maxOneTime: 3
+      delayToStart: 2
+      delayBetweenCreate: 5
+    timeToStartRound: 0.000000095189506
+    levelController: {fileID: 0}

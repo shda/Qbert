@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224639654211067254}
   - component: {fileID: 222006125912913348}
   - component: {fileID: 114303785006951752}
-  - component: {fileID: 114096983371041550}
+  - component: {fileID: 114360557034527360}
   m_Layer: 8
   m_Name: NormalImage
   m_TagString: Untagged
@@ -29,21 +29,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114096983371041550
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1804099466875406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efdf37e421c3b2a44a5c1c9ff477353c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashColors:
-  - {r: 0.17841694, g: 0.60452497, b: 0.8088235, a: 1}
-  - {r: 0.0037846058, g: 0.34912944, b: 0.5147059, a: 1}
-  imageFlash: {fileID: 114303785006951752}
 --- !u!114 &114303785006951752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71,6 +56,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114360557034527360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1804099466875406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efdf37e421c3b2a44a5c1c9ff477353c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageFlash: {fileID: 114303785006951752}
+  normalMaterila: {fileID: 2100000, guid: 1af5fb511e6e3374f87a014c2c0f3d9a, type: 2}
+  flashMaterial: {fileID: 2100000, guid: 55b82f320fcf93242990e498992af98b, type: 2}
 --- !u!222 &222006125912913348
 CanvasRenderer:
   m_ObjectHideFlags: 1

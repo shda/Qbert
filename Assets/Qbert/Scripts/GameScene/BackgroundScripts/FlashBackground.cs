@@ -5,9 +5,9 @@ public class FlashBackground : MonoBehaviour
 {
     public FlashColorBase flashColor;
 
-    public void Flash(float durationFreezingTime)
+    public void Flash(float durationFlash)
     {
-        flashColor.StartFlash(durationFreezingTime , 0.3f);
+        flashColor.StartFlash(durationFlash, 0.3f);
     }
     public void SetNormal()
     {

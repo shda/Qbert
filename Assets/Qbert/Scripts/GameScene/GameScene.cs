@@ -2,6 +2,7 @@
 using Assets.Qbert.Scripts.GameScene.InputControl;
 using Assets.Qbert.Scripts.GameScene.Levels;
 using Assets.Qbert.Scripts.GameScene.PreLevel;
+using Assets.Qbert.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 

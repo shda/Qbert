@@ -103,7 +103,7 @@ MonoBehaviour:
       y: 1
       cubePattern: {fileID: 407988, guid: fe616d365cb647c43b986ebf72976abb, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 5
       y: 1
@@ -121,7 +121,7 @@ MonoBehaviour:
       y: 1
       cubePattern: {fileID: 407988, guid: 84296bc9d3a5f16458bdd83e85c961fd, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 8
       y: 1
@@ -157,13 +157,13 @@ MonoBehaviour:
       y: 2
       cubePattern: {fileID: 407988, guid: b7dfbe4cb15d9c941b5f1645f3e47eb3, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 00000000040000000100000003000000
+      listTypeObjectsStartPoint: 0000000004000000010000000300000006000000
       listTypeObjectsEndPoint: 
     - x: 5
       y: 2
       cubePattern: {fileID: 407988, guid: b7dfbe4cb15d9c941b5f1645f3e47eb3, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 00000000040000000100000003000000
+      listTypeObjectsStartPoint: 0000000004000000010000000300000006000000
       listTypeObjectsEndPoint: 
     - x: 6
       y: 2
@@ -175,13 +175,13 @@ MonoBehaviour:
       y: 2
       cubePattern: {fileID: 407988, guid: b7dfbe4cb15d9c941b5f1645f3e47eb3, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 00000000040000000100000003000000
+      listTypeObjectsStartPoint: 0000000004000000010000000300000006000000
       listTypeObjectsEndPoint: 
     - x: 8
       y: 2
       cubePattern: {fileID: 407988, guid: b7dfbe4cb15d9c941b5f1645f3e47eb3, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 00000000040000000100000003000000
+      listTypeObjectsStartPoint: 0000000004000000010000000300000006000000
       listTypeObjectsEndPoint: 
     - x: 9
       y: 2
@@ -217,37 +217,37 @@ MonoBehaviour:
       y: 3
       cubePattern: {fileID: 407988, guid: fe616d365cb647c43b986ebf72976abb, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 5
       y: 3
       cubePattern: {fileID: 407988, guid: fe616d365cb647c43b986ebf72976abb, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 6
       y: 3
       cubePattern: {fileID: 407988, guid: fe616d365cb647c43b986ebf72976abb, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 7
       y: 3
       cubePattern: {fileID: 407988, guid: 84296bc9d3a5f16458bdd83e85c961fd, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 8
       y: 3
       cubePattern: {fileID: 407988, guid: 84296bc9d3a5f16458bdd83e85c961fd, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 9
       y: 3
       cubePattern: {fileID: 407988, guid: 84296bc9d3a5f16458bdd83e85c961fd, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 10
       y: 3
@@ -271,43 +271,43 @@ MonoBehaviour:
       y: 4
       cubePattern: {fileID: 407988, guid: b7dfbe4cb15d9c941b5f1645f3e47eb3, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 5
       y: 4
       cubePattern: {fileID: 407988, guid: b7dfbe4cb15d9c941b5f1645f3e47eb3, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 6
       y: 4
       cubePattern: {fileID: 407988, guid: b7dfbe4cb15d9c941b5f1645f3e47eb3, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 7
       y: 4
       cubePattern: {fileID: 407988, guid: b7dfbe4cb15d9c941b5f1645f3e47eb3, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 07000000
+      listTypeObjectsStartPoint: 0700000006000000
       listTypeObjectsEndPoint: 
     - x: 8
       y: 4
       cubePattern: {fileID: 407988, guid: b7dfbe4cb15d9c941b5f1645f3e47eb3, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 9
       y: 4
       cubePattern: {fileID: 407988, guid: b7dfbe4cb15d9c941b5f1645f3e47eb3, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 10
       y: 4
       cubePattern: {fileID: 407988, guid: b7dfbe4cb15d9c941b5f1645f3e47eb3, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 11
       y: 4
@@ -331,49 +331,49 @@ MonoBehaviour:
       y: 5
       cubePattern: {fileID: 0}
       isEnable: 0
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 02000000
       listTypeObjectsEndPoint: 
     - x: 5
       y: 5
       cubePattern: {fileID: 407988, guid: fe616d365cb647c43b986ebf72976abb, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 6
       y: 5
       cubePattern: {fileID: 407988, guid: fe616d365cb647c43b986ebf72976abb, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 7
       y: 5
       cubePattern: {fileID: 407988, guid: fe616d365cb647c43b986ebf72976abb, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 8
       y: 5
       cubePattern: {fileID: 407988, guid: 84296bc9d3a5f16458bdd83e85c961fd, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 9
       y: 5
       cubePattern: {fileID: 407988, guid: 84296bc9d3a5f16458bdd83e85c961fd, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 10
       y: 5
       cubePattern: {fileID: 407988, guid: 84296bc9d3a5f16458bdd83e85c961fd, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 11
       y: 5
       cubePattern: {fileID: 0}
       isEnable: 0
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 02000000
       listTypeObjectsEndPoint: 
     - x: 12
       y: 5
@@ -397,13 +397,13 @@ MonoBehaviour:
       y: 6
       cubePattern: {fileID: 407988, guid: b7dfbe4cb15d9c941b5f1645f3e47eb3, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 7
       y: 6
       cubePattern: {fileID: 407988, guid: b7dfbe4cb15d9c941b5f1645f3e47eb3, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 8
       y: 6
@@ -415,13 +415,13 @@ MonoBehaviour:
       y: 6
       cubePattern: {fileID: 407988, guid: b7dfbe4cb15d9c941b5f1645f3e47eb3, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 10
       y: 6
       cubePattern: {fileID: 407988, guid: b7dfbe4cb15d9c941b5f1645f3e47eb3, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 11
       y: 6
@@ -463,7 +463,7 @@ MonoBehaviour:
       y: 7
       cubePattern: {fileID: 407988, guid: fe616d365cb647c43b986ebf72976abb, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 8
       y: 7
@@ -481,7 +481,7 @@ MonoBehaviour:
       y: 7
       cubePattern: {fileID: 407988, guid: 84296bc9d3a5f16458bdd83e85c961fd, type: 2}
       isEnable: 1
-      listTypeObjectsStartPoint: 
+      listTypeObjectsStartPoint: 06000000
       listTypeObjectsEndPoint: 
     - x: 11
       y: 7

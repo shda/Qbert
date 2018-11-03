@@ -15,6 +15,8 @@ public class LoadBackgroundAnimation : MonoBehaviour
 
     public BackgroundsAsset asset;
 
+    public FlashBackground flashBackground;
+
     public static LoadBackgroundAnimation instance { get; private set; }
 
 
@@ -54,14 +56,25 @@ public class LoadBackgroundAnimation : MonoBehaviour
     {
         DestroyAllChildrens(rootImage);
 
-        Transform imageResource = Resources.Load<Transform>(imagesParefabsPath + selectBackground.image);
+        string pathInResoureFolder = imagesParefabsPath + selectBackground.image;
 
-        var image = Instantiate(imageResource);
-        RectTransform rt = image.GetComponent<RectTransform>();
-        image.SetParent(rootImage);
-        image.localScale = new Vector3(1, 1, 1);
-        image.localPosition = new Vector3(1, 1);
-        rt.sizeDelta = new Vector2(0, 0);
+        Transform imageResource = Resources.Load<Transform>(pathInResoureFolder);
+
+        if (imageResource != null)
+        {
+            var image = Instantiate(imageResource);
+            RectTransform rt = image.GetComponent<RectTransform>();
+            image.SetParent(rootImage);
+            image.localScale = new Vector3(1, 1, 1);
+            image.localPosition = new Vector3(1, 1);
+            rt.sizeDelta = new Vector2(0, 0);
+
+            flashBackground.flashColor = image.GetComponent<FlashColorBase>();
+        }
+        else
+        {
+            Debug.LogError("Error load background - " + pathInResoureFolder);
+        }
     }
 
     private void StartLoad()

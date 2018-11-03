@@ -31,7 +31,7 @@ MonoBehaviour:
       maxToRound: -1
       maxOneTime: 1
       delayToStart: 3
-      delayBetweenCreate: 4
+      delayBetweenCreate: 7
     - createType: 2
       maxToRound: 5
       maxOneTime: 5
@@ -48,11 +48,11 @@ MonoBehaviour:
       delayToStart: 22
       delayBetweenCreate: 10
     - createType: 6
-      maxToRound: 30
-      maxOneTime: 10
+      maxToRound: 35
+      maxOneTime: 12
       delayToStart: 3
-      delayBetweenCreate: 2
-    timeToStartRound: 0.00000033324412
+      delayBetweenCreate: 3
+    timeToStartRound: 72.685486
     levelController: {fileID: 0}
   - customColors:
     - {r: 0.5600696, g: 0.6862745, b: 0.18838908, a: 0}
@@ -70,7 +70,7 @@ MonoBehaviour:
       maxToRound: -1
       maxOneTime: 1
       delayToStart: 3
-      delayBetweenCreate: 4
+      delayBetweenCreate: 7
     - createType: 2
       maxToRound: 5
       maxOneTime: 5
@@ -87,11 +87,11 @@ MonoBehaviour:
       delayToStart: 10
       delayBetweenCreate: 10
     - createType: 6
-      maxToRound: 30
-      maxOneTime: 10
+      maxToRound: 35
+      maxOneTime: 12
       delayToStart: 3
-      delayBetweenCreate: 2
-    timeToStartRound: 0.00000011089011
+      delayBetweenCreate: 3
+    timeToStartRound: 66.56188
     levelController: {fileID: 0}
   - customColors:
     - {r: 1, g: 0.66852367, b: 0, a: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
       maxToRound: -1
       maxOneTime: 1
       delayToStart: 3
-      delayBetweenCreate: 4
+      delayBetweenCreate: 7
     - createType: 2
       maxToRound: 5
       maxOneTime: 5
@@ -119,16 +119,16 @@ MonoBehaviour:
       maxToRound: -1
       maxOneTime: 1
       delayToStart: 25
-      delayBetweenCreate: 25
+      delayBetweenCreate: 21
     - createType: 4
       maxToRound: -1
       maxOneTime: 2
       delayToStart: 22
       delayBetweenCreate: 10
     - createType: 6
-      maxToRound: 30
-      maxOneTime: 10
+      maxToRound: 35
+      maxOneTime: 12
       delayToStart: 3
-      delayBetweenCreate: 2
-    timeToStartRound: 0.00000007450862
+      delayBetweenCreate: 3
+    timeToStartRound: 90.33361
     levelController: {fileID: 0}

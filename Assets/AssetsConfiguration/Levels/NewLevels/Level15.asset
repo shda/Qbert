@@ -26,12 +26,12 @@ MonoBehaviour:
       maxToRound: -1
       maxOneTime: 3
       delayToStart: 2
-      delayBetweenCreate: 2
+      delayBetweenCreate: 6
     - createType: 1
       maxToRound: -1
       maxOneTime: 1
-      delayToStart: 3
-      delayBetweenCreate: 4
+      delayToStart: 5
+      delayBetweenCreate: 25
     - createType: 2
       maxToRound: 6
       maxOneTime: 6
@@ -40,24 +40,24 @@ MonoBehaviour:
     - createType: 3
       maxToRound: -1
       maxOneTime: 1
-      delayToStart: 25
-      delayBetweenCreate: 25
+      delayToStart: 21
+      delayBetweenCreate: 24
     - createType: 4
       maxToRound: -1
       maxOneTime: 1
-      delayToStart: 19
-      delayBetweenCreate: 15
+      delayToStart: 30
+      delayBetweenCreate: 33
     - createType: 5
       maxToRound: -1
-      maxOneTime: 2
-      delayToStart: 7
-      delayBetweenCreate: 7
+      maxOneTime: 1
+      delayToStart: 15
+      delayBetweenCreate: 26
     - createType: 6
-      maxToRound: 40
-      maxOneTime: 20
-      delayToStart: 2
-      delayBetweenCreate: 2
-    timeToStartRound: 0
+      maxToRound: 50
+      maxOneTime: 15
+      delayToStart: 3
+      delayBetweenCreate: 3
+    timeToStartRound: 0.00000010852054
     levelController: {fileID: 0}
   - customColors:
     - {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 0}
@@ -70,12 +70,12 @@ MonoBehaviour:
       maxToRound: -1
       maxOneTime: 3
       delayToStart: 2
-      delayBetweenCreate: 2
+      delayBetweenCreate: 6
     - createType: 1
       maxToRound: -1
       maxOneTime: 1
-      delayToStart: 3
-      delayBetweenCreate: 4
+      delayToStart: 5
+      delayBetweenCreate: 25
     - createType: 2
       maxToRound: 6
       maxOneTime: 6
@@ -84,24 +84,24 @@ MonoBehaviour:
     - createType: 3
       maxToRound: -1
       maxOneTime: 1
-      delayToStart: 25
-      delayBetweenCreate: 25
+      delayToStart: 21
+      delayBetweenCreate: 24
     - createType: 4
       maxToRound: -1
       maxOneTime: 1
-      delayToStart: 19
-      delayBetweenCreate: 15
+      delayToStart: 30
+      delayBetweenCreate: 33
     - createType: 5
       maxToRound: -1
-      maxOneTime: 2
-      delayToStart: 7
-      delayBetweenCreate: 7
+      maxOneTime: 1
+      delayToStart: 15
+      delayBetweenCreate: 26
     - createType: 6
-      maxToRound: 40
-      maxOneTime: 20
-      delayToStart: 2
-      delayBetweenCreate: 2
-    timeToStartRound: 0
+      maxToRound: 50
+      maxOneTime: 15
+      delayToStart: 3
+      delayBetweenCreate: 3
+    timeToStartRound: 0.00000008631638
     levelController: {fileID: 0}
   - customColors:
     - {r: 0.74509805, g: 0, b: 0, a: 0}
@@ -114,12 +114,12 @@ MonoBehaviour:
       maxToRound: -1
       maxOneTime: 3
       delayToStart: 2
-      delayBetweenCreate: 2
+      delayBetweenCreate: 6
     - createType: 1
       maxToRound: -1
       maxOneTime: 1
-      delayToStart: 3
-      delayBetweenCreate: 4
+      delayToStart: 5
+      delayBetweenCreate: 25
     - createType: 2
       maxToRound: 6
       maxOneTime: 6
@@ -128,22 +128,22 @@ MonoBehaviour:
     - createType: 3
       maxToRound: -1
       maxOneTime: 1
-      delayToStart: 25
-      delayBetweenCreate: 25
+      delayToStart: 21
+      delayBetweenCreate: 24
     - createType: 4
       maxToRound: -1
       maxOneTime: 1
-      delayToStart: 19
-      delayBetweenCreate: 15
+      delayToStart: 30
+      delayBetweenCreate: 33
     - createType: 5
       maxToRound: -1
-      maxOneTime: 2
-      delayToStart: 7
-      delayBetweenCreate: 7
+      maxOneTime: 1
+      delayToStart: 15
+      delayBetweenCreate: 26
     - createType: 6
-      maxToRound: 40
-      maxOneTime: 20
-      delayToStart: 2
-      delayBetweenCreate: 2
-    timeToStartRound: 0
+      maxToRound: 50
+      maxOneTime: 15
+      delayToStart: 3
+      delayBetweenCreate: 3
+    timeToStartRound: 148.48898
     levelController: {fileID: 0}

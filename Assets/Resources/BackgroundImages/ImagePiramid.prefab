@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224259387705462928}
   - component: {fileID: 222168632760438696}
   - component: {fileID: 114093901918316846}
-  - component: {fileID: 114425940534322882}
+  - component: {fileID: 114954822685272686}
   m_Layer: 8
   m_Name: ImagePiramid
   m_TagString: Untagged
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114425940534322882
+--- !u!114 &114954822685272686
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -67,10 +67,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efdf37e421c3b2a44a5c1c9ff477353c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashColors:
-  - {r: 0.17841694, g: 0.60452497, b: 0.8088235, a: 1}
-  - {r: 0.0037846058, g: 0.34912944, b: 0.5147059, a: 1}
   imageFlash: {fileID: 114093901918316846}
+  normalMaterila: {fileID: 2100000, guid: 97356c8617d691144a26f6fcd2491525, type: 2}
+  flashMaterial: {fileID: 2100000, guid: 55b82f320fcf93242990e498992af98b, type: 2}
 --- !u!222 &222168632760438696
 CanvasRenderer:
   m_ObjectHideFlags: 1

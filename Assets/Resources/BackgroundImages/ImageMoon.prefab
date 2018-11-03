@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224910041388379008}
   - component: {fileID: 222971744163204050}
   - component: {fileID: 114720121189642148}
-  - component: {fileID: 114500278220138426}
+  - component: {fileID: 114386119009567822}
   m_Layer: 8
   m_Name: ImageMoon
   m_TagString: Untagged
@@ -29,7 +29,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114500278220138426
+--- !u!114 &114386119009567822
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -40,10 +40,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efdf37e421c3b2a44a5c1c9ff477353c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashColors:
-  - {r: 0.17841694, g: 0.60452497, b: 0.8088235, a: 1}
-  - {r: 0.0037846058, g: 0.34912944, b: 0.5147059, a: 1}
   imageFlash: {fileID: 114720121189642148}
+  normalMaterila: {fileID: 2100000, guid: 8325a62f41a804640a3e78e2ea74b5a1, type: 2}
+  flashMaterial: {fileID: 2100000, guid: 55b82f320fcf93242990e498992af98b, type: 2}
 --- !u!114 &114720121189642148
 MonoBehaviour:
   m_ObjectHideFlags: 1

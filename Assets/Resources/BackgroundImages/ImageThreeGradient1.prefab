@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224614834728384618}
   - component: {fileID: 222952938323759402}
   - component: {fileID: 114924061227536738}
+  - component: {fileID: 114147446267836924}
   m_Layer: 8
   m_Name: ImageThreeGradient1
   m_TagString: Untagged
@@ -28,6 +29,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114147446267836924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1830283210947446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efdf37e421c3b2a44a5c1c9ff477353c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageFlash: {fileID: 114924061227536738}
+  normalMaterila: {fileID: 2100000, guid: e9f884d226c6766458c4ac291d32ee4d, type: 2}
+  flashMaterial: {fileID: 2100000, guid: 55b82f320fcf93242990e498992af98b, type: 2}
 --- !u!114 &114924061227536738
 MonoBehaviour:
   m_ObjectHideFlags: 1

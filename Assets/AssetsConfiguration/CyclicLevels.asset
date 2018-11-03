@@ -19,7 +19,7 @@ MonoBehaviour:
     startSpeed: 1
     upSpeedAfterCyclic: 1
     levelsAssets:
-    - {fileID: 11400000, guid: a98b450f176ac6440b843ae046232882, type: 2}
+    - {fileID: 11400000, guid: 17fb2f7961eb8ce479e5d388cfa4f3e2, type: 2}
     - {fileID: 11400000, guid: 9bf2e0b39b1f0664bb12e31b2a746d39, type: 2}
     - {fileID: 11400000, guid: 00914f6dc7a9e2847b5d5973ea2fac1a, type: 2}
     - {fileID: 11400000, guid: 9bf25fee40a0c2a43b10adc174fcd233, type: 2}

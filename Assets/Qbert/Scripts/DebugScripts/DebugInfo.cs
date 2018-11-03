@@ -2,16 +2,20 @@
 
 namespace Assets.Qbert.Scripts.DebugScripts
 {
-    public class DebugInfo : MonoBehaviour 
+    public class DebugInfo : MonoBehaviour
     {
-        void Start () 
+        private static DebugInfo debugInfo;
+
+        void Awake()
         {
-	
-        }
-	
-        void Update () 
-        {
-	
+            if (debugInfo != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            debugInfo = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 }
