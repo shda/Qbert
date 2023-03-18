@@ -7,20 +7,20 @@ namespace I2.Loc
 	{
 		#region Cache
 
-		GUIText 	mTarget_GUIText;
+	//	GUIText 	mTarget_GUIText;
 		TextMesh 	mTarget_TextMesh;
 		AudioSource mTarget_AudioSource;
-		GUITexture 	mTarget_GUITexture;
+	//	GUITexture 	mTarget_GUITexture;
 		GameObject  mTarget_Child;
 		bool mInitializeAlignment = true;
 		TextAlignment mOriginalAlignmentStd = TextAlignment.Left;
 
 		public void RegisterEvents_UnityStandard()
 		{
-			EventFindTarget += FindTarget_GUIText;
+			//EventFindTarget += FindTarget_GUIText;
 			EventFindTarget += FindTarget_TextMesh;
 			EventFindTarget += FindTarget_AudioSource;
-			EventFindTarget += FindTarget_GUITexture;
+		//	EventFindTarget += FindTarget_GUITexture;
 			EventFindTarget += FindTarget_Child;
 		}
 
@@ -28,10 +28,10 @@ namespace I2.Loc
 
 		#region Find Target
 
-		void FindTarget_GUIText() 		{ FindAndCacheTarget (ref mTarget_GUIText, 		SetFinalTerms_GUIText,		DoLocalize_GUIText,		true, true, false); }
+	//	void FindTarget_GUIText() 		{ FindAndCacheTarget (ref mTarget_GUIText, 		SetFinalTerms_GUIText,		DoLocalize_GUIText,		true, true, false); }
 		void FindTarget_TextMesh() 		{ FindAndCacheTarget (ref mTarget_TextMesh,		SetFinalTerms_TextMesh,		DoLocalize_TextMesh,	true, true, false); }
 		void FindTarget_AudioSource()	{ FindAndCacheTarget (ref mTarget_AudioSource,	SetFinalTerms_AudioSource,	DoLocalize_AudioSource,	false,false, false);}
-		void FindTarget_GUITexture() 	{ FindAndCacheTarget (ref mTarget_GUITexture,	SetFinalTerms_GUITexture,	DoLocalize_GUITexture,	false,false, false);}
+	//	void FindTarget_GUITexture() 	{ FindAndCacheTarget (ref mTarget_GUITexture,	SetFinalTerms_GUITexture,	DoLocalize_GUITexture,	false,false, false);}
 		void FindTarget_Child() 		{ FindAndCacheTarget (ref mTarget_Child,		SetFinalTerms_Child,		DoLocalize_Child,		false,false, false);}
 
 		#endregion
@@ -40,9 +40,12 @@ namespace I2.Loc
 
 		public void SetFinalTerms_GUIText(string Main, string Secondary, out string PrimaryTerm, out string SecondaryTerm)
 		{
-			if (string.IsNullOrEmpty(Secondary) && mTarget_GUIText.font!=null)
-				Secondary = mTarget_GUIText.font.name;
-			SetFinalTerms (mTarget_GUIText.text, 	Secondary, 	out PrimaryTerm, out SecondaryTerm, true);
+		//	if (string.IsNullOrEmpty(Secondary) && mTarget_GUIText.font!=null)
+		//		Secondary = mTarget_GUIText.font.name;
+		//	SetFinalTerms (mTarget_GUIText.text, 	Secondary, 	out PrimaryTerm, out SecondaryTerm, true);
+
+		PrimaryTerm = "";
+		SecondaryTerm = "";
 		}
 
 		public void SetFinalTerms_TextMesh(string Main, string Secondary, out string PrimaryTerm, out string SecondaryTerm)
@@ -53,14 +56,17 @@ namespace I2.Loc
 
 		public void SetFinalTerms_GUITexture(string Main, string Secondary, out string PrimaryTerm, out string SecondaryTerm)
 		{
-			if (!mTarget_GUITexture || !mTarget_GUITexture.texture) 
+		//	if (!mTarget_GUITexture || !mTarget_GUITexture.texture) 
 			{
-				SetFinalTerms( string.Empty, string.Empty, out PrimaryTerm, out SecondaryTerm, false );
+		//		SetFinalTerms( string.Empty, string.Empty, out PrimaryTerm, out SecondaryTerm, false );
 			}
-			else
+		//	else
 			{
-				SetFinalTerms (mTarget_GUITexture.texture.name,	string.Empty, 		out PrimaryTerm, out SecondaryTerm, false);
+		//		SetFinalTerms (mTarget_GUITexture.texture.name,	string.Empty, 		out PrimaryTerm, out SecondaryTerm, false);
 			}
+
+			PrimaryTerm = "";
+			SecondaryTerm = "";
 		}
 
 		public void SetFinalTerms_AudioSource(string Main, string Secondary, out string PrimaryTerm, out string SecondaryTerm)
@@ -88,21 +94,21 @@ namespace I2.Loc
 		{
 			//--[ Localize Font Object ]----------
 			Font newFont = GetSecondaryTranslatedObj<Font>(ref MainTranslation, ref SecondaryTranslation);
-			if (newFont!=null && mTarget_GUIText.font != newFont) 
-				mTarget_GUIText.font = newFont;
+			//if (newFont!=null && mTarget_GUIText.font != newFont) 
+			//	mTarget_GUIText.font = newFont;
 
 			//--[ Localize Text ]----------
 			if (mInitializeAlignment)
 			{
 				mInitializeAlignment = false;
-				mOriginalAlignmentStd = mTarget_GUIText.alignment;
+			//	mOriginalAlignmentStd = mTarget_GUIText.alignment;
 			}
-			if (!string.IsNullOrEmpty(MainTranslation) && mTarget_GUIText.text != MainTranslation)
+			//if (!string.IsNullOrEmpty(MainTranslation) && mTarget_GUIText.text != MainTranslation)
 			{
-				if (Localize.CurrentLocalizeComponent.CorrectAlignmentForRTL)
-					mTarget_GUIText.alignment = LocalizationManager.IsRight2Left ? TextAlignment.Right : mOriginalAlignmentStd;
+			//	if (Localize.CurrentLocalizeComponent.CorrectAlignmentForRTL)
+		//			mTarget_GUIText.alignment = LocalizationManager.IsRight2Left ? TextAlignment.Right : mOriginalAlignmentStd;
 				
-				mTarget_GUIText.text = MainTranslation;
+			//	mTarget_GUIText.text = MainTranslation;
 			}
 		}
 		
@@ -149,9 +155,9 @@ namespace I2.Loc
 		
 		void DoLocalize_GUITexture( string MainTranslation, string SecondaryTranslation )
 		{
-			Texture Old = mTarget_GUITexture.texture;
-			if (Old!=null && Old.name!=MainTranslation)
-				mTarget_GUITexture.texture = FindTranslatedObject<Texture>(MainTranslation);
+			//Texture Old = mTarget_GUITexture.texture;
+		///	if (Old!=null && Old.name!=MainTranslation)
+		//		mTarget_GUITexture.texture = FindTranslatedObject<Texture>(MainTranslation);
 			
 			// If the old value is not in the translatedObjects, then unload it as it most likely was loaded from Resources
 			//if (!HasTranslatedObject(Old))

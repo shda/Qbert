@@ -473,10 +473,10 @@ namespace I2.Loc
 			int CurrentTarget = -1;
 
 			mLocalize.FindTarget();
-			TestTargetType<GUIText>		( ref TargetTypes, "GUIText", ref CurrentTarget );
+		//	TestTargetType<GUIText>		( ref TargetTypes, "GUIText", ref CurrentTarget );
 			TestTargetType<TextMesh>	( ref TargetTypes, "TextMesh", ref CurrentTarget );
 			TestTargetType<AudioSource>	( ref TargetTypes, "AudioSource", ref CurrentTarget );
-			TestTargetType<GUITexture>	( ref TargetTypes, "GUITexture", ref CurrentTarget );
+		//	TestTargetType<GUITexture>	( ref TargetTypes, "GUITexture", ref CurrentTarget );
 
 			TestTargetType<UnityEngine.UI.Text>		( ref TargetTypes, "Text", ref CurrentTarget );
 			TestTargetType<UnityEngine.UI.Image>	( ref TargetTypes, "Image", ref CurrentTarget );
@@ -527,10 +527,10 @@ namespace I2.Loc
 			{
 				switch (TargetTypes[index])
 				{
-					case "GUIText" 				:  mLocalize.mTarget = mLocalize.GetComponent<GUIText>(); break;
+				//	case "GUIText" 				:  mLocalize.mTarget = mLocalize.GetComponent<GUIText>(); break;
 					case "TextMesh" 			:  mLocalize.mTarget = mLocalize.GetComponent<TextMesh>(); break;
 					case "AudioSource" 			:  mLocalize.mTarget = mLocalize.GetComponent<AudioSource>(); break;
-					case "GUITexture" 			:  mLocalize.mTarget = mLocalize.GetComponent<GUITexture>(); break;
+				//	case "GUITexture" 			:  mLocalize.mTarget = mLocalize.GetComponent<GUITexture>(); break;
 					
 					case "Text" 			:  mLocalize.mTarget = mLocalize.GetComponent<UnityEngine.UI.Text>(); break;
 					case "Image" 			:  mLocalize.mTarget = mLocalize.GetComponent<UnityEngine.UI.Image>(); break;
